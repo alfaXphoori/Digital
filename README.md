@@ -2,7 +2,10 @@
 ### ต่อวงจรตามภาพให้ได้สำเร็จ โดยใช้ Tinkercad
 ![Display](https://github.com/user-attachments/assets/c5a09b75-d047-4fd4-ae13-fb1771bec75e)
 #### ผลลัพธ์ที่ต้องการ
+
 https://github.com/user-attachments/assets/6f9992f6-b306-4787-b7fc-42a0dc9016ad
+
+
 ![67 digital](https://github.com/user-attachments/assets/91a0b0fc-0ea3-4137-9fba-dad986501711)
 
 #### Data sheet
