@@ -1,5 +1,5 @@
 ## Exam (30 Point)
-#### ส่งงาน 
+#### ส่งสอบ Google Form
 https://forms.gle/XZTyzqJ2kWf11Pt1A
 
 #### ต่อวงจรตามภาพให้ได้สำเร็จ โดยใช้ Tinkercad
