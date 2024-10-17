@@ -16,4 +16,5 @@ https://github.com/user-attachments/assets/6f9992f6-b306-4787-b7fc-42a0dc9016ad
 ![4511-1](https://github.com/user-attachments/assets/ec00e9fb-5531-4f87-9678-5508f898aedc)
 
 #### รายชื่อนักศึกษา
-![67 name](https://github.com/user-attachments/assets/c39cf1e9-4441-421f-9e96-356906e0f8f6)
+
+![67 name](https://github.com/user-attachments/assets/40f40260-22bd-47f5-8751-5022673c679b)
