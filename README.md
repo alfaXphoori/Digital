@@ -1,5 +1,8 @@
-## Exam (20 Point) 
-### ต่อวงจรตามภาพให้ได้สำเร็จ โดยใช้ Tinkercad
+## Exam (30 Point)
+#### ส่งงาน 
+https://forms.gle/XZTyzqJ2kWf11Pt1A
+
+#### ต่อวงจรตามภาพให้ได้สำเร็จ โดยใช้ Tinkercad
 ![Display](https://github.com/user-attachments/assets/c5a09b75-d047-4fd4-ae13-fb1771bec75e)
 #### ผลลัพธ์ที่ต้องการ
 
