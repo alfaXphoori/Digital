@@ -59,7 +59,7 @@ $$C = A \cdot B \quad \text{(AND)}$$
 
 ### วงจร Half Adder:
 
-![Half Adder Circuit](https://upload.wikimedia.org/wikipedia/commons/d/d9/Half_Adder.svg)
+![Half Adder Circuit](./images/half-adder.png)
 
 *ที่มา: Wikimedia Commons (Public Domain)*
 
@@ -125,7 +125,7 @@ $$C_{out} = AB + AC_{in} + BC_{in} = AB + C_{in}(A \oplus B)$$
 
 ### วงจร Full Adder (gate level):
 
-![Full Adder Circuit](https://upload.wikimedia.org/wikipedia/commons/6/69/Full-adder_logic_diagram.svg)
+![Full Adder Circuit](./images/full-adder.png)
 
 *ที่มา: Wikimedia Commons (Public Domain)*
 
@@ -133,7 +133,7 @@ $$C_{out} = AB + AC_{in} + BC_{in} = AB + C_{in}(A \oplus B)$$
 
 นำ Full Adder 4 ตัวมาต่อกันเป็นลูกโซ่ — $C_{out}$ ของแต่ละหลักต่อเป็น $C_{in}$ ของหลักถัดไป:
 
-![4-bit Ripple Carry Adder](https://upload.wikimedia.org/wikipedia/commons/5/5d/4-bit_ripple_carry_adder.svg)
+![4-bit Ripple Carry Adder](./images/ripple-carry-adder.png)
 
 *ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
 
@@ -173,7 +173,7 @@ $$B_{out} = \overline{A} \cdot B$$
 
 ### วงจร Half Subtractor:
 
-![Half Subtractor Circuit](https://upload.wikimedia.org/wikipedia/commons/9/94/Half_Subtractor_Vektor.svg)
+![Half Subtractor Circuit](./images/half-subtractor.png)
 
 *ที่มา: Wikimedia Commons (CC0 Public Domain)*
 
@@ -195,7 +195,7 @@ $$B_{out} = \overline{A}B + B_{in}(\overline{A \oplus B})$$
 
 ### วงจร Full Subtractor:
 
-![Full Subtractor Circuit](https://upload.wikimedia.org/wikipedia/commons/8/83/Full-sub-Fixed.svg)
+![Full Subtractor Circuit](./images/full-subtractor.png)
 
 *ที่มา: Wikimedia Commons (CC BY-SA 4.0)*
 
@@ -228,7 +228,7 @@ $$GT = A\overline{B}, \quad EQ = \overline{A \oplus B}, \quad LT = \overline{A}B
 
 ### วงจร 1-bit Comparator:
 
-![1-bit Binary Comparator](https://upload.wikimedia.org/wikipedia/commons/8/80/One_Bit_Comparator_%28Color%29.png)
+![1-bit Binary Comparator](./images/comparator-1bit.png)
 
 *ที่มา: Wikimedia Commons (CC BY 4.0)*
 
@@ -301,7 +301,7 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 
 ### วงจร Simple Encoder (4-to-2 ตัวอย่าง):
 
-![4-to-2 Simple Encoder](https://upload.wikimedia.org/wikipedia/commons/a/a8/4to2_Simple_Encoder.png)
+![4-to-2 Simple Encoder](./images/encoder-4to2.png)
 
 *ที่มา: Wikimedia Commons (CC BY-SA 4.0)*
 
@@ -336,7 +336,7 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 
 ### 2-to-4 Decoder
 
-![2-to-4 Decoder Circuit](https://upload.wikimedia.org/wikipedia/commons/f/fc/Decoder_Example.svg)
+![2-to-4 Decoder Circuit](./images/decoder-2to4.png)
 
 *ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
 
@@ -397,7 +397,7 @@ $$D_0 = \overline{A_1}\,\overline{A_0}, \quad D_1 = \overline{A_1}\,A_0, \quad D
 
 ### BCD to 7-Segment Decoder ⭐
 
-![7-Segment Display Labeled](https://upload.wikimedia.org/wikipedia/commons/0/02/7_segment_display_labeled.svg)
+![7-Segment Display Labeled](./images/7segment-display.png)
 
 *ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
 
@@ -446,7 +446,7 @@ $$g = \sum m(2, 3, 4, 5, 6, 9) + \sum d(10, 11, 12, 13, 14, 15)$$
 
 ### วงจร MUX (4:1):
 
-![Multiplexer 4:1 Circuit](https://upload.wikimedia.org/wikipedia/commons/1/16/Multiplexer2.svg)
+![Multiplexer 4:1 Circuit](./images/mux-4to1.png)
 
 *ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
 
@@ -513,7 +513,7 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 
 ### วงจร DEMUX 1-to-4:
 
-![DEMUX 1-to-4 Circuit](https://upload.wikimedia.org/wikipedia/commons/1/15/Demultiplexer_Example01.svg)
+![DEMUX 1-to-4 Circuit](./images/demux-1to4.png)
 
 *ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
 
