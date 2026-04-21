@@ -68,7 +68,7 @@ A:    _____|‾‾‾‾‾|_____|‾‾‾‾‾|____
 
 ให้เอาต์พุตเป็น `1` เมื่ออินพุต **ทุกตัว** เป็น `1`
 
-$$Y = A \cdot B$$
+$Y = A \cdot B$
 
 | A | B | Y = A·B |
 |:---:|:---:|:---:|
@@ -577,13 +577,13 @@ C ── NOT ─┘
 
 | IC | ชื่อ | Data Sheet (PDF) |
 |:---:|:---|:---|
-| 7408 | Quad 2-input AND | [SN74LS08](pdf/SN74LS08_AND.pdf) |
-| 7432 | Quad 2-input OR | [SN74LS32](pdf/SN74LS32_OR.pdf) |
-| 7404 | Hex Inverter (NOT) | [SN74LS04](pdf/SN74LS04_NOT.pdf) |
-| 7400 | Quad 2-input NAND | [SN74LS00](pdf/SN74LS00_NAND.pdf) |
-| 7402 | Quad 2-input NOR | [SN74LS02](pdf/SN74LS02_NOR.pdf) |
-| 7486 | Quad 2-input XOR | [SN74LS86](pdf/SN74LS86_XOR.pdf) |
-| 74266 | Quad 2-input XNOR | [SN74LS266](pdf/SN74LS266_XNOR.pdf) |
+| 7408 | Quad 2-input AND | [SN74LS08](https://www.ti.com/lit/gpn/sn74ls08) |
+| 7432 | Quad 2-input OR | [SN74LS32](https://www.ti.com/lit/gpn/sn74ls32) |
+| 7404 | Hex Inverter (NOT) | [SN74LS04](https://www.ti.com/lit/gpn/sn74ls04) |
+| 7400 | Quad 2-input NAND | [SN74LS00](https://www.ti.com/lit/gpn/sn74ls00) |
+| 7402 | Quad 2-input NOR | [SN74LS02](https://www.ti.com/lit/gpn/sn74ls02) |
+| 7486 | Quad 2-input XOR | [SN74LS86](https://www.ti.com/lit/gpn/sn74ls86) |
+| 74266 | Quad 2-input XNOR | [SN74LS266](https://www.ti.com/lit/gpn/sn74ls266) |
 
 ---
 
