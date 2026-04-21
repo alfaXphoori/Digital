@@ -15,12 +15,6 @@ $$\text{Output} = f(\text{Current Inputs})$$
 - ไม่มีองค์ประกอบเก็บค่า (ไม่มี Flip-flop, Latch)
 - เอาต์พุตตอบสนองทันที (มีเฉพาะ propagation delay)
 
-### โครงสร้างการออกแบบ:
-
-```
-อินพุต → [Combinational Logic] → เอาต์พุต
-```
-
 ### กระบวนการออกแบบวงจรเชิงผสม:
 
 ```
@@ -58,20 +52,21 @@ $$\text{Output} = f(\text{Current Inputs})$$
 | 1 | 0 | 1 | 0 |
 | 1 | 1 | 0 | 1 |
 
-### สมการ (จาก Truth Table):
+### สมการ:
 
 $$S = A \oplus B \quad \text{(XOR)}$$
 $$C = A \cdot B \quad \text{(AND)}$$
 
 ### วงจร Half Adder:
 
-```
-         ┌─────────┐
- A ──┬───┤  XOR    ├─── S (Sum)
-     │   └─────────┘
-     │   ┌─────────┐
- B ──┴───┤  AND    ├─── C (Carry)
-         └─────────┘
+```mermaid
+flowchart LR
+    A(["A"]) --> XOR["⊕  XOR"]
+    A --> AND["·  AND"]
+    B(["B"]) --> XOR
+    B --> AND
+    XOR --> S(["S — Sum"])
+    AND --> C(["C — Carry"])
 ```
 
 ### ตัวอย่างการบวก:
@@ -132,39 +127,41 @@ $$S = A \oplus B \oplus C_{in}$$
   └──────────┴──────┴──────┴──────┴──────┘
 ```
 
-- กลุ่ม 1: m3, m7 → BC คงที่=1 → **$BC$** (B·C)
-- กลุ่ม 2: m5, m7 → A=1, C=1 → **$AC$**
-- กลุ่ม 3: m6, m7 → A=1, B=1 → **$AB$**
-
-$$C_{out} = AB + AC_{in} + BC_{in}$$
-
-*หรือเขียนแบบ compact ใช้ XOR:*
-
-$$C_{out} = AB + C_{in}(A \oplus B)$$
+$$C_{out} = AB + AC_{in} + BC_{in} = AB + C_{in}(A \oplus B)$$
 
 ### วงจร Full Adder จาก Half Adder 2 ตัว:
 
-```
-          ┌──────────┐ S1  ┌──────────┐
- A ──────→│  Half    ├────→│  Half    ├──── S (Sum)
- B ──────→│ Adder 1  │     │ Adder 2  │←── Cin
-          └────┬─────┘ C1  └────┬─────┘
-               │                │ C2
-               └───────[OR]─────┴──── Cout
+```mermaid
+flowchart LR
+    A(["A"]) --> HA1["Half Adder 1"]
+    B(["B"]) --> HA1
+    Cin(["Cᵢₙ"]) --> HA2["Half Adder 2"]
+    HA1 -->|"S₁"| HA2
+    HA1 -->|"C₁"| OR["OR"]
+    HA2 -->|"C₂"| OR
+    HA2 --> S(["S — Sum"])
+    OR --> Cout(["Cₒᵤₜ"])
 ```
 
 ### 4-bit Ripple Carry Adder (วงจรบวก 4 บิต)
 
 นำ Full Adder 4 ตัวมาต่อกันเป็นลูกโซ่ — $C_{out}$ ของแต่ละหลักต่อเป็น $C_{in}$ ของหลักถัดไป:
 
-```
-  A3 B3       A2 B2       A1 B1       A0 B0
-   │  │         │  │         │  │         │  │
-   ↓  ↓         ↓  ↓         ↓  ↓         ↓  ↓
-  ┌────┐       ┌────┐       ┌────┐       ┌────┐
-  │ FA │←Cout──│ FA │←Cout──│ FA │←Cout──│ FA │← Cin=0
-  └─┬──┘       └─┬──┘       └─┬──┘       └─┬──┘
-    S3             S2            S1            S0
+```mermaid
+flowchart LR
+    Cin(["Cᵢₙ = 0"]) -->|"Cin"| FA0["FA\nbit-0"]
+    AB0(["A₀ B₀"]) --> FA0
+    FA0 --> S0(["S₀"])
+    FA0 -->|"Carry"| FA1["FA\nbit-1"]
+    AB1(["A₁ B₁"]) --> FA1
+    FA1 --> S1(["S₁"])
+    FA1 -->|"Carry"| FA2["FA\nbit-2"]
+    AB2(["A₂ B₂"]) --> FA2
+    FA2 --> S2(["S₂"])
+    FA2 -->|"Carry"| FA3["FA\nbit-3"]
+    AB3(["A₃ B₃"]) --> FA3
+    FA3 --> S3(["S₃"])
+    FA3 --> Cout(["Cₒᵤₜ"])
 ```
 
 **ตัวอย่าง:** 0101 + 0011 = ?
@@ -201,6 +198,17 @@ $$B_{out} = \overline{A} \cdot B$$
 
 > $B_{out} = 1$ หมายถึง "ยืม" จากหลักถัดไป (เหมือน borrow ในการลบทศนิยม)
 
+```mermaid
+flowchart LR
+    A(["A"]) --> XOR["⊕  XOR"]
+    A --> NOTA["NOT"]
+    B(["B"]) --> XOR
+    B --> AND["·  AND"]
+    NOTA --> AND
+    XOR --> D(["D — Diff"])
+    AND --> Bo(["Bₒᵤₜ — Borrow"])
+```
+
 ### Full Subtractor (ลบ 3 บิต รวม Borrow-in)
 
 | A | B | $B_{in}$ | Diff (D) | $B_{out}$ |
@@ -215,18 +223,20 @@ $$B_{out} = \overline{A} \cdot B$$
 | 1 | 1 | 1 | 1 | 1 |
 
 $$D = A \oplus B \oplus B_{in}$$
-$$B_{out} = \overline{A}B + \overline{A}B_{in} + BB_{in} = \overline{A}B + B_{in}(\overline{A \oplus B})$$
+$$B_{out} = \overline{A}B + B_{in}(\overline{A \oplus B})$$
 
 ### วงจรลบด้วย Adder + 2's Complement
 
-แทนที่จะสร้าง Subtractor แยกต่างหาก ในทางปฏิบัติใช้:
-
 $$A - B = A + \overline{B} + 1$$
 
-```
- A ──────────────────────────── [4-bit Adder] ─── Result
- B ──[Inverter (NOT each bit)]──↗                 (A + ~B + 1)
-                 Cin=1 ────────────────────────── Cout = Borrow (Inverted)
+```mermaid
+flowchart LR
+    A(["A\n4-bit"]) --> ADD["4-bit Adder\n7483"]
+    B(["B\n4-bit"]) --> NOT["NOT\nInvert all bits"]
+    NOT --> ADD
+    ONE(["Cᵢₙ = 1"]) --> ADD
+    ADD --> R(["Result = A − B"])
+    ADD --> Bo(["Cₒᵤₜ = Borrow̄"])
 ```
 
 ---
@@ -244,11 +254,20 @@ $$A - B = A + \overline{B} + 1$$
 | 1 | 0 | 1 | 0 | 0 |
 | 1 | 1 | 0 | 1 | 0 |
 
-$$A > B: \quad GT = A\overline{B}$$
-$$A = B: \quad EQ = \overline{A \oplus B} = \overline{A}\,\overline{B} + AB$$
-$$A < B: \quad LT = \overline{A}B$$
+$$GT = A\overline{B}, \quad EQ = \overline{A \oplus B}, \quad LT = \overline{A}B$$
 
 ### 4-bit Comparator (IC 7485)
+
+```mermaid
+flowchart LR
+    A(["A\n4-bit"]) --> CMP["Comparator\n7485"]
+    B(["B\n4-bit"]) --> CMP
+    CI(["Cascade Input\nIA>B  IA<B  IA=B"]) -.->|ต่อขยาย| CMP
+    CMP --> GT(["A > B"])
+    CMP --> EQ(["A = B"])
+    CMP --> LT(["A < B"])
+    CMP -.-> CO(["Cascade Output\n→ ต่อไป Comparator ถัดไป"])
+```
 
 เปรียบเทียบ A (A3-A0) กับ B (B3-B0) โดยเริ่มจาก **MSB ก่อน**:
 
@@ -258,15 +277,6 @@ $$A < B: \quad LT = \overline{A}B$$
   ถ้า A2 = B2 → ดู A1 ≠ B1
   ถ้า A1 = B1 → ดู A0 ≠ B0
   ถ้าทุก bit เท่ากัน → ดูจาก Cascade Input
-```
-
-### Cascade Connection (ต่อขยาย):
-
-```
-  [8-bit Comparator (ส่วนสูง)]   [8-bit Comparator (ส่วนต่ำ)]
-       IA>B ←── A>B out ──
-       IA<B ←── A<B out ──
-       IA=B ←── A=B out ──   IA=B=1, IA>B=0, IA<B=0 (default)
 ```
 
 > IC **7485** มีขา Cascade Input: $I_{A>B}$, $I_{A<B}$, $I_{A=B}$ สำหรับต่อขยายเป็น n-bit comparator
@@ -285,16 +295,27 @@ $$A < B: \quad LT = \overline{A}B$$
 
 ### 8-to-3 Encoder (Octal-to-Binary)
 
-| Input Active | $I_7$ | $I_6$ | $I_5$ | $I_4$ | $I_3$ | $I_2$ | $I_1$ | $I_0$ | $D_2$ | $D_1$ | $D_0$ |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| $I_0$ | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
-| $I_1$ | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
-| $I_2$ | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 |
-| $I_3$ | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 1 |
-| $I_4$ | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
-| $I_5$ | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 |
-| $I_6$ | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |
-| $I_7$ | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 |
+```mermaid
+flowchart LR
+    subgraph IN["Inputs  (one active at a time)"]
+        direction TB
+        I0(["I₀"]) ~~~ I1(["I₁"]) ~~~ I2(["I₂"]) ~~~ I3(["I₃"])
+        I4(["I₄"]) ~~~ I5(["I₅"]) ~~~ I6(["I₆"]) ~~~ I7(["I₇"])
+    end
+    IN --> ENC["8-to-3 Encoder\n(OR gates only)"]
+    ENC --> D0(["D₂ D₁ D₀\n3-bit output"])
+```
+
+| Input Active | $D_2$ | $D_1$ | $D_0$ |
+|:---:|:---:|:---:|:---:|
+| $I_0$ | 0 | 0 | 0 |
+| $I_1$ | 0 | 0 | 1 |
+| $I_2$ | 0 | 1 | 0 |
+| $I_3$ | 0 | 1 | 1 |
+| $I_4$ | 1 | 0 | 0 |
+| $I_5$ | 1 | 0 | 1 |
+| $I_6$ | 1 | 1 | 0 |
+| $I_7$ | 1 | 1 | 1 |
 
 ### สมการของ 8-to-3 Encoder:
 
@@ -308,13 +329,25 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 
 เมื่อมีหลายอินพุต active พร้อมกัน → เลือกตัวที่มี **ลำดับความสำคัญสูงสุด** (index สูงสุด)
 
+```mermaid
+flowchart LR
+    subgraph IN["8 Inputs (Active LOW)"]
+        direction TB
+        i7(["I₇ — highest priority"])
+        dot(["  ⋮  "])
+        i0(["I₀ — lowest priority"])
+    end
+    IN --> PE["Priority Encoder\n74148"]
+    PE --> A(["A₂ A₁ A₀\n3-bit code"])
+    PE --> V(["V — Valid\n(มี input active ≥1)"])
+```
+
 เพิ่ม output พิเศษ **V (Valid)** = 1 เมื่อมี input active อย่างน้อย 1 ตัว
 
 **IC 74148** — 8-to-3 Priority Encoder (Active LOW):
 
 | $I_7$ | $I_6$ | $I_5$ | $I_4$ | $I_3$ | $I_2$ | $I_1$ | $I_0$ | $A_2$ | $A_1$ | $A_0$ | V |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| X | X | X | X | X | X | X | X | Hi-Z | Hi-Z | Hi-Z | 0 |
 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | **0** | 0 | 0 | 0 | 1 |
 | 1 | 1 | 1 | 1 | 1 | 1 | **0** | X | 0 | 0 | 1 | 1 |
 | 1 | 1 | 1 | 1 | 1 | **0** | X | X | 0 | 1 | 0 | 1 |
@@ -324,14 +357,7 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 | 1 | **0** | X | X | X | X | X | X | 1 | 1 | 0 | 1 |
 | **0** | X | X | X | X | X | X | X | 1 | 1 | 1 | 1 |
 
-> 74148 ใช้ logic Active LOW: อินพุต 0 = active, เอาต์พุต 0 = valid
-
-### ประยุกต์ใช้: Keyboard Encoder
-
-```
-  64 ปุ่ม keyboard ──[Priority Encoder]──→ รหัส 6-bit
-  (กด 2 ปุ่มพร้อมกัน → รับ priority สูงสุด)
-```
+> 74148 ใช้ logic Active LOW: อินพุต 0 = active
 
 ---
 
@@ -342,6 +368,16 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 > ตรงข้ามกับ Encoder — บอกว่า "input นี้ตรงกับ output ตัวไหน"
 
 ### 2-to-4 Decoder
+
+```mermaid
+flowchart LR
+    A1(["A₁"]) --> DEC["2-to-4\nDecoder"]
+    A0(["A₀"]) --> DEC
+    DEC --> D0(["D₀ = Ā₁Ā₀  m0"])
+    DEC --> D1(["D₁ = Ā₁A₀  m1"])
+    DEC --> D2(["D₂ = A₁Ā₀  m2"])
+    DEC --> D3(["D₃ = A₁A₀  m3"])
+```
 
 | $A_1$ | $A_0$ | $D_0$ | $D_1$ | $D_2$ | $D_3$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -358,59 +394,81 @@ $$D_0 = \overline{A_1}\,\overline{A_0}, \quad D_1 = \overline{A_1}\,A_0, \quad D
 
 มี **Enable inputs** 3 ตัว ($E_1$ active HIGH, $E_2$ และ $E_3$ active LOW):
 
-```
-  ┌──────────────┐
-  │  74138       │
-  ──┤ A (LSB)    ├── Y0 = ĀB̄C̄·EN
-  ──┤ B          ├── Y1 = ĀB̄C·EN
-  ──┤ C (MSB)    ├── Y2 = ĀBC̄·EN
-  ──┤ E1 (H)     ├── Y3 = ĀBC·EN
-  ──┤ /E2 (L)    ├── Y4 = AB̄C̄·EN
-  ──┤ /E3 (L)    ├── Y5 = AB̄C·EN
-  └──────────────┘── Y6 = ABC̄·EN
-                  ── Y7 = ABC·EN
+```mermaid
+flowchart LR
+    ABC(["A B C\n3-bit input"]) --> DEC["3-to-8 Decoder\n74138\n(Active LOW output)"]
+    EN(["Enable\nE1·Ē2·Ē3"]) --> DEC
+    DEC --> Y0(["Y₀ — m0"])
+    DEC --> Y1(["Y₁ — m1"])
+    DEC --> Y2(["Y₂ — m2"])
+    DEC --> Y3(["Y₃ — m3"])
+    DEC --> Y4(["Y₄ — m4"])
+    DEC --> Y5(["Y₅ — m5"])
+    DEC --> Y6(["Y₆ — m6"])
+    DEC --> Y7(["Y₇ — m7"])
 ```
 
 เมื่อ $EN = E_1 \cdot \overline{E_2} \cdot \overline{E_3} = 1$ → เอาต์พุต Active LOW
 
 ### ประยุกต์: ใช้ Decoder สร้างฟังก์ชันบูลีน ⭐
 
-เนื่องจากแต่ละเอาต์พุต Decoder = minterm 1 ตัว → ต่อ OR gate เข้ากับเอาต์พุตที่ต้องการ
+เนื่องจากแต่ละเอาต์พุต Decoder = minterm 1 ตัว → ต่อ NAND gate เข้ากับเอาต์พุตที่ต้องการ
 
 **ตัวอย่าง:** $F(A,B,C) = \sum m(1, 3, 5, 6)$ จาก 74138:
 
+```mermaid
+flowchart LR
+    DEC["74138\nDecoder"] --> Y1(["Y₁ m1"])
+    DEC --> Y3(["Y₃ m3"])
+    DEC --> Y5(["Y₅ m5"])
+    DEC --> Y6(["Y₆ m6"])
+    Y1 --> NAND["NAND"]
+    Y3 --> NAND
+    Y5 --> NAND
+    Y6 --> NAND
+    NAND --> F(["F"])
 ```
-  Y1 (m1) ──┐
-  Y3 (m3) ──┤
-  Y5 (m5) ──┤──[OR]──── F
-  Y6 (m6) ──┘
-```
 
-> ⚠️ 74138 เอาต์พุต Active LOW → ใช้ NAND แทน OR:
-> $F = \overline{\overline{Y_1} \cdot \overline{Y_3} \cdot \overline{Y_5} \cdot \overline{Y_6}}$ = NAND gate
+> ⚠️ 74138 เอาต์พุต Active LOW → ใช้ NAND แทน OR
 
-### ต่อ Decoder ขนาดเล็กเป็นขนาดใหญ่ (Expansion):
+### ต่อ Decoder ขนาดเล็กเป็นขนาดใหญ่ (4-to-16):
 
-ใช้ 74138 × 2 สร้าง 4-to-16 Decoder:
-
-```
-  A3 ─────────────────→ ┌─[74138 #1]─┐ → Y0-Y7  (A3=0)
-  A2, A1, A0 ──┬──────→ └────────────┘
-               └──────→ ┌─[74138 #2]─┐ → Y8-Y15 (A3=1)
-                         └────────────┘
-  (ใช้ A3 เป็น Enable: #1 เมื่อ A3=0, #2 เมื่อ A3=1)
+```mermaid
+flowchart LR
+    A3(["A₃"]) -->|"A₃=0 → EN #1\nA₃=1 → EN #2"| CTL["Enable\nControl"]
+    ABC(["A₂ A₁ A₀"]) --> DEC1["74138 #1\n(Y0–Y7)"]
+    ABC --> DEC2["74138 #2\n(Y8–Y15)"]
+    CTL -->|"EN"| DEC1
+    CTL -->|"EN"| DEC2
+    DEC1 --> OUT1(["Y0 – Y7"])
+    DEC2 --> OUT2(["Y8 – Y15"])
 ```
 
 ### BCD to 7-Segment Decoder ⭐
 
-แปลง BCD (0–9) เป็นสัญญาณขับ 7-Segment Display
-
-```
-         ┌─── a ───┐
-         f         b
-         ├─── g ───┤
-         e         c
-         └─── d ───┘  · dp
+```mermaid
+flowchart LR
+    BCD(["BCD Input\nD C B A"]) --> DEC["BCD → 7-Segment\nDecoder\n7447 / 4511"]
+    DEC --> a(["a"])
+    DEC --> b(["b"])
+    DEC --> c(["c"])
+    DEC --> d(["d"])
+    DEC --> e(["e"])
+    DEC --> f(["f"])
+    DEC --> g(["g"])
+    subgraph SEG["7-Segment Display"]
+        direction TB
+        top["─ a ─"]
+        mid["f │   │ b"]
+        ctr["─ g ─"]
+        bot1["e │   │ c"]
+        bot2["─ d ─"]
+    end
+    a --> top
+    b & f --> mid
+    g --> ctr
+    e & c --> bot1
+    d --> bot2
 ```
 
 | BCD (DCBA) | หลัก | a | b | c | d | e | f | g |
@@ -425,7 +483,6 @@ $$D_0 = \overline{A_1}\,\overline{A_0}, \quad D_1 = \overline{A_1}\,A_0, \quad D
 | 0111 | **7** | 1 | 1 | 1 | 0 | 0 | 0 | 0 |
 | 1000 | **8** | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
 | 1001 | **9** | 1 | 1 | 1 | 1 | 0 | 1 | 1 |
-| 1010–1111 | X | X | X | X | X | X | X | X |
 
 #### ตัวอย่าง: K-Map ลดรูป segment `g`
 
@@ -445,12 +502,9 @@ $$g = \sum m(2, 3, 4, 5, 6, 9) + \sum d(10, 11, 12, 13, 14, 15)$$
   └─────────┴──────┴──────┴──────┴──────┘
 ```
 
-กลุ่มที่จัดได้: → $g = A + BC + B\overline{D} + \overline{B}C\overline{D}$
+→ $g = A + BC + B\overline{D} + \overline{B}C\overline{D}$
 
-(simplified: $g = A + BC + BD' + B'CD'$)
-
-**IC: 7447** (active LOW driver, สำหรับ common-anode display)
-**IC: 4511** (active HIGH, สำหรับ common-cathode display, CMOS)
+**IC: 7447** (active LOW, common-anode) | **IC: 4511** (active HIGH, CMOS)
 
 ---
 
@@ -460,26 +514,27 @@ $$g = \sum m(2, 3, 4, 5, 6, 9) + \sum d(10, 11, 12, 13, 14, 15)$$
 
 > คิดว่าเป็น "สวิตช์หมุนดิจิทัล" — n select bits → เลือกจาก $2^n$ inputs
 
-### MUX 2:1
-
-$$Y = \overline{S} \cdot I_0 + S \cdot I_1$$
-
-| S | Y |
-|:---:|:---:|
-| 0 | $I_0$ |
-| 1 | $I_1$ |
-
-```
-  I₀ ──┐
-       ├──[MUX 2:1]──── Y
-  I₁ ──┘
-         ↑
-         S
-```
-
 ### MUX 4:1
 
 $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\overline{S_0}\,I_2 + S_1\,S_0\,I_3$$
+
+```mermaid
+flowchart LR
+    subgraph DATA["Data Inputs"]
+        direction TB
+        I0(["I₀"])
+        I1(["I₁"])
+        I2(["I₂"])
+        I3(["I₃"])
+    end
+    subgraph SEL["Select"]
+        S1(["S₁  MSB"])
+        S0(["S₀  LSB"])
+    end
+    DATA --> MUX["MUX 4:1"]
+    SEL -->|"select\n(00→I₀  01→I₁  10→I₂  11→I₃)"| MUX
+    MUX --> Y(["Y — Output"])
+```
 
 | $S_1$ | $S_0$ | Y |
 |:---:|:---:|:---:|
@@ -505,31 +560,22 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 
 ### MUX เป็น Universal Function Generator ⭐
 
-**เทคนิค 1: MUX $2^n$:1 สร้างฟังก์ชัน n ตัวแปร**
-
-ต่อ Select = ตัวแปรทั้งหมด, อินพุตข้อมูล = ค่าของฟังก์ชัน
+**เทคนิค 1:** ต่อ Select = ตัวแปรทั้งหมด, Data input = ค่าฟังก์ชัน
 
 **ตัวอย่าง:** ใช้ MUX 4:1 สร้าง $F(A,B) = \sum m(1, 2, 3)$
 
 ```
   S₁ = A,  S₀ = B
 
-  I₀ = 0   (m0 = 0)
-  I₁ = 1   (m1 = 1)
-  I₂ = 1   (m2 = 1)
-  I₃ = 1   (m3 = 1)
+  I₀ = 0  (m0=0)  I₁ = 1  (m1=1)
+  I₂ = 1  (m2=1)  I₃ = 1  (m3=1)
 
   → F = A + B
 ```
 
-**เทคนิค 2: MUX $2^{n-1}$:1 สร้างฟังก์ชัน n ตัวแปร (ใช้ MUX ขนาดเล็กลงครึ่ง)**
-
-ตัวแปรสุดท้ายต่อเข้าที่ data input โดยตรง
+**เทคนิค 2:** MUX $2^{n-1}$:1 สร้างฟังก์ชัน n ตัวแปร — ตัวแปรสุดท้ายต่อที่ data input โดยตรง
 
 **ตัวอย่าง:** ใช้ MUX 4:1 สร้าง $F(A,B,C) = \sum m(1, 2, 4, 7)$
-
-- Select: $S_1 = A$, $S_0 = B$ (2 ตัวแปรแรก)
-- ดูคู่ของแต่ละ (A,B):
 
 | A | B | $C=0$ | $C=1$ | Data Input |
 |:---:|:---:|:---:|:---:|:---:|
@@ -538,26 +584,18 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 | 1 | 0 | 1 | 0 | $\overline{C}$ |
 | 1 | 1 | 0 | 1 | $C$ |
 
-```
-  I₀ = C
-  I₁ = C̄
-  I₂ = C̄
-  I₃ = C
+### ต่อ MUX ขยายขนาด (MUX 8:1 จาก 4:1 × 2):
 
-  → F(A,B,C) = ΣM(1,2,4,7)
-```
-
-### ต่อ MUX ขนาดเล็กให้ได้ขนาดใหญ่ขึ้น (MUX Expansion):
-
-ใช้ MUX 4:1 × 2 + MUX 2:1 × 1 สร้าง MUX 8:1:
-
-```
-  I₀-I₃ ──[MUX 4:1 #1]──┐
-                          ├──[MUX 2:1]── Y
-  I₄-I₇ ──[MUX 4:1 #2]──┘
-                ↑  ↑  ↑
-               S₂  S₁ S₀
-    (S₂ ต่อเข้า MUX 2:1, S₁,S₀ ต่อเข้า MUX 4:1 ทั้ง 2 ตัว)
+```mermaid
+flowchart LR
+    I03(["I₀–I₃"]) --> MUX1["MUX 4:1\n#1"]
+    I47(["I₄–I₇"]) --> MUX2["MUX 4:1\n#2"]
+    S10(["S₁ S₀"]) -->|"select"| MUX1
+    S10 -->|"select"| MUX2
+    MUX1 --> MUX3["MUX 2:1"]
+    MUX2 --> MUX3
+    S2(["S₂"]) -->|"select"| MUX3
+    MUX3 --> Y(["Y — Output"])
 ```
 
 ---
@@ -566,17 +604,17 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 
 รับ **1 อินพุต** กระจายไปยัง **1 ใน $2^n$ เอาต์พุต** ตาม Select lines
 
-> ตรงข้ามกับ MUX
-
 ### DEMUX 1-to-4
 
-```
-               ┌──── Y₀
- D ──[DEMUX]───┤──── Y₁
-               ├──── Y₂
-               └──── Y₃
-        ↑  ↑
-       S₁  S₀
+```mermaid
+flowchart LR
+    D(["D — Data"]) --> DEMUX["DEMUX 1-to-4"]
+    S1(["S₁"]) -->|"select"| DEMUX
+    S0(["S₀"]) -->|"select"| DEMUX
+    DEMUX --> Y0(["Y₀"])
+    DEMUX --> Y1(["Y₁"])
+    DEMUX --> Y2(["Y₂"])
+    DEMUX --> Y3(["Y₃"])
 ```
 
 | $S_1$ | $S_0$ | $Y_0$ | $Y_1$ | $Y_2$ | $Y_3$ |
@@ -586,49 +624,42 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 | 1 | 0 | 0 | 0 | D | 0 |
 | 1 | 1 | 0 | 0 | 0 | D |
 
-### สมการ DEMUX 1-to-4:
+$$Y_0 = D \cdot \overline{S_1}\,\overline{S_0}, \quad Y_1 = D \cdot \overline{S_1}\,S_0, \quad Y_2 = D \cdot S_1\,\overline{S_0}, \quad Y_3 = D \cdot S_1\,S_0$$
 
-$$Y_0 = D \cdot \overline{S_1}\,\overline{S_0}$$
-$$Y_1 = D \cdot \overline{S_1}\,S_0$$
-$$Y_2 = D \cdot S_1\,\overline{S_0}$$
-$$Y_3 = D \cdot S_1\,S_0$$
+### Decoder ← → DEMUX
 
-### Decoder ← → DEMUX (ความสัมพันธ์)
+**Decoder + Enable = DEMUX** — ต่อ Data เข้าที่ขา Enable ของ 74138
 
-**Decoder + Enable input = DEMUX**
+### ประยุกต์: Data Multiplexing ผ่านสายเดียว
 
-- ถ้าต่อข้อมูล D เข้าที่ขา Enable ของ Decoder → ได้ DEMUX
-- IC 74138 ใช้เป็น DEMUX 1-to-8 ได้โดยต่อ Data เข้า $E_1$
-
-```
-  Data ───→ E1 (Enable HIGH)
-  E2, E3 → ต่อ GND
-  A, B, C → Select lines
-  Y0–Y7  → เอาต์พุต
-```
-
-### ประยุกต์ใช้ MUX + DEMUX:
-
-ส่งข้อมูลหลาย channel ผ่านสายสัญญาณเดียว (Data Multiplexing):
-
-```
-  Ch0 ──┐                           ┌── Ch0
-  Ch1 ──┤──[MUX]──[สายสัญญาณ]──[DEMUX]──┤── Ch1
-  Ch2 ──┤                           ├── Ch2
-  Ch3 ──┘                           └── Ch3
-          ↑  ↑                   ↑  ↑
-          S₁ S₀                 S₁ S₀ (sync)
+```mermaid
+flowchart LR
+    subgraph TX["ฝั่งส่ง"]
+        direction TB
+        Ch0(["Ch0"])
+        Ch1(["Ch1"])
+        Ch2(["Ch2"])
+        Ch3(["Ch3"])
+    end
+    TX --> MUX["MUX 4:1"]
+    MUX -->|"single wire"| DEMUX["DEMUX 1-to-4"]
+    CLK(["Clock / Select\nS₁ S₀  sync"]) -->|"S₁S₀"| MUX
+    CLK -->|"S₁S₀"| DEMUX
+    DEMUX --> RCh0(["Ch0"])
+    DEMUX --> RCh1(["Ch1"])
+    DEMUX --> RCh2(["Ch2"])
+    DEMUX --> RCh3(["Ch3"])
 ```
 
 ---
 
 ## 5.10 สรุปเปรียบเทียบวงจรเชิงผสม
 
-| วงจร | ทิศทาง | จำนวน Input | จำนวน Output | IC |
+| วงจร | ทิศทาง | Input | Output | IC |
 |:---|:---:|:---:|:---:|:---:|
-| Encoder | $2^n → n$ | $2^n$ | $n$ | 74148 |
-| Priority Encoder | $2^n → n$ (priority) | $2^n$ | $n+1$ (V bit) | 74148 |
-| Decoder | $n → 2^n$ | $n$ | $2^n$ | 74138, 74139 |
+| Encoder | $2^n \to n$ | $2^n$ | $n$ | 74148 |
+| Priority Encoder | $2^n \to n$ (priority) | $2^n$ | $n+1$ (V) | 74148 |
+| Decoder | $n \to 2^n$ | $n$ | $2^n$ | 74138, 74139 |
 | MUX | หลาย → 1 | $2^n + n$ | 1 | 74151, 74153 |
 | DEMUX | 1 → หลาย | $1 + n$ | $2^n$ | 74138 |
 
