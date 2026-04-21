@@ -27,9 +27,10 @@ $$Y = A \cdot B$$
 
 ```
 สัญลักษณ์:
- A ──┐
-     │AND──Y
- B ──┘
+          ___
+ A ──────|   \
+         |    )──── Y
+ B ──────|___/
 ```
 
 **IC: 7408** (Quad 2-input AND gate — มี 4 เกตในชิปเดียว)
@@ -51,9 +52,9 @@ $$Y = A + B$$
 
 ```
 สัญลักษณ์:
- A ──┐
-     │OR──Y
- B ──┘
+ A ──────\
+           >──── Y
+ B ──────/
 ```
 
 **IC: 7432** (Quad 2-input OR gate)
@@ -95,6 +96,14 @@ $$Y = \overline{A \cdot B}$$
 
 > ⭐ **NAND เป็น Universal Gate** — สามารถสร้างเกตอื่นทุกชนิดได้จาก NAND เพียงอย่างเดียว
 
+```
+สัญลักษณ์:
+          ___
+ A ──────|   \
+         |    )○──── Y
+ B ──────|___/
+```
+
 **IC: 7400** (Quad 2-input NAND gate)
 
 ---
@@ -111,6 +120,13 @@ $$Y = \overline{A + B}$$
 | 1 | 1 | 0 |
 
 > ⭐ **NOR เป็น Universal Gate** เช่นกัน
+
+```
+สัญลักษณ์:
+ A ──────\
+           >○──── Y
+ B ──────/
+```
 
 **IC: 7402** (Quad 2-input NOR gate)
 
@@ -131,6 +147,13 @@ $$Y = A \oplus B = A\overline{B} + \overline{A}B$$
 | 1 | 0 | **1** |
 | 1 | 1 | 0 |
 
+```
+สัญลักษณ์:
+ A ══════\
+           >──── Y
+ B ══════/
+```
+
 **IC: 7486** (Quad 2-input XOR gate)
 
 > 💡 **ประโยชน์:** ใช้ในวงจร Adder, Parity checker, และ Comparator
@@ -149,6 +172,13 @@ $$Y = \overline{A \oplus B} = AB + \overline{A}\,\overline{B}$$
 | 0 | 1 | 0 |
 | 1 | 0 | 0 |
 | 1 | 1 | **1** |
+
+```
+สัญลักษณ์:
+ A ══════\
+           >○──── Y
+ B ══════/
+```
 
 **IC: 74266** (Quad 2-input XNOR gate)
 
