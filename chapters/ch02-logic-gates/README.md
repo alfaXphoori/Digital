@@ -354,9 +354,41 @@ XNOR:  ‾‾‾‾‾|_________|‾‾‾‾|_________|‾‾‾‾‾‾‾‾
 
 ---
 
-## 2.6 เกตหลายอินพุตและการต่อเกตหลายตัว (Multi-input & Cascaded Gates)
+## 2.6 Universal Gate — สร้างเกตจาก NAND / NOR
 
-### 2.6.1 เกต 3 อินพุต
+### สร้างเกตพื้นฐานจาก NAND
+
+**NOT จาก NAND** — ต่ออินพุตทั้งสองเข้าด้วยกัน
+
+![NOT from NAND](images/NOT_from_NAND.svg)
+
+**AND จาก NAND** — ต่อ NAND 2 ตัวอนุกรม
+
+![AND from NAND](images/AND_from_NAND.svg)
+
+**OR จาก NAND** — กลับอินพุตแต่ละตัวก่อน แล้ว NAND
+
+![OR from NAND](images/OR_from_NAND.svg)
+
+### สร้างเกตพื้นฐานจาก NOR
+
+**NOT จาก NOR** — ต่ออินพุตทั้งสองเข้าด้วยกัน
+
+![NOT from NOR](images/NOT_from_NOR.svg)
+
+**OR จาก NOR** — ต่อ NOR 2 ตัวอนุกรม
+
+![OR from NOR](images/OR_from_NOR.svg)
+
+**AND จาก NOR** — กลับอินพุตแต่ละตัวก่อน แล้ว NOR
+
+![AND from NOR](images/AND_from_NOR.svg)
+
+---
+
+## 2.7 เกตหลายอินพุตและการต่อเกตหลายตัว (Multi-input & Cascaded Gates)
+
+### 2.7.1 เกต 3 อินพุต
 
 เกตส่วนใหญ่ขยายเป็น 3 หรือ 4 อินพุตได้ ผลลัพธ์เป็นไปตามกฎเดิม
 
@@ -401,7 +433,7 @@ XNOR:  ‾‾‾‾‾|_________|‾‾‾‾|_________|‾‾‾‾‾‾‾‾
 
 ---
 
-### 2.6.2 เกต 4 อินพุต
+### 2.7.2 เกต 4 อินพุต
 
 **4-input AND:** $Y = A \cdot B \cdot C \cdot D$ → Y=1 เฉพาะเมื่อทุกตัวเป็น 1 (มี 2⁴ = 16 แถว, Y=1 แถวเดียว)
 
@@ -414,7 +446,7 @@ XNOR:  ‾‾‾‾‾|_________|‾‾‾‾|_________|‾‾‾‾‾‾‾‾
 
 ---
 
-### 2.6.3 การต่อเกตหลายตัว (Cascaded Gates)
+### 2.7.3 การต่อเกตหลายตัว (Cascaded Gates)
 
 ต่อเกตหลายตัวเป็นลำดับ เอาต์พุตของเกตหนึ่งเป็นอินพุตของเกตถัดไป
 
@@ -481,38 +513,6 @@ C ── NOT ─┘
 | 1 | 0 | 1 | 1 | 0 | 0 |
 | 1 | 1 | 0 | 0 | 1 | 0 |
 | 1 | 1 | 1 | 0 | 0 | 0 |
-
----
-
-## 2.7 Universal Gate — สร้างเกตจาก NAND / NOR
-
-### สร้างเกตพื้นฐานจาก NAND
-
-**NOT จาก NAND** — ต่ออินพุตทั้งสองเข้าด้วยกัน
-
-![NOT from NAND](images/NOT_from_NAND.svg)
-
-**AND จาก NAND** — ต่อ NAND 2 ตัวอนุกรม
-
-![AND from NAND](images/AND_from_NAND.svg)
-
-**OR จาก NAND** — กลับอินพุตแต่ละตัวก่อน แล้ว NAND
-
-![OR from NAND](images/OR_from_NAND.svg)
-
-### สร้างเกตพื้นฐานจาก NOR
-
-**NOT จาก NOR** — ต่ออินพุตทั้งสองเข้าด้วยกัน
-
-![NOT from NOR](images/NOT_from_NOR.svg)
-
-**OR จาก NOR** — ต่อ NOR 2 ตัวอนุกรม
-
-![OR from NOR](images/OR_from_NOR.svg)
-
-**AND จาก NOR** — กลับอินพุตแต่ละตัวก่อน แล้ว NOR
-
-![AND from NOR](images/AND_from_NOR.svg)
 
 ---
 
