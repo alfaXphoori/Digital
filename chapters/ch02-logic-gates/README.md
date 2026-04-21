@@ -191,43 +191,31 @@ Truth Table คือตารางที่แสดง **ทุก combinatio
 
 ### สร้างเกตพื้นฐานจาก NAND
 
-```
-NOT จาก NAND:
- A ──┐
-     │NAND── Ā
- A ──┘
+**NOT จาก NAND** — ต่ออินพุตทั้งสองเข้าด้วยกัน
 
-AND จาก NAND:
- A ──┐           ┌──┐
-     │NAND── X ──│  │NAND── AB
- B ──┘           │  │
-             X ──└──┘
+![NOT from NAND](images/NOT_from_NAND.svg)
 
-OR จาก NAND:
- A ──┬──NAND── X₁ ──┐
-     │               │NAND── A+B
- B ──┬──NAND── X₂ ──┘
-```
+**AND จาก NAND** — ต่อ NAND 2 ตัวอนุกรม
+
+![AND from NAND](images/AND_from_NAND.svg)
+
+**OR จาก NAND** — กลับอินพุตแต่ละตัวก่อน แล้ว NAND
+
+![OR from NAND](images/OR_from_NAND.svg)
 
 ### สร้างเกตพื้นฐานจาก NOR
 
-```
-NOT จาก NOR:
- A ──┐
-     │NOR── Ā
- A ──┘
+**NOT จาก NOR** — ต่ออินพุตทั้งสองเข้าด้วยกัน
 
-OR จาก NOR:
- A ──┐           ┌──┐
-     │NOR── X ── │  │NOR── A+B
- B ──┘           │  │
-             X ──└──┘
+![NOT from NOR](images/NOT_from_NOR.svg)
 
-AND จาก NOR:
- A ──┬──NOR── X₁ ──┐
-     │              │NOR── AB
- B ──┬──NOR── X₂ ──┘
-```
+**OR จาก NOR** — ต่อ NOR 2 ตัวอนุกรม
+
+![OR from NOR](images/OR_from_NOR.svg)
+
+**AND จาก NOR** — กลับอินพุตแต่ละตัวก่อน แล้ว NOR
+
+![AND from NOR](images/AND_from_NOR.svg)
 
 ---
 
