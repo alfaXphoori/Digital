@@ -171,17 +171,11 @@ $$B_{out} = \overline{A} \cdot B$$
 
 > $B_{out} = 1$ หมายถึง "ยืม" จากหลักถัดไป (เหมือน borrow ในการลบทศนิยม)
 
-```
-         ┌─────────┐
- A ──┬───┤  XOR    ├─── D (Diff)
-     │   └─────────┘
-     │   ┌─────────┐
- A ──┤   │  NOT    │
-     │   └────┬────┘
-              │   ┌─────────┐
- B ───────────┴───┤  AND    ├─── Bₒᵤₜ (Borrow)
- B ──────────────→└─────────┘
-```
+### วงจร Half Subtractor:
+
+![Half Subtractor Circuit](https://upload.wikimedia.org/wikipedia/commons/9/94/Half_Subtractor_Vektor.svg)
+
+*ที่มา: Wikimedia Commons (CC0 Public Domain)*
 
 ### Full Subtractor (ลบ 3 บิต รวม Borrow-in)
 
@@ -198,6 +192,12 @@ $$B_{out} = \overline{A} \cdot B$$
 
 $$D = A \oplus B \oplus B_{in}$$
 $$B_{out} = \overline{A}B + B_{in}(\overline{A \oplus B})$$
+
+### วงจร Full Subtractor:
+
+![Full Subtractor Circuit](https://upload.wikimedia.org/wikipedia/commons/8/83/Full-sub-Fixed.svg)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 4.0)*
 
 ### วงจรลบด้วย Adder + 2's Complement
 
@@ -225,6 +225,12 @@ $$A - B = A + \overline{B} + 1$$
 | 1 | 1 | 0 | 1 | 0 |
 
 $$GT = A\overline{B}, \quad EQ = \overline{A \oplus B}, \quad LT = \overline{A}B$$
+
+### วงจร 1-bit Comparator:
+
+![1-bit Binary Comparator](https://upload.wikimedia.org/wikipedia/commons/8/80/One_Bit_Comparator_%28Color%29.png)
+
+*ที่มา: Wikimedia Commons (CC BY 4.0)*
 
 ### 4-bit Comparator (IC 7485)
 
@@ -293,6 +299,12 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 
 วงจรใช้เพียง **OR gates เท่านั้น**
 
+### วงจร Simple Encoder (4-to-2 ตัวอย่าง):
+
+![4-to-2 Simple Encoder](https://upload.wikimedia.org/wikipedia/commons/a/a8/4to2_Simple_Encoder.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 4.0)*
+
 ### Priority Encoder ⭐
 
 เมื่อมีหลายอินพุต active พร้อมกัน → เลือกตัวที่มี **ลำดับความสำคัญสูงสุด** (index สูงสุด)
@@ -324,13 +336,9 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 
 ### 2-to-4 Decoder
 
-```
-          ┌───────────────┐
-  A₁ ───→ │  2-to-4       ├──→ D₀ = Ā₁Ā₀
-  A₀ ───→ │  Decoder      ├──→ D₁ = Ā₁A₀
-           │               ├──→ D₂ = A₁Ā₀
-           └───────────────┘──→ D₃ = A₁A₀
-```
+![2-to-4 Decoder Circuit](https://upload.wikimedia.org/wikipedia/commons/f/fc/Decoder_Example.svg)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
 
 | $A_1$ | $A_0$ | $D_0$ | $D_1$ | $D_2$ | $D_3$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
