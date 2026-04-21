@@ -299,6 +299,50 @@ $$D_2 = I_4 + I_5 + I_6 + I_7$$
 
 วงจรใช้เพียง **OR gates เท่านั้น**
 
+### วงจร 8-to-3 Encoder:
+
+![8-to-3 Encoder Circuit](./images/encoder-8to3.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 4.0)*
+
+### 16-to-4 Encoder
+
+ขยายจาก 8-to-3 → รับ **16 input lines** แปลงเป็น **4-bit** output
+
+```
+  I₀  ──┐
+  I₁  ──┤
+  I₂  ──┤
+  I₃  ──┤
+  I₄  ──┤──[16-to-4 Encoder]──→ D₃ D₂ D₁ D₀ (4-bit code)
+  I₅  ──┤    (OR gates only)
+  I₆  ──┤
+  I₇  ──┤
+  I₈  ──┤
+  I₉  ──┤
+  I₁₀ ──┤
+  I₁₁ ──┤
+  I₁₂ ──┤
+  I₁₃ ──┤
+  I₁₄ ──┤
+  I₁₅ ──┘
+```
+
+### สมการของ 16-to-4 Encoder:
+
+$$D_0 = I_1 + I_3 + I_5 + I_7 + I_9 + I_{11} + I_{13} + I_{15}$$
+$$D_1 = I_2 + I_3 + I_6 + I_7 + I_{10} + I_{11} + I_{14} + I_{15}$$
+$$D_2 = I_4 + I_5 + I_6 + I_7 + I_{12} + I_{13} + I_{14} + I_{15}$$
+$$D_3 = I_8 + I_9 + I_{10} + I_{11} + I_{12} + I_{13} + I_{14} + I_{15}$$
+
+### วงจร 16-to-4 Encoder:
+
+![16-to-4 Encoder Circuit](./images/encoder-16to4.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 4.0)*
+
+> 💡 ต่อ Encoder 2 ตัว ขนาด 8-to-3 + วงจรเลือก MSB เพื่อสร้าง 16-to-4 ได้
+
 ### วงจร Simple Encoder (4-to-2 ตัวอย่าง):
 
 ![4-to-2 Simple Encoder](./images/encoder-4to2.png)
@@ -370,6 +414,12 @@ $$D_0 = \overline{A_1}\,\overline{A_0}, \quad D_1 = \overline{A_1}\,A_0, \quad D
 
 เมื่อ $EN = E_1 \cdot \overline{E_2} \cdot \overline{E_3} = 1$ → เอาต์พุต Active LOW
 
+### วงจร 3-to-8 Decoder:
+
+![3-to-8 Decoder Circuit](./images/decoder-3to8.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
+
 ### ประยุกต์: ใช้ Decoder สร้างฟังก์ชันบูลีน ⭐
 
 เนื่องจากแต่ละเอาต์พุต Decoder = minterm 1 ตัว → ต่อ NAND gate เข้ากับเอาต์พุตที่ต้องการ
@@ -394,6 +444,10 @@ $$D_0 = \overline{A_1}\,\overline{A_0}, \quad D_1 = \overline{A_1}\,A_0, \quad D
              ├──────────→ [74138 #1] A,B,C
              └──────────→ [74138 #2] A,B,C
 ```
+
+![4-to-16 Decoder Circuit](./images/decoder-4to16.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
 
 ### BCD to 7-Segment Decoder ⭐
 
@@ -444,6 +498,23 @@ $$g = \sum m(2, 3, 4, 5, 6, 9) + \sum d(10, 11, 12, 13, 14, 15)$$
 
 > คิดว่าเป็น "สวิตช์หมุนดิจิทัล" — n select bits → เลือกจาก $2^n$ inputs
 
+### MUX 2:1 (พื้นฐาน)
+
+รับ **2 อินพุต** เลือกด้วย **1 Select bit**:
+
+![Multiplexer 2:1 Circuit](./images/mux-2to1.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
+
+$$Y = \overline{S}\,I_0 + S\,I_1$$
+
+| $S$ | Y |
+|:---:|:---:|
+| 0 | $I_0$ |
+| 1 | $I_1$ |
+
+**IC: 74157** (Quad 2:1 MUX)
+
 ### วงจร MUX (4:1):
 
 ![Multiplexer 4:1 Circuit](./images/mux-4to1.png)
@@ -472,7 +543,23 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 | 1 | 1 | 0 | $I_6$ |
 | 1 | 1 | 1 | $I_7$ |
 
+![Multiplexer 8:1 Circuit](./images/mux-8to1.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
+
 **IC: 74153** (Dual 4:1 MUX), **74151** (8:1 MUX)
+
+### MUX 16:1
+
+รับ **16 อินพุต** เลือกด้วย **4 Select bits** ($S_3 S_2 S_1 S_0$):
+
+![Multiplexer 16:1 Circuit](./images/mux-16to1.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
+
+$$Y = \sum_{i=0}^{15} m_i \cdot I_i \quad \text{(เลือก } I_i \text{ ที่ตรงกับ } S_3S_2S_1S_0 = i\text{)}$$
+
+> 💡 สร้างจาก MUX 8:1 × 2 + MUX 2:1 ต่อขยาย หรือใช้ IC **74150** (16:1 MUX)
 
 ### MUX เป็น Universal Function Generator ⭐
 
@@ -511,6 +598,21 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 
 รับ **1 อินพุต** กระจายไปยัง **1 ใน $2^n$ เอาต์พุต** ตาม Select lines
 
+### DEMUX 1-to-2 (พื้นฐาน)
+
+กระจาย D ไป 1 ใน 2 เอาต์พุต ด้วย **1 Select bit**:
+
+![DEMUX 1-to-2 Circuit](./images/demux-1to2.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
+
+| $S$ | $Y_0$ | $Y_1$ |
+|:---:|:---:|:---:|
+| 0 | D | 0 |
+| 1 | 0 | D |
+
+$$Y_0 = D \cdot \overline{S}, \quad Y_1 = D \cdot S$$
+
 ### วงจร DEMUX 1-to-4:
 
 ![DEMUX 1-to-4 Circuit](./images/demux-1to4.png)
@@ -525,6 +627,46 @@ $$Y = \overline{S_1}\,\overline{S_0}\,I_0 + \overline{S_1}\,S_0\,I_1 + S_1\,\ove
 | 1 | 1 | 0 | 0 | 0 | D |
 
 $$Y_0 = D \cdot \overline{S_1}\,\overline{S_0}, \quad Y_1 = D \cdot \overline{S_1}\,S_0, \quad Y_2 = D \cdot S_1\,\overline{S_0}, \quad Y_3 = D \cdot S_1\,S_0$$
+
+### DEMUX 1-to-8
+
+กระจาย D ไป 1 ใน 8 เอาต์พุต ด้วย **3 Select bits** ($S_2 S_1 S_0$):
+
+![DEMUX 1-to-8 Circuit](./images/demux-1to8.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
+
+| $S_2$ | $S_1$ | $S_0$ | Output Active |
+|:---:|:---:|:---:|:---:|
+| 0 | 0 | 0 | $Y_0 = D$ |
+| 0 | 0 | 1 | $Y_1 = D$ |
+| 0 | 1 | 0 | $Y_2 = D$ |
+| 0 | 1 | 1 | $Y_3 = D$ |
+| 1 | 0 | 0 | $Y_4 = D$ |
+| 1 | 0 | 1 | $Y_5 = D$ |
+| 1 | 1 | 0 | $Y_6 = D$ |
+| 1 | 1 | 1 | $Y_7 = D$ |
+
+**IC: 74138** (ใช้เป็น DEMUX 1-to-8 โดยต่อ Data เข้าขา Enable)
+
+### DEMUX 1-to-16
+
+กระจาย D ไป 1 ใน 16 เอาต์พุต ด้วย **4 Select bits** ($S_3 S_2 S_1 S_0$):
+
+![DEMUX 1-to-16 Circuit](./images/demux-1to16.png)
+
+*ที่มา: Wikimedia Commons (CC BY-SA 3.0)*
+
+```
+  S3 S2 S1 S0 → เลือก Y0–Y15 ที่ D จะถูกส่งไป
+
+  สร้างจาก 74138 × 2 ตัว:
+  S3 = 0 → [74138 #1] ใช้งาน → Y0–Y7
+  S3 = 1 → [74138 #2] ใช้งาน → Y8–Y15
+  S2 S1 S0 → ต่อร่วม A, B, C ทั้ง 2 ตัว
+```
+
+**IC: 74154** (4-to-16 Decoder / DEMUX 1-to-16)
 
 ### Decoder ← → DEMUX
 
