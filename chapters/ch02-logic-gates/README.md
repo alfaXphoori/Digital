@@ -413,6 +413,18 @@ Truth Table คือตารางที่แสดง **ทุก combinatio
 
 > 💡 **จำไว้:** ขา 7 = GND, ขา 14 = Vcc (สำหรับ IC 14 ขา)
 
+### Data Sheet อ้างอิง (Texas Instruments)
+
+| IC | ชื่อ | Data Sheet (PDF) |
+|:---:|:---|:---|
+| 7408 | Quad 2-input AND | [SN74LS08](https://www.ti.com/lit/gpn/sn74ls08) |
+| 7432 | Quad 2-input OR | [SN74LS32](https://www.ti.com/lit/gpn/sn74ls32) |
+| 7404 | Hex Inverter (NOT) | [SN74LS04](https://www.ti.com/lit/gpn/sn74ls04) |
+| 7400 | Quad 2-input NAND | [SN74LS00](https://www.ti.com/lit/gpn/sn74ls00) |
+| 7402 | Quad 2-input NOR | [SN74LS02](https://www.ti.com/lit/gpn/sn74ls02) |
+| 7486 | Quad 2-input XOR | [SN74LS86](https://www.ti.com/lit/gpn/sn74ls86) |
+| 74266 | Quad 2-input XNOR | [SN74LS266](https://www.ti.com/lit/gpn/sn74ls266) |
+
 ---
 
 ## แบบฝึกหัดท้ายบท
