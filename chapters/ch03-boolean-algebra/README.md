@@ -47,17 +47,17 @@ $$\text{ตัวอย่าง: } A + B \cdot \overline{C} = A + (B \cdot (\ov
 | $\overline{A + B}$ | $\overline{1 + 0} = \overline{1}$ | **0** |
 | $\overline{A} \cdot \overline{B}$ | $0 \cdot 1$ | **0** |
 
-### ตาราง Truth Table ของตัวดำเนินการพื้นฐาน
+---
 
-| A | B | $A \cdot B$ | $A + B$ | $\overline{A}$ |
-|:---:|:---:|:---:|:---:|:---:|
-| 0 | 0 | 0 | 0 | 1 |
-| 0 | 1 | 0 | 1 | 1 |
-| 1 | 0 | 0 | 1 | 0 |
-| 1 | 1 | 1 | 1 | 0 |
+## 3.3 กฎพื้นฐาน (Basic Laws)
 
-### ตัวอย่างการคำนวณ
-
+| กฎ | AND Form | OR Form |
+|:---|:---:|:---:|
+| **Identity** | $A \cdot 1 = A$ | $A + 0 = A$ |
+| **Null** | $A \cdot 0 = 0$ | $A + 1 = 1$ |
+| **Idempotent** | $A \cdot A = A$ | $A + A = A$ |
+| **Complement** | $A \cdot \overline{A} = 0$ | $A + \overline{A} = 1$ |
+| **Involution** | $\overline{\overline{A}} = A$ | |
 
 ### พิสูจน์กฎพื้นฐานด้วย Truth Table
 
@@ -81,16 +81,16 @@ $$\text{ตัวอย่าง: } A + B \cdot \overline{C} = A + (B \cdot (\ov
 |:---:|:---:|:---:|
 | 0 | 1 | **0** |
 | 1 | 0 | **1** |
-**กำหนด:** $A = 1, B = 0, C = 1$
 
-| นิพจน์ | การคำนวณ | ผลลัพธ์ |
-|:---|:---|:---:|
-| $AB$ | $1 \cdot 0$ | **0** |
-| $A + B$ | $1 + 0$ | **1** |
-| $\overline{A}$ | $\overline{1}$ | **0** |
-| $AB + C$ | $0 + 1$ | **1** |
-| $A(B + C)$ | $1 \cdot (0 + 1)$ | **1** |
-| $\overline{A + B}$ | $\overline{1 + 0} = \overline{1}$ | **0** |
+---
+
+## 3.4 กฎสำคัญ (Important Laws)
+
+### Commutative Law (สลับที่)
+
+$$A \cdot B = B \cdot A$$
+$$A + B = B + A$$
+
 > **ตัวอย่าง:** $1 \cdot 0 = 0 \cdot 1 = 0$ &nbsp;&nbsp; $1 + 0 = 0 + 1 = 1$
 
 ### Associative Law (จัดหมู่)
@@ -151,149 +151,6 @@ $$= AB + \overline{A}C + BC(A + \overline{A}) \quad [\text{Complement}]$$
 $$= AB + \overline{A}C + ABC + \overline{A}BC \quad [\text{Distributive}]$$
 $$= AB(1 + C) + \overline{A}C(1 + B) \quad [\text{จัดกลุ่ม}]$$
 $$= AB + \overline{A}C \quad [\text{Null: } 1+x=1]$$
-**พิสูจน์ Idempotent $A + A = A$**
-
-| A | $A + A$ |
-|:---:|:---:|
-| 0 | 0 |
-| 1 | 1 |
-
-**พิสูจน์ Involution $\overline{\overline{A}} = A$**
-
-| A | $\overline{A}$ | $\overline{\overline{A}}$ |
-|:---:|:---:|:---:|
-| 0 | 1 | **0** |
-| 1 | 0 | **1** |
-
----
-
-## 3.4 กฎสำคัญ (Important Laws)
-
-### Commutative Law (สลับที่)
-
-$$A \cdot B = B \cdot A$$
-$$A + B = B + A$$
-
-> **ตัวอย่าง:** $1 \cdot 0 = 0 \cdot 1 = 0$ &nbsp;&nbsp; $1 + 0 = 0 + 1 = 1$
-
-### Associative Law (จัดหมู่)
-
-$$(A \cdot B) \cdot C = A \cdot (
-
-### ตัวอย่าง De Morgan แบบ Step-by-Step
-
-**ตัวอย่างที่ 1:** แปลง $\overline{AB + C}$
-
-$$\overline{AB + C}$$
-$$= \overline{AB} \cdot \overline{C} \quad [\text{De Morgan Theorem 2}]$$
-$$= (\overline{A} + \overline{B}) \cdot \overline{C} \quad [\text{De Morgan Theorem 1}]$$
-
-**ตัวอย่างที่ 2:** แปลง $\overline{(A + B)(C + D)}$
-
-$$\overline{(A + B)(C + D)}$$
-$$= \overline{(A + B)} + \overline{(C + D)} \quad [\text{De Morgan Theorem 1}]$$
-$$= (\overline{A} \cdot \overline{B}) + (\overline{C} \cdot \overline{D}) \quad [\text{De Morgan Theorem 2}]$$
-
-**ตัวอย่างที่ 3:** หา complement ของ $F = A\overline{B} + \overline{A}B$
-
-$$\overline{F} = \overline{A\overline{B} + \overline{A}B}$$
-$$= \overline{A\overline{B}} \cdot \overline{\overline{A}B} \quad [\text{De Morgan}]$$
-$$= (\overline{A} + B)(A + \overline{B}) \quad [\text{De Morgan}]$$
-$$= \overline{A}A + \overline{A}\,\overline{B} + BA + B\overline{B} \quad [\text{Distributive}]$$
-$$= 0 + \overline{A}\,\overline{B} + AB + 0 \quad [\text{Complement}]$$
-$$= \overline{A}\,\overline{B} + AB$$
-
-> 💡 $F = A \oplus B$ และ $\overline{F} = A \odot B$ (XNOR) — De Morgan ยืนยันความสัมพันธ์ XOR กับ XNOR
-
-### พิสูจน์ De Morgan ด้วย Truth Table
-
-**พิสูจน์ $\overline{A \cdot B} = \overline{A} + \overline{B}$**
-
-| A | B | $A \cdot B$ | $\overline{A \cdot B}$ | $\overline{A}$ | $\overline{B}$ | $\overline{A} + \overline{B}$ |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 0 | 0 | 0 | **1** | 1 | 1 | **1** |
-| 0 | 1 | 0 | **1** | 1 | 0 | **1** |
-| 1 | 0 | 0 | **1** | 0 | 1 | **1** |
-| 1 | 1 | 1 | **0** | 0 | 0 | **0** |B \cdot C)$$
-$$(A + B) + C = A + (B + C)$$
-
-> **ตัวอย่าง:** $(1 \cdot 1) \cdot 0 = 1 \cdot (1 \cdot 0) = 0$ — จัดหมู่อย่างไรก็ได้ผลเหมือนกัน
-
-### Distributive Law (แจกแจง)
-
-$$A \cdot (B + C) = AB + AC$$
-$$A + BC = (A + B)(A + C) \quad \text{⭐ สำคัญ!}$$
-
-> ⚠️ กฎข้อที่ 2 ไม่มีใน Algebra ปกติ — เป็นเอกลักษณ์ของ Boolean Algebra
-
-**พิสูจน์ $A + BC = (A+B)(A+C)$ ด้วย Truth Table:**
-
-| A | B | C | BC | A+BC | A+B | A+C | (A+B)(A+C) |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 0 | 0 | 1 | 0 | 0 | 0 | 1 | **0** |
-| 0 | 1 | 0 | 0 | 0 | 1 | 0 | **0** |
-| 0 | 1 | 1 | 1 | 1 | 1 | 1 | **1** |
-| 1 | 0 | 0 | 0 | 1 | 1 | 1 | **1** |
-| 1 | 0 | 1 | 0 | 1 | 1 | 1 | **1** |
-| 1 | 1 | 0 | 0 | 1 | 1 | 1 | **1** |
-| 1 | 1 | 1 | 1 | 1 | 1 | 1 | **1** |
-
-### Absorption Law (ดูดซับ)
-
-$$A + AB = A$$
-$$A(A + B) = A$$
-
-**พิสูจน์ $A + AB = A$ ด้วยพีชคณิต:**
-
-$$A + AB = A \cdot 1 + AB \quad [\text{Identity}]$$
-$$= A(1 + B) \quad [\text{Distributive}]$$
-$$= A \cdot 1 \quad [\text{Null: } 1 + B = 1]$$
-$$= A \quad [\text{Identity}]$$
-
-### ตัวอย่างที่ 6: ลดรูปซับซ้อน 3 ขั้นตอน
-
-$$F = (A + B)(A + \overline{B})$$
-$$= A + B\overline{B} \quad [\text{Distributive Boolean}]$$
-$$= A + 0 \quad [\text{Complement}]$$
-$$= A \quad [\text{Identity}]$$
-
-### ตัวอย่างที่ 7: มี 4 ตัวแปร
-
-$$F = ABCD + AB\overline{C}D + AB\overline{C}\,\overline{D} + ABC\overline{D}$$
-$$= ABD(C + \overline{C}) + AB\overline{C}(D + \overline{D}) \quad [\text{จัดกลุ่ม}]$$
-Wait, let me redo:
-$$= ABD(C + \overline{C}) + AB\overline{C}\,\overline{D} \quad [\text{step 1}]$$
-Let me use a cleaner example:
-
-$$F = AB + A\overline{B}C + \overline{A}BC + \overline{A}\,\overline{B}C$$
-$$= AB + C(A\overline{B} + \overline{A}B + \overline{A}\,\overline{B}) \quad [\text{Distributive}]$$
-$$= AB + C(A\overline{B} + \overline{A}(B + \overline{B})) \quad [\text{Distributive}]$$
-$$= AB + C(A\overline{B} + \overline{A}) \quad [\text{Complement}]$$
-$$= AB + C(\overline{A} + A\overline{B}) \quad [\text{Commutative}]$$
-$$= AB + C(\overline{A} + \overline{B}) \quad [\text{Absorption}]$$
-$$= AB + C\,\overline{AB} \quad [\text{De Morgan}]$$
-$$= AB + C \quad [\text{Absorption ขยาย: } X + \overline{X}Y = X + Y]$$
-
-**Absorption ขยาย:**
-
-$$A + \overline{A}B = A + B$$
-$$A(\overline{A} + B) = AB$$
-
-### Consensus Theorem
-
-$$AB + \overline{A}C + BC = AB + \overline{A}C$$
-$$(A + B)(\overline{A} + C)(B + C) = (A + B)(\overline{A} + C)$$
-
-> 💡 เทอม $BC$ เป็น **consensus term** ที่ตัดออกได้เสมอ
-
-**พิสูจน์ด้วยพีชคณิต:**
-
-$$AB + \overline{A}C + BC$$
-$$= AB + \overline{A}C + BC(A + \overline{A}) \quad [\text{Complement}]$$
-$$= AB + \overline{A}C + ABC + \overline{A}BC \quad [\text{Distributive}]$$
-$$= AB(1 + C) + \overline{A}C(1 + B) \quad [\text{จัดกลุ่ม}]$$
-$$= AB + \overline{A}C \quad [\text{Null: } 1+x=1]$$
 
 ---
 
@@ -334,124 +191,28 @@ $$= (\overline{A} + \overline{B}) \cdot \overline{C} \quad [\text{De Morgan Theo
 **ตัวอย่างที่ 2:** แปลง $\overline{(A + B)(C + D)}$
 
 $$\overline{(A + B)(C + D)}$$
-$$= วงจร → สมการ (ตัวอย่าง)
+$$= \overline{(A + B)} + \overline{(C + D)} \quad [\text{De Morgan Theorem 1}]$$
+$$= (\overline{A} \cdot \overline{B}) + (\overline{C} \cdot \overline{D}) \quad [\text{De Morgan Theorem 2}]$$
 
-```
-A ──┐
-    AND ──┐
-B ──┘     OR ── Y
-C ────────┘
-```
+**ตัวอย่างที่ 3:** หา complement ของ $F = A\overline{B} + \overline{A}B$
 
-อ่านจากซ้ายไปขวา: AND gate รับ A, B → ได้ $AB$, จากนั้น OR กับ C:
+$$\overline{F} = \overline{A\overline{B} + \overline{A}B}$$
+$$= \overline{A\overline{B}} \cdot \overline{\overline{A}B} \quad [\text{De Morgan}]$$
+$$= (\overline{A} + B)(A + \overline{B}) \quad [\text{De Morgan}]$$
+$$= \overline{A}A + \overline{A}\,\overline{B} + BA + B\overline{B} \quad [\text{Distributive}]$$
+$$= 0 + \overline{A}\,\overline{B} + AB + 0 \quad [\text{Complement}]$$
+$$= \overline{A}\,\overline{B} + AB$$
 
-$$Y = AB + C$$
+> 💡 $F = A \oplus B$ และ $\overline{F} = A \odot B$ (XNOR) — De Morgan ยืนยันความสัมพันธ์ XOR กับ XNOR
 
-```
-A ──────────┐
-             AND ── NOT ── Y
-B ── NOT ──┘
-```
+### พิสูจน์ De Morgan ด้วย Truth Table
 
-$$Y = \overline{A \cdot \overline{B}} = \overline{A} + B \quad [\text{De Morgan}]$$
+**พิสูจน์ $\overline{A \cdot B} = \overline{A} + \overline{B}$**
 
-### สมการ → วงจร (ตัวอย่าง)
-
-**$F = A\overline{B} + \overline{A}B$ (XOR)**
-
-```
-A ── NOT ──┐
-           AND ──┐
-B ─────────┘     OR ── F
-A ─────────┐     |
-B ── NOT ──┘AND ──┘
-```
-
-### การใช้ Universal Gates ในการออกแบบ
-
-ในทางปฏิบัติ นิยมแปลงวงจรให้ใช้ **NAND เท่านั้น** หรือ **NOR เท่านั้น** เพื่อ:
-- ใช้ IC ชนิดเดียว → ลดต้นทุน
-- ลดจำนวน IC บนบอร์ด
-
-**ขั้นตอนแปลง SOP → NAND-NAND:**
-
-1. เขียนสมการในรูป SOP: $F = AB + CD$
-2. ใช้ Double Inversion: $F = \overline{\overline{AB + CD}}$
-3. ใช้ De Morgan: $F = \overline{\overline{AB} \cdot \overline{CD}}$
-4. แต่ละเทอมเป็น NAND → วงจร NAND 2 ระดับ
-
-```
-A ──┐
-    NAND ──┐
-B ──┘      NAND ── F
-C ──┐      |
-    NAND ──┘
-D ──┘
-```
-
-**ขั้นตอนแปลง POS → NOR-NOR:**
-
-1. เขียนสมการในรูป POS: $F = (A+B)(C+D)$
-2. ใช้ Double Inversion
-3. ใช้ De Morgan → วงจร NOR 2 ระดับ
-
-```
-A ──┐
-    NOR ──┐
-B ──┘     NOR ── F
-C ──┐     |
-    NOR ──┘
-D ──┘
-```
 | A | B | $A \cdot B$ | $\overline{A \cdot B}$ | $\overline{A}$ | $\overline{B}$ | $\overline{A} + \overline{B}$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 0 | 0 | 0 | **1** | 1 | 1 | **1** |
-| 0 | 1คุณสมบัติของ XOR และ XNOR
-
-ฟังก์ชัน XOR มีคุณสมบัติพิเศษที่ใช้บ่อยในการลดรูปวงจร
-
-### นิยาม
-
-$$A \oplus B = A\overline{B} + \overline{A}B$$
-
-$$A \odot B = \overline{A \oplus B} = AB + \overline{A}\,\overline{B}$$
-
-### คุณสมบัติของ XOR
-
-| คุณสมบัติ | สมการ |
-|:---|:---:|
-| Commutative | $A \oplus B = B \oplus A$ |
-| Associative | $(A \oplus B) \oplus C = A \oplus (B \oplus C)$ |
-| Identity | $A \oplus 0 = A$ |
-| Null | $A \oplus 1 = \overline{A}$ |
-| Self-inverse | $A \oplus A = 0$ |
-| Complement | $A \oplus \overline{A} = 1$ |
-| XOR-XNOR | $A \oplus B = \overline{A \odot B}$ |
-
-> 💡 **$A \oplus 1 = \overline{A}$** → สามารถใช้ XOR gate ทำหน้าที่เป็น Controlled Inverter
-
-### ตัวอย่างการใช้ XOR ในการลดรูป
-
-$$F = AB + A\overline{B} + \overline{A}B$$
-$$= A(B + \overline{B}) + \overline{A}B \quad [\text{Distributive}]$$
-$$= A + \overline{A}B \quad [\text{Complement}]$$
-$$= A + B \quad [\text{Absorption ขยาย}]$$
-
-หรืออีกทางหนึ่ง สังเกตว่า:
-$$AB + A\overline{B} + \overline{A}B = A + (A \oplus B)$$
-
-### Parity ด้วย XOR
-
-XOR หลายตัวใช้ตรวจสอบ **parity** (จำนวนบิต 1 คี่หรือคู่)
-
-$$P = A \oplus B \oplus C \oplus D$$
-
-- $P = 1$ → จำนวนบิต 1 ใน A,B,C,D เป็นจำนวน **คี่**
-- $P = 0$ → จำนวนบิต 1 เป็นจำนวน **คู่**
-
----
-
-## 3.10  | 0 | **1** | 1 | 0 | **1** |
+| 0 | 1 | 0 | **1** | 1 | 0 | **1** |
 | 1 | 0 | 0 | **1** | 0 | 1 | **1** |
 | 1 | 1 | 1 | **0** | 0 | 0 | **0** |
 
@@ -474,7 +235,7 @@ $$= A \quad \text{[Absorption]}$$
 ### ตัวอย่างที่ 3: ซับซ้อนขึ้น
 
 $$F = \overline{A}B + \overline{A}\,\overline{B}C + \overline{A}BC$$
-$$= \o1erline{A}(B + \overline{B}C + BC)$$
+$$= \overline{A}(B + \overline{B}C + BC)$$
 $$= \overline{A}(B + C(\overline{B} + B))$$
 $$= \overline{A}(B + C \cdot 1)$$
 $$= \overline{A}(B + C)$$
@@ -496,10 +257,6 @@ $$F = (A + B)(A + \overline{B})$$
 $$= A + B\overline{B} \quad [\text{Distributive Boolean}]$$
 $$= A + 0 \quad [\text{Complement}]$$
 $$= A \quad [\text{Identity}]$$
-7. พิสูจน์ $A \oplus B = (A + B)(\overline{A} + \overline{B})$ ด้วย Truth Table
-8. ลดรูป $F = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,\overline{B}C + \overline{A}BC + ABC$
-9. แสดงว่า $\overline{AB + \overline{A}\,\overline{B}} = A \oplus B$
-10. สร้างวงจร NAND-only สำหรับ $F = (A \oplus B) \cdot C$
 
 ### ตัวอย่างที่ 7: มี 4 ตัวแปร
 
@@ -674,9 +431,6 @@ $$= A(B + \overline{B}) + \overline{A}B \quad [\text{Distributive}]$$
 $$= A + \overline{A}B \quad [\text{Complement}]$$
 $$= A + B \quad [\text{Absorption ขยาย}]$$
 
-หรืออีกทางหนึ่ง สังเกตว่า:
-$$AB + A\overline{B} + \overline{A}B = A + (A \oplus B)$$
-
 ### Parity ด้วย XOR
 
 XOR หลายตัวใช้ตรวจสอบ **parity** (จำนวนบิต 1 คี่หรือคู่)
@@ -698,7 +452,7 @@ $$P = A \oplus B \oplus C \oplus D$$
 
 ตรวจสอบทุก combination ว่าให้ผลเหมือนกัน
 
-**ตัวอย่าง:** พิสูจน์ $A + AB = A$
+**ตัวอย่างที่ 1:** พิสูจน์ $A + AB = A$
 
 | A | B | AB | A + AB |
 |:---:|:---:|:---:|:---:|
@@ -708,6 +462,23 @@ $$P = A \oplus B \oplus C \oplus D$$
 | 1 | 1 | 1 | **1** |
 
 คอลัมน์ $A$ กับ $A + AB$ เหมือนกันทุกแถว
+
+**ตัวอย่างที่ 2:** พิสูจน์ $A + \overline{A}B = A + B$
+
+| A | B | $\overline{A}$ | $\overline{A}B$ | $A + \overline{A}B$ | $A + B$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 0 | 1 | 0 | 0 | **0** |
+| 0 | 1 | 1 | 1 | 1 | **1** |
+| 1 | 0 | 0 | 0 | 1 | **1** |
+| 1 | 1 | 0 | 0 | 1 | **1** |
+
+**ตัวอย่างที่ 3:** พิสูจน์ $(A + B)(A + C) = A + BC$
+
+| A | B | C | BC | A+BC | A+B | A+C | (A+B)(A+C) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 0 | 1 | 0 | 0 | 0 | 1 | **0** |
+| 0 | 1 | 1 | 1 | 1 | 1 | 1 | **1** |
+| 1 | 0 | 0 | 0 | 1 | 1 | 1 | **1** |
 
 ---
 
@@ -733,10 +504,6 @@ $$P = A \oplus B \oplus C \oplus D$$
 4. พิสูจน์ $AB + \overline{A}C + BC = AB + \overline{A}C$ (Consensus Theorem) ด้วย Truth Table
 5. แปลง $F = AB + CD$ เป็นวงจร NAND-NAND (วาดแผนผังวงจร)
 6. เขียน $F = (A+B)(C+D)$ ในรูป SOP
-7. พิสูจน์ $A \oplus B = (A + B)(\overline{A} + \overline{B})$ ด้วย Truth Table
-8. ลดรูป $F = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,\overline{B}C + \overline{A}BC + ABC$
-9. แสดงว่า $\overline{AB + \overline{A}\,\overline{B}} = A \oplus B$
-10. สร้างวงจร NAND-only สำหรับ $F = (A \oplus B) \cdot C$
 7. พิสูจน์ $A \oplus B = (A + B)(\overline{A} + \overline{B})$ ด้วย Truth Table
 8. ลดรูป $F = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,\overline{B}C + \overline{A}BC + ABC$
 9. แสดงว่า $\overline{AB + \overline{A}\,\overline{B}} = A \oplus B$
