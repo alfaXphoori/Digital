@@ -43,11 +43,11 @@ CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾
             |    |    |    |    |    |    |
          Rise Fall Rise Fall Rise Fall Rise
          Edge Edge Edge Edge Edge Edge Edge
-
-         |<------- T (Period) ------->|
-         |<-- tLOW -->|<-- tHIGH -->|
-                      ↑
-              Positive (Rising) Edge
+            |‾‾‾‾|____|
+            tHIGH tLOW
+            |<-- T -->|
+            ↑
+       Positive (Rising) Edge
 
   Duty Cycle = tHIGH / T × 100%
 ```
