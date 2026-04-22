@@ -17,18 +17,16 @@ $$\text{Sequential Output} = f(\text{Inputs}, \text{Present State})$$
 **วงจรเชิงลำดับ (Sequential Circuit)** มีองค์ประกอบ 2 ส่วน:
 
 ```
-  Inputs                                        Outputs
-  ------>|                                 |------>
-  ------>|     Combinational Logic         |------>
-         |                                 |
-    +--->|        f(input, state)          |---+
-    |    +---------------------------------+   |
-    |                                         |
-    |    +---------------------------------+   |
-    +----| Memory Elements (Flip-Flops)   |<--+
-         |   Q holds "Present State"      |
-         +---------------------------------+
-                        ^
+                ┌──────────────────┐
+ Inputs ───────→│  Combinational   │───────→ Outputs
+                │     Logic        │
+         ┌─────→│                  │──────┐
+         │      └──────────────────┘      │
+         │      ┌──────────────────┐      │
+         └──────│  Memory          │←─────┘
+                │  (Flip-Flops)    │
+                └───────┬──────────┘
+                        ↑
                       Clock
 ```
 
