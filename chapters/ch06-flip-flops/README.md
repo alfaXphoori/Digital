@@ -129,22 +129,6 @@ Q̄:    ‾‾‾‾‾|_________________________|‾‾‾‾‾‾‾‾‾‾
 
 ---
 
-### Gated SR Latch
-
-เพิ่ม **Enable (E)** — Latch ทำงานเฉพาะเมื่อ E = 1
-
-<img src="./images/gated-sr-latch.png" width="650" alt="Gated SR Latch Gate Circuit">
-
-| E | S | R | Q(next) | หมายเหตุ |
-|:---:|:---:|:---:|:---:|:---|
-| 0 | X | X | Q₀ | **Hold** ไม่ว่า S, R จะเป็นอะไร |
-| 1 | 0 | 0 | Q₀ | Hold |
-| 1 | 0 | 1 | 0 | Reset |
-| 1 | 1 | 0 | 1 | Set |
-| 1 | 1 | 1 | ❌ | Invalid |
-
----
-
 ### D Latch (Data / Transparent Latch)
 
 แก้ปัญหา Invalid state ของ SR — ใช้อินพุตเพียง **1 ตัว** (D)
