@@ -479,8 +479,6 @@ Q₀:    _____|‾‾‾‾‾‾‾‾‾‾‾‾‾|____________
 - บิต '1' เลื่อนจาก Q₀ ไปทาง Q₃ ทุก Clock
 - เริ่มต้น preset **Q₀=1** (Q₃Q₂Q₁Q₀ = 0001)
 
-<img src="./images/ring-counter-down.png" width="650" alt="Ring Counter Shift Left Circuit">
-
 #### Timing Diagram — 4-bit Ring Counter (Shift Left)
 
 ```
