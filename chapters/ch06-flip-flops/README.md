@@ -32,7 +32,35 @@ $$\text{Sequential Output} = f(\text{Inputs}, \text{Present State})$$
 
 ---
 
-## 6.2 วงจรแลตช์ (Latches) — หน่วยความจำพื้นฐาน
+## 6.2 สัญญาณนาฬิกา (Clock Signal)
+
+Clock คือสัญญาณ Square Wave ที่ทำหน้าที่ **ซิงโครไนซ์** วงจรทั้งหมด
+
+```
+         t0   t1   t2   t3   t4   t5   t6   t7
+              ↑    ↓    ↑    ↓    ↑    ↓    ↑    ↓
+CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾
+         Rising  Falling  Rising  Falling  Rising  Falling  Rising
+          Edge    Edge     Edge    Edge     Edge    Edge     Edge
+
+         |<---------- T (Period) ---------->|
+         |<--- tLOW --->|<--- tHIGH --->|
+  Duty Cycle = tHIGH / T × 100%
+```
+
+| คำศัพท์ | ความหมาย |
+|:---|:---|
+| **Positive Edge (↑)** | ขอบขาขึ้น (0→1) — Flip-flop ส่วนใหญ่ trigger ที่นี่ |
+| **Negative Edge (↓)** | ขอบขาลง (1→0) — JK FF บางชนิด trigger ที่นี่ |
+| **Period (T)** | เวลา 1 รอบ Clock เต็ม |
+| **Frequency (f)** | จำนวนรอบต่อวินาที = 1/T |
+| **Duty Cycle** | % เวลาที่ CLK = HIGH (ปกติ 50%) |
+| **Setup Time** | เวลาที่ Input ต้องคงค่าก่อน Active Edge |
+| **Hold Time** | เวลาที่ Input ต้องคงค่าหลัง Active Edge |
+
+---
+
+## 6.3 วงจรแลตช์ (Latches) — หน่วยความจำพื้นฐาน
 
 **Latch** คือวงจรความจำที่ทำงานแบบ **Level-sensitive** —
 เอาต์พุตเปลี่ยนได้ตลอดเวลาที่ Enable อยู่ในระดับที่กำหนด
@@ -170,41 +198,6 @@ Q:     ___________|‾‾‾‾‾|____________|‾‾‾‾‾‾|____
 
 > ⚠️ **ข้อเสีย Latch (Level-sensitive):** เอาต์พุตเปลี่ยนได้ **ตลอดเวลา** ที่ E=1
 > อาจเกิด glitch หรือ race condition ในวงจรใหญ่ → ใช้ **Flip-Flop** แทนเมื่อต้องการความเสถียร
-
----
-
-## 6.3 สัญญาณนาฬิกา (Clock Signal)
-
-Clock คือสัญญาณ Square Wave ที่ทำหน้าที่ **ซิงโครไนซ์** วงจรทั้งหมด
-
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾
-            ↑         ↑         ↑         ↑
-         Rising    Rising    Rising    Rising
-          Edge      Edge      Edge      Edge
-```
-
-| คำศัพท์ | ความหมาย |
-|:---|:---|
-| **Positive Edge (↑)** | ขอบขาขึ้น (0→1) — Flip-flop ส่วนใหญ่ trigger ที่นี่ |
-| **Negative Edge (↓)** | ขอบขาลง (1→0) — JK FF บางชนิด trigger ที่นี่ |
-| **Period (T)** | เวลา 1 รอบ Clock เต็ม |
-| **Frequency (f)** | จำนวนรอบต่อวินาที = 1/T |
-| **Duty Cycle** | % เวลาที่ CLK = HIGH (ปกติ 50%) |
-| **Setup Time** | เวลาที่ Input ต้องคงค่าก่อน Active Edge |
-| **Hold Time** | เวลาที่ Input ต้องคงค่าหลัง Active Edge |
-
-```
-                  |<-- T (Period) -->|
-  CLK:    _________|‾‾‾‾‾‾‾‾‾|_________
-          |<-- tLOW -->|<-- tHIH -->|
-                        ↑
-                    Active Edge (Positive)
-
-  Duty Cycle = tHIGH / T × 100%
-```
 
 ---
 
