@@ -526,15 +526,144 @@ Q₀:    _____|‾‾‾‾‾‾‾‾‾|_________________________________
 
 # ส่วนที่ 2: รีจิสเตอร์ (Registers)
 
+Register คือกลุ่ม Flip-Flop ที่เก็บข้อมูลหลายบิต แบ่งตามลักษณะ Input/Output:
+
+| ประเภท | Input | Output | IC |
+|:---|:---:|:---:|:---:|
+| **SISO** | Serial | Serial | — |
+| **SIPO** | Serial | Parallel | 74164 |
+| **PISO** | Parallel | Serial | 74165 |
+| **PIPO** | Parallel | Parallel | 74374 |
+| **Universal** | Serial/Parallel | Serial/Parallel | **74194** |
+
 ---
 
-## 7.9 Parallel Register (รีจิสเตอร์ขนาน)
+## 7.9 SISO — Serial-In Serial-Out
 
-โหลดข้อมูลทุกบิต **พร้อมกัน** เมื่อ Clock edge
+ข้อมูลเข้าทีละ 1 บิต และออกทีละ 1 บิต — ทำหน้าที่เป็น **Time Delay (n clock cycles)**
 
-<img src="./images/parallel-register.png" width="650" alt="4-bit Parallel Register Circuit">
+### หลักการ
 
-#### Timing Diagram — 4-bit Parallel Register
+- D FF ต่ออนุกรม: SOUT ของ FF แต่ละตัว → DIN ของ FF ถัดไป
+- ข้อมูลใช้เวลา **n clock** จึงปรากฏที่ output (n = จำนวน FF)
+
+<img src="./images/siso-shift-register.png" width="650" alt="SISO 4-bit Shift Register Circuit">
+
+#### Timing Diagram — SISO 4-bit (หน่วง 4 clock)
+
+```
+         t0   t1   t2   t3   t4   t5   t6   t7
+              ↑    ↑    ↑    ↑    ↑    ↑    ↑
+CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|____
+
+SIN:   _____|‾‾‾‾|‾‾‾‾|____|‾‾‾‾|____________________
+       (0)  (1)  (1)  (0)  (1)
+
+Q₃:    _____|‾‾‾‾|‾‾‾‾|____|‾‾‾‾|____________________
+
+Q₂:    ___________|‾‾‾‾|‾‾‾‾|____|‾‾‾‾|______________
+
+Q₁:    _______________|‾‾‾‾|‾‾‾‾|____|‾‾‾‾|__________
+
+SOUT:  ___________________|‾‾‾‾|‾‾‾‾|____|‾‾‾‾|______
+       (หน่วงออกมา 4 clock)
+```
+
+| ช่วง | SIN | Q₃ | Q₂ | Q₁ | SOUT | หมายเหตุ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| เริ่มต้น | — | 0 | 0 | 0 | 0 | |
+| t1↑ | **1** | **1** | 0 | 0 | 0 | บิตเข้า FF₃ |
+| t2↑ | **1** | **1** | **1** | 0 | 0 | เลื่อนขวา |
+| t3↑ | **0** | **0** | **1** | **1** | 0 | เลื่อนขวา |
+| t4↑ | **1** | **1** | **0** | **1** | **1** | **บิตแรกออก** (delay 4 clock) |
+| t5↑ | 0 | **0** | **1** | **0** | **1** | |
+
+- ข้อมูลที่ SOUT = ข้อมูลที่ SIN เมื่อ **4 clock ก่อนหน้า**
+- ใช้งาน: delay line, pipeline, synchronizer
+
+---
+
+## 7.10 SIPO — Serial-In Parallel-Out
+
+ข้อมูลเข้าทีละ 1 บิต (Serial) → อ่านออกพร้อมกันทุกบิต (Parallel) — ใช้รับข้อมูลจาก Serial bus
+
+<img src="./images/sipo-shift-register.png" width="650" alt="SIPO 4-bit Shift Register Circuit">
+
+#### Timing Diagram — SIPO 4-bit (รับข้อมูล 1011)
+
+```
+         t0   t1   t2   t3   t4
+              ↑    ↑    ↑    ↑
+CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾
+
+SIN:   ‾‾‾‾‾|____|‾‾‾‾|‾‾‾‾|____|
+       (1)   (0)  (1)  (1)
+         ↑                   ↑
+        MSB                 LSB
+
+Q₃:    _____|‾‾‾‾|____|‾‾‾‾|‾‾‾‾|
+
+Q₂:    ___________|‾‾‾‾|____|‾‾‾‾
+
+Q₁:    _______________|‾‾‾‾|____|‾
+
+Q₀:    ________________________|‾‾
+```
+
+| ช่วง | SIN | Q₃ | Q₂ | Q₁ | Q₀ | หมายเหตุ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| เริ่มต้น | — | 0 | 0 | 0 | 0 | ทุก FF = 0 |
+| t1↑ | **1** | **1** | 0 | 0 | 0 | MSB เข้า Q₃ |
+| t2↑ | **0** | **0** | **1** | 0 | 0 | เลื่อนขวา |
+| t3↑ | **1** | **1** | **0** | **1** | 0 | เลื่อนขวา |
+| t4↑ | **1** | **1** | **1** | **0** | **1** | **Q₃Q₂Q₁Q₀ = 1011 ครบ!** |
+
+- อ่าน Parallel Output (Q₃Q₂Q₁Q₀) พร้อมกันได้ที่ t4
+- **IC: 74164** (8-bit SIPO)
+
+---
+
+## 7.11 PISO — Parallel-In Serial-Out
+
+โหลดข้อมูลทุกบิตพร้อมกัน (Parallel) แล้วส่งออกทีละบิต (Serial) — ใช้ส่งข้อมูลผ่าน Serial line
+
+<img src="./images/piso-shift-register.png" width="650" alt="PISO 4-bit Shift Register Circuit">
+
+#### Timing Diagram — PISO 4-bit (ส่งข้อมูล 1101)
+
+```
+         t0   t1   t2   t3   t4   t5
+              ↑    ↑    ↑    ↑    ↑
+CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|____
+
+LOAD:  ‾‾‾‾‾|____|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+       (LOAD=1: โหลด parallel data ที่ t1↑)
+
+SOUT:  ______|‾‾‾‾|____|‾‾‾‾|‾‾‾‾|___
+              (1)  (1)  (0)  (1)
+              ↑              ↑
+             MSB            LSB
+```
+
+| ช่วง | การทำงาน | SOUT | หมายเหตุ |
+|:---:|:---|:---:|:---|
+| t1↑ | LOAD=1 → โหลด 1101 เข้า FF ทุกตัว | — | Parallel Load |
+| t2↑ | Shift Right → ส่ง Q₃ ออก | **1** | MSB ออกก่อน |
+| t3↑ | Shift Right → ส่ง Q₂ ออก | **1** | |
+| t4↑ | Shift Right → ส่ง Q₁ ออก | **0** | |
+| t5↑ | Shift Right → ส่ง Q₀ ออก | **1** | LSB ออกสุดท้าย |
+
+- **IC: 74165** (8-bit PISO)
+
+---
+
+## 7.12 PIPO — Parallel-In Parallel-Out
+
+โหลดข้อมูลทุกบิต **พร้อมกัน** และอ่านออกพร้อมกัน — ทำหน้าที่เป็น **Data Register / Buffer**
+
+<img src="./images/parallel-register.png" width="650" alt="4-bit PIPO Register Circuit">
+
+#### Timing Diagram — PIPO 4-bit
 
 ```
          t0   t1   t2   t3   t4   t5
@@ -564,106 +693,25 @@ Q₀:    ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|________________
 | t3↑ | 0 | 1 | 1 | 0 | **0110** | จับข้อมูล 0110 |
 | t5↑ | 0 | 1 | 1 | 0 | 0110 | Hold (D ไม่เปลี่ยน) |
 
-> 💡 Q เปลี่ยนเฉพาะที่ **Clock Edge** — D เปลี่ยนระหว่าง Clock ก็ไม่กระทบ Q
+- Q เปลี่ยนเฉพาะที่ **Clock Edge** — D เปลี่ยนระหว่าง Clock ก็ไม่กระทบ Q
+- **IC: 74374** (Octal D FF, 3-state output), **74377** (Octal D FF with Enable)
 
 ---
 
-## 7.10 Shift Register (รีจิสเตอร์เลื่อน) ⭐
+## 7.13 Universal Shift Register (74194) ⭐
 
-ข้อมูล **เลื่อน** จาก FF ตัวหนึ่งไปอีกตัวหนึ่งทุก Clock cycle
-
-$$Q_i(t+1) = Q_{i-1}(t) \quad \text{(Shift Right)}$$
-
-### ประเภท Shift Register
-
-| ประเภท | Input | Output | ความหมาย | IC |
-|:---|:---:|:---:|:---|:---:|
-| **SISO** | Serial | Serial | เข้าและออกแบบอนุกรม | — |
-| **SIPO** | Serial | Parallel | เข้าอนุกรม ออกขนาน | 74164 |
-| **PISO** | Parallel | Serial | เข้าขนาน ออกอนุกรม | 74165 |
-| **PIPO** | Parallel | Parallel | เข้าออกขนานทั้งคู่ | 74194 |
-
----
-
-### SIPO — 4-bit Serial-In Parallel-Out
-
-<img src="./images/sipo-shift-register.png" width="650" alt="SIPO 4-bit Shift Register Circuit">
-
-#### Timing Diagram — SIPO (รับข้อมูล 1011)
-
-```
-         t0   t1   t2   t3   t4
-              ↑    ↑    ↑    ↑
-CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾
-
-SIN:   ‾‾‾‾‾|____|‾‾‾‾|‾‾‾‾|____|
-       (1)   (0)  (1)  (1)
-         ↑                   ↑
-        MSB                 LSB
-
-Q₃:    _____|‾‾‾‾|____|‾‾‾‾|‾‾‾‾|
-
-Q₂:    ___________|‾‾‾‾|____|‾‾‾‾
-
-Q₁:    _______________|‾‾‾‾|____|‾
-
-Q₀:    ________________________|‾‾
-```
-
-| ช่วง | SIN | Q₃ | Q₂ | Q₁ | Q₀ | หมายเหตุ |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| เริ่มต้น | — | 0 | 0 | 0 | 0 | ทุก FF = 0 |
-| t1↑ | **1** | **1** | 0 | 0 | 0 | บิต MSB เข้า Q₃ |
-| t2↑ | **0** | **0** | **1** | 0 | 0 | เลื่อนขวา |
-| t3↑ | **1** | **1** | **0** | **1** | 0 | เลื่อนขวา |
-| t4↑ | **1** | **1** | **1** | **0** | **1** | **ข้อมูล 1011 ครบ!** |
-
-- ที่ t4: Q₃Q₂Q₁Q₀ = **1011** — อ่าน Parallel Output ได้เลย
-
----
-
-### PISO — 4-bit Parallel-In Serial-Out
-
-<img src="./images/piso-shift-register.png" width="650" alt="PISO 4-bit Shift Register Circuit">
-
-#### Timing Diagram — PISO (ส่งข้อมูล 1101)
-
-```
-         t0   t1   t2   t3   t4   t5
-              ↑    ↑    ↑    ↑    ↑
-CLK:   _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|____
-
-LOAD:  ‾‾‾‾‾|____|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-       (LOAD=1: โหลด parallel data ที่ t1↑)
-
-SOUT:  ______|‾‾‾‾|____|‾‾‾‾|‾‾‾‾|___
-              (1)  (1)  (0)  (1)
-              ↑              ↑
-             MSB            LSB
-```
-
-| ช่วง | การทำงาน | SOUT | หมายเหตุ |
-|:---:|:---|:---:|:---|
-| t1↑ | LOAD=1 → โหลด 1101 เข้า FF ทุกตัว | — | Parallel Load |
-| t2↑ | Shift Right → ส่ง Q₃ ออก | **1** | MSB ออกก่อน |
-| t3↑ | Shift Right → ส่ง Q₂ ออก | **1** | |
-| t4↑ | Shift Right → ส่ง Q₁ ออก | **0** | |
-| t5↑ | Shift Right → ส่ง Q₀ ออก | **1** | LSB ออกสุดท้าย |
-
----
-
-### Universal Shift Register (74194) ⭐
-
-ทำได้ทุกโหมดในชิปเดียว — ควบคุมด้วย S₁, S₀:
+ทำได้ทั้ง SISO / SIPO / PISO / PIPO ในชิปเดียว — ควบคุมด้วย S₁, S₀:
 
 | S₁ | S₀ | โหมด | การทำงาน |
 |:---:|:---:|:---:|:---|
 | 0 | 0 | **Hold** | Q ไม่เปลี่ยนแปลง |
-| 0 | 1 | **Shift Right** | Q ← Serial Right Input |
+| 0 | 1 | **Shift Right** | Q ← Serial Right Input (SIPO/SISO) |
 | 1 | 0 | **Shift Left** | Q ← Serial Left Input |
-| 1 | 1 | **Parallel Load** | Q ← D (Parallel Input) |
+| 1 | 1 | **Parallel Load** | Q ← D (PIPO/PISO) |
 
-#### Timing Diagram — 74194 Universal Shift Register
+<img src="./images/universal-register.png" width="650" alt="74194 Universal Shift Register Circuit">
+
+#### Timing Diagram — 74194
 
 ```
          t0   t1   t2   t3   t4   t5
@@ -686,20 +734,21 @@ S₁S₀:  XX   11   01   11   00   00
 
 ---
 
-## 7.11 การประยุกต์ใช้ Shift Register
+## 7.14 การประยุกต์ใช้ Register
 
-| การประยุกต์ | วิธีการ | ประโยชน์ |
+| การประยุกต์ | ประเภท Register | ประโยชน์ |
 |:---|:---|:---|
-| **Serial ↔ Parallel** | SIPO/PISO | ลดจำนวนสายสัญญาณ |
-| **Time Delay** | SISO n ตัว | หน่วงสัญญาณ n clock cycles |
-| **Ring Counter** | Q ← Q_last | MOD-n ไม่ต้อง decode |
-| **Johnson Counter** | Q ← Q̄_last | MOD-2n decode ง่าย |
-| **Pseudo-Random** | LFSR (feedback XOR) | ทดสอบวงจร, Encryption |
-| **Arithmetic Shift** | Shift 1 บิต | คูณ/หาร 2 โดยไม่ใช้ ALU |
+| **Serial ↔ Parallel** | SIPO / PISO | ลดจำนวนสายสัญญาณ |
+| **Time Delay** | SISO | หน่วงสัญญาณ n clock cycles |
+| **Data Buffer** | PIPO | เก็บข้อมูล 8/16/32 bit |
+| **Ring Counter** | SIPO (feedback) | MOD-n ไม่ต้อง decode |
+| **Johnson Counter** | SIPO (invert feedback) | MOD-2n decode ง่าย |
+| **Pseudo-Random (LFSR)** | SISO + XOR feedback | ทดสอบวงจร, Encryption |
+| **Arithmetic Shift** | SISO Shift 1 บิต | คูณ/หาร 2 |
 
 ---
 
-## 7.12 สรุป IC ที่ใช้บ่อย
+## 7.15 สรุป IC ที่ใช้บ่อย
 
 ### IC ตัวนับ (Counter ICs)
 
