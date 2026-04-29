@@ -57,11 +57,9 @@
 
 1. ต่อ **VCC (pin 14)** และ **GND (pin 11)**
 2. ต่อ **1CLR (pin 2) → VCC** (ไม่ Clear)
-3. ต่อ DIP Switch J → **pin 14** ... ⚠️ ใช้ FF ตัวที่ 2:
-   - **2J (pin 7)** ← Switch J
-   - **2K (pin 5)** ← Switch K
+3. ต่อ DIP Switch J → **pin 7 (2J)** และ Switch K → **pin 5 (2K)**
    - **2CLK (pin 6)** ← Push Button (สร้าง Clock)
-   - **2CLR (pin 10)** ← VCC
+   - **2CLR (pin 10)** ← VCC (ไม่ Clear)
 4. ต่อ **2Q (pin 8)** → Resistor → LED (Q)
 5. ต่อ **2Q̄ (pin 9)** → Resistor → LED (Q̄)
 
@@ -128,6 +126,15 @@ Q̄
 **คำถาม:** ความถี่ของ Q เทียบกับ CLK เป็นเท่าไร? → $f_Q =$ _________ $\times f_{CLK}$
 
 📸 **Screenshot วงจรในโหมด Toggle**
+
+---
+
+## ส่วนที่ 5: ปัญหา Race-Around และ Master-Slave FF (5 นาที) ⭐
+
+ใน JK Latch ที่ใช้ Level-triggering เมื่อ J=1, K=1 และ Clock มีช่วง HIGH นานเกินไป เอาต์พุตจะสลับไปมาอย่างรวดเร็วควบคุมไม่ได้ เรียกว่าสภาวะ **Race-Around**
+
+**คำถาม:** โครงสร้างแบบ **Master-Slave Flip-Flop** ช่วยแก้ปัญหานี้ได้อย่างไร?
+   _________________________________________________________
 
 ---
 
