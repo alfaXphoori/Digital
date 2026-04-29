@@ -24,6 +24,25 @@
 
 ---
 
+## 🎯 Learning Outcomes (เป้าหมายการเรียนรู้)
+
+เมื่อจบวิชานี้ นักศึกษาจะสามารถ:
+1. เข้าใจระบบเลขฐานและรหัสดิจิทัลที่ใช้ในคอมพิวเตอร์
+2. ออกแบบและลดรูปวงจรลอจิกเชิงผสม (Combinational Logic) ได้อย่างมีประสิทธิภาพ
+3. ออกแบบและวิเคราะห์วงจรลอจิกเชิงลำดับ (Sequential Logic) เช่น ตัวนับและรีจิสเตอร์
+4. เข้าใจสถาปัตยกรรมของหน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้ (PLD/FPGA)
+5. ต่อวงจรดิจิทัลจริงบน Breadboard และใช้ Simulator ในการทดสอบวงจรได้
+
+---
+
+## 📚 หนังสืออ้างอิง (Recommended Textbooks)
+
+- **Digital Fundamentals** (11th Edition) — Thomas L. Floyd
+- **Digital Design** (6th Edition) — M. Morris Mano & Michael D. Ciletti
+- **Digital Systems: Principles and Applications** — Ronald J. Tocci
+
+---
+
 ## 🛠️ Simulator ที่ใช้ในวิชา
 
 | Simulator | ลิงก์ | ใช้สำหรับ |

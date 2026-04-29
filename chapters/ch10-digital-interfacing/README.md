@@ -19,6 +19,26 @@ Analog World              Digital World
 
 ---
 
+## 10.1.1 โปรโตคอลการสื่อสารดิจิทัลพื้นฐาน (Serial Protocols)
+
+เมื่อต้องการนำชิปหลายๆ ตัวมาคุยกัน (เช่น ไมโครคอนโทรลเลอร์อ่านค่าจากเซนเซอร์) จะนิยมใช้บัสสื่อสารข้อมูลแบบอนุกรม (Serial Communication)
+1. **UART (Universal Asynchronous Receiver-Transmitter):**
+   - สื่อสาร 2 เส้น (TX, RX)
+   - ไม่ต้องใช้ Clock (Asynchronous) แต่ต้องตกลงความเร็ว (Baud Rate) ให้ตรงกัน
+2. **I2C (Inter-Integrated Circuit):**
+   - สื่อสาร 2 เส้น (SDA, SCL) + Pull-up
+   - สื่อสารแบบ Master-Slave มีระบุ Address ของอุปกรณ์
+3. **SPI (Serial Peripheral Interface):**
+   - สื่อสาร 4 เส้น (MOSI, MISO, SCK, CS)
+   - มี Clock เป็นตัวให้จังหวะ (Synchronous) สื่อสารได้รวดเร็วมาก
+
+## 10.1.2 PWM (Pulse Width Modulation)
+
+ในอุปกรณ์ที่ไม่มี DAC แต่อยากสร้างแรงดันแอนะล็อกเทียม จะใช้วิธี **PWM**
+คือการสลับปล่อยสัญญาณดิจิทัล HIGH และ LOW ด้วยความถี่สูงมากๆ โดยปรับสัดส่วนความกว้างของขั้ว HIGH (Duty Cycle) ให้เปลี่ยนไป
+- **แรงดันเฉลี่ย ($V_{avg}$)** = $V_{max} \times$ Duty Cycle
+- นิยมใช้หรี่ความสว่าง LED และควบคุมความเร็วมอเตอร์
+
 ## 10.2 แอนะล็อก vs ดิจิทัล
 
 | เกณฑ์ | Analog | Digital |

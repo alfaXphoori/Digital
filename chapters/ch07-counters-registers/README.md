@@ -556,6 +556,17 @@ Register คือกลุ่ม Flip-Flop ที่เก็บข้อมู
 
 ---
 
+## 7.8.1 Linear Feedback Shift Register (LFSR)
+
+เป็น Shift Register รูปแบบพิเศษที่ใช้ XOR นำสัญญาณจากบางบิตกลับมาเป็น Input
+- ทำให้ได้ลำดับตัวเลขเอาต์พุตที่มีลักษณะ **เสมือนสุ่ม (Pseudo-Random)**
+- มีความยาวรอบซ้ำสูงสุดคือ $2^n - 1$
+- **การใช้งาน:** เครื่องกำเนิดเลขสุ่ม (PRNG), การเข้ารหัสข้อมูล (Cryptography), การสร้างสัญญาณทดสอบ (Built-in Self Test)
+
+## 7.8.2 Clock Divider (Prescaler)
+
+การใช้ Flip-Flop หรือ Counter มาหารความถี่ Clock หลักให้ต่ำลง เช่น Clock 50MHz หารด้วย 50,000,000 จะได้ 1Hz (1 วินาทีพอดี) ใช้ในการสร้างสัญญาณ Timer หรือควบคุมการแสดงผลที่สายตามนุษย์มองทัน
+
 ## 7.9 SISO — Serial-In Serial-Out
 
 ข้อมูลเข้าทีละ 1 บิต และออกทีละ 1 บิต — ทำหน้าที่เป็น **Time Delay (n clock cycles)**

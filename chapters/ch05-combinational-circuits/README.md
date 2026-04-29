@@ -163,6 +163,21 @@ $$C_{out} = AB + AC_{in} + BC_{in} = AB + C_{in}(A \oplus B)$$
 
 ---
 
+### Carry Look-Ahead Adder (CLA)
+
+เพื่อแก้ปัญหาความล่าช้า (Delay) ของ Ripple Carry Adder วงจร CLA จะคำนวณ Carry ของทุกหลัก **ล่วงหน้าพร้อมกัน** โดยใช้ฟังก์ชัน Propagate (P) และ Generate (G):
+- **Generate ($G_i$):** $G_i = A_i \cdot B_i$ (สร้าง Carry แน่นอน)
+- **Propagate ($P_i$):** $P_i = A_i \oplus B_i$ (ส่งผ่าน Carry ถ้ามีมา)
+
+สมการ Carry ถัดไป: $C_{i+1} = G_i + P_i \cdot C_i$
+วิธีนี้ทำให้ได้ผลลัพธ์เร็วมาก แต่ใช้ลอจิกเกตจำนวนมหาศาลสำหรับจำนวนบิตสูงๆ
+**IC:** 74182 (Look-ahead carry generator)
+
+### ALU (Arithmetic Logic Unit)
+
+คือหน่วยประมวลผลทางคณิตศาสตร์และตรรกะใน CPU ซึ่งเป็น Combinational Circuit ที่รวมเอาวงจรบวก ลบ และเกตลอจิกพื้นฐานมาเลือกการทำงานด้วย **Control Signals**
+**IC ตัวอย่าง:** 74181 (4-bit ALU)
+
 ## 5.4 Half Subtractor / Full Subtractor
 
 ### Half Subtractor (ลบ 2 บิต ไม่มี Borrow-in)
@@ -691,6 +706,10 @@ $$Y_0 = D \cdot \overline{S_1}\,\overline{S_0}, \quad Y_1 = D \cdot \overline{S_
 ```
 
 ---
+
+### Barrel Shifter
+
+วงจร Combinational ที่สามารถ **เลื่อน (Shift)** หรือ **หมุน (Rotate)** ข้อมูลได้หลายบิตใน 1 Clock Cycle โดยใช้โครงสร้างของ Multiplexer หลายระดับ เป็นองค์ประกอบสำคัญใน DSP และ CPU สมัยใหม่
 
 ## 5.10 สรุปเปรียบเทียบวงจรเชิงผสม
 
