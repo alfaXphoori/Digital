@@ -307,12 +307,22 @@ Safety_Motor_Hot (I13)       │·'│·'│·'│·'│·'│·'│· │· │
 [ OR Array - Programmable ]
 เอาต์พุต (Outputs)           │Motor_Up│Motor_Dn│Speed_Hi│Brake│Open│Alm
 ─────────────────────────────┼────────┼────────┼────────┼─────┼────┼───
-P1-P3 (Moving Up Logic)      │   X    │   ·    │   X    │  ·  │ ·  │ · 
-P4-P6 (Moving Down Logic)    │   ·    │   X    │   X    │  ·  │ ·  │ · 
-P7 (Wait / Idle)             │   ·    │   ·    │   ·    │  X  │ ·  │ · 
-P8-P11 (At Destination)      │   ·    │   ·    │   ·    │  X  │ X  │ · 
-P12-P15 (Safety Trip / Error)│   ·    │   ·    │   ·    │  X  │ ·  │ X 
-```
+P1 (Up Long: F1 to F3/4)     │   X    │   ·    │   X    │  ·  │ ·  │ · 
+P2 (Up Short: F1 to F2)      │   X    │   ·    │   ·    │  ·  │ ·  │ · 
+P3 (Up Normal: F2 to F4)     │   X    │   ·    │   ·    │  ·  │ ·  │ · 
+P4 (Down Short: F3 to F2)    │   ·    │   X    │   ·    │  ·  │ ·  │ · 
+P5 (Down Long: F4 to F1/2)   │   ·    │   X    │   X    │  ·  │ ·  │ · 
+P6 (Down Short: F4 to F3)    │   ·    │   X    │   ·    │  ·  │ ·  │ · 
+P7 (Wait / Idle / Static)    │   ·    │   ·    │   ·    │  X  │ ·  │ · 
+P8 (Arrival @ Floor 1)       │   ·    │   ·    │   ·    │  X  │ X  │ · 
+P9 (Arrival @ Floor 2)       │   ·    │   ·    │   ·    │  X  │ X  │ · 
+P10(Arrival @ Floor 3)       │   ·    │   ·    │   ·    │  X  │ X  │ · 
+P11(Arrival @ Floor 4)       │   ·    │   ·    │   ·    │  X  │ X  │ · 
+P12(Safety: Overweight)      │   ·    │   ·    │   ·    │  X  │ X  │ X 
+P13(Safety: Emergency)       │   ·    │   ·    │   ·    │  X  │ ·  │ X 
+P14(Safety: Obstruction)     │   ·    │   ·    │   ·    │  X  │ X  │ X 
+P15(Safety: Fire / Hot)      │   ·    │   ·    │   ·    │  X  │ ·  │ X 
+─────────────────────────────┴────────┴────────┴────────┴─────┴────┴───
 
 (X คือจุดที่เชื่อมต่อกัน, · คือจุดที่ไม่ได้เชื่อม, ·' คือการเชื่อมต่อกับสัญญาณ Inverted)
 
