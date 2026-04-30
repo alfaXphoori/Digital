@@ -305,7 +305,7 @@ Safety_Motor_Hot (I13)       │·'│·'│·'│·'│·'│·'│· │· │
 (หมายเหตุ: P1-P6 ใช้เงื่อนไขความปลอดภัย NOT (·') เพื่อให้ลิฟต์วิ่ง)
 
 [ OR Array - Programmable ]
-เอาต์พุต (Outputs)           │Motor_Up│Motor_Dn│Speed_Hi│Brake│Open│Alm
+เอาต์พุต (Outputs)             │Motor_Up│Motor_Dn│Speed_Hi│Brake│Open│Alm
 ─────────────────────────────┼────────┼────────┼────────┼─────┼────┼───
 P1 (Up Long: F1 to F3/4)     │   X    │   ·    │   X    │  ·  │ ·  │ · 
 P2 (Up Short: F1 to F2)      │   X    │   ·    │   ·    │  ·  │ ·  │ · 
