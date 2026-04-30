@@ -291,7 +291,10 @@ Sensor_Floor_1 (I0)          │X │X │· │· │· │· │· │X │· 
 Sensor_Floor_2 (I1)          │· │· │X │· │· │· │· │· │X │·  │·  │·  │·  │·  │·  
 Sensor_Floor_3 (I2)          │· │· │· │X │· │· │· │· │· │X  │·  │·  │·  │·  │·  
 Sensor_Floor_4 (I3)          │· │· │· │· │X │X │· │· │· │·  │X  │·  │·  │·  │·  
-Button_Call_1-4 (I4-7)       │X │X │X │X │X │X │· │X │X │X  │X  │·  │·  │·  │·  
+Button_Call_1 (I4)           │· │· │· │X │· │X │· │X │· │·  │·  │·  │·  │·  │·  
+Button_Call_2 (I5)           │· │· │· │X │X │· │· │· │X │·  │·  │·  │·  │·  │·  
+Button_Call_3 (I6)           │X │· │X │· │· │· │· │· │· │X  │·  │·  │·  │·  │·  
+Button_Call_4 (I7)           │X │X │· │· │· │· │· │· │· │·  │X  │·  │·  │·  │·  
 Status_Door_Closed (I8)      │X │X │X │X │X │X │· │· │· │·  │·  │·  │·  │·  │·  
 Safety_Overweight (I9)       │·'│·'│·'│·'│·'│·'│· │· │· │·  │·  │X  │·  │·  │·  
 Safety_Emergency (I10)       │·'│·'│·'│·'│·'│·'│· │· │· │·  │·  │·  │X  │·  │·  
