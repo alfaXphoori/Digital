@@ -114,41 +114,83 @@ title: หน้าแรก
       <h2>ปฏิทินการศึกษา</h2>
       <p>ภาคเรียนที่ 1 ปีการศึกษา 2569</p>
     </div>
-    <div class="table-wrap">
-      <table class="schedule">
-        <thead>
-          <tr>
-            <th>กิจกรรม</th>
-            <th>กำหนดการ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="topic">วันลงทะเบียนเรียนและชำระเงิน (พบอาจารย์ที่ปรึกษาก่อนลงทะเบียน)</td><td>19 มิ.ย. – 1 ก.ค. 2569</td></tr>
-          <tr><td class="topic">วันเปิดภาคการศึกษา — ภาคพิเศษ</td><td>20 มิ.ย. 2569</td></tr>
-          <tr><td class="topic">วันเปิดภาคการศึกษา — ภาคปกติและโครงการพิเศษ</td><td>22 มิ.ย. 2569</td></tr>
-          <tr><td class="topic">นักศึกษาชั้นปีสุดท้าย/ผู้เรียนครบโครงสร้าง ตรวจรายวิชาใน ESS เพื่อยื่นขอสำเร็จการศึกษา</td><td>19 มิ.ย. – 1 ก.ค. 2569</td></tr>
-          <tr><td class="topic">ลงทะเบียนล่าช้าเสียค่าปรับ</td><td>2–15 ก.ค. 2569</td></tr>
-          <tr><td class="topic">เพิ่มรายวิชา–ถอนรายวิชา (ไม่มีสัญลักษณ์ W)</td><td>2–22 ก.ค. 2569</td></tr>
-          <tr><td class="topic">มหาวิทยาลัยฯ ประกาศพ้นสภาพนักศึกษาที่ลงทะเบียนไม่สมบูรณ์</td><td>6 ส.ค. 2569</td></tr>
-          <tr><td class="topic">ยื่นคำร้องขอสำเร็จการศึกษา</td><td>2 ก.ค. – 1 ก.ย. 2569</td></tr>
-          <tr><td class="topic">รักษาสภาพนักศึกษา</td><td>22 มิ.ย. – 2 ต.ค. 2569</td></tr>
-          <tr><td class="topic">ขอยกเลิก/ถอนรายวิชาเป็น (สัญลักษณ์ W)</td><td>23 ก.ค. – 2 ต.ค. 2569</td></tr>
-          <tr class="exam-row"><td class="topic">สอบกลางภาค — ภาคพิเศษ</td><td>8–9 ส.ค. 2569</td></tr>
-          <tr class="exam-row"><td class="topic">สอบกลางภาค — ภาคปกติ</td><td>10–14 ส.ค. 2569</td></tr>
-          <tr class="exam-row"><td class="topic">สอบปลายภาค — ภาคพิเศษ</td><td>10–11 ต.ค. 2569</td></tr>
-          <tr class="exam-row"><td class="topic">สอบปลายภาค — ภาคปกติ</td><td>12–16 ต.ค. 2569</td></tr>
-          <tr><td class="topic">ทวนสอบผลการศึกษากับอาจารย์ผู้สอน</td><td>17–22 ต.ค. 2569</td></tr>
-          <tr><td class="topic">การวัดผลด้านดิจิทัลและทักษะภาษาอังกฤษ</td><td>19–26 ต.ค. 2569</td></tr>
-          <tr><td class="topic">วันสิ้นภาคการศึกษา</td><td>19 ต.ค. 2569</td></tr>
-          <tr><td class="topic">วันสำเร็จการศึกษา</td><td>2 พ.ย. 2569</td></tr>
-          <tr><td class="topic">ดูผลการศึกษาใน ESS (เวลา 13.00 น.)</td><td>3 พ.ย. 2569</td></tr>
-          <tr><td colspan="2" class="topic" style="text-align: center; font-weight: bold; background-color: rgba(0,0,0,0.03);">การแก้ไขระดับคะแนน ม.ส. (I) — ผลการเรียนไม่สมบูรณ์</td></tr>
-          <tr><td class="topic">ยื่นคำร้องขอแก้ไขระดับคะแนน ม.ส. (ภายใน 2 สัปดาห์แรกนับจากวันอนุมัติผล)</td><td>16 พ.ย. 2569</td></tr>
-          <tr><td class="topic">วันสำเร็จการศึกษา</td><td>21 ธ.ค. 2569</td></tr>
-          <tr><td class="topic">ดูผลการศึกษาใน ESS</td><td>21 ธ.ค. 2569</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="calendar-view"></div>
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar-view');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          initialDate: '2026-06-01',
+          locale: 'th',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,listMonth'
+          },
+          events: [
+            { title: 'วันลงทะเบียนเรียนและชำระเงิน', start: '2026-06-19', end: '2026-07-02', color: '#4caf50' },
+            { title: 'ตรวจรายวิชาใน ESS', start: '2026-06-19', end: '2026-07-02', color: '#ff9800' },
+            { title: 'วันเปิดภาคการศึกษา', start: '2026-06-22', color: '#e91e63' },
+            { title: 'ลงทะเบียนล่าช้าเสียค่าปรับ', start: '2026-07-02', end: '2026-07-16', color: '#f44336' },
+            { title: 'เพิ่ม/ถอนรายวิชา (ไม่มี W)', start: '2026-07-02', end: '2026-07-23', color: '#2196f3' },
+            { title: 'มหาวิทยาลัยประกาศพ้นสภาพฯ', start: '2026-08-06', color: '#000000' },
+            { title: 'ยื่นคำร้องขอสำเร็จการศึกษา', start: '2026-07-02', end: '2026-09-02', color: '#9c27b0' },
+            { title: 'รักษาสภาพนักศึกษา', start: '2026-06-22', end: '2026-10-03', color: '#ffeb3b', textColor: '#000' },
+            { title: 'ขอยกเลิก/ถอนรายวิชา (W)', start: '2026-07-23', end: '2026-10-03', color: '#795548' },
+            { title: 'สอบกลางภาค', start: '2026-08-10', end: '2026-08-15', color: '#f44336' },
+            { title: 'สอบปลายภาค', start: '2026-10-12', end: '2026-10-17', color: '#f44336' },
+            { title: 'ทวนสอบผลการศึกษากับอาจารย์', start: '2026-10-17', end: '2026-10-23', color: '#00bcd4' },
+            { title: 'การวัดผลด้านดิจิทัล/ทักษะภาษาอังกฤษ', start: '2026-10-19', end: '2026-10-27', color: '#607d8b' },
+            { title: 'วันสิ้นภาคการศึกษา', start: '2026-10-19', color: '#e91e63' },
+            { title: 'วันสำเร็จการศึกษา', start: '2026-11-02', color: '#ffc107', textColor: '#000' },
+            { title: 'ดูผลการศึกษาใน ESS', start: '2026-11-03', color: '#3f51b5' },
+            { title: 'ยื่นคำร้องขอแก้ไข ม.ส.', start: '2026-11-16', color: '#009688' },
+            { title: 'วันสำเร็จการศึกษา (แก้ ม.ส.)', start: '2026-12-21', color: '#ffc107', textColor: '#000' },
+            { title: 'ดูผลการศึกษา (แก้ ม.ส.)', start: '2026-12-21', color: '#3f51b5' }
+          ],
+          height: 'auto',
+          contentHeight: 'auto',
+          buttonText: {
+            today: 'วันนี้',
+            month: 'เดือน',
+            list: 'รายการ'
+          }
+        });
+        calendar.render();
+      });
+    </script>
+    <style>
+      #calendar-view {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        font-family: inherit;
+        color: #333;
+      }
+      .fc-event { cursor: pointer; }
+      .fc-toolbar-title { font-size: 1.25em !important; font-weight: bold; }
+      .fc-button-primary {
+        background-color: var(--color-primary, #000) !important;
+        border-color: var(--color-primary, #000) !important;
+      }
+      .fc-button-primary:not(:disabled):active, .fc-button-primary:not(:disabled).fc-button-active {
+        background-color: #333 !important;
+        border-color: #333 !important;
+      }
+      .fc-col-header-cell-cushion, .fc-daygrid-day-number {
+        color: #333;
+        text-decoration: none;
+      }
+      .fc-theme-standard th {
+        background: #f8f9fa;
+        padding: 8px 0;
+      }
+    </style>
   </div>
 </section>
 
