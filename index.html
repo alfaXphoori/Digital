@@ -107,92 +107,7 @@ title: หน้าแรก
   </div>
 </section>
 
-<!-- ===================== CALENDAR ===================== -->
-<section class="section" id="calendar">
-  <div class="container">
-    <div class="section__head">
-      <h2>ปฏิทินการศึกษา</h2>
-      <p>ภาคเรียนที่ 1 ปีการศึกษา 2569</p>
-    </div>
-    <div id="calendar-view"></div>
-    <!-- FullCalendar JS -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar-view');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          initialDate: '2026-06-01',
-          locale: 'th',
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,listMonth'
-          },
-          events: [
-            { title: 'วันลงทะเบียนเรียนและชำระเงิน', start: '2026-06-19', end: '2026-07-02', color: '#4caf50' },
-            { title: 'ตรวจรายวิชาใน ESS', start: '2026-06-19', end: '2026-07-02', color: '#ff9800' },
-            { title: 'วันเปิดภาคการศึกษา', start: '2026-06-22', color: '#e91e63' },
-            { title: 'ลงทะเบียนล่าช้าเสียค่าปรับ', start: '2026-07-02', end: '2026-07-16', color: '#f44336' },
-            { title: 'เพิ่ม/ถอนรายวิชา (ไม่มี W)', start: '2026-07-02', end: '2026-07-23', color: '#2196f3' },
-            { title: 'มหาวิทยาลัยประกาศพ้นสภาพฯ', start: '2026-08-06', color: '#000000' },
-            { title: 'ยื่นคำร้องขอสำเร็จการศึกษา', start: '2026-07-02', end: '2026-09-02', color: '#9c27b0' },
-            { title: 'รักษาสภาพนักศึกษา', start: '2026-06-22', end: '2026-10-03', color: '#ffeb3b', textColor: '#000' },
-            { title: 'ขอยกเลิก/ถอนรายวิชา (W)', start: '2026-07-23', end: '2026-10-03', color: '#795548' },
-            { title: 'สอบกลางภาค', start: '2026-08-10', end: '2026-08-15', color: '#f44336' },
-            { title: 'สอบปลายภาค', start: '2026-10-12', end: '2026-10-17', color: '#f44336' },
-            { title: 'ทวนสอบผลการศึกษากับอาจารย์', start: '2026-10-17', end: '2026-10-23', color: '#00bcd4' },
-            { title: 'การวัดผลด้านดิจิทัล/ทักษะภาษาอังกฤษ', start: '2026-10-19', end: '2026-10-27', color: '#607d8b' },
-            { title: 'วันสิ้นภาคการศึกษา', start: '2026-10-19', color: '#e91e63' },
-            { title: 'วันสำเร็จการศึกษา', start: '2026-11-02', color: '#ffc107', textColor: '#000' },
-            { title: 'ดูผลการศึกษาใน ESS', start: '2026-11-03', color: '#3f51b5' },
-            { title: 'ยื่นคำร้องขอแก้ไข ม.ส.', start: '2026-11-16', color: '#009688' },
-            { title: 'วันสำเร็จการศึกษา (แก้ ม.ส.)', start: '2026-12-21', color: '#ffc107', textColor: '#000' },
-            { title: 'ดูผลการศึกษา (แก้ ม.ส.)', start: '2026-12-21', color: '#3f51b5' }
-          ],
-          height: 'auto',
-          contentHeight: 'auto',
-          buttonText: {
-            today: 'วันนี้',
-            month: 'เดือน',
-            list: 'รายการ'
-          }
-        });
-        calendar.render();
-      });
-    </script>
-    <style>
-      #calendar-view {
-        max-width: 1000px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        font-family: inherit;
-        color: #333;
-      }
-      .fc-event { cursor: pointer; }
-      .fc-toolbar-title { font-size: 1.25em !important; font-weight: bold; }
-      .fc-button-primary {
-        background-color: var(--color-primary, #000) !important;
-        border-color: var(--color-primary, #000) !important;
-      }
-      .fc-button-primary:not(:disabled):active, .fc-button-primary:not(:disabled).fc-button-active {
-        background-color: #333 !important;
-        border-color: #333 !important;
-      }
-      .fc-col-header-cell-cushion, .fc-daygrid-day-number {
-        color: #333;
-        text-decoration: none;
-      }
-      .fc-theme-standard th {
-        background: #f8f9fa;
-        padding: 8px 0;
-      }
-    </style>
-  </div>
-</section>
+
 
 <!-- ===================== ASSESSMENT ===================== -->
 <section class="section" id="assessment">
@@ -297,5 +212,96 @@ title: หน้าแรก
         </a>
       </li>
     </ul>
+  </div>
+</section>
+
+<!-- ===================== CALENDAR ===================== -->
+<section class="section section--alt" id="calendar">
+  <div class="container">
+    <div class="section__head">
+      <h2>ปฏิทินการศึกษา</h2>
+      <p>ภาคเรียนที่ 1 ปีการศึกษา 2569</p>
+    </div>
+    <div id="calendar-view"></div>
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar-view');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          initialDate: '2026-06-01',
+          locale: 'th',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,listMonth'
+          },
+          events: [
+            { title: 'วันลงทะเบียนเรียนและชำระเงิน', start: '2026-06-19', end: '2026-07-02', color: '#a8e6cf', textColor: '#333' },
+            { title: 'ตรวจรายวิชาใน ESS', start: '2026-06-19', end: '2026-07-02', color: '#ffd3b6', textColor: '#333' },
+            { title: 'วันเปิดภาคการศึกษา', start: '2026-06-22', color: '#ffaaa5', textColor: '#333' },
+            { title: 'ลงทะเบียนล่าช้าเสียค่าปรับ', start: '2026-07-02', end: '2026-07-16', color: '#ff8b94', textColor: '#333' },
+            { title: 'เพิ่ม/ถอนรายวิชา (ไม่มี W)', start: '2026-07-02', end: '2026-07-23', color: '#a0c4ff', textColor: '#333' },
+            { title: 'มหาวิทยาลัยประกาศพ้นสภาพฯ', start: '2026-08-06', color: '#d5aaee', textColor: '#333' },
+            { title: 'ยื่นคำร้องขอสำเร็จการศึกษา', start: '2026-07-02', end: '2026-09-02', color: '#caffbf', textColor: '#333' },
+            { title: 'รักษาสภาพนักศึกษา', start: '2026-06-22', end: '2026-10-03', color: '#fdffb6', textColor: '#333' },
+            { title: 'ขอยกเลิก/ถอนรายวิชา (W)', start: '2026-07-23', end: '2026-10-03', color: '#e4c1f9', textColor: '#333' },
+            { title: 'สอบกลางภาค', start: '2026-08-10', end: '2026-08-15', color: '#ffc6ff', textColor: '#333' },
+            { title: 'สอบปลายภาค', start: '2026-10-12', end: '2026-10-17', color: '#ffc6ff', textColor: '#333' },
+            { title: 'ทวนสอบผลการศึกษากับอาจารย์', start: '2026-10-17', end: '2026-10-23', color: '#9bf6ff', textColor: '#333' },
+            { title: 'การวัดผลด้านดิจิทัล/ทักษะภาษาอังกฤษ', start: '2026-10-19', end: '2026-10-27', color: '#a0c4ff', textColor: '#333' },
+            { title: 'วันสิ้นภาคการศึกษา', start: '2026-10-19', color: '#ffaaa5', textColor: '#333' },
+            { title: 'วันสำเร็จการศึกษา', start: '2026-11-02', color: '#ffd3b6', textColor: '#333' },
+            { title: 'ดูผลการศึกษาใน ESS', start: '2026-11-03', color: '#bdb2ff', textColor: '#333' },
+            { title: 'ยื่นคำร้องขอแก้ไข ม.ส.', start: '2026-11-16', color: '#caffbf', textColor: '#333' },
+            { title: 'วันสำเร็จการศึกษา (แก้ ม.ส.)', start: '2026-12-21', color: '#ffd3b6', textColor: '#333' },
+            { title: 'ดูผลการศึกษา (แก้ ม.ส.)', start: '2026-12-21', color: '#bdb2ff', textColor: '#333' }
+          ],
+          height: 'auto',
+          contentHeight: 'auto',
+          buttonText: {
+            today: 'วันนี้',
+            month: 'เดือน',
+            list: 'รายการ'
+          }
+        });
+        calendar.render();
+      });
+    </script>
+    <style>
+      #calendar-view {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        font-family: inherit;
+        color: #333;
+        font-size: 1.15em; /* Increased base font size */
+      }
+      .fc-event { cursor: pointer; border: none !important; font-size: 0.95em; padding: 2px 4px; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+      .fc-event-title { font-weight: 500; }
+      .fc-toolbar-title { font-size: 1.8em !important; font-weight: bold; }
+      .fc-button-primary {
+        background-color: var(--color-primary, #000) !important;
+        border-color: var(--color-primary, #000) !important;
+        font-size: 1.1em !important;
+      }
+      .fc-button-primary:not(:disabled):active, .fc-button-primary:not(:disabled).fc-button-active {
+        background-color: #333 !important;
+        border-color: #333 !important;
+      }
+      .fc-col-header-cell-cushion, .fc-daygrid-day-number {
+        color: #333;
+        text-decoration: none;
+        font-size: 1.1em;
+      }
+      .fc-theme-standard th {
+        background: #f8f9fa;
+        padding: 10px 0;
+      }
+    </style>
   </div>
 </section>
