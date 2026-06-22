@@ -1,0 +1,179 @@
+---
+layout: home
+title: หน้าแรก
+---
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container hero__inner">
+    <span class="hero__eyebrow">3(2-2-5) · วิศวกรรมเมคคาทรอนิกส์</span>
+    <h1>ลอจิกและดิจิทัล</h1>
+    <p class="hero__sub">
+      Logic and Digital — เรียนรู้ระบบดิจิทัล ระบบจำนวน พีชคณิตบูลีน และการออกแบบ
+      วงจรคอมบิเนชัน/ซีเควนเชียล ควบคู่กับการลงมือต่อและทดสอบวงจรจริงด้วยไอซีและเครื่องมือวัด
+    </p>
+    <div class="hero__meta">
+      <span class="chip">📘 ทฤษฎี 2 ชม./สัปดาห์</span>
+      <span class="chip">🔧 ปฏิบัติ 2 ชม./สัปดาห์</span>
+      <span class="chip">🎓 ชั้นปีที่ 1 · ภาคเรียนที่ 2</span>
+      <span class="chip">👤 ผู้สอน: ภูริ จันทิมา</span>
+    </div>
+    <div class="hero__actions">
+      <a class="btn btn--light" href="{{ '/weekly-lesson-plan.html' | relative_url }}">📋 แผนการสอนฉบับเต็ม</a>
+      <a class="btn btn--ghost" href="#schedule">ดูตารางสอน 15 สัปดาห์ ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<div class="container">
+  <div class="stats">
+    <div class="stat"><div class="stat__num">15</div><div class="stat__label">สัปดาห์</div></div>
+    <div class="stat"><div class="stat__num">4</div><div class="stat__label">CLOs</div></div>
+    <div class="stat"><div class="stat__num">10</div><div class="stat__label">บทเรียน</div></div>
+    <div class="stat"><div class="stat__num">15</div><div class="stat__label">ใบงานปฏิบัติ</div></div>
+  </div>
+</div>
+
+<!-- ===================== CLO ===================== -->
+<section class="section" id="clo">
+  <div class="container">
+    <div class="section__head">
+      <h2>ผลลัพธ์การเรียนรู้ระดับรายวิชา</h2>
+      <p>Course Learning Outcomes (CLOs) — เมื่อจบรายวิชาผู้เรียนจะสามารถ</p>
+    </div>
+    <div class="clo-grid">
+      <div class="clo">
+        <span class="clo__tag">CLO 1</span>
+        <h3>อธิบายหลักการระบบดิจิทัล</h3>
+        <p>เข้าใจระบบดิจิทัล ระบบจำนวน รหัสดิจิทัล และคุณสมบัติของดิจิทัลไอซี</p>
+      </div>
+      <div class="clo">
+        <span class="clo__tag">CLO 2</span>
+        <h3>วิเคราะห์และลดรูปสมการลอจิก</h3>
+        <p>ใช้พีชคณิตบูลีนและแผนผังคาร์โนห์ลดรูปสมการได้อย่างถูกต้อง</p>
+      </div>
+      <div class="clo">
+        <span class="clo__tag">CLO 3</span>
+        <h3>ออกแบบวงจรดิจิทัล</h3>
+        <p>ออกแบบและสร้างวงจรคอมบิเนชันและวงจรซีเควนเชียลตามเงื่อนไขที่กำหนด</p>
+      </div>
+      <div class="clo">
+        <span class="clo__tag">CLO 4</span>
+        <h3>ปฏิบัติการต่อและทดสอบวงจร</h3>
+        <p>ต่อ ทดสอบ และวิเคราะห์วงจรด้วยไอซีและเครื่องมือวัด พร้อมทำงานเป็นทีม</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SCHEDULE ===================== -->
+<section class="section section--alt" id="schedule">
+  <div class="container">
+    <div class="section__head">
+      <h2>แผนการสอนรายสัปดาห์</h2>
+      <p>15 สัปดาห์ · เชื่อมโยงทฤษฎีและปฏิบัติแบบ Constructive Alignment</p>
+    </div>
+    <div class="table-wrap">
+      <table class="schedule">
+        <thead>
+          <tr><th>สัปดาห์</th><th>หัวข้อการเรียน</th><th>เนื้อหา</th><th>บทเรียน</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="wk">1</td><td class="topic">บทนำรายวิชาและระบบดิจิทัล</td><td class="detail">สัญญาณแอนะล็อก/ดิจิทัล, ระบบเลขฐาน (2, 8, 10, 16), รหัส BCD/Gray/ASCII</td><td><a href="{{ '/chapters/ch01-number-systems/' | relative_url }}">บทที่ 1</a></td></tr>
+          <tr><td class="wk">2</td><td class="topic">เลขคณิตในระบบดิจิทัล</td><td class="detail">การบวก/ลบเลขฐานสอง, คอมพลีเมนต์ 1's และ 2's, การแทนเลขมีเครื่องหมาย</td><td><a href="{{ '/chapters/ch01-number-systems/' | relative_url }}">บทที่ 1</a></td></tr>
+          <tr><td class="wk">3</td><td class="topic">ลอจิกเกตพื้นฐาน</td><td class="detail">AND, OR, NOT, NAND, NOR, XOR, XNOR, ตารางความจริง, ดาต้าชีต IC 74xx</td><td><a href="{{ '/chapters/ch02-logic-gates/' | relative_url }}">บทที่ 2</a></td></tr>
+          <tr><td class="wk">4</td><td class="topic">คุณสมบัติดิจิทัลไอซีและการเชื่อมต่อ</td><td class="detail">TTL/CMOS, ระดับแรงดันลอจิก, fan-in/fan-out, noise margin, propagation delay</td><td><a href="{{ '/chapters/ch02-logic-gates/' | relative_url }}">บทที่ 2</a></td></tr>
+          <tr><td class="wk">5</td><td class="topic">พีชคณิตบูลีนและการลดรูปสมการ</td><td class="detail">ทฤษฎีบทพีชคณิตบูลีน, ทฤษฎีบทเดอมอร์แกน, การลดรูปสมการ</td><td><a href="{{ '/chapters/ch03-boolean-algebra/' | relative_url }}">บทที่ 3</a></td></tr>
+          <tr><td class="wk">6</td><td class="topic">แผนผังคาร์โนห์ (Karnaugh Map)</td><td class="detail">K-Map 2–4 ตัวแปร, รูปแบบ SOP/POS, เงื่อนไข don't-care</td><td><a href="{{ '/chapters/ch04-karnaugh-maps/' | relative_url }}">บทที่ 4</a></td></tr>
+          <tr><td class="wk">7</td><td class="topic">การออกแบบวงจรคอมบิเนชัน</td><td class="detail">ขั้นตอนการออกแบบจากโจทย์, เกตสากล (NAND-only / NOR-only), การแปลงรูปวงจร</td><td><a href="{{ '/chapters/ch05-combinational-circuits/' | relative_url }}">บทที่ 5</a></td></tr>
+          <tr><td class="wk">8</td><td class="topic">วงจรคำนวณทางคณิตศาสตร์</td><td class="detail">Half/Full Adder, วงจรบวกขนานและวงจรลบ, การใช้ไอซี 7483</td><td><a href="{{ '/chapters/ch05-combinational-circuits/' | relative_url }}">บทที่ 5</a></td></tr>
+          <tr class="exam-row"><td class="wk">🟧</td><td class="topic">สอบกลางภาค (Midterm Exam)</td><td>ครอบคลุมเนื้อหาสัปดาห์ที่ 1–8 <span class="badge-pct">20%</span></td><td>—</td></tr>
+          <tr><td class="wk">9</td><td class="topic">วงจรเปรียบเทียบ เข้ารหัส ถอดรหัส และแสดงผล</td><td class="detail">Comparator, Encoder/Decoder, การขับ 7-segment display</td><td><a href="{{ '/chapters/ch05-combinational-circuits/' | relative_url }}">บทที่ 5</a></td></tr>
+          <tr><td class="wk">10</td><td class="topic">วงจรมัลติเพล็กซ์และดีมัลติเพล็กซ์</td><td class="detail">หลักการ MUX/DEMUX, การสร้างฟังก์ชันลอจิกด้วย MUX</td><td><a href="{{ '/chapters/ch05-combinational-circuits/' | relative_url }}">บทที่ 5</a></td></tr>
+          <tr><td class="wk">11</td><td class="topic">สัญญาณนาฬิกาและมัลติไวเบรเตอร์</td><td class="detail">Clock, duty cycle, มัลติไวเบรเตอร์ astable/monostable, ไอซีไทเมอร์ 555</td><td><a href="{{ '/chapters/ch10-digital-interfacing/' | relative_url }}">บทที่ 10</a></td></tr>
+          <tr><td class="wk">12</td><td class="topic">แลตช์และฟลิปฟลอป</td><td class="detail">SR/Gated Latch, ฟลิปฟลอป D/JK/T, Clock, Trigger และตารางสถานะ</td><td><a href="{{ '/chapters/ch06-flip-flops/' | relative_url }}">บทที่ 6</a></td></tr>
+          <tr><td class="wk">13</td><td class="topic">วงจรซีเควนเชียลและวงจรนับ</td><td class="detail">ออกแบบวงจรซีเควนเชียล, ตัวนับ asynchronous/synchronous, mod-N</td><td><a href="{{ '/chapters/ch07-counters-registers/' | relative_url }}">บทที่ 7</a></td></tr>
+          <tr><td class="wk">14</td><td class="topic">วงจรเลื่อนข้อมูล (Shift Register)</td><td class="detail">SISO/SIPO/PISO/PIPO, Universal shift register, การประยุกต์ใช้งาน</td><td><a href="{{ '/chapters/ch07-counters-registers/' | relative_url }}">บทที่ 7</a></td></tr>
+          <tr><td class="wk">15</td><td class="topic">วงจรแปลงสัญญาณและหน่วยความจำ</td><td class="detail">DAC/ADC, ความละเอียดและอัตราการสุ่ม, หน่วยความจำ RAM/ROM</td><td><a href="{{ '/chapters/ch08-memory-pld/' | relative_url }}">บทที่ 8</a> · <a href="{{ '/chapters/ch10-digital-interfacing/' | relative_url }}">10</a></td></tr>
+          <tr class="exam-row"><td class="wk">🟧</td><td class="topic">สอบปลายภาค (Final Exam)</td><td>ครอบคลุมเนื้อหาสัปดาห์ที่ 9–15 <span class="badge-pct">25%</span></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ASSESSMENT ===================== -->
+<section class="section" id="assessment">
+  <div class="container">
+    <div class="section__head">
+      <h2>เกณฑ์การวัดและประเมินผล</h2>
+      <p>รวม 100% เชื่อมโยงกับผลลัพธ์การเรียนรู้ (CLOs)</p>
+    </div>
+    <div class="assess">
+      <div class="assess__row">
+        <div><div class="assess__name">จิตพิสัย การเข้าเรียนและการมีส่วนร่วม</div><div class="assess__clo">CLO4</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:10%"></div></div><span class="assess__pct">10%</span></div>
+      </div>
+      <div class="assess__row">
+        <div><div class="assess__name">ใบงานและแบบฝึกหัด</div><div class="assess__clo">CLO1, CLO2, CLO3</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:30%"></div></div><span class="assess__pct">30%</span></div>
+      </div>
+      <div class="assess__row">
+        <div><div class="assess__name">สอบปฏิบัติ</div><div class="assess__clo">CLO3, CLO4</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:15%"></div></div><span class="assess__pct">15%</span></div>
+      </div>
+      <div class="assess__row">
+        <div><div class="assess__name">สอบกลางภาค</div><div class="assess__clo">CLO1, CLO2</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:20%"></div></div><span class="assess__pct">20%</span></div>
+      </div>
+      <div class="assess__row">
+        <div><div class="assess__name">สอบปลายภาค</div><div class="assess__clo">CLO2, CLO3</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:25%"></div></div><span class="assess__pct">25%</span></div>
+      </div>
+      <div class="assess__total"><span>รวมทั้งหมด</span><span>100%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CHAPTERS ===================== -->
+<section class="section section--alt" id="chapters">
+  <div class="container">
+    <div class="section__head">
+      <h2>บทเรียนทั้งหมด</h2>
+      <p>เอกสารประกอบการเรียน 10 บท</p>
+    </div>
+    <div class="card-grid">
+      <a class="tcard" href="{{ '/chapters/ch01-number-systems/' | relative_url }}"><div class="tcard__icon">🔢</div><h3>บทที่ 1</h3><p>ระบบจำนวนและรหัสข้อมูลดิจิทัล</p></a>
+      <a class="tcard" href="{{ '/chapters/ch02-logic-gates/' | relative_url }}"><div class="tcard__icon">🔀</div><h3>บทที่ 2</h3><p>ลอจิกเกตและไอซีดิจิทัล</p></a>
+      <a class="tcard" href="{{ '/chapters/ch03-boolean-algebra/' | relative_url }}"><div class="tcard__icon">➗</div><h3>บทที่ 3</h3><p>พีชคณิตบูลีน</p></a>
+      <a class="tcard" href="{{ '/chapters/ch04-karnaugh-maps/' | relative_url }}"><div class="tcard__icon">🗺️</div><h3>บทที่ 4</h3><p>แผนผังคาร์โนห์</p></a>
+      <a class="tcard" href="{{ '/chapters/ch05-combinational-circuits/' | relative_url }}"><div class="tcard__icon">🧩</div><h3>บทที่ 5</h3><p>วงจรลอจิกเชิงผสม</p></a>
+      <a class="tcard" href="{{ '/chapters/ch06-flip-flops/' | relative_url }}"><div class="tcard__icon">🔁</div><h3>บทที่ 6</h3><p>ฟลิปฟลอปและวงจรเชิงลำดับ</p></a>
+      <a class="tcard" href="{{ '/chapters/ch07-counters-registers/' | relative_url }}"><div class="tcard__icon">🔢</div><h3>บทที่ 7</h3><p>ตัวนับและรีจิสเตอร์</p></a>
+      <a class="tcard" href="{{ '/chapters/ch08-memory-pld/' | relative_url }}"><div class="tcard__icon">💾</div><h3>บทที่ 8</h3><p>หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้</p></a>
+      <a class="tcard" href="{{ '/chapters/ch09-fsm/' | relative_url }}"><div class="tcard__icon">🎛️</div><h3>บทที่ 9</h3><p>เครื่องจักรสถานะจำกัด (FSM)</p></a>
+      <a class="tcard" href="{{ '/chapters/ch10-digital-interfacing/' | relative_url }}"><div class="tcard__icon">🔌</div><h3>บทที่ 10</h3><p>การเชื่อมต่อระบบดิจิทัล</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TOOLS ===================== -->
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section__head">
+      <h2>เครื่องมือและ Simulator</h2>
+      <p>โปรแกรมจำลองที่ใช้ในใบงานปฏิบัติการ</p>
+    </div>
+    <div class="card-grid">
+      <a class="tcard" href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">
+        <div class="tcard__icon">🛠️</div><h3>Tinkercad Circuits</h3>
+        <p>ต่อวงจร IC จริง (7408, 7432, 7473, 4511) — Lab หลักของวิชา</p>
+      </a>
+      <a class="tcard" href="https://circuitverse.org/" target="_blank" rel="noopener">
+        <div class="tcard__icon">🎨</div><h3>CircuitVerse</h3>
+        <p>วาด Logic Gate แบบลาก-วาง เหมาะกับ Lab สัปดาห์ 1–7</p>
+      </a>
+    </div>
+  </div>
+</section>
