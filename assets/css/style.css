@@ -164,14 +164,106 @@ table.schedule tbody tr:hover { background: #f8fafc; }
 .badge-pct { font-family: "JetBrains Mono", monospace; background: var(--amber); color: #fff; padding: 2px 9px; border-radius: 7px; font-size: .82rem; margin-left: 6px; }
 
 /* ---------- Assessment ---------- */
-.assess { max-width: 720px; margin: 0 auto; display: grid; gap: 14px; }
-.assess__row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; box-shadow: var(--shadow-sm); }
-.assess__name { font-weight: 600; color: var(--ink); }
-.assess__clo { font-size: .82rem; color: var(--muted); font-family: "JetBrains Mono", monospace; }
-.assess__bar { width: 180px; height: 10px; background: #eef2ff; border-radius: 999px; overflow: hidden; }
-.assess__fill { height: 100%; background: var(--grad); border-radius: 999px; }
-.assess__pct { font-family: "JetBrains Mono", monospace; font-weight: 700; color: var(--indigo); min-width: 44px; text-align: right; }
-.assess__total { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 700; }
+.assess {
+  --assess-affective: var(--indigo);
+  --assess-work: var(--cyan);
+  --assess-practical: var(--amber);
+  --assess-midterm: var(--indigo-dark);
+  --assess-final: #10b981;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(22px, 4vw, 36px);
+  box-shadow: var(--shadow-sm);
+}
+.assess__chart {
+  position: relative;
+  width: min(100%, 300px);
+  aspect-ratio: 1;
+  justify-self: center;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from -90deg,
+      var(--assess-affective) 0% 10%,
+      var(--assess-work) 10% 40%,
+      var(--assess-practical) 40% 55%,
+      var(--assess-midterm) 55% 75%,
+      var(--assess-final) 75% 100%
+    );
+  box-shadow: 0 18px 35px -20px rgba(15, 23, 42, .45);
+}
+.assess__chart::before {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(226, 232, 240, .9);
+}
+.assess__center {
+  position: absolute;
+  inset: 28%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  z-index: 1;
+}
+.assess__total-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1.55rem, 4vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.assess__total-label { color: var(--muted); font-size: .88rem; font-weight: 600; }
+.assess__legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.assess__item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.assess__item:last-child { border-bottom: 0; }
+.assess__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--assess-color);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--assess-color) 16%, transparent);
+}
+.assess__item--affective { --assess-color: var(--assess-affective); }
+.assess__item--work { --assess-color: var(--assess-work); }
+.assess__item--practical { --assess-color: var(--assess-practical); }
+.assess__item--midterm { --assess-color: var(--assess-midterm); }
+.assess__item--final { --assess-color: var(--assess-final); }
+.assess__detail { min-width: 0; }
+.assess__name { display: block; font-weight: 600; color: var(--ink); }
+.assess__clo { display: block; font-size: .82rem; color: var(--muted); font-family: "JetBrains Mono", monospace; }
+.assess__pct { font-family: "JetBrains Mono", monospace; font-weight: 800; color: var(--assess-color); min-width: 44px; text-align: right; }
+
+/* ---------- Course description ---------- */
+.desc {
+  max-width: 860px; margin: 0 auto;
+  background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--indigo);
+  border-radius: var(--radius); padding: clamp(24px, 4vw, 40px); box-shadow: var(--shadow-sm);
+}
+.desc__th { margin: 0; font-size: 1.05rem; color: var(--text); text-align: justify; text-justify: inter-word; }
+.desc__en { margin: 18px 0 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-style: italic; font-size: .96rem; text-align: justify; text-justify: inter-word; }
 
 /* ---------- Chapter / tool cards ---------- */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
@@ -215,5 +307,6 @@ table.schedule tbody tr:hover { background: #f8fafc; }
   .nav__links { display: none; }
   .nav__links.open { display: flex; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; background: #fff; border-bottom: 1px solid var(--line); padding: 10px 20px; gap: 2px; }
   .nav__toggle { display: inline-grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 10px; background: #fff; cursor: pointer; font-size: 1.2rem; }
-  .assess__bar { display: none; }
+  .assess { grid-template-columns: 1fr; gap: 24px; }
+  .assess__chart { width: min(100%, 260px); }
 }

@@ -35,6 +35,20 @@ title: หน้าแรก
   </div>
 </div>
 
+<!-- ===================== COURSE DESCRIPTION ===================== -->
+<section class="section section--alt" id="description">
+  <div class="container">
+    <div class="section__head">
+      <h2>คำอธิบายรายวิชา</h2>
+      <p>Course Description</p>
+    </div>
+    <div class="desc">
+      <p class="desc__th">หลักการทำงานและการออกแบบวงจรดิจิทัล ดิจิทัลลอจิกเกต คุณสมบัติของดิจิทัลไอซีและการเชื่อมต่อลอจิกเกต การลดรูปสมการลอจิก การออกแบบวงจรคอมไบเนชัน วงจรเข้ารหัส วงจรถอดรหัสและภาคแสดงผล วงจรมัลติเพล็กซ์ วงจรคำนวณทางคณิตศาสตร์และวงจรเปรียบเทียบ วงจรกำเนิดสัญญาณนาฬิกา วงจรมัลติไวเบรเตอร์ ฟลิปฟลอป การออกแบบวงจรซีเควนเชียล วงจรนับ วงจรเลื่อนข้อมูล และวงจรแปลงสัญญาณระหว่างอนาลอกกับดิจิทัล โครงสร้างและคุณสมบัติตลอดจนการใช้งานหน่วยความจำ</p>
+      <p class="desc__en">Principles and digital circuit design, digital logic gate, digital IC function and logic gate interfacing, logic equations simplify, combination circuit, encoder/decoder circuit and output section; multiplex circuit, arithmetic, and logic circuit, clock generator, multivibrator circuit, and flip-flop, sequential circuit design, counter circuit, shift register circuit, and DAC and ADC circuits, structure and characteristics as well as function of memory usages.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CLO ===================== -->
 <section class="section" id="clo">
   <div class="container">
@@ -111,27 +125,54 @@ title: หน้าแรก
       <p>รวม 100% เชื่อมโยงกับผลลัพธ์การเรียนรู้ (CLOs)</p>
     </div>
     <div class="assess">
-      <div class="assess__row">
-        <div><div class="assess__name">จิตพิสัย การเข้าเรียนและการมีส่วนร่วม</div><div class="assess__clo">CLO4</div></div>
-        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:10%"></div></div><span class="assess__pct">10%</span></div>
+      <div class="assess__chart" role="img" aria-label="แผนภูมิวงกลมเกณฑ์การวัดและประเมินผล รวม 100%">
+        <div class="assess__center">
+          <span class="assess__total-num">100%</span>
+          <span class="assess__total-label">รวมทั้งหมด</span>
+        </div>
       </div>
-      <div class="assess__row">
-        <div><div class="assess__name">ใบงานและแบบฝึกหัด</div><div class="assess__clo">CLO1, CLO2, CLO3</div></div>
-        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:30%"></div></div><span class="assess__pct">30%</span></div>
-      </div>
-      <div class="assess__row">
-        <div><div class="assess__name">สอบปฏิบัติ</div><div class="assess__clo">CLO3, CLO4</div></div>
-        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:15%"></div></div><span class="assess__pct">15%</span></div>
-      </div>
-      <div class="assess__row">
-        <div><div class="assess__name">สอบกลางภาค</div><div class="assess__clo">CLO1, CLO2</div></div>
-        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:20%"></div></div><span class="assess__pct">20%</span></div>
-      </div>
-      <div class="assess__row">
-        <div><div class="assess__name">สอบปลายภาค</div><div class="assess__clo">CLO2, CLO3</div></div>
-        <div style="display:flex;align-items:center;gap:12px"><div class="assess__bar"><div class="assess__fill" style="width:25%"></div></div><span class="assess__pct">25%</span></div>
-      </div>
-      <div class="assess__total"><span>รวมทั้งหมด</span><span>100%</span></div>
+      <ul class="assess__legend" aria-label="รายละเอียดเกณฑ์การประเมิน">
+        <li class="assess__item assess__item--affective">
+          <span class="assess__dot" aria-hidden="true"></span>
+          <div class="assess__detail">
+            <span class="assess__name">จิตพิสัย การเข้าเรียนและการมีส่วนร่วม</span>
+            <span class="assess__clo">CLO4</span>
+          </div>
+          <span class="assess__pct">10%</span>
+        </li>
+        <li class="assess__item assess__item--work">
+          <span class="assess__dot" aria-hidden="true"></span>
+          <div class="assess__detail">
+            <span class="assess__name">ใบงานและแบบฝึกหัด</span>
+            <span class="assess__clo">CLO1, CLO2, CLO3</span>
+          </div>
+          <span class="assess__pct">30%</span>
+        </li>
+        <li class="assess__item assess__item--practical">
+          <span class="assess__dot" aria-hidden="true"></span>
+          <div class="assess__detail">
+            <span class="assess__name">สอบปฏิบัติ</span>
+            <span class="assess__clo">CLO3, CLO4</span>
+          </div>
+          <span class="assess__pct">15%</span>
+        </li>
+        <li class="assess__item assess__item--midterm">
+          <span class="assess__dot" aria-hidden="true"></span>
+          <div class="assess__detail">
+            <span class="assess__name">สอบกลางภาค</span>
+            <span class="assess__clo">CLO1, CLO2</span>
+          </div>
+          <span class="assess__pct">20%</span>
+        </li>
+        <li class="assess__item assess__item--final">
+          <span class="assess__dot" aria-hidden="true"></span>
+          <div class="assess__detail">
+            <span class="assess__name">สอบปลายภาค</span>
+            <span class="assess__clo">CLO2, CLO3</span>
+          </div>
+          <span class="assess__pct">25%</span>
+        </li>
+      </ul>
     </div>
   </div>
 </section>

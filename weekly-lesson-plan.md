@@ -12,6 +12,14 @@
 
 ---
 
+## คำอธิบายรายวิชา
+
+หลักการทำงานและการออกแบบวงจรดิจิทัล ดิจิทัลลอจิกเกต คุณสมบัติของดิจิทัลไอซีและการเชื่อมต่อลอจิกเกต การลดรูปสมการลอจิก การออกแบบวงจรคอมไบเนชัน วงจรเข้ารหัส วงจรถอดรหัสและภาคแสดงผล วงจรมัลติเพล็กซ์ วงจรคำนวณทางคณิตศาสตร์และวงจรเปรียบเทียบ วงจรกำเนิดสัญญาณนาฬิกา วงจรมัลติไวเบรเตอร์ ฟลิปฟลอป การออกแบบวงจรซีเควนเชียล วงจรนับ วงจรเลื่อนข้อมูล และวงจรแปลงสัญญาณระหว่างอนาลอกกับดิจิทัล โครงสร้างและคุณสมบัติตลอดจนการใช้งานหน่วยความจำ
+
+> Principles and digital circuit design, digital logic gate, digital IC function and logic gate interfacing, logic equations simplify, combination circuit, encoder/decoder circuit and output section; multiplex circuit, arithmetic, and logic circuit, clock generator, multivibrator circuit, and flip-flop, sequential circuit design, counter circuit, shift register circuit, and DAC and ADC circuits, structure and characteristics as well as function of memory usages
+
+---
+
 ## ผลลัพธ์การเรียนรู้ระดับรายวิชา (CLOs) และผลลัพธ์ระดับบทเรียน (LLOs)
 
 ### CLO1 — อธิบายหลักการทำงานของระบบดิจิทัล ระบบจำนวน รหัสดิจิทัล และคุณสมบัติของดิจิทัลไอซีได้
