@@ -25,16 +25,6 @@ title: หน้าแรก
   </div>
 </section>
 
-<!-- ===================== STATS ===================== -->
-<div class="container">
-  <div class="stats">
-    <div class="stat"><div class="stat__num">15</div><div class="stat__label">สัปดาห์</div></div>
-    <div class="stat"><div class="stat__num">4</div><div class="stat__label">CLOs</div></div>
-    <div class="stat"><div class="stat__num">10</div><div class="stat__label">บทเรียน</div></div>
-    <div class="stat"><div class="stat__num">15</div><div class="stat__label">ใบงานปฏิบัติ</div></div>
-  </div>
-</div>
-
 <!-- ===================== COURSE DESCRIPTION ===================== -->
 <section class="section section--alt" id="description">
   <div class="container">
@@ -184,18 +174,18 @@ title: หน้าแรก
       <h2>บทเรียนทั้งหมด</h2>
       <p>เอกสารประกอบการเรียน 10 บท</p>
     </div>
-    <div class="card-grid">
-      <a class="tcard" href="{{ '/chapters/ch01-number-systems/' | relative_url }}"><div class="tcard__icon">🔢</div><h3>บทที่ 1</h3><p>ระบบจำนวนและรหัสข้อมูลดิจิทัล</p></a>
-      <a class="tcard" href="{{ '/chapters/ch02-logic-gates/' | relative_url }}"><div class="tcard__icon">🔀</div><h3>บทที่ 2</h3><p>ลอจิกเกตและไอซีดิจิทัล</p></a>
-      <a class="tcard" href="{{ '/chapters/ch03-boolean-algebra/' | relative_url }}"><div class="tcard__icon">➗</div><h3>บทที่ 3</h3><p>พีชคณิตบูลีน</p></a>
-      <a class="tcard" href="{{ '/chapters/ch04-karnaugh-maps/' | relative_url }}"><div class="tcard__icon">🗺️</div><h3>บทที่ 4</h3><p>แผนผังคาร์โนห์</p></a>
-      <a class="tcard" href="{{ '/chapters/ch05-combinational-circuits/' | relative_url }}"><div class="tcard__icon">🧩</div><h3>บทที่ 5</h3><p>วงจรลอจิกเชิงผสม</p></a>
-      <a class="tcard" href="{{ '/chapters/ch06-flip-flops/' | relative_url }}"><div class="tcard__icon">🔁</div><h3>บทที่ 6</h3><p>ฟลิปฟลอปและวงจรเชิงลำดับ</p></a>
-      <a class="tcard" href="{{ '/chapters/ch07-counters-registers/' | relative_url }}"><div class="tcard__icon">🔢</div><h3>บทที่ 7</h3><p>ตัวนับและรีจิสเตอร์</p></a>
-      <a class="tcard" href="{{ '/chapters/ch08-memory-pld/' | relative_url }}"><div class="tcard__icon">💾</div><h3>บทที่ 8</h3><p>หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้</p></a>
-      <a class="tcard" href="{{ '/chapters/ch09-fsm/' | relative_url }}"><div class="tcard__icon">🎛️</div><h3>บทที่ 9</h3><p>เครื่องจักรสถานะจำกัด (FSM)</p></a>
-      <a class="tcard" href="{{ '/chapters/ch10-digital-interfacing/' | relative_url }}"><div class="tcard__icon">🔌</div><h3>บทที่ 10</h3><p>การเชื่อมต่อระบบดิจิทัล</p></a>
-    </div>
+    <ul class="link-list">
+      <li><a class="link-list__item" href="{{ '/chapters/ch01-number-systems/' | relative_url }}"><span class="link-list__icon">🔢</span><span class="link-list__text"><span class="link-list__title">บทที่ 1</span><span class="link-list__desc">ระบบจำนวนและรหัสข้อมูลดิจิทัล</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch02-logic-gates/' | relative_url }}"><span class="link-list__icon">🔀</span><span class="link-list__text"><span class="link-list__title">บทที่ 2</span><span class="link-list__desc">ลอจิกเกตและไอซีดิจิทัล</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch03-boolean-algebra/' | relative_url }}"><span class="link-list__icon">➗</span><span class="link-list__text"><span class="link-list__title">บทที่ 3</span><span class="link-list__desc">พีชคณิตบูลีน</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch04-karnaugh-maps/' | relative_url }}"><span class="link-list__icon">🗺️</span><span class="link-list__text"><span class="link-list__title">บทที่ 4</span><span class="link-list__desc">แผนผังคาร์โนห์</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch05-combinational-circuits/' | relative_url }}"><span class="link-list__icon">🧩</span><span class="link-list__text"><span class="link-list__title">บทที่ 5</span><span class="link-list__desc">วงจรลอจิกเชิงผสม</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch06-flip-flops/' | relative_url }}"><span class="link-list__icon">🔁</span><span class="link-list__text"><span class="link-list__title">บทที่ 6</span><span class="link-list__desc">ฟลิปฟลอปและวงจรเชิงลำดับ</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch07-counters-registers/' | relative_url }}"><span class="link-list__icon">🔢</span><span class="link-list__text"><span class="link-list__title">บทที่ 7</span><span class="link-list__desc">ตัวนับและรีจิสเตอร์</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch08-memory-pld/' | relative_url }}"><span class="link-list__icon">💾</span><span class="link-list__text"><span class="link-list__title">บทที่ 8</span><span class="link-list__desc">หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch09-fsm/' | relative_url }}"><span class="link-list__icon">🎛️</span><span class="link-list__text"><span class="link-list__title">บทที่ 9</span><span class="link-list__desc">เครื่องจักรสถานะจำกัด (FSM)</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch10-digital-interfacing/' | relative_url }}"><span class="link-list__icon">🔌</span><span class="link-list__text"><span class="link-list__title">บทที่ 10</span><span class="link-list__desc">การเชื่อมต่อระบบดิจิทัล</span></span></a></li>
+    </ul>
   </div>
 </section>
 
@@ -206,15 +196,19 @@ title: หน้าแรก
       <h2>เครื่องมือและ Simulator</h2>
       <p>โปรแกรมจำลองที่ใช้ในใบงานปฏิบัติการ</p>
     </div>
-    <div class="card-grid">
-      <a class="tcard" href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">
-        <div class="tcard__icon">🛠️</div><h3>Tinkercad Circuits</h3>
-        <p>ต่อวงจร IC จริง (7408, 7432, 7473, 4511) — Lab หลักของวิชา</p>
-      </a>
-      <a class="tcard" href="https://circuitverse.org/" target="_blank" rel="noopener">
-        <div class="tcard__icon">🎨</div><h3>CircuitVerse</h3>
-        <p>วาด Logic Gate แบบลาก-วาง เหมาะกับ Lab สัปดาห์ 1–7</p>
-      </a>
-    </div>
+    <ul class="link-list">
+      <li>
+        <a class="link-list__item" href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">
+          <span class="link-list__icon">🛠️</span>
+          <span class="link-list__text"><span class="link-list__title">Tinkercad Circuits</span><span class="link-list__desc">ต่อวงจร IC จริง (7408, 7432, 7473, 4511) — Lab หลักของวิชา</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="link-list__item" href="https://circuitverse.org/" target="_blank" rel="noopener">
+          <span class="link-list__icon">🎨</span>
+          <span class="link-list__text"><span class="link-list__title">CircuitVerse</span><span class="link-list__desc">วาด Logic Gate แบบลาก-วาง เหมาะกับ Lab สัปดาห์ 1–7</span></span>
+        </a>
+      </li>
+    </ul>
   </div>
 </section>
