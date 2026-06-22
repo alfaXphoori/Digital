@@ -203,17 +203,7 @@ table.schedule tbody tr:hover { background: #f8fafc; }
   text-align: center;
   z-index: 1;
 }
-.assess__label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  pointer-events: none;
-  z-index: 2;
-}
+
 .assess__total-num {
   font-family: "JetBrains Mono", monospace;
   font-size: clamp(1.55rem, 4vw, 2.1rem);
