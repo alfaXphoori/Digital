@@ -1,0 +1,90 @@
+<div class="cl-widget" id="comb-logic-widget">
+  <div class="cl-widget__header">
+    <div class="cl-widget__title-group">
+      <span class="cl-badge">🔬 สื่อการเรียนรู้เชิงโต้ตอบแบบพรีเมียม</span>
+      <h4>จำลองบล็อกไดอะแกรม Combinational Logic</h4>
+    </div>
+  </div>
+  
+  <div class="cl-layout">
+    <!-- Left side: Inputs -->
+    <div class="cl-side cl-side--inputs">
+      <span class="cl-side-label">Inputs (อินพุต)</span>
+      <div class="cl-input-list">
+        <!-- Input Row A -->
+        <div class="cl-input-row">
+          <div class="cl-switch-container">
+            <button class="cl-input-btn" id="cl-btn-a" aria-pressed="false" title="คลิกเพื่อสลับค่าอินพุต A">
+              <span class="cl-btn-lbl">A</span>
+              <span class="cl-btn-val">0</span>
+            </button>
+            <div class="cl-led" id="cl-led-a"></div>
+          </div>
+          <div class="cl-wire cl-wire-in cl-wire--a" id="cl-wire-a"></div>
+        </div>
+
+        <!-- Input Row B -->
+        <div class="cl-input-row">
+          <div class="cl-switch-container">
+            <button class="cl-input-btn" id="cl-btn-b" aria-pressed="false" title="คลิกเพื่อสลับค่าอินพุต B">
+              <span class="cl-btn-lbl">B</span>
+              <span class="cl-btn-val">0</span>
+            </button>
+            <div class="cl-led" id="cl-led-b"></div>
+          </div>
+          <div class="cl-wire cl-wire-in cl-wire--b" id="cl-wire-b"></div>
+        </div>
+
+        <!-- Input Row C -->
+        <div class="cl-input-row">
+          <div class="cl-switch-container">
+            <button class="cl-input-btn" id="cl-btn-c" aria-pressed="false" title="คลิกเพื่อสลับค่าอินพุต C">
+              <span class="cl-btn-lbl">C</span>
+              <span class="cl-btn-val">0</span>
+            </button>
+            <div class="cl-led" id="cl-led-c"></div>
+          </div>
+          <div class="cl-wire cl-wire-in cl-wire--c" id="cl-wire-c"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: Combinational Logic Box -->
+    <div class="cl-center-block">
+      <div class="cl-box">
+        <span class="cl-box-title">Combinational Logic</span>
+        
+        <div class="cl-selector-wrap">
+          <select id="cl-function-select">
+            <option value="and">AND Gate (A · B · C)</option>
+            <option value="or">OR Gate (A + B + C)</option>
+            <option value="xor">XOR / Odd Parity (A ⊕ B ⊕ C)</option>
+            <option value="majority" selected>Majority Voter (AB + BC + AC)</option>
+          </select>
+        </div>
+        
+        <div class="cl-expr-wrap">
+          <span class="cl-expr-lbl">สมการลอจิกพรีเมียม:</span>
+          <code class="cl-expr-code" id="cl-expr-display">Y = AB + BC + AC</code>
+        </div>
+      </div>
+      <!-- Output Wire from Box to Output -->
+      <div class="cl-wire cl-wire-out" id="cl-wire-y"></div>
+    </div>
+
+    <!-- Right side: Outputs -->
+    <div class="cl-side cl-side--outputs">
+      <span class="cl-side-label">Outputs (เอาต์พุต)</span>
+      <div class="cl-output-wrap">
+        <div class="cl-lamp" id="cl-lamp-y" data-state="0">
+          <div class="cl-lamp-inner">
+            <span class="cl-lamp-lbl">Y</span>
+            <span class="cl-lamp-val">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cl-cap">💡 <strong>คู่มือการใช้งาน:</strong> คลิกที่สวิตช์อินพุต <strong>A, B, C</strong> ทางซ้ายเพื่อจ่ายสัญญาณระดับลอจิก <code>1</code> (สวิตช์จะติดสว่างและพัลส์แสงจะไหลไปตามสายสัญญาณ) บล็อกวงจรตรงกลางจะคำนวณเอาต์พุต <strong>Y</strong> ตามฟังก์ชันลอจิกที่ระบุทันที</p>
+</div>

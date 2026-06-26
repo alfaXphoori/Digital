@@ -1,0 +1,73 @@
+<div class="ff-demo">
+  <div class="ff-tabs">
+    <button class="ff-tab active" data-type="D">D Flip-Flop</button>
+    <button class="ff-tab" data-type="JK">JK Flip-Flop</button>
+    <button class="ff-tab" data-type="T">T Flip-Flop</button>
+    <button class="ff-tab" data-type="SR">SR Flip-Flop</button>
+  </div>
+
+  <div class="ff-container">
+    <!-- Block Diagram -->
+    <div class="ff-layout">
+      <div class="ff-interactive-panel">
+        <div class="ff-control-group">
+          <span class="ff-group-label">ปรับสัญญาณอินพุต:</span>
+          <div class="ff-inputs-area" id="ff-inputs-container">
+            <!-- Dynamically populated buttons -->
+          </div>
+        </div>
+        
+        <div class="ff-control-group">
+          <span class="ff-group-label">สัญญาณนาฬิกา (Trigger):</span>
+          <div class="ff-clk-area">
+            <button class="ff-btn ff-btn--clk" id="ff-clk-trigger">⚡ ส่งสัญญาณนาฬิกา (CLK ↑)</button>
+            <div class="ff-clk-led-wrap">
+              <div class="ff-clk-led" id="ff-clk-indicator"></div>
+              <span class="ff-clk-label">CLK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Visual Block -->
+      <div class="ff-visual-block-wrap">
+        <div class="ff-wire-incoming" id="ff-wire-in1"></div>
+        <div class="ff-wire-incoming" id="ff-wire-in2"></div>
+        <div class="ff-wire-incoming" id="ff-wire-clk"></div>
+        
+        <div class="ff-ic">
+          <div class="ff-ic-title" id="ff-ic-title">D-FF</div>
+          <div class="ff-ic-body">
+            <div class="ff-ic-left">
+              <div class="ff-ic-port" id="ff-port-lbl-1">D</div>
+              <div class="ff-ic-port" id="ff-port-lbl-2" style="visibility: hidden;">-</div>
+              <div class="ff-ic-port ff-ic-port--clk">▶ CLK</div>
+            </div>
+            <div class="ff-ic-right">
+              <div class="ff-ic-port">Q</div>
+              <div class="ff-ic-port">Q̄</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="ff-wire-outgoing" id="ff-wire-q"></div>
+        <div class="ff-wire-outgoing" id="ff-wire-qbar"></div>
+        
+        <div class="ff-lamps">
+          <div class="ff-lamp" id="ff-lamp-q" data-state="0">Q = 0</div>
+          <div class="ff-lamp" id="ff-lamp-qbar" data-state="1">Q̄ = 1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active State Table -->
+    <div class="ff-table-container">
+      <div class="ff-table-title" id="ff-table-title">ตารางการทำงาน (Truth Table)</div>
+      <table class="ff-table" id="ff-table-body">
+        <!-- Dynamically rendered -->
+      </table>
+    </div>
+  </div>
+  
+  <p class="ff-cap"><strong>🔬 Flip-Flop Simulator (Interactive):</strong> สลับชนิดของ Flip-Flop ด้วยแท็บด้านบน, คลิกปรับค่าอินพุตทางซ้าย, แล้วคลิกส่งสัญญาณ CLK เพื่อเปลี่ยนสถานะ (ดูไฮไลต์แถวทำงานในตาราง)</p>
+</div>

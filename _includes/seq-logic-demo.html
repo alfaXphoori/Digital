@@ -1,0 +1,124 @@
+<div class="cl-widget" id="seq-logic-widget">
+  <div class="cl-widget__header">
+    <div class="cl-widget__title-group">
+      <span class="cl-badge">🔬 สื่อการเรียนรู้เชิงโต้ตอบแบบพรีเมียม</span>
+      <h4>จำลองบล็อกไดอะแกรม Sequential Logic (วงจรเชิงลำดับ)</h4>
+    </div>
+  </div>
+  
+  <div style="position: relative; width: 100%; max-width: 640px; height: 380px; margin: 1.5rem auto; background: rgba(15, 23, 42, 0.02); border-radius: 12px; border: 1px dashed var(--line); overflow: hidden;">
+    
+    <!-- SVG Wires Layer -->
+    <svg class="seq-svg" width="640" height="380" viewBox="0 0 640 380" style="position: absolute; top:0; left:0; pointer-events: none; z-index: 1;">
+      <defs>
+        <!-- Arrow markers -->
+        <marker id="seq-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#cbd5e1" />
+        </marker>
+        <marker id="seq-arrow-active-orange" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b" />
+        </marker>
+        <marker id="seq-arrow-active-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#06b6d4" />
+        </marker>
+        <marker id="seq-arrow-active-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#818cf8" />
+        </marker>
+      </defs>
+      
+      <!-- Input A to Comb Logic -->
+      <path id="seq-wire-a" d="M 110 90 L 200 90" stroke="#cbd5e1" stroke-width="4" fill="none" marker-end="url(#seq-arrow)" />
+      
+      <!-- Comb Logic to Output Y -->
+      <path id="seq-wire-y" d="M 440 90 L 530 90" stroke="#cbd5e1" stroke-width="4" fill="none" marker-end="url(#seq-arrow)" />
+      
+      <!-- Next State D (Comb -> Memory) -->
+      <path id="seq-wire-d" d="M 440 115 L 480 115 L 480 250 L 440 250" stroke="#cbd5e1" stroke-width="4" fill="none" marker-end="url(#seq-arrow)" />
+      
+      <!-- Current State Q (Memory -> Comb) -->
+      <path id="seq-wire-q" d="M 200 250 L 160 250 L 160 115 L 200 115" stroke="#cbd5e1" stroke-width="4" fill="none" marker-end="url(#seq-arrow)" />
+      
+      <!-- Clock to Memory -->
+      <path id="seq-wire-clk" d="M 110 300 L 320 300 L 320 290" stroke="#cbd5e1" stroke-width="4" fill="none" marker-end="url(#seq-arrow)" />
+    </svg>
+    
+    <!-- HTML Nodes Layer -->
+    <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 2;">
+      
+      <!-- Input Switch A -->
+      <div style="position: absolute; top: 70px; left: 20px; width: 90px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <span style="font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase;">Input</span>
+        <button class="cl-input-btn" id="seq-btn-a" aria-pressed="false" style="width: 80px;" title="คลิกเพื่อสลับค่าอินพุต A">
+          <span class="cl-btn-lbl">A</span>
+          <span class="cl-btn-val">0</span>
+        </button>
+        <div class="cl-led" id="seq-led-a"></div>
+      </div>
+
+      <!-- Combinational Logic Box -->
+      <div class="cl-box" style="position: absolute; top: 40px; left: 200px; width: 240px; height: 110px; padding: 12px; justify-content: space-around;">
+        <span class="cl-box-title">1. Combinational Logic</span>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+          <span style="font-size: 0.7rem; color: #94a3b8;">XOR Gate: $D = A \oplus Q$</span>
+          <code class="cl-expr-code" id="seq-expr-display" style="font-size: 0.85rem; padding: 2px 6px;">D = 0 ⊕ 0 = 0</code>
+        </div>
+        <div style="font-size: 0.65rem; color: #64748b; text-align: center; width: 100%;">
+          Output: <span id="seq-math-y" style="color: var(--cyan); font-weight: bold;">Y = Q = 0</span>
+        </div>
+      </div>
+
+      <!-- Memory (Flip-Flops) Box -->
+      <div class="cl-box" style="position: absolute; top: 210px; left: 200px; width: 240px; height: 110px; padding: 12px; justify-content: space-around; border-color: #6366f1; box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);">
+        <span class="cl-box-title" style="color: #a5b4fc;">2. Memory (Flip-Flop)</span>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 24px; width: 100%;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 0.65rem; color: #94a3b8;">Next State</span>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: bold; color: #cbd5e1;" id="seq-val-d">0</div>
+          </div>
+          <div style="font-size: 1.2rem; color: #475569;">➔</div>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 0.65rem; color: #a5b4fc; font-weight: bold;">Current State (Q)</span>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: bold; color: #818cf8; text-shadow: 0 0 6px rgba(129, 140, 248, 0.6);" id="seq-val-q">0</div>
+          </div>
+        </div>
+        <span style="font-size: 0.6rem; color: #64748b;">อัปเดตเมื่อขอบขาขึ้นของ Clock เท่านั้น</span>
+      </div>
+
+      <!-- Clock Controls -->
+      <div style="position: absolute; top: 270px; left: 20px; width: 110px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <span style="font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase;">Clock Trigger</span>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <button class="cl-input-btn" id="seq-btn-clk" style="width: 76px; height: 36px; padding: 0 8px; font-size: 0.75rem;" title="กดเพื่อสร้างสัญญาณขอบขาขึ้น (Rising Edge)">
+            <span class="cl-btn-lbl" style="font-size: 0.75rem; color: var(--indigo);">Pulse CLK</span>
+          </button>
+          <div class="cl-led" id="seq-led-clk" style="background-color: #cbd5e1; width: 10px; height: 10px;"></div>
+        </div>
+        
+        <!-- Auto clock checkbox -->
+        <label style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: var(--muted); cursor: pointer; user-select: none;">
+          <input type="checkbox" id="seq-chk-auto" style="cursor: pointer; margin: 0;"> Auto-Tick
+        </label>
+      </div>
+
+      <!-- Output Lamp -->
+      <div style="position: absolute; top: 50px; right: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <span style="font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase;">Output</span>
+        <div class="cl-lamp" id="seq-lamp-y" data-state="0" style="width: 74px; height: 74px;">
+          <div class="cl-lamp-inner">
+            <span class="cl-lamp-lbl" style="font-size: 0.7rem;">Y</span>
+            <span class="cl-lamp-val" style="font-size: 1.15rem;">0</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Realtime Explanation Box -->
+  <div style="background: rgba(79, 70, 229, 0.04); border-left: 4px solid var(--indigo); border-radius: 8px; padding: 12px 16px; margin: 1rem 0; font-size: 0.85rem; line-height: 1.6; color: var(--text);">
+    <strong>📝 อธิบายการทำงานแบบเรียลไทม์:</strong>
+    <span id="seq-explanation">อินพุต A = 0 และ สถานะปัจจุบัน Q = 0 ทำให้สมการลดรูปได้ D = 0 เมื่อเกิดสัญญาณนาฬิกา สถานะจะไม่เปลี่ยนแปลง</span>
+  </div>
+
+  <p class="cl-cap">💡 <strong>คู่มือการเรียนรู้:</strong> สังเกต <strong>Feedback Loop (สายย้อนกลับจาก Memory ไปยัง Combinational Logic)</strong> ค่าสถานะปัจจุบัน <strong>Q</strong> จะป้อนกลับไปคำนวณร่วมกับอินพุต <strong>A</strong> เพื่อกำหนดค่าสถานะถัดไป <strong>D</strong> ล่วงหน้า แต่ <strong>Q จะไม่เปลี่ยนค่าจนกว่าจะกดปุ่ม Pulse CLK (หรือเปิด Auto-Tick)</strong> เพื่อสร้างสัญญาณขอบขาขึ้น!</p>
+</div>

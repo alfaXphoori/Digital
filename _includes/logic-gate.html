@@ -1,0 +1,37 @@
+{% assign lg_type = include.type | upcase %}
+{% assign lg_one_input = "NOT,BUFFER" | split: "," %}
+{% if lg_one_input contains lg_type %}{% assign lg_is_one = true %}{% else %}{% assign lg_is_one = false %}{% endif %}
+
+{% if lg_type == "AND" %}{% assign lg_expr = "Y = A·B" %}
+{% elsif lg_type == "OR" %}{% assign lg_expr = "Y = A+B" %}
+{% elsif lg_type == "NOT" %}{% assign lg_expr = "Y = Ā" %}
+{% elsif lg_type == "NAND" %}{% assign lg_expr = "Y = (A·B)'" %}
+{% elsif lg_type == "NOR" %}{% assign lg_expr = "Y = (A+B)'" %}
+{% elsif lg_type == "XOR" %}{% assign lg_expr = "Y = A⊕B" %}
+{% elsif lg_type == "XNOR" %}{% assign lg_expr = "Y = (A⊕B)'" %}
+{% elsif lg_type == "BUFFER" %}{% assign lg_expr = "Y = A" %}
+{% else %}{% assign lg_expr = "Y = ?" %}{% endif %}
+
+<div class="lg-demo" data-gate="{{ lg_type }}">
+  <div class="lg-demo__row">
+    <div class="lg-inputs">
+      <button class="lg-in" data-port="A" aria-pressed="false">A=0</button>
+      {% unless lg_is_one %}
+      <button class="lg-in" data-port="B" aria-pressed="false">B=0</button>
+      {% endunless %}
+    </div>
+    <div class="lg-wires-in">
+      <div class="lg-wire lg-wire--a"></div>
+      {% unless lg_is_one %}
+      <div class="lg-wire lg-wire--b"></div>
+      {% endunless %}
+    </div>
+    <div class="lg-body">
+      <span class="lg-body__name">{{ lg_type }}</span>
+      <span class="lg-body__expr">{{ lg_expr }}</span>
+    </div>
+    <div class="lg-wire lg-wire--out"></div>
+    <div class="lg-out" data-state="0">Y=0</div>
+  </div>
+  <p class="lg-cap">คลิกที่อินพุตเพื่อสลับค่า 0/1</p>
+</div>

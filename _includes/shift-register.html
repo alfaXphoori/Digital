@@ -1,0 +1,117 @@
+<div class="sr-demo">
+  <div class="sr-tabs">
+    <button class="sr-tab active" data-mode="SISO">SISO (Serial-In Serial-Out)</button>
+    <button class="sr-tab" data-mode="SIPO">SIPO (Serial-In Parallel-Out)</button>
+    <button class="sr-tab" data-mode="PISO">PISO (Parallel-In Serial-Out)</button>
+    <button class="sr-tab" data-mode="PIPO">PIPO (Parallel-In Parallel-Out)</button>
+  </div>
+
+  <div class="sr-container">
+    <div class="sr-controls-panel">
+      <!-- Input Mode / Data Controls -->
+      <div class="sr-control-group" id="sr-group-serial-in">
+        <span class="sr-group-label">ข้อมูล Serial Input (SIN):</span>
+        <div class="sr-btn-toggle-wrap">
+          <button class="sr-btn" id="sr-btn-sin" aria-pressed="false">SIN = 0</button>
+        </div>
+      </div>
+
+      <div class="sr-control-group" id="sr-group-parallel-in" style="display: none;">
+        <span class="sr-group-label">ข้อมูล Parallel Inputs (I₃ I₂ I₁ I₀):</span>
+        <div class="sr-parallel-inputs">
+          <button class="sr-btn sr-btn--pin" data-bit-idx="3">I₃ = 0</button>
+          <button class="sr-btn sr-btn--pin" data-bit-idx="2">I₂ = 0</button>
+          <button class="sr-btn sr-btn--pin" data-bit-idx="1">I₁ = 0</button>
+          <button class="sr-btn sr-btn--pin" data-bit-idx="0">I₀ = 0</button>
+        </div>
+      </div>
+
+      <div class="sr-control-group" id="sr-group-piso-control" style="display: none;">
+        <span class="sr-group-label">โหมดการทำงาน PISO:</span>
+        <div class="sr-btn-toggle-wrap">
+          <button class="sr-btn sr-btn--mode active" id="sr-btn-piso-mode" data-mode="shift">SHIFT (เลื่อนข้อมูล)</button>
+        </div>
+        <small class="sr-help-text">กดสลับเป็น LOAD เพื่อเขียนข้อมูลขนานเข้ามา หรือ SHIFT เพื่อเลื่อนข้อมูลออกทีละบิต</small>
+      </div>
+
+      <!-- Clock controls (Reuse counter-bar style) -->
+      <div class="sr-control-group">
+        <span class="sr-group-label">สัญญาณนาฬิกา (CLK):</span>
+        <div class="sr-clock-controls">
+          <button class="sr-btn sr-btn--clk" id="sr-btn-pulse">⚡ CLK Pulse</button>
+          <button class="sr-btn sr-btn--play" id="sr-btn-play">▶ เล่นอัตโนมัติ</button>
+          <button class="sr-btn sr-btn--reset" id="sr-btn-reset">🔄 รีเซ็ต</button>
+        </div>
+        <div class="sr-speed-wrap">
+          <span>ความเร็ว:</span>
+          <input type="range" class="sr-speed" id="sr-speed-range" min="1" max="8" value="3">
+          <span class="sr-speed-val" id="sr-speed-text">1.5×</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Block Diagram -->
+    <div class="sr-visual-panel">
+      <!-- SIN Entry Line -->
+      <div class="sr-connection-line sr-connection--sin" id="sr-line-sin">
+        <span class="sr-line-label">SIN</span>
+        <div class="sr-pulse-dot" id="sr-dot-sin"></div>
+      </div>
+
+      <div class="sr-registers-row">
+        <!-- Register Q3 -->
+        <div class="sr-reg-box" id="sr-box-3">
+          <div class="sr-reg-name">Q₃</div>
+          <div class="sr-reg-val" data-state="0">0</div>
+          <div class="sr-reg-pin-indicator" style="display: none;">I₃</div>
+        </div>
+
+        <!-- Connection Arrow -->
+        <div class="sr-arrow">➔</div>
+
+        <!-- Register Q2 -->
+        <div class="sr-reg-box" id="sr-box-2">
+          <div class="sr-reg-name">Q₂</div>
+          <div class="sr-reg-val" data-state="0">0</div>
+          <div class="sr-reg-pin-indicator" style="display: none;">I₂</div>
+        </div>
+
+        <!-- Connection Arrow -->
+        <div class="sr-arrow">➔</div>
+
+        <!-- Register Q1 -->
+        <div class="sr-reg-box" id="sr-box-1">
+          <div class="sr-reg-name">Q₁</div>
+          <div class="sr-reg-val" data-state="0">0</div>
+          <div class="sr-reg-pin-indicator" style="display: none;">I₁</div>
+        </div>
+
+        <!-- Connection Arrow -->
+        <div class="sr-arrow">➔</div>
+
+        <!-- Register Q0 -->
+        <div class="sr-reg-box" id="sr-box-0">
+          <div class="sr-reg-name">Q₀</div>
+          <div class="sr-reg-val" data-state="0">0</div>
+          <div class="sr-reg-pin-indicator" style="display: none;">I₀</div>
+        </div>
+      </div>
+
+      <!-- SOUT Exit Line -->
+      <div class="sr-connection-line sr-connection--sout" id="sr-line-sout">
+        <span class="sr-line-label">SOUT</span>
+        <div class="sr-pulse-dot" id="sr-dot-sout"></div>
+      </div>
+
+      <!-- Parallel Output Lines (SIPO/PIPO) -->
+      <div class="sr-parallel-outputs-visual" id="sr-pout-visual">
+        <div class="sr-pout-line" data-idx="3"><div class="sr-pout-lamp" id="sr-lamp-3">Q₃ = 0</div></div>
+        <div class="sr-pout-line" data-idx="2"><div class="sr-pout-lamp" id="sr-lamp-2">Q₂ = 0</div></div>
+        <div class="sr-pout-line" data-idx="1"><div class="sr-pout-lamp" id="sr-lamp-1">Q₁ = 0</div></div>
+        <div class="sr-pout-line" data-idx="0"><div class="sr-pout-lamp" id="sr-lamp-0">Q₀ = 0</div></div>
+      </div>
+    </div>
+  </div>
+  
+  <p class="sr-cap"><strong>🔬 Shift Register Simulator (Interactive):</strong> ป้อนบิตอินพุต แล้วส่งสัญญาณ CLK เพื่อผลักดันบิตให้เลื่อนไหลจากซ้ายไปขวา</p>
+</div>

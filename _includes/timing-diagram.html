@@ -1,0 +1,50 @@
+<div class="timing-diagram" data-preset="{{ include.preset | default: 'gate-selector' }}" data-signals="{{ include.signals }}">
+  <div class="td-controls">
+    <button class="td-btn td-btn--play" aria-label="เริ่มจำลองสัญญาณ">▶ เริ่ม</button>
+    <button class="td-btn td-btn--step" aria-label="เลื่อนไปช่วงถัดไป">⏭ ทีละขั้น</button>
+    <button class="td-btn td-btn--reset" aria-label="รีเซ็ตเวลากลับจุดเริ่มต้น">🔄 รีเซ็ต</button>
+    <div class="td-speed-wrap">
+      <span>ความเร็ว:</span>
+      <input type="range" class="td-speed" min="1" max="8" value="3" aria-label="ปรับความเร็วการจำลอง">
+      <span class="td-speed-val">1.5×</span>
+    </div>
+    {% if include.preset == "gate-selector" or include.preset == nil %}
+    <div class="td-preset-selector-wrap">
+      <label for="td-gate-select-{{ include.id | default: 'main' }}">เกต:</label>
+      <select class="td-gate-select" id="td-gate-select-{{ include.id | default: 'main' }}">
+        <option value="AND" selected>AND</option>
+        <option value="OR">OR</option>
+        <option value="NOT">NOT (ใช้ A)</option>
+        <option value="NAND">NAND</option>
+        <option value="NOR">NOR</option>
+        <option value="XOR">XOR</option>
+        <option value="XNOR">XNOR</option>
+      </select>
+    </div>
+    {% endif %}
+  </div>
+  
+  <div class="td-canvas-container">
+    <svg class="td-svg" viewBox="0 0 800 240" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <!-- Grid patterns and backgrounds -->
+      <g class="td-grid"></g>
+      
+      <!-- Signal tracks -->
+      <g class="td-tracks"></g>
+      
+      <!-- Active indicators (pulsing dots at playhead interface) -->
+      <g class="td-indicators"></g>
+      
+      <!-- Playhead cursor -->
+      <line class="td-playhead" x1="80" y1="15" x2="80" y2="225" />
+    </svg>
+  </div>
+  
+  <div class="td-readouts">
+    <div class="td-readout td-readout--a"><span class="td-readout-label">A =</span> <span class="val">-</span></div>
+    <div class="td-readout td-readout--b"><span class="td-readout-label">B =</span> <span class="val">-</span></div>
+    <div class="td-readout td-readout--y"><span class="td-readout-label">Y =</span> <span class="val">-</span></div>
+  </div>
+  
+
+</div>

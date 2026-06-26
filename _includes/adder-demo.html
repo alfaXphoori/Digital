@@ -1,0 +1,144 @@
+<div class="adder-demo">
+  <div class="adder-inputs-panel">
+    <div class="adder-input-row">
+      <span class="adder-input-label">ตัวตั้ง A:</span>
+      <div class="adder-bits-control">
+        <button class="adder-btn-bit" data-input="A" data-idx="3">A₃ = 0</button>
+        <button class="adder-btn-bit" data-input="A" data-idx="2">A₂ = 0</button>
+        <button class="adder-btn-bit" data-input="A" data-idx="1">A₁ = 0</button>
+        <button class="adder-btn-bit" data-input="A" data-idx="0">A₀ = 0</button>
+      </div>
+      <span class="adder-decimal-val" id="adder-dec-a">(ฐานสิบ: 0)</span>
+    </div>
+
+    <div class="adder-input-row">
+      <span class="adder-input-label">ตัวบวก B:</span>
+      <div class="adder-bits-control">
+        <button class="adder-btn-bit" data-input="B" data-idx="3">B₃ = 0</button>
+        <button class="adder-btn-bit" data-input="B" data-idx="2">B₂ = 0</button>
+        <button class="adder-btn-bit" data-input="B" data-idx="1">B₁ = 0</button>
+        <button class="adder-btn-bit" data-input="B" data-idx="0">B₀ = 0</button>
+      </div>
+      <span class="adder-decimal-val" id="adder-dec-b">(ฐานสิบ: 0)</span>
+    </div>
+
+    <div class="adder-input-row">
+      <span class="adder-input-label">ตัวทดเข้าตัวแรก (C₀):</span>
+      <button class="adder-btn-bit" id="adder-btn-c0">C₀ = 0</button>
+    </div>
+
+    <div class="adder-action-row">
+      <button class="adder-btn adder-btn--calc" id="adder-btn-calc">➕ เริ่มบวก (Animate Carry)</button>
+      <button class="adder-btn adder-btn--step" id="adder-btn-step">⏭ ทีละหลัก</button>
+      <button class="adder-btn adder-btn--reset" id="adder-btn-reset">🔄 รีเซ็ต</button>
+    </div>
+  </div>
+
+  <div class="adder-visual-panel">
+    <!-- Diagram illustrating 4 FAs cascaded -->
+    <div class="adder-blocks-container">
+      
+      <!-- FA3 (MSB) -->
+      <div class="adder-block-wrap">
+        <div class="adder-wire-in adder-wire-in--a" id="adder-w-a3">A₃ = 0</div>
+        <div class="adder-wire-in adder-wire-in--b" id="adder-w-b3">B₃ = 0</div>
+        
+        <div class="adder-fa-box" id="adder-fa-3">
+          <div class="adder-fa-title">Full Adder 3</div>
+          <div class="adder-fa-details">
+            <span class="cin">Cin = 0</span>
+            <span class="cout">Cout = 0</span>
+          </div>
+        </div>
+        
+        <div class="adder-wire-out" id="adder-w-s3">S₃ = 0</div>
+      </div>
+
+      <!-- Carry Line 3 -> 2 -->
+      <div class="adder-carry-wire" id="adder-c-wire-3">
+        <div class="adder-carry-dot" id="adder-c-dot-3"></div>
+      </div>
+
+      <!-- FA2 -->
+      <div class="adder-block-wrap">
+        <div class="adder-wire-in adder-wire-in--a" id="adder-w-a2">A₂ = 0</div>
+        <div class="adder-wire-in adder-wire-in--b" id="adder-w-b2">B₂ = 0</div>
+        
+        <div class="adder-fa-box" id="adder-fa-2">
+          <div class="adder-fa-title">Full Adder 2</div>
+          <div class="adder-fa-details">
+            <span class="cin">Cin = 0</span>
+            <span class="cout">Cout = 0</span>
+          </div>
+        </div>
+        
+        <div class="adder-wire-out" id="adder-w-s2">S₂ = 0</div>
+      </div>
+
+      <!-- Carry Line 2 -> 1 -->
+      <div class="adder-carry-wire" id="adder-c-wire-2">
+        <div class="adder-carry-dot" id="adder-c-dot-2"></div>
+      </div>
+
+      <!-- FA1 -->
+      <div class="adder-block-wrap">
+        <div class="adder-wire-in adder-wire-in--a" id="adder-w-a1">A₁ = 0</div>
+        <div class="adder-wire-in adder-wire-in--b" id="adder-w-b1">B₁ = 0</div>
+        
+        <div class="adder-fa-box" id="adder-fa-1">
+          <div class="adder-fa-title">Full Adder 1</div>
+          <div class="adder-fa-details">
+            <span class="cin">Cin = 0</span>
+            <span class="cout">Cout = 0</span>
+          </div>
+        </div>
+        
+        <div class="adder-wire-out" id="adder-w-s1">S₁ = 0</div>
+      </div>
+
+      <!-- Carry Line 1 -> 0 -->
+      <div class="adder-carry-wire" id="adder-c-wire-1">
+        <div class="adder-carry-dot" id="adder-c-dot-1"></div>
+      </div>
+
+      <!-- FA0 (LSB) -->
+      <div class="adder-block-wrap">
+        <div class="adder-wire-in adder-wire-in--a" id="adder-w-a0">A₀ = 0</div>
+        <div class="adder-wire-in adder-wire-in--b" id="adder-w-b0">B₀ = 0</div>
+        
+        <div class="adder-fa-box" id="adder-fa-0">
+          <div class="adder-fa-title">Full Adder 0</div>
+          <div class="adder-fa-details">
+            <span class="cin">Cin = 0</span>
+            <span class="cout">Cout = 0</span>
+          </div>
+        </div>
+        
+        <div class="adder-wire-out" id="adder-w-s0">S₀ = 0</div>
+      </div>
+
+      <!-- Input Carry line for FA0 -->
+      <div class="adder-carry-wire adder-carry-wire--c0" id="adder-c-wire-0">
+        <div class="adder-carry-dot" id="adder-c-dot-0"></div>
+      </div>
+
+    </div>
+
+    <!-- Final Output Display -->
+    <div class="adder-final-display">
+      <div class="adder-output-bits">
+        ผลลัพธ์: 
+        <span class="out-c4" id="adder-out-c4">C₄ = 0</span>
+        <span class="out-s" id="adder-out-s3">S₃ = 0</span>
+        <span class="out-s" id="adder-out-s2">S₂ = 0</span>
+        <span class="out-s" id="adder-out-s1">S₁ = 0</span>
+        <span class="out-s" id="adder-out-s0">S₀ = 0</span>
+      </div>
+      <div class="adder-output-decimal" id="adder-out-dec">
+        ฐานสิบ: 0 + 0 = 0
+      </div>
+    </div>
+  </div>
+  
+  <p class="adder-cap"><strong>🔬 Ripple-Carry Simulator (Interactive):</strong> คลิกเปลี่ยนค่าตัวเลข A และ B ด้านบน แล้วกด <strong>เริ่มบวก</strong> เพื่อสังเกตการเดินทางของตัวทด (Carry) จากขวาไปซ้าย</p>
+</div>

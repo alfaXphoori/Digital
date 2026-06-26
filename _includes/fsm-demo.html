@@ -1,0 +1,178 @@
+<div class="fsm-demo">
+  <div class="fsm-tabs">
+    <button class="fsm-tab active" data-fsm="moore">Moore Machine (Sequence 101 Detector)</button>
+    <button class="fsm-tab" data-fsm="mealy">Mealy Machine (Sequence 101 Detector)</button>
+  </div>
+
+  <div class="fsm-container">
+    <!-- Controls and History -->
+    <div class="fsm-controls-panel">
+      <div class="fsm-control-group">
+        <span class="fsm-group-label">ป้อนสัญญาณอินพุต (X):</span>
+        <div class="fsm-inputs-buttons">
+          <button class="fsm-btn" id="fsm-btn-x0">X = 0</button>
+          <button class="fsm-btn" id="fsm-btn-x1">X = 1</button>
+        </div>
+      </div>
+
+      <div class="fsm-control-group">
+        <span class="fsm-group-label">สถานะปัจจุบัน:</span>
+        <div class="fsm-status-display">
+          <span class="fsm-status-item">State: <strong id="fsm-current-state">S₀</strong></span>
+          <span class="fsm-status-item">Output: <span class="fsm-output-lamp" id="fsm-output-indicator" data-state="0">Y = 0</span></span>
+        </div>
+      </div>
+
+      <div class="fsm-control-group">
+        <span class="fsm-group-label">ประวัติการทำงาน (History Log):</span>
+        <div class="fsm-history" id="fsm-history-log">
+          <!-- Populated by JS -->
+          <div class="fsm-history-empty">กดปุ่มอินพุต X ด้านบนเพื่อเริ่มเดินสถานะ...</div>
+        </div>
+      </div>
+      
+      <button class="fsm-btn fsm-btn--reset" id="fsm-btn-reset">🔄 รีเซ็ต FSM</button>
+    </div>
+
+    <!-- SVG State Diagram Canvas -->
+    <div class="fsm-visual-panel">
+      <!-- Moore FSM Diagram -->
+      <div class="fsm-canvas-wrapper" id="fsm-canvas-moore">
+        <svg class="fsm-svg" viewBox="0 0 740 240" preserveAspectRatio="xMidYMid meet">
+          <!-- Definitions for markers (arrows) -->
+          <defs>
+            <marker id="arrow-moore" viewBox="0 0 10 10" refX="28" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+            </marker>
+            <marker id="arrow-moore-active" viewBox="0 0 10 10" refX="28" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+            </marker>
+          </defs>
+
+          <!-- Transition lines (Moore) -->
+          <!-- S0 -> S0 (self 0) -->
+          <path id="moore-t-s0-s0" d="M 90,95 C 60,65 120,65 90,95" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="90" y="45" class="fsm-edge-lbl">0</text>
+
+          <!-- S0 -> S1 (1) -->
+          <path id="moore-t-s0-s1" d="M 120,120 L 260,120" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="190" y="112" class="fsm-edge-lbl">1</text>
+
+          <!-- S1 -> S1 (self 1) -->
+          <path id="moore-t-s1-s1" d="M 270,95 C 240,65 300,65 270,95" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="270" y="45" class="fsm-edge-lbl">1</text>
+
+          <!-- S1 -> S2 (0) -->
+          <path id="moore-t-s1-s2" d="M 300,120 L 440,120" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="370" y="112" class="fsm-edge-lbl">0</text>
+
+          <!-- S2 -> S0 (0) -->
+          <path id="moore-t-s2-s0" d="M 465,140 C 370,220 200,220 105,140" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="285" y="210" class="fsm-edge-lbl">0</text>
+
+          <!-- S2 -> S3 (1) -->
+          <path id="moore-t-s2-s3" d="M 480,120 L 620,120" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="550" y="112" class="fsm-edge-lbl">1</text>
+
+          <!-- S3 -> S2 (0) -->
+          <path id="moore-t-s3-s2" d="M 625,100 C 580,50 520,50 475,100" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="550" y="60" class="fsm-edge-lbl">0</text>
+
+          <!-- S3 -> S1 (1) -->
+          <path id="moore-t-s3-s1" d="M 640,140 C 540,240 370,240 280,140" class="fsm-edge" marker-end="url(#arrow-moore)"/>
+          <text x="460" y="230" class="fsm-edge-lbl">1</text>
+
+          <!-- State Circles (Moore) -->
+          <!-- S0 -->
+          <g id="moore-node-s0" class="fsm-node is-active">
+            <circle cx="100" cy="120" r="24"/>
+            <text x="100" y="116" class="fsm-node-lbl">S₀</text>
+            <text x="100" y="132" class="fsm-node-out">Y=0</text>
+          </g>
+
+          <!-- S1 -->
+          <g id="moore-node-s1" class="fsm-node">
+            <circle cx="280" cy="120" r="24"/>
+            <text x="280" y="116" class="fsm-node-lbl">S₁</text>
+            <text x="280" y="132" class="fsm-node-out">Y=0</text>
+          </g>
+
+          <!-- S2 -->
+          <g id="moore-node-s2" class="fsm-node">
+            <circle cx="460" cy="120" r="24"/>
+            <text x="460" y="116" class="fsm-node-lbl">S₂</text>
+            <text x="460" y="132" class="fsm-node-out">Y=0</text>
+          </g>
+
+          <!-- S3 -->
+          <g id="moore-node-s3" class="fsm-node">
+            <circle cx="640" cy="120" r="24" class="fsm-node-circle--output"/>
+            <text x="640" y="116" class="fsm-node-lbl">S₃</text>
+            <text x="640" y="132" class="fsm-node-out fsm-node-out--active">Y=1</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Mealy FSM Diagram -->
+      <div class="fsm-canvas-wrapper" id="fsm-canvas-mealy" style="display: none;">
+        <svg class="fsm-svg" viewBox="0 0 600 240" preserveAspectRatio="xMidYMid meet">
+          <!-- Definitions for markers (arrows) -->
+          <defs>
+            <marker id="arrow-mealy" viewBox="0 0 10 10" refX="28" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+            </marker>
+            <marker id="arrow-mealy-active" viewBox="0 0 10 10" refX="28" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+            </marker>
+          </defs>
+
+          <!-- Transition lines (Mealy) -->
+          <!-- S0 -> S0 (self 0/0) -->
+          <path id="mealy-t-s0-s0" d="M 90,95 C 60,65 120,65 90,95" class="fsm-edge" marker-end="url(#arrow-mealy)"/>
+          <text x="90" y="45" class="fsm-edge-lbl">0 / 0</text>
+
+          <!-- S0 -> S1 (1/0) -->
+          <path id="mealy-t-s0-s1" d="M 120,120 L 280,120" class="fsm-edge" marker-end="url(#arrow-mealy)"/>
+          <text x="200" y="112" class="fsm-edge-lbl">1 / 0</text>
+
+          <!-- S1 -> S1 (self 1/0) -->
+          <path id="mealy-t-s1-s1" d="M 290,95 C 260,65 320,65 290,95" class="fsm-edge" marker-end="url(#arrow-mealy)"/>
+          <text x="290" y="45" class="fsm-edge-lbl">1 / 0</text>
+
+          <!-- S1 -> S2 (0/0) -->
+          <path id="mealy-t-s1-s2" d="M 320,120 L 480,120" class="fsm-edge" marker-end="url(#arrow-mealy)"/>
+          <text x="400" y="112" class="fsm-edge-lbl">0 / 0</text>
+
+          <!-- S2 -> S0 (0/0) -->
+          <path id="mealy-t-s2-s0" d="M 485,140 C 390,210 210,210 115,140" class="fsm-edge" marker-end="url(#arrow-mealy)"/>
+          <text x="300" y="195" class="fsm-edge-lbl">0 / 0</text>
+
+          <!-- S2 -> S1 (1/1) -->
+          <path id="mealy-t-s2-s1" d="M 485,100 C 430,50 360,50 315,100" class="fsm-edge" marker-end="url(#arrow-mealy)"/>
+          <text x="400" y="60" class="fsm-edge-lbl fsm-edge-lbl--active">1 / 1</text>
+
+          <!-- State Circles (Mealy) -->
+          <!-- S0 -->
+          <g id="mealy-node-s0" class="fsm-node is-active">
+            <circle cx="100" cy="120" r="24"/>
+            <text x="100" y="124" class="fsm-node-lbl">S₀</text>
+          </g>
+
+          <!-- S1 -->
+          <g id="mealy-node-s1" class="fsm-node">
+            <circle cx="300" cy="120" r="24"/>
+            <text x="300" y="124" class="fsm-node-lbl">S₁</text>
+          </g>
+
+          <!-- S2 -->
+          <g id="mealy-node-s2" class="fsm-node">
+            <circle cx="500" cy="120" r="24"/>
+            <text x="500" y="124" class="fsm-node-lbl">S₂</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <p class="fsm-cap"><strong>🔬 FSM Simulator (Interactive):</strong> สลับ Moore/Mealy ด้วยแท็บด้านบน, คลิกป้อนบิตอินพุต X ทีละบิต เพื่อดูการเดินสายสถานะและการส่งออกผลลัพธ์ Y</p>
+</div>

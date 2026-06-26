@@ -8,10 +8,2118 @@
       <div class="footer__heading">ติดต่อ</div>
       <small>
         <a href="https://www.facebook.com/phoori.alfa/" target="_blank" rel="noopener">📘 Facebook: ภูริ จันทิมา</a><br>
-        <a href="{{ '/weekly-lesson-plan.html' | relative_url }}">แผนการจัดการเรียนรู้รายสัปดาห์</a><br>
         <a href="https://github.com/{{ site.repository }}" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a><br>
         สร้างด้วย GitHub Pages
       </small>
     </div>
   </div>
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const selectors = [
+    ".prose h2", ".prose h3", ".prose table", ".prose pre", ".prose blockquote", ".prose img",
+    ".section__head", ".clo", ".table-wrap", ".link-list__item", ".assess", "#calendar-view"
+  ];
+  const elements = document.querySelectorAll(selectors.join(", "));
+  
+  // Add reveal class to trigger transitions only when JS is enabled
+  elements.forEach(el => el.classList.add("reveal"));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+        observer.unobserve(entry.target); // Animate only once
+      }
+    });
+  }, {
+    threshold: 0.05,
+    rootMargin: "0px 0px -40px 0px"
+  });
+
+  elements.forEach(el => observer.observe(el));
+
+
+
+  /* ============================================================
+     DELIVERABLE 2 — Logic Gate Widget JS
+     ============================================================ */
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function computeGate(type, a, b) {
+    switch (type) {
+      case 'AND':    return a && b;
+      case 'OR':     return a || b;
+      case 'NOT':    return !a;
+      case 'NAND':   return !(a && b);
+      case 'NOR':    return !(a || b);
+      case 'XOR':    return a !== b;
+      case 'XNOR':   return a === b;
+      case 'BUFFER': return a;
+      default:       return false;
+    }
+  }
+
+  document.querySelectorAll('.lg-demo').forEach(function(demo) {
+    var gateType = demo.dataset.gate;
+    var inputs = demo.querySelectorAll('.lg-in');
+    var outEl = demo.querySelector('.lg-out');
+    var wireA = demo.querySelector('.lg-wire--a');
+    var wireB = demo.querySelector('.lg-wire--b');
+    var wireOut = demo.querySelector('.lg-wire--out');
+
+    function getVal(port) {
+      var btn = demo.querySelector('[data-port="' + port + '"]');
+      return btn ? btn.getAttribute('aria-pressed') === 'true' : false;
+    }
+
+    function updateOutput() {
+      var a = getVal('A');
+      var b = getVal('B');
+      var y = computeGate(gateType, a, b);
+      var yInt = y ? 1 : 0;
+
+      outEl.dataset.state = yInt;
+      outEl.textContent = 'Y=' + yInt;
+
+      if (wireA) wireA.classList.toggle('is-on', a);
+      if (wireB) wireB.classList.toggle('is-on', b);
+      if (wireOut) wireOut.classList.toggle('is-on', y);
+    }
+
+    inputs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var pressed = btn.getAttribute('aria-pressed') === 'true';
+        var newVal = !pressed;
+        btn.setAttribute('aria-pressed', String(newVal));
+        btn.classList.toggle('is-on', newVal);
+        var port = btn.dataset.port;
+        btn.textContent = port + '=' + (newVal ? '1' : '0');
+        updateOutput();
+      });
+    });
+
+    // Initialize with A=0, B=0
+    updateOutput();
+  });
+
+  /* ============================================================
+     DELIVERABLE 3 — 4-bit Binary Counter Widget JS
+     ============================================================ */
+  // Speed mapping: slider value 1–8 → multiplier 0.5×–4×
+  var speedMap = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4];
+
+  document.querySelectorAll('.clk-counter').forEach(function(counter) {
+    var count = 0;
+    var timer = null;
+    var baseInterval = 1000; // ms at 1x speed
+
+    var led     = counter.querySelector('.clk-led');
+    var bitEls  = counter.querySelectorAll('.clk-bit');
+    var decEl   = counter.querySelector('.clk-dec');
+    var playBtn = counter.querySelector('.clk-btn--play');
+    var stepBtn = counter.querySelector('.clk-btn--step');
+    var resetBtn= counter.querySelector('.clk-btn--reset');
+    var speedIn = counter.querySelector('.clk-speed');
+    var speedVal= counter.querySelector('.clk-speed-val');
+
+    function getCurrentInterval() {
+      var idx = parseInt(speedIn.value, 10) - 1;
+      var mult = speedMap[idx] || 1;
+      return Math.round(baseInterval / mult);
+    }
+
+    function updateDisplay() {
+      // Update 4 bit lamps: index 3=Q3(MSB) … 0=Q0(LSB)
+      bitEls.forEach(function(el) {
+        var idx = parseInt(el.dataset.index, 10);
+        var bit = (count >> idx) & 1;
+        el.dataset.bit = bit;
+        el.textContent = bit;
+      });
+      decEl.textContent = count;
+    }
+
+    function tick() {
+      count = (count + 1) & 0xF; // wrap 15 → 0
+      updateDisplay();
+      // Pulse the LED: briefly add/remove a class tied to CLK edge
+      led.style.background = 'var(--cyan)';
+      setTimeout(function() {
+        if (!timer) return; // paused, keep it dim
+        led.style.background = '';
+      }, Math.min(getCurrentInterval() / 2, 200));
+    }
+
+    function startTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(tick, getCurrentInterval());
+      led.classList.add('is-ticking');
+      playBtn.textContent = '⏸ หยุด';
+      playBtn.classList.add('is-playing');
+    }
+
+    function stopTimer() {
+      if (timer) { clearInterval(timer); timer = null; }
+      led.classList.remove('is-ticking');
+      led.style.background = '';
+      playBtn.textContent = '▶ เริ่ม';
+      playBtn.classList.remove('is-playing');
+    }
+
+    playBtn.addEventListener('click', function() {
+      if (timer) {
+        stopTimer();
+      } else {
+        startTimer();
+      }
+    });
+
+    stepBtn.addEventListener('click', function() {
+      stopTimer();
+      tick();
+    });
+
+    resetBtn.addEventListener('click', function() {
+      stopTimer();
+      count = 0;
+      updateDisplay();
+    });
+
+    speedIn.addEventListener('input', function() {
+      var idx = parseInt(speedIn.value, 10) - 1;
+      var mult = speedMap[idx] || 1;
+      speedVal.textContent = mult + '×';
+      // Restart timer at new speed if running
+      if (timer) {
+        startTimer();
+      }
+    });
+
+    // Initialize display
+    updateDisplay();
+
+    // Auto-start ONLY if user has no motion preference
+    if (!prefersReducedMotion) {
+      startTimer();
+    }
+  });
+
+  /* ============================================================
+     Timing Diagram Widget JS
+     ============================================================ */
+  document.querySelectorAll('.timing-diagram').forEach(function(demo) {
+    var preset = demo.dataset.preset || 'gate-selector';
+    var signalsAttr = demo.dataset.signals;
+    
+    var playBtn = demo.querySelector('.td-btn--play');
+    var stepBtn = demo.querySelector('.td-btn--step');
+    var resetBtn = demo.querySelector('.td-btn--reset');
+    var speedIn = demo.querySelector('.td-speed');
+    var speedVal = demo.querySelector('.td-speed-val');
+    var gateSelect = demo.querySelector('.td-gate-select');
+    
+    var svg = demo.querySelector('.td-svg');
+    var gridG = demo.querySelector('.td-grid');
+    var tracksG = demo.querySelector('.td-tracks');
+    var playhead = demo.querySelector('.td-playhead');
+    
+    var speedMap = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4];
+    var progress = 0; // 0 to 8
+    var timer = null;
+    var lastTime = null;
+    
+    var W_A = [0, 1, 0, 1, 0, 1, 1, 0];
+    var W_B = [0, 0, 1, 1, 1, 0, 1, 0];
+    var W_Y = [];
+    var signalNames = ['A', 'B', 'Y'];
+    
+    var isCustom = false;
+    var customSignals = {};
+    if (signalsAttr) {
+      isCustom = true;
+      var pairs = signalsAttr.split(',');
+      signalNames = [];
+      pairs.forEach(function(pair) {
+        var parts = pair.split(':');
+        if (parts.length === 2) {
+          var name = parts[0].trim();
+          var states = parts[1].trim().split('').map(Number);
+          customSignals[name] = states;
+          signalNames.push(name);
+        }
+      });
+    }
+    
+    function getGateType() {
+      return gateSelect ? gateSelect.value : 'AND';
+    }
+    
+    function calculateY() {
+      if (isCustom) return;
+      var gate = getGateType();
+      W_Y = [];
+      for (var i = 0; i < W_A.length; i++) {
+        var a = W_A[i] === 1;
+        var b = W_B[i] === 1;
+        W_Y.push(computeGate(gate, a, b) ? 1 : 0);
+      }
+      var readB = demo.querySelector('.td-readout--b');
+      if (gate === 'NOT') {
+        if (readB) readB.style.display = 'none';
+      } else {
+        if (readB) readB.style.display = 'block';
+      }
+    }
+    
+    function getSignalData(name) {
+      if (isCustom) return customSignals[name] || [];
+      if (name === 'A') return W_A;
+      if (name === 'B') return W_B;
+      if (name === 'Y') return W_Y;
+      return [];
+    }
+    
+    function buildReadouts() {
+      var readoutsContainer = demo.querySelector('.td-readouts');
+      if (readoutsContainer) {
+        if (isCustom) {
+          readoutsContainer.innerHTML = '';
+          signalNames.forEach(function(name) {
+            var div = document.createElement('div');
+            div.className = 'td-readout td-readout--' + name.toLowerCase();
+            
+            var lbl = document.createElement('span');
+            lbl.className = 'td-readout-label';
+            lbl.textContent = name + ' = ';
+            
+            var valSpan = document.createElement('span');
+            valSpan.className = 'val';
+            valSpan.textContent = '-';
+            
+            div.appendChild(lbl);
+            div.appendChild(valSpan);
+            readoutsContainer.appendChild(div);
+          });
+        }
+      }
+    }
+    
+    function drawGrid() {
+      gridG.innerHTML = '';
+      var numSteps = isCustom ? getSignalData(signalNames[0]).length : 8;
+      var stepW = 700 / numSteps;
+      
+      for (var i = 0; i <= numSteps; i++) {
+        var x = 80 + i * stepW;
+        var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', 15);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', 225);
+        line.setAttribute('class', 'td-grid-line' + (i > 0 && i < numSteps ? ' td-grid-line--dashed' : ''));
+        gridG.appendChild(line);
+        
+        var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', 12);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('class', 'td-grid-text');
+        text.textContent = 't' + i;
+        gridG.appendChild(text);
+      }
+      
+      var numTracks = signalNames.length;
+      var trackH = 210 / numTracks;
+      var amp = Math.min(20, trackH * 0.3);
+
+      signalNames.forEach(function(name, tIdx) {
+        if (!isCustom && getGateType() === 'NOT' && name === 'B') return;
+
+        var centerY = 15 + tIdx * trackH + trackH / 2;
+        var yHigh = centerY - amp;
+        var yLow = centerY + amp;
+        
+        var label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', 25);
+        label.setAttribute('y', centerY + 5);
+        label.setAttribute('class', 'td-track-label');
+        label.textContent = name;
+        gridG.appendChild(label);
+        
+        var blLow = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        blLow.setAttribute('x1', 80);
+        blLow.setAttribute('y1', yLow);
+        blLow.setAttribute('x2', 780);
+        blLow.setAttribute('y2', yLow);
+        blLow.setAttribute('stroke', '#1e293b');
+        blLow.setAttribute('stroke-width', '1');
+        blLow.setAttribute('stroke-dasharray', '2 4');
+        gridG.appendChild(blLow);
+        
+        var blHigh = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        blHigh.setAttribute('x1', 80);
+        blHigh.setAttribute('y1', yHigh);
+        blHigh.setAttribute('x2', 780);
+        blHigh.setAttribute('y2', yHigh);
+        blHigh.setAttribute('stroke', '#1e293b');
+        blHigh.setAttribute('stroke-width', '0.5');
+        blHigh.setAttribute('stroke-dasharray', '2 4');
+        gridG.appendChild(blHigh);
+      });
+    }
+    
+    function drawWaveforms() {
+      tracksG.innerHTML = '';
+      var numTracks = signalNames.length;
+      var trackH = 210 / numTracks;
+      var amp = Math.min(20, trackH * 0.3);
+
+      signalNames.forEach(function(name, tIdx) {
+        if (!isCustom && getGateType() === 'NOT' && name === 'B') return;
+
+        var W = getSignalData(name);
+        if (W.length === 0) return;
+
+        var stepW = 700 / W.length;
+        var centerY = 15 + tIdx * trackH + trackH / 2;
+        var yHigh = centerY - amp;
+        var yLow = centerY + amp;
+        
+        var pathD = '';
+        for (var i = 0; i < W.length; i++) {
+          var xStart = 80 + i * stepW;
+          var xEnd = 80 + (i + 1) * stepW;
+          var yVal = W[i] === 1 ? yHigh : yLow;
+          
+          if (i === 0) {
+            pathD += 'M ' + xStart + ' ' + yVal;
+          } else {
+            var yPrev = W[i-1] === 1 ? yHigh : yLow;
+            if (yVal !== yPrev) {
+              pathD += ' L ' + xStart + ' ' + yVal;
+            }
+          }
+          pathD += ' L ' + xEnd + ' ' + yVal;
+        }
+        
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', pathD);
+        
+        var isOut = (name === 'Y' || name === 'Q' || name === 'Q0' || name === 'Q1' || name === 'Q2' || name === 'Q3' || name === 'Out');
+        var pathClass = 'td-wave-path';
+        if (isOut) {
+          pathClass += ' td-wave-path--out-high';
+        } else {
+          pathClass += ' td-wave-path--high';
+        }
+        path.setAttribute('class', pathClass);
+        tracksG.appendChild(path);
+      });
+    }
+    
+    function updateReadouts() {
+      var numSteps = isCustom ? getSignalData(signalNames[0]).length : 8;
+      var stepIdx = Math.min(numSteps - 1, Math.floor(progress));
+      
+      signalNames.forEach(function(name) {
+        var W = getSignalData(name);
+        var val = W[stepIdx] !== undefined ? W[stepIdx] : 0;
+        
+        var readoutEl = demo.querySelector('.td-readout--' + name.toLowerCase());
+        if (!readoutEl) return;
+        
+        var valSpan = readoutEl.querySelector('.val');
+        if (valSpan) {
+          valSpan.textContent = val;
+          valSpan.dataset.state = val;
+        }
+      });
+    }
+    
+    function setPlayhead(p) {
+      progress = p;
+      var numSteps = isCustom ? getSignalData(signalNames[0]).length : 8;
+      if (progress > numSteps) progress = 0;
+      if (progress < 0) progress = numSteps;
+      
+      var stepW = 700 / numSteps;
+      var x = 80 + progress * stepW;
+      playhead.setAttribute('x1', x);
+      playhead.setAttribute('x2', x);
+      
+      updateReadouts();
+    }
+    
+    function getCurrentInterval() {
+      var idx = parseInt(speedIn.value, 10) - 1;
+      var mult = speedMap[idx] || 1;
+      return 1000 / mult;
+    }
+    
+    function updateSpeedText() {
+      var idx = parseInt(speedIn.value, 10) - 1;
+      var mult = speedMap[idx] || 1;
+      speedVal.textContent = mult + '×';
+    }
+    
+    function tick(timestamp) {
+      if (!timer) return;
+      if (!lastTime) lastTime = timestamp;
+      var elapsed = timestamp - lastTime;
+      
+      var numSteps = isCustom ? getSignalData(signalNames[0]).length : 8;
+      var stepDuration = getCurrentInterval(); 
+      var stepProgress = (elapsed / stepDuration);
+      
+      var nextProgress = progress + stepProgress;
+      if (nextProgress >= numSteps) {
+        nextProgress = 0;
+      }
+      setPlayhead(nextProgress);
+      
+      lastTime = timestamp;
+      timer = requestAnimationFrame(tick);
+    }
+    
+    function start() {
+      if (timer) return;
+      lastTime = null;
+      timer = requestAnimationFrame(tick);
+      playBtn.textContent = '⏸ หยุด';
+      playBtn.classList.add('is-playing');
+    }
+    
+    function stop() {
+      if (timer) {
+        cancelAnimationFrame(timer);
+        timer = null;
+      }
+      playBtn.textContent = '▶ เริ่ม';
+      playBtn.classList.remove('is-playing');
+    }
+    
+    playBtn.addEventListener('click', function() {
+      if (timer) stop();
+      else start();
+    });
+    
+    stepBtn.addEventListener('click', function() {
+      stop();
+      var numSteps = isCustom ? getSignalData(signalNames[0]).length : 8;
+      var next = Math.floor(progress) + 1;
+      if (next >= numSteps) next = 0;
+      setPlayhead(next);
+    });
+    
+    resetBtn.addEventListener('click', function() {
+      stop();
+      setPlayhead(0);
+    });
+    
+    speedIn.addEventListener('input', function() {
+      updateSpeedText();
+    });
+    
+    if (gateSelect) {
+      gateSelect.addEventListener('change', function() {
+        calculateY();
+        drawGrid();
+        drawWaveforms();
+        updateReadouts();
+      });
+    }
+    
+    // Initialization
+    calculateY();
+    buildReadouts();
+    drawGrid();
+    drawWaveforms();
+    updateSpeedText();
+    setPlayhead(0);
+    
+  });
+
+  /* ============================================================
+     Flip-Flop Widget JS
+     ============================================================ */
+  document.querySelectorAll('.ff-demo').forEach(function(demo) {
+    var activeType = 'D'; // D, JK, T, SR
+    var stateQ = 0;
+    
+    // Inputs state
+    var inputs = {
+      D: 0,
+      J: 0, K: 0,
+      T: 0,
+      S: 0, R: 0
+    };
+    
+    var tabs = demo.querySelectorAll('.ff-tab');
+    var inputsContainer = demo.querySelector('#ff-inputs-container');
+    var clkTrigger = demo.querySelector('#ff-clk-trigger');
+    var clkIndicator = demo.querySelector('#ff-clk-indicator');
+    
+    var icTitle = demo.querySelector('#ff-ic-title');
+    var portLbl1 = demo.querySelector('#ff-port-lbl-1');
+    var portLbl2 = demo.querySelector('#ff-port-lbl-2');
+    
+    var lampQ = demo.querySelector('#ff-lamp-q');
+    var lampQbar = demo.querySelector('#ff-lamp-qbar');
+    
+    var tableBody = demo.querySelector('#ff-table-body');
+    
+    // State transition definitions
+    var tables = {
+      D: {
+        headers: ['D', 'Q', 'Q⁺', 'Q̄⁺', 'โหมดการทำงาน'],
+        rows: [
+          { inputs: { D: 0 }, q: 0, nextQ: 0, qbar: 1, mode: 'Reset (เคลียร์ค่า)' },
+          { inputs: { D: 0 }, q: 1, nextQ: 0, qbar: 1, mode: 'Reset (เคลียร์ค่า)' },
+          { inputs: { D: 1 }, q: 0, nextQ: 1, qbar: 0, mode: 'Set (ตั้งค่า)' },
+          { inputs: { D: 1 }, q: 1, nextQ: 1, qbar: 0, mode: 'Set (ตั้งค่า)' }
+        ]
+      },
+      JK: {
+        headers: ['J', 'K', 'Q', 'Q⁺', 'Q̄⁺', 'โหมดการทำงาน'],
+        rows: [
+          { inputs: { J: 0, K: 0 }, q: 0, nextQ: 0, qbar: 1, mode: 'Hold (คงค่าเดิม)' },
+          { inputs: { J: 0, K: 0 }, q: 1, nextQ: 1, qbar: 0, mode: 'Hold (คงค่าเดิม)' },
+          { inputs: { J: 0, K: 1 }, q: 0, nextQ: 0, qbar: 1, mode: 'Reset (เคลียร์ค่า)' },
+          { inputs: { J: 0, K: 1 }, q: 1, nextQ: 0, qbar: 1, mode: 'Reset (เคลียร์ค่า)' },
+          { inputs: { J: 1, K: 0 }, q: 0, nextQ: 1, qbar: 0, mode: 'Set (ตั้งค่า)' },
+          { inputs: { J: 1, K: 0 }, q: 1, nextQ: 1, qbar: 0, mode: 'Set (ตั้งค่า)' },
+          { inputs: { J: 1, K: 1 }, q: 0, nextQ: 1, qbar: 0, mode: 'Toggle (สลับค่า)' },
+          { inputs: { J: 1, K: 1 }, q: 1, nextQ: 0, qbar: 1, mode: 'Toggle (สลับค่า)' }
+        ]
+      },
+      T: {
+        headers: ['T', 'Q', 'Q⁺', 'Q̄⁺', 'โหมดการทำงาน'],
+        rows: [
+          { inputs: { T: 0 }, q: 0, nextQ: 0, qbar: 1, mode: 'Hold (คงค่าเดิม)' },
+          { inputs: { T: 0 }, q: 1, nextQ: 1, qbar: 0, mode: 'Hold (คงค่าเดิม)' },
+          { inputs: { T: 1 }, q: 0, nextQ: 1, qbar: 0, mode: 'Toggle (สลับค่า)' },
+          { inputs: { T: 1 }, q: 1, nextQ: 0, qbar: 1, mode: 'Toggle (สลับค่า)' }
+        ]
+      },
+      SR: {
+        headers: ['S', 'R', 'Q', 'Q⁺', 'Q̄⁺', 'โหมดการทำงาน'],
+        rows: [
+          { inputs: { S: 0, R: 0 }, q: 0, nextQ: 0, qbar: 1, mode: 'Hold (คงค่าเดิม)' },
+          { inputs: { S: 0, R: 0 }, q: 1, nextQ: 1, qbar: 0, mode: 'Hold (คงค่าเดิม)' },
+          { inputs: { S: 0, R: 1 }, q: 0, nextQ: 0, qbar: 1, mode: 'Reset (เคลียร์ค่า)' },
+          { inputs: { S: 0, R: 1 }, q: 1, nextQ: 0, qbar: 1, mode: 'Reset (เคลียร์ค่า)' },
+          { inputs: { S: 1, R: 0 }, q: 0, nextQ: 1, qbar: 0, mode: 'Set (ตั้งค่า)' },
+          { inputs: { S: 1, R: 0 }, q: 1, nextQ: 1, qbar: 0, mode: 'Set (ตั้งค่า)' },
+          { inputs: { S: 1, R: 1 }, q: 0, nextQ: '?', qbar: '?', mode: '🚨 Invalid (ห้ามใช้)' },
+          { inputs: { S: 1, R: 1 }, q: 1, nextQ: '?', qbar: '?', mode: '🚨 Invalid (ห้ามใช้)' }
+        ]
+      }
+    };
+    
+    function updateLayout() {
+      icTitle.textContent = activeType + '-FF';
+      if (activeType === 'D') {
+        portLbl1.textContent = 'D';
+        portLbl1.style.visibility = 'visible';
+        portLbl2.style.visibility = 'hidden';
+      } else if (activeType === 'T') {
+        portLbl1.textContent = 'T';
+        portLbl1.style.visibility = 'visible';
+        portLbl2.style.visibility = 'hidden';
+      } else if (activeType === 'JK') {
+        portLbl1.textContent = 'J';
+        portLbl1.style.visibility = 'visible';
+        portLbl2.textContent = 'K';
+        portLbl2.style.visibility = 'visible';
+      } else if (activeType === 'SR') {
+        portLbl1.textContent = 'S';
+        portLbl1.style.visibility = 'visible';
+        portLbl2.textContent = 'R';
+        portLbl2.style.visibility = 'visible';
+      }
+      
+      inputsContainer.innerHTML = '';
+      var inputKeys = activeType === 'D' ? ['D'] : (activeType === 'T' ? ['T'] : (activeType === 'JK' ? ['J', 'K'] : ['S', 'R']));
+      
+      inputKeys.forEach(function(key) {
+        var val = inputs[key];
+        var btn = document.createElement('button');
+        btn.className = 'ff-btn' + (val === 1 ? ' is-active' : '');
+        btn.textContent = key + ' = ' + val;
+        btn.addEventListener('click', function() {
+          inputs[key] = inputs[key] === 1 ? 0 : 1;
+          btn.textContent = key + ' = ' + inputs[key];
+          btn.classList.toggle('is-active', inputs[key] === 1);
+          highlightActiveRow();
+        });
+        inputsContainer.appendChild(btn);
+      });
+      
+      renderTable();
+    }
+    
+    function renderTable() {
+      var data = tables[activeType];
+      var html = '<thead><tr>';
+      
+      data.headers.forEach(function(h) {
+        html += '<th>' + h + '</th>';
+      });
+      html += '</tr></thead><tbody>';
+      
+      data.rows.forEach(function(row, idx) {
+        html += '<tr data-row-idx="' + idx + '">';
+        
+        var keys = Object.keys(row.inputs);
+        keys.forEach(function(k) {
+          html += '<td>' + row.inputs[k] + '</td>';
+        });
+        
+        html += '<td>' + row.q + '</td>';
+        
+        var qStyle = (row.nextQ === '?') ? 'style="color: #ef4444; font-weight: bold;"' : '';
+        html += '<td ' + qStyle + '>' + row.nextQ + '</td>';
+        html += '<td ' + qStyle + '>' + row.qbar + '</td>';
+        
+        html += '<td>' + row.mode + '</td>';
+        html += '</tr>';
+      });
+      html += '</tbody>';
+      tableBody.innerHTML = html;
+      
+      highlightActiveRow();
+    }
+    
+    function highlightActiveRow() {
+      var data = tables[activeType];
+      var rows = tableBody.querySelectorAll('tbody tr');
+      
+      rows.forEach(function(rowEl, idx) {
+        var rowData = data.rows[idx];
+        var match = true;
+        
+        var keys = Object.keys(rowData.inputs);
+        keys.forEach(function(k) {
+          if (rowData.inputs[k] !== inputs[k]) {
+            match = false;
+          }
+        });
+        
+        if (rowData.q !== stateQ) {
+          match = false;
+        }
+        
+        if (match) {
+          rowEl.className = 'ff-row-active';
+        } else {
+          rowEl.className = '';
+        }
+      });
+    }
+    
+    function updateLamps() {
+      lampQ.textContent = 'Q = ' + stateQ;
+      lampQ.dataset.state = stateQ;
+      
+      var qbarVal = stateQ === '?' ? '?' : (stateQ === 1 ? 0 : 1);
+      lampQbar.textContent = 'Q̄ = ' + qbarVal;
+      lampQbar.dataset.state = qbarVal;
+    }
+    
+    function triggerClk() {
+      clkIndicator.classList.add('is-active');
+      setTimeout(function() {
+        clkIndicator.classList.remove('is-active');
+      }, 150);
+      
+      var nextQ = stateQ;
+      if (activeType === 'D') {
+        nextQ = inputs.D;
+      } else if (activeType === 'T') {
+        if (inputs.T === 1) {
+          nextQ = stateQ === 1 ? 0 : 1;
+        }
+      } else if (activeType === 'JK') {
+        var j = inputs.J;
+        var k = inputs.K;
+        if (j === 0 && k === 1) nextQ = 0;
+        else if (j === 1 && k === 0) nextQ = 1;
+        else if (j === 1 && k === 1) nextQ = stateQ === 1 ? 0 : 1;
+      } else if (activeType === 'SR') {
+        var s = inputs.S;
+        var r = inputs.R;
+        if (s === 0 && r === 1) nextQ = 0;
+        else if (s === 1 && r === 0) nextQ = 1;
+        else if (s === 1 && r === 1) nextQ = '?';
+      }
+      
+      stateQ = nextQ;
+      updateLamps();
+      highlightActiveRow();
+    }
+    
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        activeType = tab.dataset.type;
+        
+        if (stateQ === '?') stateQ = 0;
+        
+        updateLayout();
+        updateLamps();
+      });
+    });
+    
+    clkTrigger.addEventListener('click', triggerClk);
+    
+    updateLayout();
+    updateLamps();
+  });
+
+  /* ============================================================
+     Shift Register Widget JS
+     ============================================================ */
+  document.querySelectorAll('.sr-demo').forEach(function(demo) {
+    var mode = 'SISO'; // SISO, SIPO, PISO, PIPO
+    var reg = [0, 0, 0, 0]; // [Q3, Q2, Q1, Q0]
+    var sin = 0;
+    var pin = [0, 0, 0, 0]; // [I3, I2, I1, I0]
+    var pisoMode = 'shift'; // shift, load
+    
+    var timer = null;
+    var baseInterval = 1000;
+    var speedMap = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4];
+    
+    // DOM Elements
+    var tabs = demo.querySelectorAll('.sr-tab');
+    var btnSin = demo.querySelector('#sr-btn-sin');
+    var btnPins = demo.querySelectorAll('.sr-btn--pin');
+    var btnPisoMode = demo.querySelector('#sr-btn-piso-mode');
+    
+    var btnPulse = demo.querySelector('#sr-btn-pulse');
+    var btnPlay = demo.querySelector('#sr-btn-play');
+    var btnReset = demo.querySelector('#sr-btn-reset');
+    var speedRange = demo.querySelector('#sr-speed-range');
+    var speedText = demo.querySelector('#sr-speed-text');
+    
+    var groupSerialIn = demo.querySelector('#sr-group-serial-in');
+    var groupParallelIn = demo.querySelector('#sr-group-parallel-in');
+    var groupPisoControl = demo.querySelector('#sr-group-piso-control');
+    
+    var lineSin = demo.querySelector('#sr-line-sin');
+    var lineSout = demo.querySelector('#sr-line-sout');
+    var dotSin = demo.querySelector('#sr-dot-sin');
+    var dotSout = demo.querySelector('#sr-dot-sout');
+    
+    var regBoxes = [
+      demo.querySelector('#sr-box-0'),
+      demo.querySelector('#sr-box-1'),
+      demo.querySelector('#sr-box-2'),
+      demo.querySelector('#sr-box-3')
+    ];
+    var arrows = demo.querySelectorAll('.sr-arrow');
+    var poutVisual = demo.querySelector('#sr-pout-visual');
+    
+    function getInterval() {
+      var val = parseInt(speedRange.value, 10) - 1;
+      var mult = speedMap[val] || 1;
+      return Math.round(baseInterval / mult);
+    }
+    
+    function updateLayout() {
+      // Toggle inputs visibility
+      if (mode === 'SISO') {
+        groupSerialIn.style.display = 'block';
+        groupParallelIn.style.display = 'none';
+        groupPisoControl.style.display = 'none';
+        
+        lineSin.style.visibility = 'visible';
+        lineSout.style.visibility = 'visible';
+        poutVisual.style.display = 'none';
+        
+        regBoxes.forEach(function(box) {
+          box.querySelector('.sr-reg-pin-indicator').style.display = 'none';
+        });
+      } 
+      else if (mode === 'SIPO') {
+        groupSerialIn.style.display = 'block';
+        groupParallelIn.style.display = 'none';
+        groupPisoControl.style.display = 'none';
+        
+        lineSin.style.visibility = 'visible';
+        lineSout.style.visibility = 'hidden';
+        poutVisual.style.display = 'flex';
+        
+        regBoxes.forEach(function(box) {
+          box.querySelector('.sr-reg-pin-indicator').style.display = 'none';
+        });
+      } 
+      else if (mode === 'PISO') {
+        groupSerialIn.style.display = 'block';
+        groupParallelIn.style.display = 'block';
+        groupPisoControl.style.display = 'block';
+        
+        lineSin.style.visibility = 'visible';
+        lineSout.style.visibility = 'visible';
+        poutVisual.style.display = 'none';
+        
+        regBoxes.forEach(function(box, idx) {
+          box.querySelector('.sr-reg-pin-indicator').style.display = 'block';
+        });
+      } 
+      else if (mode === 'PIPO') {
+        groupSerialIn.style.display = 'none';
+        groupParallelIn.style.display = 'block';
+        groupPisoControl.style.display = 'none';
+        
+        lineSin.style.visibility = 'hidden';
+        lineSout.style.visibility = 'hidden';
+        poutVisual.style.display = 'flex';
+        
+        regBoxes.forEach(function(box) {
+          box.querySelector('.sr-reg-pin-indicator').style.display = 'block';
+        });
+      }
+      
+      updateDisplay();
+    }
+    
+    function updateDisplay() {
+      // Registers
+      for (var i = 0; i < 4; i++) {
+        var valEl = regBoxes[i].querySelector('.sr-reg-val');
+        valEl.textContent = reg[i];
+        valEl.dataset.state = reg[i];
+        
+        // Parallel outputs
+        var lamp = demo.querySelector('#sr-lamp-' + i);
+        if (lamp) {
+          lamp.textContent = 'Q' + i + ' = ' + reg[i];
+          lamp.dataset.state = reg[i];
+        }
+      }
+    }
+    
+    function triggerClk() {
+      // Animate arrows and boxes
+      arrows.forEach(function(arr) {
+        arr.classList.add('is-active');
+        setTimeout(function() { arr.classList.remove('is-active'); }, 250);
+      });
+      
+      regBoxes.forEach(function(box) {
+        box.classList.add('is-shifting');
+        setTimeout(function() { box.classList.remove('is-shifting'); }, 200);
+      });
+      
+      // Pulse dots for serial shifting
+      if (mode === 'SISO' || mode === 'SIPO' || (mode === 'PISO' && pisoMode === 'shift')) {
+        if (dotSin) {
+          dotSin.classList.add('is-pulsing');
+          setTimeout(function() { dotSin.classList.remove('is-pulsing'); }, 300);
+        }
+        if (dotSout && reg[0] === 1 && (mode === 'SISO' || mode === 'PISO')) {
+          setTimeout(function() {
+            dotSout.classList.add('is-pulsing');
+            setTimeout(function() { dotSout.classList.remove('is-pulsing'); }, 300);
+          }, 150);
+        }
+      }
+      
+      // Calculate next state
+      if (mode === 'PIPO') {
+        // Load directly
+        reg = [...pin];
+      } 
+      else if (mode === 'PISO' && pisoMode === 'load') {
+        // Load parallel inputs
+        reg = [...pin];
+        // Automatically switch back to shift after loading to make it easy for students
+        pisoMode = 'shift';
+        btnPisoMode.textContent = 'SHIFT (เลื่อนข้อมูล)';
+        btnPisoMode.classList.remove('active');
+      } 
+      else {
+        // Shifting right: Q0<=Q1, Q1<=Q2, Q2<=Q3, Q3<=SIN
+        reg[0] = reg[1];
+        reg[1] = reg[2];
+        reg[2] = reg[3];
+        reg[3] = sin;
+      }
+      
+      updateDisplay();
+    }
+    
+    function start() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(triggerClk, getInterval());
+      btnPlay.textContent = '⏸ หยุดเล่น';
+      btnPlay.classList.add('is-playing');
+    }
+    
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      btnPlay.textContent = '▶ เล่นอัตโนมัติ';
+      btnPlay.classList.remove('is-playing');
+    }
+    
+    // Event listeners
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        mode = tab.dataset.mode;
+        stop();
+        updateLayout();
+      });
+    });
+    
+    btnSin.addEventListener('click', function() {
+      sin = sin === 1 ? 0 : 1;
+      btnSin.textContent = 'SIN = ' + sin;
+      btnSin.setAttribute('aria-pressed', String(sin === 1));
+    });
+    
+    btnPins.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var idx = parseInt(btn.dataset.bitIdx, 10);
+        pin[idx] = pin[idx] === 1 ? 0 : 1;
+        btn.textContent = 'I' + idx + ' = ' + pin[idx];
+        btn.classList.toggle('is-active', pin[idx] === 1);
+      });
+    });
+    
+    if (btnPisoMode) {
+      btnPisoMode.addEventListener('click', function() {
+        if (pisoMode === 'shift') {
+          pisoMode = 'load';
+          btnPisoMode.textContent = 'LOAD (เขียนข้อมูลขนาน)';
+          btnPisoMode.classList.add('active');
+        } else {
+          pisoMode = 'shift';
+          btnPisoMode.textContent = 'SHIFT (เลื่อนข้อมูล)';
+          btnPisoMode.classList.remove('active');
+        }
+      });
+    }
+    
+    btnPulse.addEventListener('click', function() {
+      stop();
+      triggerClk();
+    });
+    
+    btnPlay.addEventListener('click', function() {
+      if (timer) stop();
+      else start();
+    });
+    
+    btnReset.addEventListener('click', function() {
+      stop();
+      reg = [0, 0, 0, 0];
+      updateDisplay();
+    });
+    
+    speedRange.addEventListener('input', function() {
+      var val = parseInt(speedRange.value, 10) - 1;
+      var mult = speedMap[val] || 1;
+      speedText.textContent = mult + '×';
+      if (timer) {
+        start();
+      }
+    });
+    
+    // Init
+    updateLayout();
+  });
+
+  /* ============================================================
+     Ripple Carry Adder Widget JS
+     ============================================================ */
+  document.querySelectorAll('.adder-demo').forEach(function(demo) {
+    var A = [0, 0, 0, 0]; // [A3, A2, A1, A0]
+    var B = [0, 0, 0, 0]; // [B3, B2, B1, B0]
+    var C0 = 0;
+    
+    var animStep = -1;
+    var carryVal = 0;
+    var animInterval = null;
+    var sums = [0, 0, 0, 0];
+    var carries = [0, 0, 0, 0, 0]; // [C0, C1, C2, C3, C4]
+    
+    var btnCalc = demo.querySelector('#adder-btn-calc');
+    var btnStep = demo.querySelector('#adder-btn-step');
+    var btnReset = demo.querySelector('#adder-btn-reset');
+    var btnC0 = demo.querySelector('#adder-btn-c0');
+    
+    var decA = demo.querySelector('#adder-dec-a');
+    var decB = demo.querySelector('#adder-dec-b');
+    var decOut = demo.querySelector('#adder-out-dec');
+    
+    var outC4 = demo.querySelector('#adder-out-c4');
+    
+    function updateDecimalReadouts() {
+      var valA = parseInt(A.join(''), 2);
+      var valB = parseInt(B.join(''), 2);
+      decA.textContent = '(ฐานสิบ: ' + valA + ')';
+      decB.textContent = '(ฐานสิบ: ' + valB + ')';
+    }
+    
+    function initButtons() {
+      demo.querySelectorAll('.adder-btn-bit[data-input]').forEach(function(btn) {
+        var input = btn.dataset.input;
+        var idx = parseInt(btn.dataset.idx, 10);
+        
+        btn.addEventListener('click', function() {
+          if (animStep !== -1) resetSimulation();
+          
+          if (input === 'A') {
+            A[3 - idx] = A[3 - idx] === 1 ? 0 : 1;
+            btn.textContent = 'A' + idx + ' = ' + A[3 - idx];
+            btn.dataset.state = A[3 - idx];
+            btn.classList.toggle('is-active', A[3 - idx] === 1);
+            var wire = demo.querySelector('#adder-w-a' + idx);
+            if (wire) {
+              wire.textContent = 'A' + idx + ' = ' + A[3 - idx];
+              wire.classList.toggle('is-active', A[3 - idx] === 1);
+            }
+          } else {
+            B[3 - idx] = B[3 - idx] === 1 ? 0 : 1;
+            btn.textContent = 'B' + idx + ' = ' + B[3 - idx];
+            btn.dataset.state = B[3 - idx];
+            btn.classList.toggle('is-active', B[3 - idx] === 1);
+            var wire = demo.querySelector('#adder-w-b' + idx);
+            if (wire) {
+              wire.textContent = 'B' + idx + ' = ' + B[3 - idx];
+              wire.classList.toggle('is-active', B[3 - idx] === 1);
+            }
+          }
+          updateDecimalReadouts();
+        });
+      });
+      
+      btnC0.addEventListener('click', function() {
+        if (animStep !== -1) resetSimulation();
+        C0 = C0 === 1 ? 0 : 1;
+        btnC0.textContent = 'C₀ = ' + C0;
+        btnC0.classList.toggle('is-active', C0 === 1);
+        
+        var c0Wire = demo.querySelector('#adder-c-wire-0');
+        if (c0Wire) c0Wire.classList.toggle('is-active', C0 === 1);
+        updateDecimalReadouts();
+      });
+    }
+    
+    function resetSimulation() {
+      if (animInterval) {
+        clearInterval(animInterval);
+        animInterval = null;
+      }
+      animStep = -1;
+      carryVal = 0;
+      
+      for (var i = 0; i < 4; i++) {
+        var faBox = demo.querySelector('#adder-fa-' + i);
+        if (faBox) {
+          faBox.classList.remove('is-active', 'is-done');
+          var cin = faBox.querySelector('.cin');
+          var cout = faBox.querySelector('.cout');
+          if (cin) {
+            cin.classList.remove('is-active');
+            cin.textContent = 'Cin = 0';
+          }
+          if (cout) {
+            cout.classList.remove('is-active');
+            cout.textContent = 'Cout = 0';
+          }
+        }
+        
+        var wireS = demo.querySelector('#adder-w-s' + i);
+        if (wireS) {
+          wireS.textContent = 'S' + i + ' = 0';
+          wireS.classList.remove('is-active');
+        }
+        
+        var outS = demo.querySelector('#adder-out-s' + i);
+        if (outS) {
+          outS.textContent = 'S' + i + ' = 0';
+          outS.classList.remove('is-active');
+        }
+        
+        if (i > 0) {
+          var wireC = demo.querySelector('#adder-c-wire-' + i);
+          if (wireC) wireC.classList.remove('is-active');
+          var dotC = demo.querySelector('#adder-c-dot-' + i);
+          if (dotC) dotC.classList.remove('is-flowing');
+        }
+      }
+      
+      var dotC0 = demo.querySelector('#adder-c-dot-0');
+      if (dotC0) dotC0.classList.remove('is-flowing');
+      var wireC0 = demo.querySelector('#adder-c-wire-0');
+      if (wireC0) wireC0.classList.toggle('is-active', C0 === 1);
+      
+      if (outC4) {
+        outC4.textContent = 'C₄ = 0';
+        outC4.classList.remove('is-active');
+      }
+      
+      decOut.textContent = 'ฐานสิบ: ' + parseInt(A.join(''), 2) + ' + ' + parseInt(B.join(''), 2) + ' = ?';
+      btnCalc.textContent = '➕ เริ่มบวก (Animate Carry)';
+    }
+    
+    function runSimulationStep() {
+      if (animStep === -1) {
+        animStep = 0;
+        carryVal = C0;
+        carries[0] = C0;
+        
+        var dotC0 = demo.querySelector('#adder-c-dot-0');
+        if (C0 === 1 && dotC0) {
+          dotC0.classList.add('is-flowing');
+        }
+      }
+      
+      if (animStep < 4) {
+        var i = animStep;
+        
+        for (var j = 0; j < 4; j++) {
+          var fb = demo.querySelector('#adder-fa-' + j);
+          if (fb) fb.classList.toggle('is-active', j === i);
+        }
+        
+        var faBox = demo.querySelector('#adder-fa-' + i);
+        if (faBox) {
+          var cinEl = faBox.querySelector('.cin');
+          var coutEl = faBox.querySelector('.cout');
+          
+          if (cinEl) {
+            cinEl.textContent = 'Cin = ' + carryVal;
+            cinEl.classList.toggle('is-active', carryVal === 1);
+          }
+          
+          var a = A[3 - i];
+          var b = B[3 - i];
+          
+          var sum = a ^ b ^ carryVal;
+          var cout = (a & b) | (carryVal & (a ^ b));
+          
+          sums[i] = sum;
+          carries[i+1] = cout;
+          
+          var wireS = demo.querySelector('#adder-w-s' + i);
+          if (wireS) {
+            wireS.textContent = 'S' + i + ' = ' + sum;
+            wireS.classList.toggle('is-active', sum === 1);
+          }
+          
+          if (coutEl) {
+            coutEl.textContent = 'Cout = ' + cout;
+            coutEl.classList.toggle('is-active', cout === 1);
+          }
+          
+          faBox.classList.add('is-done');
+          
+          var outS = demo.querySelector('#adder-out-s' + i);
+          if (outS) {
+            outS.textContent = 'S' + i + ' = ' + sum;
+            outS.classList.toggle('is-active', sum === 1);
+          }
+          
+          if (i < 3) {
+            var wireC = demo.querySelector('#adder-c-wire-' + (i+1));
+            var dotC = demo.querySelector('#adder-c-dot-' + (i+1));
+            
+            if (cout === 1) {
+              if (wireC) wireC.classList.add('is-active');
+              if (dotC) {
+                dotC.classList.add('is-flowing');
+              }
+            }
+            
+            carryVal = cout;
+            animStep++;
+          } else {
+            if (outC4) {
+              outC4.textContent = 'C₄ = ' + cout;
+              outC4.classList.toggle('is-active', cout === 1);
+            }
+            
+            var finalVal = (cout << 4) | (sums[3] << 3) | (sums[2] << 2) | (sums[1] << 1) | sums[0];
+            var valA = parseInt(A.join(''), 2);
+            var valB = parseInt(B.join(''), 2);
+            decOut.textContent = 'ฐานสิบ: ' + valA + ' + ' + valB + ' = ' + finalVal + ' (ฐานสอง: ' + cout + sums[3] + sums[2] + sums[1] + sums[0] + ')';
+            
+            animStep = 4;
+            btnCalc.textContent = '➕ เริ่มใหม่';
+            if (animInterval) {
+              clearInterval(animInterval);
+              animInterval = null;
+            }
+          }
+        }
+      } else {
+        resetSimulation();
+      }
+    }
+    
+    function startAutoSimulation() {
+      resetSimulation();
+      btnCalc.textContent = '⏸ หยุด';
+      animInterval = setInterval(function() {
+        if (animStep < 4) {
+          runSimulationStep();
+        } else {
+          clearInterval(animInterval);
+          animInterval = null;
+        }
+      }, 1000);
+    }
+    
+    btnCalc.addEventListener('click', function() {
+      if (animInterval) {
+        clearInterval(animInterval);
+        animInterval = null;
+        btnCalc.textContent = '▶ เล่นต่อ';
+      } else if (animStep === 4) {
+        resetSimulation();
+      } else if (animStep !== -1) {
+        btnCalc.textContent = '⏸ หยุด';
+        animInterval = setInterval(function() {
+          if (animStep < 4) {
+            runSimulationStep();
+          } else {
+            clearInterval(animInterval);
+            animInterval = null;
+          }
+        }, 1000);
+      } else {
+        startAutoSimulation();
+      }
+    });
+    
+    btnStep.addEventListener('click', function() {
+      if (animInterval) {
+        clearInterval(animInterval);
+        animInterval = null;
+        btnCalc.textContent = '▶ เล่นต่อ';
+      }
+      if (animStep === 4) resetSimulation();
+      runSimulationStep();
+    });
+    
+    btnReset.addEventListener('click', resetSimulation);
+    
+    initButtons();
+    updateDecimalReadouts();
+  });
+
+  /* ============================================================
+     FSM State Diagram Widget JS
+     ============================================================ */
+  document.querySelectorAll('.fsm-demo').forEach(function(demo) {
+    var fsmType = 'moore'; // moore, mealy
+    var currentState = 0; // 0, 1, 2, 3
+    var stepCount = 0;
+    
+    var tabs = demo.querySelectorAll('.fsm-tab');
+    var btnX0 = demo.querySelector('#fsm-btn-x0');
+    var btnX1 = demo.querySelector('#fsm-btn-x1');
+    var btnReset = demo.querySelector('#fsm-btn-reset');
+    
+    var stateDisplay = demo.querySelector('#fsm-current-state');
+    var outputIndicator = demo.querySelector('#fsm-output-indicator');
+    var historyLog = demo.querySelector('#fsm-history-log');
+    
+    var canvasMoore = demo.querySelector('#fsm-canvas-moore');
+    var canvasMealy = demo.querySelector('#fsm-canvas-mealy');
+    
+    var mooreTransitions = {
+      0: { 0: { next: 0, out: 0, edge: 'moore-t-s0-s0' }, 1: { next: 1, out: 0, edge: 'moore-t-s0-s1' } },
+      1: { 0: { next: 2, out: 0, edge: 'moore-t-s1-s2' }, 1: { next: 1, out: 0, edge: 'moore-t-s1-s1' } },
+      2: { 0: { next: 0, out: 0, edge: 'moore-t-s2-s0' }, 1: { next: 3, out: 0, edge: 'moore-t-s2-s3' } },
+      3: { 0: { next: 2, out: 0, edge: 'moore-t-s3-s2' }, 1: { next: 1, out: 0, edge: 'moore-t-s3-s1' } }
+    };
+    
+    var mealyTransitions = {
+      0: { 0: { next: 0, out: 0, edge: 'mealy-t-s0-s0' }, 1: { next: 1, out: 0, edge: 'mealy-t-s0-s1' } },
+      1: { 0: { next: 2, out: 0, edge: 'mealy-t-s1-s2' }, 1: { next: 1, out: 0, edge: 'mealy-t-s1-s1' } },
+      2: { 0: { next: 0, out: 0, edge: 'mealy-t-s2-s0' }, 1: { next: 1, out: 1, edge: 'mealy-t-s2-s1' } }
+    };
+    
+    function resetFsm() {
+      currentState = 0;
+      stepCount = 0;
+      historyLog.innerHTML = '<div class="fsm-history-empty">กดปุ่มอินพุต X ด้านบนเพื่อเริ่มเดินสถานะ...</div>';
+      updateVisuals();
+    }
+    
+    function updateVisuals() {
+      var outVal = 0;
+      if (fsmType === 'moore') {
+        outVal = (currentState === 3) ? 1 : 0;
+      }
+      
+      stateDisplay.textContent = 'S' + currentState;
+      outputIndicator.textContent = 'Y = ' + outVal;
+      outputIndicator.dataset.state = outVal;
+      
+      var nodes = demo.querySelectorAll('.fsm-node');
+      nodes.forEach(function(node) {
+        var id = node.id;
+        var expectedId = fsmType + '-node-s' + currentState;
+        node.classList.toggle('is-active', id === expectedId);
+      });
+    }
+    
+    function handleTransition(input) {
+      stepCount++;
+      var trans = (fsmType === 'moore') ? mooreTransitions[currentState][input] : mealyTransitions[currentState][input];
+      
+      var oldState = currentState;
+      var nextState = trans.next;
+      var outVal = trans.out;
+      
+      if (fsmType === 'moore') {
+        outVal = (nextState === 3) ? 1 : 0;
+      }
+      
+      var edgeEl = demo.querySelector('#' + trans.edge);
+      if (edgeEl) {
+        edgeEl.classList.add('is-active');
+        var labelEl = edgeEl.nextElementSibling;
+        if (labelEl && labelEl.classList.contains('fsm-edge-lbl')) {
+          labelEl.classList.add('fsm-edge-lbl--active');
+        }
+        
+        setTimeout(function() {
+          edgeEl.classList.remove('is-active');
+          if (labelEl) labelEl.classList.remove('fsm-edge-lbl--active');
+        }, 600);
+      }
+      
+      var logEmpty = historyLog.querySelector('.fsm-history-empty');
+      if (logEmpty) logEmpty.remove();
+      
+      var logItem = document.createElement('div');
+      logItem.className = 'fsm-history-item';
+      logItem.innerHTML = 't = ' + stepCount + ': ป้อน <span class="in">X = ' + input + '</span> ➔ สถานะจาก <span class="state">S' + oldState + ' ➔ S' + nextState + '</span> ➔ ผลลัพธ์ <span class="out">Y = ' + outVal + '</span>';
+      historyLog.appendChild(logItem);
+      historyLog.scrollTop = historyLog.scrollHeight;
+      
+      currentState = nextState;
+      updateVisuals();
+    }
+    
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        fsmType = tab.dataset.fsm;
+        
+        if (fsmType === 'moore') {
+          canvasMoore.style.display = 'block';
+          canvasMealy.style.display = 'none';
+        } else {
+          canvasMoore.style.display = 'none';
+          canvasMealy.style.display = 'block';
+        }
+        
+        resetFsm();
+      });
+    });
+    
+    btnX0.addEventListener('click', function() { handleTransition(0); });
+    btnX1.addEventListener('click', function() { handleTransition(1); });
+    btnReset.addEventListener('click', resetFsm);
+    
+    resetFsm();
+  });
+
+  /* ============================================================
+     Combinational Logic Widget JS
+     ============================================================ */
+  const clWidget = document.getElementById('comb-logic-widget');
+  if (clWidget) {
+    const btnA = clWidget.querySelector('#cl-btn-a');
+    const btnB = clWidget.querySelector('#cl-btn-b');
+    const btnC = clWidget.querySelector('#cl-btn-c');
+    
+    const wireA = clWidget.querySelector('#cl-wire-a');
+    const wireB = clWidget.querySelector('#cl-wire-b');
+    const wireC = clWidget.querySelector('#cl-wire-c');
+    const wireY = clWidget.querySelector('#cl-wire-y');
+    
+    const ledA = clWidget.querySelector('#cl-led-a');
+    const ledB = clWidget.querySelector('#cl-led-b');
+    const ledC = clWidget.querySelector('#cl-led-c');
+    
+    const funcSelect = clWidget.querySelector('#cl-function-select');
+    const exprDisplay = clWidget.querySelector('#cl-expr-display');
+    const lampY = clWidget.querySelector('#cl-lamp-y');
+
+    let stateA = 0;
+    let stateB = 0;
+    let stateC = 0;
+
+    function toggleInput(btn, wire, led, valName) {
+      let isPressed = btn.getAttribute('aria-pressed') === 'true';
+      let newVal = isPressed ? 0 : 1;
+      
+      btn.setAttribute('aria-pressed', !isPressed);
+      btn.querySelector('.cl-btn-val').textContent = newVal;
+      
+      if (newVal === 1) {
+        wire.classList.add('active');
+        led.classList.add('active');
+      } else {
+        wire.classList.remove('active');
+        led.classList.remove('active');
+      }
+      
+      if (valName === 'A') stateA = newVal;
+      else if (valName === 'B') stateB = newVal;
+      else if (valName === 'C') stateC = newVal;
+      
+      evaluateLogic();
+    }
+
+    btnA.addEventListener('click', () => toggleInput(btnA, wireA, ledA, 'A'));
+    btnB.addEventListener('click', () => toggleInput(btnB, wireB, ledB, 'B'));
+    btnC.addEventListener('click', () => toggleInput(btnC, wireC, ledC, 'C'));
+
+    funcSelect.addEventListener('change', () => {
+      const func = funcSelect.value;
+      if (func === 'and') {
+        exprDisplay.textContent = 'Y = A · B · C';
+      } else if (func === 'or') {
+        exprDisplay.textContent = 'Y = A + B + C';
+      } else if (func === 'xor') {
+        exprDisplay.textContent = 'Y = A ⊕ B ⊕ C';
+      } else if (func === 'majority') {
+        exprDisplay.textContent = 'Y = AB + BC + AC';
+      }
+      evaluateLogic();
+    });
+
+    function evaluateLogic() {
+      const func = funcSelect.value;
+      let outY = 0;
+      
+      if (func === 'and') {
+        outY = stateA && stateB && stateC ? 1 : 0;
+      } else if (func === 'or') {
+        outY = stateA || stateB || stateC ? 1 : 0;
+      } else if (func === 'xor') {
+        outY = (stateA ^ stateB ^ stateC) ? 1 : 0;
+      } else if (func === 'majority') {
+        outY = ((stateA && stateB) || (stateB && stateC) || (stateA && stateC)) ? 1 : 0;
+      }
+      
+      lampY.dataset.state = outY;
+      lampY.querySelector('.cl-lamp-val').textContent = outY;
+      
+      if (outY === 1) {
+        wireY.classList.add('active');
+      } else {
+        wireY.classList.remove('active');
+      }
+    }
+
+    // Init
+    evaluateLogic();
+  }
+
+  /* ============================================================
+     Sequential Logic Widget JS
+     ============================================================ */
+  const seqWidget = document.getElementById('seq-logic-widget');
+  if (seqWidget) {
+    const btnA = seqWidget.querySelector('#seq-btn-a');
+    const ledA = seqWidget.querySelector('#seq-led-a');
+    const wireA = seqWidget.querySelector('#seq-wire-a');
+    
+    const wireY = seqWidget.querySelector('#seq-wire-y');
+    const wireD = seqWidget.querySelector('#seq-wire-d');
+    const wireQ = seqWidget.querySelector('#seq-wire-q');
+    const wireClk = seqWidget.querySelector('#seq-wire-clk');
+    
+    const exprDisplay = seqWidget.querySelector('#seq-expr-display');
+    const mathY = seqWidget.querySelector('#seq-math-y');
+    const valD = seqWidget.querySelector('#seq-val-d');
+    const valQ = seqWidget.querySelector('#seq-val-q');
+    const btnClk = seqWidget.querySelector('#seq-btn-clk');
+    const ledClk = seqWidget.querySelector('#seq-led-clk');
+    const chkAuto = seqWidget.querySelector('#seq-chk-auto');
+    const lampY = seqWidget.querySelector('#seq-lamp-y');
+    const explanation = seqWidget.querySelector('#seq-explanation');
+    
+    let stateA = 0;
+    let stateQ = 0; // Current state Q
+    let stateD = 0; // Next state D
+    let stateY = 0; // Output Y
+    let autoInterval = null;
+    
+    function updateLayout() {
+      // D = A XOR Q
+      stateD = stateA ^ stateQ;
+      stateY = stateQ; // Y = Q
+      
+      // Update displays
+      valD.textContent = stateD;
+      valQ.textContent = stateQ;
+      
+      exprDisplay.textContent = `D = ${stateA} ⊕ ${stateQ} = ${stateD}`;
+      mathY.textContent = `Y = Q = ${stateY}`;
+      
+      lampY.dataset.state = stateY;
+      lampY.querySelector('.cl-lamp-val').textContent = stateY;
+      
+      // Wire glowing states
+      // Wire A (Input A)
+      if (stateA === 1) {
+        wireA.classList.add('seq-wire-active-orange');
+      } else {
+        wireA.classList.remove('seq-wire-active-orange');
+      }
+      
+      // Wire D (Next state)
+      if (stateD === 1) {
+        wireD.classList.add('seq-wire-active-orange');
+      } else {
+        wireD.classList.remove('seq-wire-active-orange');
+      }
+      
+      // Wire Q (Current State feedback)
+      if (stateQ === 1) {
+        wireQ.classList.add('seq-wire-active-orange');
+      } else {
+        wireQ.classList.remove('seq-wire-active-orange');
+      }
+      
+      // Wire Y (Output Y)
+      if (stateY === 1) {
+        wireY.classList.add('seq-wire-active-cyan');
+      } else {
+        wireY.classList.remove('seq-wire-active-cyan');
+      }
+      
+      // Explanations
+      if (stateA === 0) {
+        if (stateQ === 0) {
+          explanation.innerHTML = `อินพุต <strong>A = 0</strong> และ สถานะปัจจุบัน <strong>Q = 0</strong> ทำให้ได้สถานะถัดไป <strong>D = 0</strong> (Hold) เมื่อกดนาฬิกา สถานะจะไม่เปลี่ยน`;
+        } else {
+          explanation.innerHTML = `อินพุต <strong>A = 0</strong> และ สถานะปัจจุบัน <strong>Q = 1</strong> ทำให้ได้สถานะถัดไป <strong>D = 1</strong> (Hold) เมื่อกดนาฬิกา สถานะจะไม่เปลี่ยน`;
+        }
+      } else {
+        if (stateQ === 0) {
+          explanation.innerHTML = `อินพุต <strong>A = 1</strong> และ สถานะปัจจุบัน <strong>Q = 0</strong> ทำให้ได้สถานะถัดไป <strong>D = 1</strong> (Toggle) <strong>เมื่อกด Pulse CLK ขอบขาขึ้น จะทำให้ Q สลับจาก 0 เป็น 1</strong>`;
+        } else {
+          explanation.innerHTML = `อินพุต <strong>A = 1</strong> และ สถานะปัจจุบัน <strong>Q = 1</strong> ทำให้ได้สถานะถัดไป <strong>D = 0</strong> (Toggle) <strong>เมื่อกด Pulse CLK ขอบขาขึ้น จะทำให้ Q สลับจาก 1 เป็น 0</strong>`;
+        }
+      }
+    }
+    
+    // Toggle input A
+    btnA.addEventListener('click', () => {
+      let isPressed = btnA.getAttribute('aria-pressed') === 'true';
+      let newVal = isPressed ? 0 : 1;
+      btnA.setAttribute('aria-pressed', !isPressed);
+      btnA.querySelector('.cl-btn-val').textContent = newVal;
+      
+      if (newVal === 1) {
+        ledA.classList.add('active');
+      } else {
+        ledA.classList.remove('active');
+      }
+      stateA = newVal;
+      updateLayout();
+    });
+    
+    // Pulse Clock (Rising Edge)
+    function pulseClock() {
+      // Flash CLK LED and Wire
+      ledClk.classList.add('active');
+      wireClk.classList.add('seq-wire-active-purple');
+      
+      // On rising edge, State Q updates to State D
+      stateQ = stateD;
+      
+      setTimeout(() => {
+        ledClk.classList.remove('active');
+        wireClk.classList.remove('seq-wire-active-purple');
+      }, 200);
+      
+      updateLayout();
+    }
+    
+    btnClk.addEventListener('click', () => {
+      pulseClock();
+    });
+    
+    // Auto Tick
+    chkAuto.addEventListener('change', () => {
+      if (chkAuto.checked) {
+        autoInterval = setInterval(() => {
+          pulseClock();
+        }, 1200);
+      } else {
+        if (autoInterval) {
+          clearInterval(autoInterval);
+          autoInterval = null;
+        }
+      }
+    });
+    
+    // Init
+    updateLayout();
+  }
+
+  /* ============================================================
+     Clock Simulator Widget JS
+     ============================================================ */
+  const clkWidget = document.getElementById('clock-demo-widget');
+  if (clkWidget) {
+    const freqSlider = clkWidget.querySelector('#clk-freq-slider');
+    const freqVal = clkWidget.querySelector('#clk-freq-val');
+    const periodCalc = clkWidget.querySelector('#clk-period-calc');
+    
+    const dutySlider = clkWidget.querySelector('#clk-duty-slider');
+    const dutyVal = clkWidget.querySelector('#clk-duty-val');
+    const thighCalc = clkWidget.querySelector('#clk-thigh-calc');
+    const tlowCalc = clkWidget.querySelector('#clk-tlow-calc');
+    
+    const liveLed = clkWidget.querySelector('#clk-live-led');
+    const btnToggle = clkWidget.querySelector('#clk-btn-toggle');
+    const btnIcon = clkWidget.querySelector('#clk-btn-icon');
+    const btnText = clkWidget.querySelector('#clk-btn-text');
+    
+    const wavePath = clkWidget.querySelector('#clk-wave-path');
+    const waveShadow = clkWidget.querySelector('#clk-wave-shadow');
+    const playhead = clkWidget.querySelector('#clk-playhead');
+    const highlightGroup = clkWidget.querySelector('#clk-highlight-group');
+    const annotationsGroup = clkWidget.querySelector('#clk-annotations-group');
+    
+    const explTitle = clkWidget.querySelector('#clk-expl-title');
+    const explDesc = clkWidget.querySelector('#clk-expl-desc');
+    
+    // Timeline labels
+    const lblT1 = clkWidget.querySelector('#lbl-t1');
+    const lblT2 = clkWidget.querySelector('#lbl-t2');
+    const lblT3 = clkWidget.querySelector('#lbl-t3');
+    const lblT4 = clkWidget.querySelector('#lbl-t4');
+    
+    let isPlaying = true;
+    let frequency = 1.0; // Hz
+    let dutyCycle = 50;  // %
+    let playheadPos = 0; // 0 to 4 (periods)
+    let lastTimestamp = null;
+    let currentTab = 'general';
+    
+    // Dimension values
+    const startX = 60;    // start offset
+    const periodWidth = 160; // width of one period (4 periods total = 640px)
+    const yHigh = 40;
+    const yLow = 120;
+    
+    function calculateTimes() {
+      const T = 1.0 / frequency;
+      const tHigh = T * (dutyCycle / 100);
+      const tLow = T - tHigh;
+      
+      periodCalc.textContent = T.toFixed(2);
+      thighCalc.textContent = tHigh.toFixed(2);
+      tlowCalc.textContent = tLow.toFixed(2);
+      
+      // Update horizontal labels with absolute times
+      lblT1.textContent = `t1 (${T.toFixed(1)}s)`;
+      lblT2.textContent = `t2 (${(T*2).toFixed(1)}s)`;
+      lblT3.textContent = `t3 (${(T*3).toFixed(1)}s)`;
+      lblT4.textContent = `t4 (${(T*4).toFixed(1)}s)`;
+      
+      return { T, tHigh, tLow };
+    }
+    
+    function drawWave() {
+      calculateTimes();
+      // Calculate how wide tHigh is in SVG pixels
+      const pxHigh = periodWidth * (dutyCycle / 100);
+      
+      let d = `M 30 ${yLow}`;
+      d += ` L ${startX} ${yLow}`;
+      
+      for (let i = 0; i < 4; i++) {
+        const xCycleStart = startX + i * periodWidth;
+        d += ` L ${xCycleStart} ${yLow}`;
+        d += ` L ${xCycleStart} ${yHigh}`;
+        d += ` L ${xCycleStart + pxHigh} ${yHigh}`;
+        d += ` L ${xCycleStart + pxHigh} ${yLow}`;
+        d += ` L ${xCycleStart + periodWidth} ${yLow}`;
+      }
+      d += ` L 730 ${yLow}`;
+      
+      wavePath.setAttribute('d', d);
+      waveShadow.setAttribute('d', d);
+      
+      updateHighlightsAndAnnotations(pxHigh);
+    }
+    
+    function updateHighlightsAndAnnotations(pxHigh) {
+      highlightGroup.innerHTML = '';
+      annotationsGroup.innerHTML = '';
+      
+      if (currentTab === 'general') {
+        explTitle.innerHTML = `🔍 สัญญาณนาฬิกาเบื้องต้น (General View)`;
+        explDesc.innerHTML = `สัญญาณนาฬิกา (Clock Signal) คือสัญญาณรูปคลื่นสี่เหลี่ยม (Square Wave) ที่สลับสถานะระหว่างลอจิกสูง (1) และต่ำ (0) เป็นจังหวะสม่ำเสมอ ทำหน้าที่เป็น <strong>"จังหวะหัวใจ"</strong> คอยประสานเวลาและควบคุมวงจรทั้งหมดให้ทำงานพร้อมกันอย่างสอดคล้อง (Synchronize)`;
+      } 
+      else if (currentTab === 'rising') {
+        explTitle.innerHTML = `↑ ขอบขาขึ้น (Positive / Rising Edge)`;
+        explDesc.innerHTML = `คือ <strong>ช่วงเวลารอยต่อที่ระดับลอจิกเปลี่ยนจาก 0 ขึ้นเป็น 1</strong> (แรงดันเพิ่มขึ้นทันที) วงจรฟลิปฟลอปส่วนใหญ่จะถูกออกแบบให้ตรวจจับและทำงานเฉพาะที่ขอบขาขึ้นนี้เท่านั้น เพื่อป้องกันปัญหาการเปลี่ยนแปลงสถานะผิดพลาด`;
+        
+        // Highlight rising edges
+        for (let i = 0; i < 4; i++) {
+          const x = startX + i * periodWidth;
+          // Draw orange dashed highlight line
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', x);
+          line.setAttribute('y1', 20);
+          line.setAttribute('x2', x);
+          line.setAttribute('y2', 150);
+          line.setAttribute('stroke', 'var(--amber)');
+          line.setAttribute('stroke-width', '2');
+          line.setAttribute('stroke-dasharray', '4 4');
+          highlightGroup.appendChild(line);
+          
+          // Draw arrow up icon
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', x);
+          text.setAttribute('y', 15);
+          text.setAttribute('fill', 'var(--amber)');
+          text.setAttribute('font-size', '16');
+          text.setAttribute('font-weight', 'bold');
+          text.setAttribute('text-anchor', 'middle');
+          text.textContent = '↑';
+          annotationsGroup.appendChild(text);
+          
+          // Glowing circle at rising point
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', x);
+          circle.setAttribute('cy', (yHigh + yLow) / 2);
+          circle.setAttribute('r', '6');
+          circle.setAttribute('fill', 'var(--amber)');
+          circle.setAttribute('filter', 'drop-shadow(0 0 4px var(--amber))');
+          annotationsGroup.appendChild(circle);
+        }
+      } 
+      else if (currentTab === 'falling') {
+        explTitle.innerHTML = `↓ ขอบขาลง (Negative / Falling Edge)`;
+        explDesc.innerHTML = `คือ <strong>ช่วงเวลารอยต่อที่ระดับลอจิกเปลี่ยนจาก 1 ลงเป็น 0</strong> (แรงดันตกคร่อมลงทันที) ในวงจรดิจิทัลและฟลิปฟลอปบางประเภทจะถูกออกแบบมาให้กระตุ้นหรือทำงานเมื่อสัญญาณเปลี่ยนผ่าน ณ จุดนี้`;
+        
+        // Highlight falling edges
+        for (let i = 0; i < 4; i++) {
+          const x = startX + i * periodWidth + pxHigh;
+          // Draw cyan dashed highlight line
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', x);
+          line.setAttribute('y1', 20);
+          line.setAttribute('x2', x);
+          line.setAttribute('y2', 150);
+          line.setAttribute('stroke', 'var(--cyan)');
+          line.setAttribute('stroke-width', '2');
+          line.setAttribute('stroke-dasharray', '4 4');
+          highlightGroup.appendChild(line);
+          
+          // Draw arrow down icon
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', x);
+          text.setAttribute('y', 15);
+          text.setAttribute('fill', 'var(--cyan)');
+          text.setAttribute('font-size', '16');
+          text.setAttribute('font-weight', 'bold');
+          text.setAttribute('text-anchor', 'middle');
+          text.textContent = '↓';
+          annotationsGroup.appendChild(text);
+          
+          // Glowing circle at falling point
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', x);
+          circle.setAttribute('cy', (yHigh + yLow) / 2);
+          circle.setAttribute('r', '6');
+          circle.setAttribute('fill', 'var(--cyan)');
+          circle.setAttribute('filter', 'drop-shadow(0 0 4px var(--cyan))');
+          annotationsGroup.appendChild(circle);
+        }
+      } 
+      else if (currentTab === 'period') {
+        const T = 1.0 / frequency;
+        explTitle.innerHTML = `📏 คาบเวลา (Period, T)`;
+        explDesc.innerHTML = `คาบเวลา (Period: $T$) คือ <strong>เวลาที่ยาวนานเท่ากับการทำงานครบ 1 รอบสัญญาณเต็มพอดี</strong> (ประกอบด้วยช่วงลอจิกสูง 1 และลอจิกต่ำ 0 รวมกัน) มีความสัมพันธ์ผกผันโดยตรงกับความถี่ $f = 1/T$ <br>ณ ความถี่ปัจจุบัน $f = ${frequency.toFixed(1)}\\text{ Hz}$ จะได้คาบเวลา $T = 1.00 / ${frequency.toFixed(1)} = \\mathbf{${T.toFixed(2)}\\text{ วินาที}}$`;
+        
+        // Highlight first cycle area background
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', startX);
+        rect.setAttribute('y', yHigh - 10);
+        rect.setAttribute('width', periodWidth);
+        rect.setAttribute('height', yLow - yHigh + 20);
+        rect.setAttribute('fill', 'rgba(79, 70, 229, 0.15)');
+        rect.setAttribute('rx', '4');
+        highlightGroup.appendChild(rect);
+        
+        // Dimension Line for T
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', startX);
+        line.setAttribute('y1', yLow + 25);
+        line.setAttribute('x2', startX + periodWidth);
+        line.setAttribute('y2', yLow + 25);
+        line.setAttribute('stroke', 'var(--indigo)');
+        line.setAttribute('stroke-width', '2');
+        annotationsGroup.appendChild(line);
+        
+        // Left tick mark
+        const tickL = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tickL.setAttribute('x1', startX);
+        tickL.setAttribute('y1', yLow + 20);
+        tickL.setAttribute('x2', startX);
+        tickL.setAttribute('y2', yLow + 30);
+        tickL.setAttribute('stroke', 'var(--indigo)');
+        tickL.setAttribute('stroke-width', '2');
+        annotationsGroup.appendChild(tickL);
+        
+        // Right tick mark
+        const tickR = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tickR.setAttribute('x1', startX + periodWidth);
+        tickR.setAttribute('y1', yLow + 20);
+        tickR.setAttribute('x2', startX + periodWidth);
+        tickR.setAttribute('y2', yLow + 30);
+        tickR.setAttribute('stroke', 'var(--indigo)');
+        tickR.setAttribute('stroke-width', '2');
+        annotationsGroup.appendChild(tickR);
+        
+        // Dimension text
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', startX + periodWidth / 2);
+        text.setAttribute('y', yLow + 42);
+        text.setAttribute('fill', 'var(--indigo)');
+        text.setAttribute('font-size', '11');
+        text.setAttribute('font-weight', 'bold');
+        text.setAttribute('text-anchor', 'middle');
+        text.textContent = `T = ${T.toFixed(2)}s (1 รอบคลื่น)`;
+        annotationsGroup.appendChild(text);
+      } 
+      else if (currentTab === 'thigh-tlow') {
+        const T = 1.0 / frequency;
+        const tHigh = T * (dutyCycle / 100);
+        const tLow = T - tHigh;
+        
+        explTitle.innerHTML = `⏱ ช่วงเวลา High ($t_{HIGH}$) และ Low ($t_{LOW}$)`;
+        explDesc.innerHTML = `ใน 1 คาบเวลาจะถูกแบ่งออกเป็น 2 ช่วง:<br>
+        1. **$t_{HIGH}$ (ช่วง High):** สัญญาณอยู่ที่ระดับแรงดันลอจิก 1 ปัจจุบันคือ <strong>${tHigh.toFixed(2)} วินาที</strong><br>
+        2. **$t_{LOW}$ (ช่วง Low):** สัญญาณอยู่ที่ระดับแรงดันลอจิก 0 ปัจจุบันคือ <strong>${tLow.toFixed(2)} วินาที</strong>`;
+        
+        // Highlight High Area (First Cycle)
+        const rectH = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rectH.setAttribute('x', startX);
+        rectH.setAttribute('y', yHigh - 10);
+        rectH.setAttribute('width', pxHigh);
+        rectH.setAttribute('height', yLow - yHigh + 20);
+        rectH.setAttribute('fill', 'rgba(245, 158, 11, 0.12)');
+        rectH.setAttribute('rx', '4');
+        highlightGroup.appendChild(rectH);
+        
+        // Highlight Low Area (First Cycle)
+        const rectL = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rectL.setAttribute('x', startX + pxHigh);
+        rectL.setAttribute('y', yHigh - 10);
+        rectL.setAttribute('width', periodWidth - pxHigh);
+        rectL.setAttribute('height', yLow - yHigh + 20);
+        rectL.setAttribute('fill', 'rgba(6, 182, 212, 0.12)');
+        rectL.setAttribute('rx', '4');
+        highlightGroup.appendChild(rectL);
+        
+        // Dimension line for tHIGH
+        const lineH = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        lineH.setAttribute('x1', startX);
+        lineH.setAttribute('y1', yHigh - 18);
+        lineH.setAttribute('x2', startX + pxHigh);
+        lineH.setAttribute('y2', yHigh - 18);
+        lineH.setAttribute('stroke', 'var(--amber)');
+        lineH.setAttribute('stroke-width', '1.5');
+        annotationsGroup.appendChild(lineH);
+        
+        // Tick marks for tHIGH
+        const tickH1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tickH1.setAttribute('x1', startX);
+        tickH1.setAttribute('y1', yHigh - 22);
+        tickH1.setAttribute('x2', startX);
+        tickH1.setAttribute('y2', yHigh - 14);
+        tickH1.setAttribute('stroke', 'var(--amber)');
+        annotationsGroup.appendChild(tickH1);
+        
+        const tickH2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tickH2.setAttribute('x1', startX + pxHigh);
+        tickH2.setAttribute('y1', yHigh - 22);
+        tickH2.setAttribute('x2', startX + pxHigh);
+        tickH2.setAttribute('y2', yHigh - 14);
+        tickH2.setAttribute('stroke', 'var(--amber)');
+        annotationsGroup.appendChild(tickH2);
+        
+        // tHIGH text
+        const textH = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textH.setAttribute('x', startX + pxHigh / 2);
+        textH.setAttribute('y', yHigh - 28);
+        textH.setAttribute('fill', 'var(--amber)');
+        textH.setAttribute('font-size', '9');
+        textH.setAttribute('font-weight', 'bold');
+        textH.setAttribute('text-anchor', 'middle');
+        textH.textContent = `tHIGH = ${tHigh.toFixed(2)}s`;
+        annotationsGroup.appendChild(textH);
+        
+        // Dimension line for tLOW
+        const lineL = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        lineL.setAttribute('x1', startX + pxHigh);
+        lineL.setAttribute('y1', yHigh - 18);
+        lineL.setAttribute('x2', startX + periodWidth);
+        lineL.setAttribute('y2', yHigh - 18);
+        lineL.setAttribute('stroke', 'var(--cyan)');
+        lineL.setAttribute('stroke-width', '1.5');
+        annotationsGroup.appendChild(lineL);
+        
+        // Tick marks for tLOW
+        const tickL1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tickL1.setAttribute('x1', startX + pxHigh);
+        tickL1.setAttribute('y1', yHigh - 22);
+        tickL1.setAttribute('x2', startX + pxHigh);
+        tickL1.setAttribute('y2', yHigh - 14);
+        tickL1.setAttribute('stroke', 'var(--cyan)');
+        annotationsGroup.appendChild(tickL1);
+        
+        const tickL2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tickL2.setAttribute('x1', startX + periodWidth);
+        tickL2.setAttribute('y1', yHigh - 22);
+        tickL2.setAttribute('x2', startX + periodWidth);
+        tickL2.setAttribute('y2', yHigh - 14);
+        tickL2.setAttribute('stroke', 'var(--cyan)');
+        annotationsGroup.appendChild(tickL2);
+        
+        // tLOW text
+        const textL = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textL.setAttribute('x', startX + pxHigh + (periodWidth - pxHigh) / 2);
+        textL.setAttribute('y', yHigh - 28);
+        textL.setAttribute('fill', 'var(--cyan)');
+        textL.setAttribute('font-size', '9');
+        textL.setAttribute('font-weight', 'bold');
+        textL.setAttribute('text-anchor', 'middle');
+        textL.textContent = `tLOW = ${tLow.toFixed(2)}s`;
+        annotationsGroup.appendChild(textL);
+      } 
+      else if (currentTab === 'duty') {
+        const T = 1.0 / frequency;
+        const tHigh = T * (dutyCycle / 100);
+        explTitle.innerHTML = `🧮 ดิวตี้ไซเคิล (Duty Cycle, D)`;
+        explDesc.innerHTML = `คือ <strong>อัตราส่วนร้อยละของความกว้างพัลส์ช่วง High ($t_{HIGH}$) ต่อหนึ่งคาบเวลา ($T$)</strong> ซึ่งเป็นตัววัดเปอร์เซ็นต์เวลาที่สัญญาณอยู่ในสถานะลอจิก 1 ใน 1 รอบคลื่น<br>
+        สูตรการคำนวณ:<br>
+        $$\\text{Duty Cycle} = \\frac{t_{HIGH}}{T} \\times 100\\%$$<br>
+        แทนค่าในปัจจุบัน: $\\text{Duty Cycle} = \\frac{${tHigh.toFixed(2)}\\text{s}}{${T.toFixed(2)}\\text{s}} \\times 100\\% = \\mathbf{${dutyCycle}\\%}$`;
+        
+        // Highlight Duty Cycle Area (tHigh section of first cycle)
+        const rectD = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rectD.setAttribute('x', startX);
+        rectD.setAttribute('y', yHigh - 10);
+        rectD.setAttribute('width', pxHigh);
+        rectD.setAttribute('height', yLow - yHigh + 20);
+        rectD.setAttribute('fill', 'rgba(245, 158, 11, 0.2)');
+        rectD.setAttribute('rx', '4');
+        highlightGroup.appendChild(rectD);
+        
+        // Label Duty Cycle
+        const textD = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textD.setAttribute('x', startX + pxHigh / 2);
+        textD.setAttribute('y', (yHigh + yLow) / 2 + 4);
+        textD.setAttribute('fill', '#ffffff');
+        textD.setAttribute('font-size', '12');
+        textD.setAttribute('font-weight', 'bold');
+        textD.setAttribute('text-anchor', 'middle');
+        textD.textContent = `${dutyCycle}%`;
+        annotationsGroup.appendChild(textD);
+      }
+      
+      if (window.MathJax && window.MathJax.typeset) {
+        window.MathJax.typeset([explDesc]);
+      }
+    }
+    
+    // Sliders
+    freqSlider.addEventListener('input', () => {
+      frequency = parseFloat(freqSlider.value);
+      freqVal.textContent = `${frequency.toFixed(1)} Hz`;
+      drawWave();
+    });
+    
+    dutySlider.addEventListener('input', () => {
+      dutyCycle = parseInt(dutySlider.value);
+      dutyVal.textContent = `${dutyCycle}%`;
+      drawWave();
+    });
+    
+    // Play/Pause
+    btnToggle.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        btnIcon.textContent = '⏸';
+        btnText.textContent = 'Pause';
+      } else {
+        btnIcon.textContent = '▶';
+        btnText.textContent = 'Play';
+        lastTimestamp = null;
+      }
+    });
+    
+    // Tabs Selection
+    const tabs = clkWidget.querySelectorAll('.clk-tab-btn');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentTab = tab.dataset.tab;
+        drawWave();
+      });
+    });
+    
+    // Animation loop
+    function animate(timestamp) {
+      if (isPlaying) {
+        if (!lastTimestamp) lastTimestamp = timestamp;
+        const elapsed = (timestamp - lastTimestamp) / 1000;
+        lastTimestamp = timestamp;
+        
+        playheadPos = (playheadPos + elapsed * frequency) % 4;
+        
+        // Move playhead
+        const xPos = startX + playheadPos * periodWidth;
+        playhead.setAttribute('x1', xPos);
+        playhead.setAttribute('x2', xPos);
+        
+        // Determine state at playhead
+        const px = (playheadPos * periodWidth) % periodWidth;
+        const pxHigh = periodWidth * (dutyCycle / 100);
+        const clkVal = px < pxHigh ? 1 : 0;
+        
+        liveLed.dataset.state = clkVal;
+        liveLed.querySelector('.cl-lamp-val').textContent = clkVal;
+      }
+      requestAnimationFrame(animate);
+    }
+    
+    drawWave();
+    requestAnimationFrame(animate);
+  }
+
+});
+</script>
+
+

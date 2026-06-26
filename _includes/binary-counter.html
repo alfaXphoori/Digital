@@ -1,0 +1,46 @@
+<div class="clk-counter">
+  <div class="clk-counter__header">
+    <div class="clk-led"></div>
+    <span class="clk-label">CLK</span>
+  </div>
+  <div class="clk-bits">
+    <div class="clk-bit-wrap">
+      <span class="clk-bit-weight">8</span>
+      <div class="clk-bit" data-bit="0" data-index="3">0</div>
+      <span class="clk-bit-name">Q3</span>
+    </div>
+    <div class="clk-bit-wrap">
+      <span class="clk-bit-weight">4</span>
+      <div class="clk-bit" data-bit="0" data-index="2">0</div>
+      <span class="clk-bit-name">Q2</span>
+    </div>
+    <div class="clk-bit-wrap">
+      <span class="clk-bit-weight">2</span>
+      <div class="clk-bit" data-bit="0" data-index="1">0</div>
+      <span class="clk-bit-name">Q1</span>
+    </div>
+    <div class="clk-bit-wrap">
+      <span class="clk-bit-weight">1</span>
+      <div class="clk-bit" data-bit="0" data-index="0">0</div>
+      <span class="clk-bit-name">Q0</span>
+    </div>
+  </div>
+  <div class="clk-dec-wrap">
+    <span class="clk-dec-label">ค่าทศนิยม (Decimal)</span>
+    <div class="clk-dec">0</div>
+  </div>
+  <div class="clk-controls">
+    <button class="clk-btn clk-btn--play">▶ เริ่ม</button>
+    <button class="clk-btn clk-btn--step">ก้าวทีละจังหวะ</button>
+    <button class="clk-btn clk-btn--reset">รีเซ็ต</button>
+    <label class="clk-speed-wrap">
+      <span>ความเร็ว</span>
+      <input type="range" class="clk-speed" min="1" max="8" value="2" step="1">
+      <span class="clk-speed-val">1×</span>
+    </label>
+  </div>
+  <p class="clk-cap">
+    บิต Q0 (ขวาสุด) สลับค่าทุก 1 จังหวะ Clock — บิต Q1 สลับทุก 2 จังหวะ — Q2 ทุก 4 จังหวะ — Q3 ทุก 8 จังหวะ<br>
+    แต่ละบิตมีความถี่ครึ่งหนึ่งของบิตถัดไปทางขวา นี่คือหลักการของ Binary Counter
+  </p>
+</div>
