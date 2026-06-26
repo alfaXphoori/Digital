@@ -12,12 +12,12 @@ assignments:
     topic: บทนำรายวิชาและระบบดิจิทัล
     work: ใบงานที่ 1 — รู้จักชุดทดลองและเครื่องมือวัด · ฝึกแทนค่า/นับในเลขฐานต่าง ๆ · แนะนำโปรแกรมจำลอง Logisim / Tinkercad
     due: ก่อนคาบสัปดาห์ที่ 2
-    form: "#"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLSdsxuBxuF1Yi-KbvjK0R2A6eNN9sb21h53mGuDnDzBw7YTCcQ/viewform?usp=dialog"
   - n: 2
     topic: เลขคณิตในระบบดิจิทัล
     work: ใบงานที่ 2 — การคำนวณเลขฐานสอง · ฝึกบวก/ลบด้วยวิธีคอมพลีเมนต์ · ตรวจผลด้วยโปรแกรมจำลอง
     due: ก่อนคาบสัปดาห์ที่ 3
-    form: "#"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLScg0EmrO1MrI5t7D3bP1KhLuzLL1TcXUa9OwRGaJWuoMOyItw/viewform?usp=dialog"
   - n: 3
     topic: ลอจิกเกตพื้นฐาน
     work: ใบงานที่ 3 — ทดลองลอจิกเกต · ต่อวงจร 7408/7432/7404/7400/7402/7486 · วัดผลด้วย LED และมัลติมิเตอร์

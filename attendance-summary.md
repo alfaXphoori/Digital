@@ -75,7 +75,7 @@ details.as-matrix summary { cursor: pointer; font-weight: 600; color: var(--indi
 <script>
 (function () {
   // ===== ลิงก์ Web App (ลงท้าย /exec) เดียวกับหน้าเช็คชื่อ =====
-  var API_URL = "";
+  var API_URL = "https://script.google.com/macros/s/AKfycbybnzxT91_zBLgTW081VZv19eMy1QRkflyCEhPfj814d5qTbaTnXK72XqpuYoe3sDbCDQ/exec";
   // ===========================================================
 
   var elDays = document.getElementById('as-days');
