@@ -22,12 +22,12 @@ assignments:
     topic: ลอจิกเกตพื้นฐาน
     work: ใบงานที่ 3 — ทดลองลอจิกเกต · ต่อวงจร 7408/7432/7404/7400/7402/7486 · วัดผลด้วย LED และมัลติมิเตอร์
     due: ก่อนคาบสัปดาห์ที่ 4
-    form: "#"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLSc8ovzvzNPip_3X11CoK-LK70z1vCnGNoEnmDD_ghXP4LCSJg/viewform?usp=dialog"
   - n: 4
     topic: คุณสมบัติดิจิทัลไอซีและการเชื่อมต่อลอจิกเกต
     work: ใบงานที่ 4 — คุณสมบัติและการเชื่อมต่อไอซี · วัดระดับแรงดันลอจิก TTL/CMOS · ทดลองผลของโหลด
     due: ก่อนคาบสัปดาห์ที่ 5
-    form: "#"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLSc8ovzvzNPip_3X11CoK-LK70z1vCnGNoEnmDD_ghXP4LCSJg/viewform?usp=dialog"
   - n: 5
     topic: พีชคณิตบูลีนและการลดรูปสมการลอจิก
     work: ใบงานที่ 5 — พิสูจน์และลดรูปสมการ · ต่อวงจรเปรียบเทียบก่อน/หลังลดรูป · ยืนยันผลด้วยตารางความจริง
