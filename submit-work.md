@@ -22,7 +22,7 @@ assignments:
     topic: ลอจิกเกตพื้นฐาน
     work: ใบงานที่ 3 — ทดลองลอจิกเกต · ต่อวงจร 7408/7432/7404/7400/7402/7486 · วัดผลด้วย LED และมัลติมิเตอร์
     due: ก่อนคาบสัปดาห์ที่ 4
-    form: "https://docs.google.com/forms/d/e/1FAIpQLScA0FM63iS0qPTEIu-64oU0Gan8yHvJS_CR2u21hNwufta2Sw/viewform?usp=publish-editor"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLScA0FM63iS0qPTEIu-64oU0Gan8yHvJS_CR2u21hNwufta2Sw/viewform?usp=dialog"
   - n: 4
     topic: คุณสมบัติดิจิทัลไอซีและการเชื่อมต่อลอจิกเกต
     work: ใบงานที่ 4 — คุณสมบัติและการเชื่อมต่อไอซี · วัดระดับแรงดันลอจิก TTL/CMOS · ทดลองผลของโหลด
