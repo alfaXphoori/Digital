@@ -1,0 +1,278 @@
+<div class="cl-widget" id="ram-simulator">
+  <style>
+    .ram-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      font-family: inherit;
+    }
+    .ram-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .ram-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    /* Control Row styles */
+    .ram-control-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+    }
+    .ram-lbl {
+      font-weight: 700;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+    
+    .ram-input-data {
+      display: flex;
+      gap: 4px;
+    }
+    .ram-data-btn {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #475569;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .ram-data-btn.active {
+      background: var(--indigo, #4f46e5);
+      border-color: var(--indigo, #4f46e5);
+      color: #ffffff;
+    }
+    
+    .ram-action-btn {
+      padding: 10px 16px;
+      background: var(--indigo, #4f46e5);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .ram-action-btn:hover {
+      background: var(--indigo-dark, #4338ca);
+    }
+    
+    /* RAM memory table */
+    .ram-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      background: #ffffff;
+    }
+    .ram-table th, .ram-table td {
+      padding: 8px 10px;
+      border: 1px solid #cbd5e1;
+      text-align: center;
+    }
+    .ram-table th {
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 700;
+    }
+    .ram-table td.address-col {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      background: #f8fafc;
+      color: #64748b;
+    }
+    .ram-table td.data-col {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #334155;
+    }
+    .ram-table tr.active-row {
+      outline: 2px solid var(--indigo, #4f46e5);
+      background: #f5f3ff;
+    }
+    
+    /* Flash animation for written row */
+    @keyframes ramFlash {
+      0% { background-color: rgba(16, 185, 129, 0.4); }
+      100% { background-color: transparent; }
+    }
+    .ram-flash-write {
+      animation: ramFlash 0.8s ease-out;
+    }
+  </style>
+
+  <div class="ram-container">
+    <div class="ram-layout">
+      <!-- Input Panel -->
+      <div class="ram-panel">
+        <div style="font-weight:700; color:#1e293b; font-size:1rem;">คอนโทรลเลอร์ควบคุมหน่วยความจำ (RAM Control Unit)</div>
+        
+        <!-- Address selection -->
+        <div class="ram-control-row">
+          <span class="ram-lbl">ที่อยู่ (Address, A₂A₁A₀):</span>
+          <select id="ram-addr-select" style="padding:6px; border-radius:6px; border:1px solid #cbd5e1; font-family:'JetBrains Mono'; font-weight:bold;">
+            <option value="0">000 (0h)</option>
+            <option value="1">001 (1h)</option>
+            <option value="2">010 (2h)</option>
+            <option value="3">011 (3h)</option>
+            <option value="4">100 (4h)</option>
+            <option value="5">101 (5h)</option>
+            <option value="6">110 (6h)</option>
+            <option value="7">111 (7h)</option>
+          </select>
+        </div>
+
+        <!-- Input data selection -->
+        <div class="ram-control-row">
+          <span class="ram-lbl">ป้อนข้อมูล (Input Data, 8-Bit):</span>
+          <div class="ram-input-data">
+            <button class="ram-data-btn" data-bit="7">0</button>
+            <button class="ram-data-btn" data-bit="6">0</button>
+            <button class="ram-data-btn" data-bit="5">0</button>
+            <button class="ram-data-btn" data-bit="4">0</button>
+            <button class="ram-data-btn" data-bit="3">0</button>
+            <button class="ram-data-btn" data-bit="2">0</button>
+            <button class="ram-data-btn" data-bit="1">0</button>
+            <button class="ram-data-btn" data-bit="0">0</button>
+          </div>
+        </div>
+
+        <!-- Controls WE -->
+        <div class="ram-control-row">
+          <span class="ram-lbl">ขาควบคุม (Control Lines):</span>
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <input type="checkbox" id="ram-we-chk" checked style="accent-color:var(--indigo);" />
+            <span style="font-size:0.85rem; font-weight:bold; color:#475569;">Write Enable (WE=1)</span>
+          </label>
+        </div>
+
+        <button class="ram-action-btn" id="ram-write-btn">📝 เขียนข้อมูลลงหน่วยความจำ (Write to RAM)</button>
+      </div>
+
+      <!-- RAM Core Array -->
+      <div class="ram-panel">
+        <div style="font-weight:700; color:#1e293b; font-size:1rem; text-align:center;">อาเรย์หน่วยความจำภายใน (RAM Core 8x8 Bit)</div>
+        <table class="ram-table">
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th>Binary Data (8-Bit)</th>
+              <th>Hex Value</th>
+            </tr>
+          </thead>
+          <tbody id="ram-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const addrSelect = document.getElementById('ram-addr-select');
+      const weChk = document.getElementById('ram-we-chk');
+      const writeBtn = document.getElementById('ram-write-btn');
+      const tableBody = document.getElementById('ram-table-body');
+      
+      const dataBits = [0, 0, 0, 0, 0, 0, 0, 0]; // D0 to D7
+      
+      // Initialize memory array (8 addresses, default 0)
+      const memory = [0, 0, 0, 0, 0, 0, 0, 0];
+      
+      // Draw memory table
+      function drawTable() {
+        const activeAddr = parseInt(addrSelect.value);
+        let html = '';
+        
+        for (let i = 0; i < 8; i++) {
+          const val = memory[i];
+          const binStr = val.toString(2).padStart(8, '0');
+          const hexStr = val.toString(16).toUpperCase().padStart(2, '0') + 'h';
+          const activeClass = i === activeAddr ? 'active-row' : '';
+          
+          html += `
+            <tr id="ram-tr-${i}" class="${activeClass}">
+              <td class="address-col">${i.toString(2).padStart(3, '0')} (${i})</td>
+              <td class="data-col" id="ram-td-bin-${i}">${binStr}</td>
+              <td class="data-col" style="color:var(--indigo);" id="ram-td-hex-${i}">${hexStr}</td>
+            </tr>
+          `;
+        }
+        
+        tableBody.innerHTML = html;
+      }
+      
+      // Setup Bit Toggles
+      const bitBtns = document.querySelectorAll('.ram-data-btn');
+      bitBtns.forEach(btn => {
+        const bitIdx = parseInt(btn.getAttribute('data-bit'));
+        
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('active');
+          const active = btn.classList.contains('active');
+          btn.textContent = active ? '1' : '0';
+          dataBits[bitIdx] = active ? 1 : 0;
+        });
+      });
+      
+      addrSelect.addEventListener('change', () => {
+        // Redraw to move selection highlight
+        drawTable();
+      });
+      
+      writeBtn.addEventListener('click', () => {
+        const addr = parseInt(addrSelect.value);
+        const we = weChk.checked;
+        
+        if (!we) {
+          alert('ไม่สามารถเขียนได้เนื่องจากขา Write Enable (WE) เป็น 0!');
+          return;
+        }
+        
+        // Calculate input byte value
+        let byteVal = 0;
+        for (let i = 0; i < 8; i++) {
+          byteVal |= (dataBits[i] << i);
+        }
+        
+        // Write to memory
+        memory[addr] = byteVal;
+        
+        // Update table row with animation
+        drawTable();
+        
+        // Flash animation
+        const row = document.getElementById(`ram-tr-${addr}`);
+        row.classList.add('ram-flash-write');
+        setTimeout(() => {
+          row.classList.remove('ram-flash-write');
+        }, 800);
+      });
+      
+      // Init
+      drawTable();
+    })();
+  </script>
+</div>

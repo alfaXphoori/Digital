@@ -1,0 +1,83 @@
+<div class="kmap-demo" id="kmap-2var">
+  <div class="kmap-header">
+    <span class="kmap-title">🔬 เครื่องมือเรียนรู้ K-Map 2 ตัวแปร (Interactive K-Map Tool)</span>
+  </div>
+  
+  <div class="kmap-controls">
+    <div class="kmap-presets-wrap">
+      <label for="kmap-2var-preset-select">ชุดตัวอย่าง:</label>
+      <select id="kmap-2var-preset-select" class="kmap-select">
+        <option value="custom" selected>กำหนดเอง (คลิกตาราง)</option>
+        <option value="clear">ล้างตาราง (0 ทั้งหมด)</option>
+        <option value="single">เซลล์เดี่ยว (m1)</option>
+        <option value="pair">กลุ่ม 2 ช่อง (Pair)</option>
+      </select>
+    </div>
+    <button class="kmap-btn kmap-btn--reset" id="kmap-2var-reset-btn">🔄 รีเซ็ตตาราง</button>
+  </div>
+
+  <div class="kmap-workspace">
+    <div class="kmap-grid-container" style="width: 230px; height: 190px;">
+      <!-- The Grid (A is row, B is column) -->
+      <div class="kmap-grid" style="grid-template-columns: 80px repeat(2, 75px); width: 230px;">
+        <!-- Corner header cell -->
+        <div class="kmap-cell kmap-cell--header kmap-cell--corner">
+          <div class="kmap-diagonal" style="transform: rotate(26.5deg);"></div>
+          <span class="kmap-diag-lbl kmap-diag-lbl--bc" style="right: 18px;">B</span>
+          <span class="kmap-diag-lbl kmap-diag-lbl--a">A</span>
+        </div>
+        
+        <!-- Column headers -->
+        <div class="kmap-cell kmap-cell--header">0</div>
+        <div class="kmap-cell kmap-cell--header">1</div>
+        
+        <!-- Row 0 header -->
+        <div class="kmap-cell kmap-cell--header">0</div>
+        
+        <!-- Row 0 cells -->
+        <div class="kmap-cell kmap-cell--interactive" data-index="0">
+          <span class="kmap-minterm-idx">m0</span>
+          <span class="kmap-cell-val">0</span>
+        </div>
+        <div class="kmap-cell kmap-cell--interactive" data-index="1">
+          <span class="kmap-minterm-idx">m1</span>
+          <span class="kmap-cell-val">0</span>
+        </div>
+        
+        <!-- Row 1 header -->
+        <div class="kmap-cell kmap-cell--header">1</div>
+        
+        <!-- Row 1 cells -->
+        <div class="kmap-cell kmap-cell--interactive" data-index="2">
+          <span class="kmap-minterm-idx">m2</span>
+          <span class="kmap-cell-val">0</span>
+        </div>
+        <div class="kmap-cell kmap-cell--interactive" data-index="3">
+          <span class="kmap-minterm-idx">m3</span>
+          <span class="kmap-cell-val">0</span>
+        </div>
+      </div>
+      
+      <!-- SVG Overlay for drawing loops -->
+      <svg class="kmap-svg" viewBox="0 0 230 190" preserveAspectRatio="xMidYMid meet" style="width: 230px;">
+        <g id="kmap-2var-loops-group"></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="kmap-results">
+    <div class="kmap-result-row">
+      <span class="kmap-result-label">สมการผลลัพธ์:</span>
+      <div class="kmap-output-expr" id="kmap-2var-expr-display">F = 0</div>
+    </div>
+    <div class="kmap-result-row">
+      <span class="kmap-result-label">Minterm Form:</span>
+      <div class="kmap-output-minterms" id="kmap-2var-minterms-display">F = ∑ m()</div>
+    </div>
+  </div>
+
+  <div class="kmap-explanations-title">🔍 คำอธิบายการจับกลุ่ม (Step-by-Step Explanation):</div>
+  <div class="kmap-explanations" id="kmap-2var-expl-display">
+    <p class="kmap-placeholder-desc">คลิกที่ช่องในตารางเพื่อใส่ค่า 1 หรือ X แล้วดูการจับกลุ่มและวิเคราะห์คำอธิบายการลดรูปที่นี่</p>
+  </div>
+</div>

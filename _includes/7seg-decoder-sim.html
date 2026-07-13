@@ -1,0 +1,333 @@
+<div class="cl-widget" id="seven-segment-sim">
+  <style>
+    .seg-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      font-family: inherit;
+    }
+    .seg-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .seg-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    /* Binary switches */
+    .seg-switch-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .seg-switch-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .seg-switch {
+      width: 45px;
+      height: 25px;
+      background: #cbd5e1;
+      border-radius: 15px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .seg-switch.active {
+      background: var(--indigo, #4f46e5);
+    }
+    .seg-switch-knob {
+      width: 19px;
+      height: 19px;
+      background: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: left 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .seg-switch.active .seg-switch-knob {
+      left: 23px;
+    }
+    .seg-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #475569;
+    }
+    
+    /* 7-Segment SVG Segment Styles */
+    .seg-light {
+      fill: #334155;
+      stroke: #1e293b;
+      stroke-width: 1;
+      transition: fill 0.2s, filter 0.2s;
+    }
+    .seg-light.active {
+      fill: #ef4444;
+      filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.8));
+    }
+    
+    /* 7447 Decoder Box */
+    .dec-box {
+      width: 140px;
+      height: 160px;
+      background: #1e293b;
+      border: 2px solid #334155;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .dec-title {
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+    }
+    .dec-sub {
+      font-size: 0.7rem;
+      color: #94a3b8;
+    }
+    
+    /* Segment table display */
+    .seg-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    .seg-table th, .seg-table td {
+      padding: 6px;
+      border: 1px solid #cbd5e1;
+    }
+    .seg-table th {
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .seg-table td.active {
+      background: #fee2e2;
+      color: #b91c1c;
+      font-weight: 700;
+    }
+  </style>
+
+  <div class="seg-container">
+    <div class="seg-layout">
+      <!-- Input Panel -->
+      <div class="seg-panel">
+        <div class="seg-label" style="font-size:1rem; color:#1e293b;">1. ป้อนรหัส BCD (0000 - 1001)</div>
+        <div class="seg-switch-group">
+          <div class="seg-switch-wrap">
+            <div class="seg-switch" id="sw-3"><div class="seg-switch-knob"></div></div>
+            <span class="seg-label">D (8)</span>
+          </div>
+          <div class="seg-switch-wrap">
+            <div class="seg-switch" id="sw-2"><div class="seg-switch-knob"></div></div>
+            <span class="seg-label">C (4)</span>
+          </div>
+          <div class="seg-switch-wrap">
+            <div class="seg-switch" id="sw-1"><div class="seg-switch-knob"></div></div>
+            <span class="seg-label">B (2)</span>
+          </div>
+          <div class="seg-switch-wrap">
+            <div class="seg-switch" id="sw-0"><div class="seg-switch-knob"></div></div>
+            <span class="seg-label">A (1)</span>
+          </div>
+        </div>
+        <div style="font-size: 1.1rem; font-weight: 700; color:var(--indigo);">
+          ค่าเลขฐานสิบ: <span id="seg-dec-val">0</span>
+        </div>
+        
+        <!-- Decoder IC block -->
+        <div class="dec-box">
+          <span class="dec-title">7447</span>
+          <span class="dec-sub">BCD to 7-Seg</span>
+          <span class="dec-sub">Decoder/Driver</span>
+        </div>
+      </div>
+
+      <!-- Display Panel -->
+      <div class="seg-panel">
+        <div class="seg-label" style="font-size:1rem; color:#1e293b;">2. ผลลัพธ์บนจอ 7-Segment (Common Anode)</div>
+        
+        <!-- LED Display SVG -->
+        <svg viewBox="0 0 160 220" style="width: 140px; height: auto;" id="seven-seg-display">
+          <!-- Background -->
+          <rect width="160" height="220" fill="#0f172a" rx="8" />
+          
+          <!-- Segment A (top) -->
+          <polygon points="40,25 120,25 110,35 50,35" class="seg-light" id="seg-a" />
+          <!-- Segment F (top-left) -->
+          <polygon points="35,30 45,40 45,100 35,110" class="seg-light" id="seg-f" />
+          <!-- Segment B (top-right) -->
+          <polygon points="125,30 125,110 115,100 115,40" class="seg-light" id="seg-b" />
+          <!-- Segment G (middle) -->
+          <polygon points="40,115 50,110 110,110 120,115 110,120 50,120" class="seg-light" id="seg-g" />
+          <!-- Segment E (bottom-left) -->
+          <polygon points="35,120 45,130 45,190 35,200" class="seg-light" id="seg-e" />
+          <!-- Segment C (bottom-right) -->
+          <polygon points="125,120 125,200 115,190 115,130" class="seg-light" id="seg-c" />
+          <!-- Segment D (bottom) -->
+          <polygon points="40,205 50,195 110,195 120,205" class="seg-light" id="seg-d" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Active status table -->
+    <div style="overflow-x:auto;">
+      <table class="seg-table">
+        <thead>
+          <tr>
+            <th>ขาเอาต์พุต 7447 (Active-Low)</th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>d</th>
+            <th>e</th>
+            <th>f</th>
+            <th>g</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>สถานะลอจิก (Logic Level)</td>
+            <td id="tbl-a">0</td>
+            <td id="tbl-b">0</td>
+            <td id="tbl-c">0</td>
+            <td id="tbl-d">0</td>
+            <td id="tbl-e">0</td>
+            <td id="tbl-f">0</td>
+            <td id="tbl-g">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Switches
+      const switches = [
+        document.getElementById('sw-0'),
+        document.getElementById('sw-1'),
+        document.getElementById('sw-2'),
+        document.getElementById('sw-3')
+      ];
+      
+      const decValEl = document.getElementById('seg-dec-val');
+      
+      // Segments
+      const segments = {
+        a: document.getElementById('seg-a'),
+        b: document.getElementById('seg-b'),
+        c: document.getElementById('seg-c'),
+        d: document.getElementById('seg-d'),
+        e: document.getElementById('seg-e'),
+        f: document.getElementById('seg-f'),
+        g: document.getElementById('seg-g')
+      };
+      
+      // Table cells
+      const tblCells = {
+        a: document.getElementById('tbl-a'),
+        b: document.getElementById('tbl-b'),
+        c: document.getElementById('tbl-c'),
+        d: document.getElementById('tbl-d'),
+        e: document.getElementById('tbl-e'),
+        f: document.getElementById('tbl-f'),
+        g: document.getElementById('tbl-g')
+      };
+      
+      const switchStates = [0, 0, 0, 0]; // A, B, C, D
+      
+      // BCD to 7-Segment Decoder Map (7447 active-low: 0 means LED ON, 1 means LED OFF)
+      // Represented here as boolean states for turning LED ON (true = ON)
+      const digitMap = {
+        0: { a: true,  b: true,  c: true,  d: true,  e: true,  f: true,  g: false },
+        1: { a: false, b: true,  c: true,  d: false, e: false, f: false, g: false },
+        2: { a: true,  b: true,  c: false, d: true,  e: true,  f: false, g: true  },
+        3: { a: true,  b: true,  c: true,  d: true,  e: false, f: false, g: true  },
+        4: { a: false, b: true,  c: true,  d: false, e: false, f: true,  g: true  },
+        5: { a: true,  b: false, c: true,  d: true,  e: false, f: true,  g: true  },
+        6: { a: true,  b: false, c: true,  d: true,  e: true,  f: true,  g: true  },
+        7: { a: true,  b: true,  c: true,  d: false, e: false, f: false, g: false },
+        8: { a: true,  b: true,  c: true,  d: true,  e: true,  f: true,  g: true  },
+        9: { a: true,  b: true,  c: true,  d: true,  e: false, f: true,  g: true  }
+      };
+      
+      function updateDecoder() {
+        // Calculate BCD value: D*8 + C*4 + B*2 + A*1
+        const val = switchStates[3]*8 + switchStates[2]*4 + switchStates[1]*2 + switchStates[0]*1;
+        
+        decValEl.textContent = val;
+        
+        // BCD is 0-9. Values 10-15 show weird outputs on 7447 but we clamp to BCD for now.
+        const activeDigit = val <= 9 ? val : 0;
+        const segStates = digitMap[activeDigit];
+        
+        for (let seg in segments) {
+          const isON = segStates[seg];
+          
+          if (isON) {
+            segments[seg].classList.add('active');
+            tblCells[seg].textContent = '0 (Low)'; // Active low -> 0 turns on Anode display
+            tblCells[seg].classList.add('active');
+          } else {
+            segments[seg].classList.remove('active');
+            tblCells[seg].textContent = '1 (High)';
+            tblCells[seg].classList.remove('active');
+          }
+        }
+      }
+      
+      // Setup switch listeners
+      switches.forEach((sw, idx) => {
+        sw.addEventListener('click', () => {
+          switchStates[idx] = switchStates[idx] === 1 ? 0 : 1;
+          
+          // enforce BCD limit (max 9): if value exceeds 9, we can clamp or let it toggle
+          // Let's check value
+          const tempVal = switchStates[3]*8 + switchStates[2]*4 + switchStates[1]*2 + switchStates[0]*1;
+          if (tempVal > 9) {
+            // Prevent going over 9 for BCD (force off other bits)
+            if (idx === 3) { // If turning on 8, turn off 4 and 2
+              switchStates[2] = 0;
+              switchStates[1] = 0;
+            } else { // If turning on 4/2/1, turn off 8
+              switchStates[3] = 0;
+            }
+            
+            // Sync switch classes
+            switches.forEach((s, i) => {
+              if (switchStates[i] === 1) s.classList.add('active');
+              else s.classList.remove('active');
+            });
+          } else {
+            if (switchStates[idx] === 1) sw.classList.add('active');
+            else sw.classList.remove('active');
+          }
+          
+          updateDecoder();
+        });
+      });
+      
+      // Init
+      updateDecoder();
+    })();
+  </script>
+</div>

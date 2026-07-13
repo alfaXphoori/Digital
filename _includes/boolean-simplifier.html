@@ -1,0 +1,257 @@
+<div class="cl-widget" id="boolean-simplifier-playground">
+  <style>
+    .bs-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      font-family: inherit;
+    }
+    .bs-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+    .bs-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bs-presets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .bs-preset-btn {
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+    .bs-preset-btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .bs-preset-btn.active {
+      background: #eef2ff;
+      border-color: var(--indigo, #4f46e5);
+      color: var(--indigo, #4f46e5);
+    }
+    
+    .bs-display {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 20px;
+      color: #f8fafc;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .bs-expr-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #334155;
+      padding-bottom: 8px;
+    }
+    .bs-expr-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .bs-expr-label {
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+    .bs-expr-val {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    
+    .bs-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 15px;
+    }
+    .bs-step {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      padding: 6px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .bs-step:last-child {
+      border-bottom: none;
+    }
+    .bs-step-math {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .bs-step-law {
+      color: #059669;
+      font-weight: 700;
+    }
+  </style>
+
+  <div class="bs-container">
+    <div class="bs-card">
+      <div class="bs-title">💡 เลือกฟังก์ชันที่ต้องการลดรูป (Boolean Simplification Explorer)</div>
+      <p style="font-size: 0.85rem; color:#64748b; margin-top:0;">คลิกเลือกนิพจน์เพื่อดูการพิสูจน์และการลดรูปแบบทีละขั้นตอนตามกฎของบูลีน:</p>
+      
+      <div class="bs-presets">
+        <button class="bs-preset-btn active" data-id="1">A + AB (กฎการดูดซึม)</button>
+        <button class="bs-preset-btn" data-id="2">A + A'B (กฎการกระจาย)</button>
+        <button class="bs-preset-btn" data-id="3">AB + AB' (กฎความใกล้เคียง)</button>
+        <button class="bs-preset-btn" data-id="4">(A + B)(A + B')</button>
+        <button class="bs-preset-btn" data-id="5">A'B'C + A'BC + AB</button>
+        <button class="bs-preset-btn" data-id="6">AB + A'C + BC (Consensus)</button>
+      </div>
+      
+      <!-- Display screen -->
+      <div class="bs-display">
+        <div class="bs-expr-row">
+          <span class="bs-expr-label">สมการเริ่มต้น (Original):</span>
+          <span class="bs-expr-val" id="bs-original-val">A + AB</span>
+        </div>
+        <div class="bs-expr-row">
+          <span class="bs-expr-label">สมการลดรูปแล้ว (Simplified):</span>
+          <span class="bs-expr-val" id="bs-simplified-val" style="color:#10b981;">A</span>
+        </div>
+      </div>
+      
+      <div style="margin-top: 15px;">
+        <div style="font-weight:700; font-size:0.9rem; color:#475569; margin-bottom:8px;">ขั้นตอนการลดรูป (Step-by-Step Proof):</div>
+        <div class="bs-steps" id="bs-steps-list">
+          <!-- Dynamically filled -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const btns = document.querySelectorAll('.bs-preset-btn');
+      const originalVal = document.getElementById('bs-original-val');
+      const simplifiedVal = document.getElementById('bs-simplified-val');
+      const stepsList = document.getElementById('bs-steps-list');
+      
+      const simplificationProofs = {
+        '1': {
+          original: 'A + AB',
+          simplified: 'A',
+          steps: [
+            { math: 'A + AB', law: 'สมการเริ่มต้น' },
+            { math: 'A(1 + B)', law: 'ดึงตัวร่วม (Distributive Law)' },
+            { math: 'A(1)', law: 'กฎการมีผลเหนือกว่า (Domination Law: 1 + B = 1)' },
+            { math: 'A', law: 'กฎเอกลักษณ์ (Identity Law: A · 1 = A)' }
+          ]
+        },
+        '2': {
+          original: "A + A'B",
+          simplified: 'A + B',
+          steps: [
+            { math: "A + A'B", law: 'สมการเริ่มต้น' },
+            { math: "(A + A')(A + B)", law: 'กระจายพจน์ (Distributive Law: X + YZ = (X+Y)(X+Z))' },
+            { math: "(1)(A + B)", law: 'กฎคอมพลีเมนต์ (Complement Law: A + A\' = 1)' },
+            { math: 'A + B', law: 'กฎเอกลักษณ์ (Identity Law: 1 · X = X)' }
+          ]
+        },
+        '3': {
+          original: "AB + AB'",
+          simplified: 'A',
+          steps: [
+            { math: "AB + AB'", law: 'สมการเริ่มต้น' },
+            { math: "A(B + B')", law: 'ดึงตัวร่วม (Distributive Law)' },
+            { math: "A(1)", law: 'กฎคอมพลีเมนต์ (Complement Law: B + B\' = 1)' },
+            { math: 'A', law: 'กฎเอกลักษณ์ (Identity Law: A · 1 = A)' }
+          ]
+        },
+        '4': {
+          original: "(A + B)(A + B')",
+          simplified: 'A',
+          steps: [
+            { math: "(A + B)(A + B')", law: 'สมการเริ่มต้น' },
+            { math: "AA + AB' + BA + BB'", law: 'คูณกระจายพจน์ (FOIL)' },
+            { math: "A + AB' + AB + BB'", law: 'กฎการซ้ำกัน (Idempotent Law: AA = A)' },
+            { math: "A + AB' + AB + 0", law: 'กฎคอมพลีเมนต์ (Complement Law: BB\' = 0)' },
+            { math: "A(1 + B' + B)", law: 'ดึงตัวร่วม A ออกจากทุกพจน์' },
+            { math: "A(1)", law: 'กฎการมีผลเหนือกว่า (1 + X = 1)' },
+            { math: 'A', law: 'กฎเอกลักษณ์ (Identity Law)' }
+          ]
+        },
+        '5': {
+          original: "A'B'C + A'BC + AB",
+          simplified: "A'C + AB",
+          steps: [
+            { math: "A'B'C + A'BC + AB", law: 'สมการเริ่มต้น' },
+            { math: "A'C(B' + B) + AB", law: 'ดึงตัวร่วม A\'C จากสองพจน์แรก' },
+            { math: "A'C(1) + AB", law: 'กฎคอมพลีเมนต์ (Complement Law: B\' + B = 1)' },
+            { math: "A'C + AB", law: 'กฎเอกลักษณ์ (Identity Law)' }
+          ]
+        },
+        '6': {
+          original: "AB + A'C + BC (Consensus Theorem)",
+          simplified: "AB + A'C",
+          steps: [
+            { math: "AB + A'C + BC", law: 'สมการเริ่มต้น' },
+            { math: "AB + A'C + BC(1)", law: 'กฎเอกลักษณ์' },
+            { math: "AB + A'C + BC(A + A')", law: 'กฎคอมพลีเมนต์ (A + A\' = 1)' },
+            { math: "AB + A'C + ABC + A'BC", law: 'คูณกระจาย BC' },
+            { math: "(AB + ABC) + (A'C + A'BC)", law: 'จัดกลุ่มพจน์' },
+            { math: "AB(1 + C) + A'C(1 + B)", law: 'ดึงตัวร่วม' },
+            { math: "AB(1) + A'C(1)", law: 'กฎการมีผลเหนือกว่า (1 + X = 1)' },
+            { math: "AB + A'C", law: 'กฎเอกลักษณ์ (เสร็จสิ้นการพิสูจน์)' }
+          ]
+        }
+      };
+      
+      function selectProof(id) {
+        const proof = simplificationProofs[id];
+        originalVal.textContent = proof.original;
+        simplifiedVal.textContent = proof.simplified;
+        
+        let html = '';
+        proof.steps.forEach(step => {
+          html += `
+            <div class="bs-step">
+              <span class="bs-step-math">${step.math}</span>
+              <span class="bs-step-law">${step.law}</span>
+            </div>
+          `;
+        });
+        stepsList.innerHTML = html;
+      }
+      
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectProof(btn.getAttribute('data-id'));
+        });
+      });
+      
+      // Init first proof
+      selectProof('1');
+    })();
+  </script>
+</div>

@@ -1,0 +1,243 @@
+<div class="cl-widget" id="mux-function-builder">
+  <style>
+    .mux-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      font-family: inherit;
+    }
+    .mux-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .mux-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    /* MUX wiring interface */
+    .mux-wire-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+    }
+    .mux-wire-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+    
+    /* Toggle switch for wire value */
+    .mux-toggle-group {
+      display: flex;
+      gap: 4px;
+    }
+    .mux-toggle {
+      padding: 4px 10px;
+      border: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .mux-toggle:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+    .mux-toggle:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+    .mux-toggle.active {
+      background: var(--indigo, #4f46e5);
+      border-color: var(--indigo, #4f46e5);
+      color: #ffffff;
+    }
+    
+    /* Interactive MUX Block */
+    .mux-block {
+      width: 140px;
+      height: 240px;
+      background: #1e293b;
+      border: 2px solid #4f46e5;
+      border-radius: 12px 24px 24px 12px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+    }
+    .mux-block-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .mux-block-io {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 5px;
+    }
+    
+    .mux-btn-check {
+      padding: 10px 20px;
+      background: #059669;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .mux-btn-check:hover {
+      background: #047857;
+    }
+    
+    .mux-result {
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+    }
+  </style>
+
+  <div class="mux-container">
+    <div class="mux-grid">
+      <!-- MUX Wiring Control -->
+      <div class="mux-panel">
+        <div style="font-weight:700; color:#1e293b;">โจทย์: สร้างฟังก์ชัน $F(A,B,C) = \sum m(1, 3, 5, 6)$</div>
+        <p style="font-size:0.8rem; color:#64748b; margin-top:0;">กำหนดให้สายเลือกข้อมูล (Select lines) ต่อกับตัวแปรอินพุต $S_2=A, S_1=B, S_0=C$ ตามลำดับ จงเลือกลอจิก `0` หรือ `1` เพื่อป้อนเข้าที่ขาอินพุต $I_0 - I_7$ ให้ถูกต้อง:</p>
+        
+        <div class="mux-wires-list">
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₀ (000):</span>
+            <div class="mux-toggle-group" data-idx="0">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₁ (001):</span>
+            <div class="mux-toggle-group" data-idx="1">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₂ (010):</span>
+            <div class="mux-toggle-group" data-idx="2">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₃ (011):</span>
+            <div class="mux-toggle-group" data-idx="3">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₄ (100):</span>
+            <div class="mux-toggle-group" data-idx="4">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₅ (101):</span>
+            <div class="mux-toggle-group" data-idx="5">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₆ (110):</span>
+            <div class="mux-toggle-group" data-idx="6">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+          <div class="mux-wire-row">
+            <span class="mux-wire-title">Input I₇ (111):</span>
+            <div class="mux-toggle-group" data-idx="7">
+              <button class="mux-toggle active" data-val="0">0</button><button class="mux-toggle" data-val="1">1</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MUX Visualization Block -->
+      <div class="mux-panel" style="align-items:center; justify-content:center; gap:20px;">
+        <div class="mux-block">
+          <span class="mux-block-title">8-to-1</span>
+          <span class="mux-block-title">MUX</span>
+          <span class="mux-block-io">Inputs: I₀ - I₇</span>
+          <span class="mux-block-io">Select: A, B, C</span>
+          <span class="mux-block-io">Output: F</span>
+        </div>
+        
+        <button class="mux-btn-check" id="mux-check-btn">🔍 ตรวจสอบคำตอบ (Check Answer)</button>
+        <div class="mux-result" id="mux-result-box"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const groups = document.querySelectorAll('.mux-toggle-group');
+      const checkBtn = document.getElementById('mux-check-btn');
+      const resultBox = document.getElementById('mux-result-box');
+      
+      const wireStates = [0, 0, 0, 0, 0, 0, 0, 0]; // state of I0 to I7
+      const correctSolution = [0, 1, 0, 1, 0, 1, 1, 0]; // F = m(1,3,5,6)
+      
+      // Register switch toggles
+      groups.forEach(group => {
+        const idx = parseInt(group.getAttribute('data-idx'));
+        const buttons = group.querySelectorAll('.mux-toggle');
+        
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const val = parseInt(btn.getAttribute('data-val'));
+            wireStates[idx] = val;
+          });
+        });
+      });
+      
+      checkBtn.addEventListener('click', () => {
+        let isCorrect = true;
+        for (let i = 0; i < 8; i++) {
+          if (wireStates[i] !== correctSolution[i]) {
+            isCorrect = false;
+            break;
+          }
+        }
+        
+        resultBox.style.display = 'block';
+        if (isCorrect) {
+          resultBox.style.background = '#ecfdf5';
+          resultBox.style.color = '#065f46';
+          resultBox.style.border = '1px solid #a7f3d0';
+          resultBox.innerHTML = '🎉 <strong>ถูกต้อง!</strong> คุณเชื่อมต่อขาสัญญาณ Multiplexer ตรงตามฟังก์ชันที่ระบุอย่างสมบูรณ์แบบ!';
+        } else {
+          resultBox.style.background = '#fef2f2';
+          resultBox.style.color = '#991b1b';
+          resultBox.style.border = '1px solid #fecaca';
+          resultBox.innerHTML = '❌ <strong>ยังไม่ถูกต้อง:</strong> ลองพิจารณาค่ามินเทอม (Minterms) อีกครั้ง ขาอินพุตใดบ้างที่เป็น 1 และขาใดบ้างที่ควรจะเป็น 0';
+        }
+      });
+    })();
+  </script>
+</div>

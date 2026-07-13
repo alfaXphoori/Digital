@@ -1,0 +1,363 @@
+<div class="cl-widget" id="ascii-bcd-visualizer">
+  <style>
+    .av-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      font-family: inherit;
+    }
+    .av-modes {
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+    .av-mode-btn {
+      padding: 8px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 20px;
+      background: #f8fafc;
+      color: #475569;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .av-mode-btn.active {
+      background: var(--indigo, #4f46e5);
+      border-color: var(--indigo, #4f46e5);
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+    }
+    
+    .av-panel {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+    
+    .av-input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .av-input-wrap label {
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .av-text-input {
+      width: 100%;
+      max-width: 320px;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .av-text-input:focus {
+      border-color: var(--indigo, #4f46e5);
+      outline: none;
+    }
+    
+    /* Display output */
+    .av-output-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+    .av-output-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .av-output-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+    .av-output-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    
+    /* LED panel */
+    .av-led-panel {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    .av-led-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .av-led-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .av-led {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #334155;
+      border: 2px solid #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #64748b;
+      transition: all 0.2s ease;
+    }
+    .av-led.active {
+      background: #10b981;
+      border-color: #059669;
+      color: #0f172a;
+      box-shadow: 0 0 12px 2px rgba(16, 185, 129, 0.6);
+    }
+    .av-led-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+  </style>
+
+  <div class="av-container">
+    <div class="av-modes">
+      <button class="av-mode-btn active" id="av-btn-ascii">ASCII Visualizer</button>
+      <button class="av-mode-btn" id="av-btn-bcd">BCD Visualizer</button>
+    </div>
+
+    <!-- ASCII Mode -->
+    <div class="av-panel" id="av-panel-ascii">
+      <div class="av-input-wrap">
+        <label for="av-ascii-input">พิมพ์อักขระ (เช่น ตัวอักษร A-Z, ตัวเลข):</label>
+        <input type="text" maxlength="1" value="A" class="av-text-input" id="av-ascii-input" placeholder="พิมพ์อักขระ 1 ตัว..." />
+      </div>
+      
+      <div class="av-output-grid">
+        <div class="av-output-card">
+          <span class="av-output-title">อักขระ</span>
+          <span class="av-output-val" id="av-ascii-char" style="color:var(--indigo);">A</span>
+        </div>
+        <div class="av-output-card">
+          <span class="av-output-title">ฐานสิบ</span>
+          <span class="av-output-val" id="av-ascii-dec">65</span>
+        </div>
+        <div class="av-output-card">
+          <span class="av-output-title">ฐานสิบหก</span>
+          <span class="av-output-val" id="av-ascii-hex">41</span>
+        </div>
+        <div class="av-output-card">
+          <span class="av-output-title">ฐานสอง</span>
+          <span class="av-output-val" id="av-ascii-bin">01000001</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BCD Mode -->
+    <div class="av-panel" id="av-panel-bcd" style="display:none;">
+      <div class="av-input-wrap">
+        <label for="av-bcd-input">ป้อนตัวเลขสองหลัก (00 - 99):</label>
+        <input type="number" min="0" max="99" value="45" class="av-text-input" id="av-bcd-input" />
+      </div>
+      
+      <div class="av-output-grid">
+        <div class="av-output-card">
+          <span class="av-output-title">หลักสิบ</span>
+          <span class="av-output-val" id="av-bcd-tens" style="color:var(--indigo);">4 (0100)</span>
+        </div>
+        <div class="av-output-card">
+          <span class="av-output-title">หลักหน่วย</span>
+          <span class="av-output-val" id="av-bcd-ones" style="color:var(--indigo);">5 (0101)</span>
+        </div>
+        <div class="av-output-card">
+          <span class="av-output-title">รหัส BCD (8-Bit)</span>
+          <span class="av-output-val" id="av-bcd-full" style="font-size:1.15rem;">0100 0101</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEDs Panel (Used for both modes) -->
+    <div class="av-led-panel">
+      <div class="av-card__title" id="av-led-title" style="color:#94a3b8; font-size:0.8rem; font-weight:700; text-transform:uppercase;">ASCII LED Visualization (8-Bit)</div>
+      
+      <div class="av-led-group" id="av-leds-ascii">
+        <div class="av-led-wrap"><div class="av-led" id="av-led-7">0</div><span class="av-led-label">Bit 7</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-led-6">0</div><span class="av-led-label">Bit 6</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-led-5">0</div><span class="av-led-label">Bit 5</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-led-4">0</div><span class="av-led-label">Bit 4</span></div>
+        <div style="width: 10px;"></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-led-3">0</div><span class="av-led-label">Bit 3</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-led-2">0</div><span class="av-led-label">Bit 2</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-led-1">0</div><span class="av-led-label">Bit 1</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-led-0">0</div><span class="av-led-label">Bit 0</span></div>
+      </div>
+
+      <div class="av-led-group" id="av-leds-bcd" style="display:none;">
+        <!-- Tens group -->
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-t-3">0</div><span class="av-led-label">T₈</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-t-2">0</div><span class="av-led-label">T₄</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-t-1">0</div><span class="av-led-label">T₂</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-t-0">0</div><span class="av-led-label">T₁</span></div>
+        <div style="width: 25px; border-left: 2px dashed #334155; height: 40px; margin: 0 5px;"></div>
+        <!-- Ones group -->
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-o-3">0</div><span class="av-led-label">O₈</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-o-2">0</div><span class="av-led-label">O₄</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-o-1">0</div><span class="av-led-label">O₂</span></div>
+        <div class="av-led-wrap"><div class="av-led" id="av-bcd-o-0">0</div><span class="av-led-label">O₁</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const btnAscii = document.getElementById('av-btn-ascii');
+      const btnBcd = document.getElementById('av-btn-bcd');
+      
+      const panelAscii = document.getElementById('av-panel-ascii');
+      const panelBcd = document.getElementById('av-panel-bcd');
+      
+      const ledsAsciiGroup = document.getElementById('av-leds-ascii');
+      const ledsBcdGroup = document.getElementById('av-leds-bcd');
+      const ledTitle = document.getElementById('av-led-title');
+      
+      const asciiInput = document.getElementById('av-ascii-input');
+      const bcdInput = document.getElementById('av-bcd-input');
+      
+      let currentMode = 'ascii';
+      
+      // Select ASCII elements
+      const charVal = document.getElementById('av-ascii-char');
+      const decVal = document.getElementById('av-ascii-dec');
+      const hexVal = document.getElementById('av-ascii-hex');
+      const binVal = document.getElementById('av-ascii-bin');
+      
+      // Select BCD elements
+      const bcdTens = document.getElementById('av-bcd-tens');
+      const bcdOnes = document.getElementById('av-bcd-ones');
+      const bcdFull = document.getElementById('av-bcd-full');
+      
+      // Register Mode Button Event Listeners
+      btnAscii.addEventListener('click', () => {
+        currentMode = 'ascii';
+        btnAscii.classList.add('active');
+        btnBcd.classList.remove('active');
+        panelAscii.style.display = 'flex';
+        panelBcd.style.display = 'none';
+        ledsAsciiGroup.style.display = 'flex';
+        ledsBcdGroup.style.display = 'none';
+        ledTitle.textContent = 'ASCII LED Visualization (8-Bit)';
+        updateAscii();
+      });
+      
+      btnBcd.addEventListener('click', () => {
+        currentMode = 'bcd';
+        btnBcd.classList.add('active');
+        btnAscii.classList.remove('active');
+        panelBcd.style.display = 'flex';
+        panelAscii.style.display = 'none';
+        ledsBcdGroup.style.display = 'flex';
+        ledsAsciiGroup.style.display = 'none';
+        ledTitle.textContent = 'BCD LED Visualization (Tens | Ones)';
+        updateBcd();
+      });
+      
+      function updateAscii() {
+        const char = asciiInput.value || ' ';
+        const code = char.charCodeAt(0) || 0;
+        
+        charVal.textContent = char === ' ' ? '[Space]' : char;
+        decVal.textContent = code.toString(10);
+        hexVal.textContent = code.toString(16).toUpperCase();
+        
+        const binaryString = code.toString(2).padStart(8, '0');
+        binVal.textContent = binaryString;
+        
+        for (let i = 0; i < 8; i++) {
+          const led = document.getElementById(`av-led-${i}`);
+          const bit = (code >> i) & 1;
+          if (bit === 1) {
+            led.classList.add('active');
+            led.textContent = '1';
+          } else {
+            led.classList.remove('active');
+            led.textContent = '0';
+          }
+        }
+      }
+      
+      function updateBcd() {
+        let val = parseInt(bcdInput.value);
+        if (isNaN(val)) val = 0;
+        val = Math.max(0, Math.min(99, val));
+        bcdInput.value = val;
+        
+        const tensDigit = Math.floor(val / 10);
+        const onesDigit = val % 10;
+        
+        const tensBin = tensDigit.toString(2).padStart(4, '0');
+        const onesBin = onesDigit.toString(2).padStart(4, '0');
+        
+        bcdTens.textContent = `${tensDigit} (${tensBin})`;
+        bcdOnes.textContent = `${onesDigit} (${onesBin})`;
+        bcdFull.textContent = `${tensBin} ${onesBin}`;
+        
+        // Update Tens LEDs
+        for (let i = 0; i < 4; i++) {
+          const led = document.getElementById(`av-bcd-t-${i}`);
+          const bit = (tensDigit >> i) & 1;
+          if (bit === 1) {
+            led.classList.add('active');
+            led.textContent = '1';
+          } else {
+            led.classList.remove('active');
+            led.textContent = '0';
+          }
+        }
+        
+        // Update Ones LEDs
+        for (let i = 0; i < 4; i++) {
+          const led = document.getElementById(`av-bcd-o-${i}`);
+          const bit = (onesDigit >> i) & 1;
+          if (bit === 1) {
+            led.classList.add('active');
+            led.textContent = '1';
+          } else {
+            led.classList.remove('active');
+            led.textContent = '0';
+          }
+        }
+      }
+      
+      asciiInput.addEventListener('input', updateAscii);
+      bcdInput.addEventListener('input', updateBcd);
+      
+      // Initial trigger
+      updateAscii();
+    })();
+  </script>
+</div>

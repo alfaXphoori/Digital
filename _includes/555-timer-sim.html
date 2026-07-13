@@ -1,0 +1,236 @@
+<div class="cl-widget" id="five-five-five-timer-sim">
+  <style>
+    .timer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      font-family: inherit;
+    }
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .timer-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .timer-slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .timer-slider-lbl {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+    .timer-slider {
+      width: 100%;
+      height: 6px;
+      background: #cbd5e1;
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+      accent-color: var(--indigo, #4f46e5);
+    }
+    .timer-results {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 15px;
+      color: #f8fafc;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .timer-res-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .timer-res-lbl {
+      color: #94a3b8;
+      font-size: 0.75rem;
+    }
+    .timer-res-val {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    
+    /* Live Waveform styles */
+    .timer-wave-box {
+      background: #090d16;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #1e293b;
+      height: 160px;
+      position: relative;
+    }
+  </style>
+
+  <div class="timer-container">
+    <div class="timer-grid">
+      <!-- Sliders Panel -->
+      <div class="timer-panel">
+        <div style="font-weight:700; color:#1e293b; font-size:1.05rem;">ปรับปรุงพารามิเตอร์ 555 Timer (Astable Mode)</div>
+        
+        <div class="timer-slider-row">
+          <div class="timer-slider-lbl">
+            <span>ตัวต้านทาน R₁:</span>
+            <span style="color:var(--indigo);" id="timer-val-r1">10 kΩ</span>
+          </div>
+          <input type="range" min="1" max="100" value="10" class="timer-slider" id="timer-slider-r1" />
+        </div>
+
+        <div class="timer-slider-row">
+          <div class="timer-slider-lbl">
+            <span>ตัวต้านทาน R₂:</span>
+            <span style="color:var(--indigo);" id="timer-val-r2">47 kΩ</span>
+          </div>
+          <input type="range" min="1" max="100" value="47" class="timer-slider" id="timer-slider-r2" />
+        </div>
+
+        <div class="timer-slider-row">
+          <div class="timer-slider-lbl">
+            <span>ตัวเก็บประจุ C:</span>
+            <span style="color:var(--indigo);" id="timer-val-c">10 µF</span>
+          </div>
+          <input type="range" min="0.1" max="50" step="0.1" value="10" class="timer-slider" id="timer-slider-c" />
+        </div>
+
+        <!-- Calculated Values -->
+        <div class="timer-results">
+          <div class="timer-res-item">
+            <span class="timer-res-lbl">t_HIGH (ช่วงเป็น 1):</span>
+            <span class="timer-res-val" id="res-thigh">0.39 s</span>
+          </div>
+          <div class="timer-res-item">
+            <span class="timer-res-lbl">t_LOW (ช่วงเป็น 0):</span>
+            <span class="timer-res-val" id="res-tlow">0.32 s</span>
+          </div>
+          <div class="timer-res-item">
+            <span class="timer-res-lbl">ความถี่ (Frequency):</span>
+            <span class="timer-res-val" id="res-freq" style="color:#10b981;">1.40 Hz</span>
+          </div>
+          <div class="timer-res-item">
+            <span class="timer-res-lbl">Duty Cycle:</span>
+            <span class="timer-res-val" id="res-duty" style="color:#fbbf24;">54.8%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Waveform Panel -->
+      <div class="timer-panel" style="justify-content:center;">
+        <div style="font-weight:700; color:#1e293b; font-size:1rem; text-align:center;">กราฟสัญญาณเอาต์พุต (OUT) & สัญญาณแรงดันตัวเก็บประจุ (Vc)</div>
+        <div class="timer-wave-box">
+          <svg viewBox="0 0 400 140" style="width:100%; height:100%;" id="timer-svg">
+            <!-- Grid lines -->
+            <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.05)" />
+            <line x1="0" y1="70" x2="400" y2="70" stroke="rgba(255,255,255,0.05)" />
+            <line x1="0" y1="110" x2="400" y2="110" stroke="rgba(255,255,255,0.05)" />
+            
+            <text x="5" y="25" fill="#64748b" font-family="'JetBrains Mono'" font-size="8">VCC (OUT=1)</text>
+            <text x="5" y="75" fill="#64748b" font-family="'JetBrains Mono'" font-size="8">2/3 VCC (Vc max)</text>
+            <text x="5" y="115" fill="#64748b" font-family="'JetBrains Mono'" font-size="8">GND (OUT=0)</text>
+
+            <!-- Charging/Discharging Vc Waveform (Red/Pink line) -->
+            <path d="" fill="none" stroke="#ef4444" stroke-width="2" id="path-vc" />
+            <!-- Square Output Waveform (Cyan line) -->
+            <path d="" fill="none" stroke="#0ea5e9" stroke-width="2.5" id="path-out" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const sliderR1 = document.getElementById('timer-slider-r1');
+      const sliderR2 = document.getElementById('timer-slider-r2');
+      const sliderC = document.getElementById('timer-slider-c');
+      
+      const lblR1 = document.getElementById('timer-val-r1');
+      const lblR2 = document.getElementById('timer-val-r2');
+      const lblC = document.getElementById('timer-val-c');
+      
+      const resThigh = document.getElementById('res-thigh');
+      const resTlow = document.getElementById('res-tlow');
+      const resFreq = document.getElementById('res-freq');
+      const resDuty = document.getElementById('res-duty');
+      
+      const pathVc = document.getElementById('path-vc');
+      const pathOut = document.getElementById('path-out');
+      
+      function calculateTimer() {
+        const r1 = parseFloat(sliderR1.value) * 1000; // to Ohms
+        const r2 = parseFloat(sliderR2.value) * 1000; // to Ohms
+        const c = parseFloat(sliderC.value) * 0.000001; // to Farads
+        
+        lblR1.textContent = `${sliderR1.value} kΩ`;
+        lblR2.textContent = `${sliderR2.value} kΩ`;
+        lblC.textContent = `${sliderC.value} µF`;
+        
+        // formulas
+        const tHigh = 0.693 * (r1 + r2) * c;
+        const tLow = 0.693 * r2 * c;
+        const period = tHigh + tLow;
+        const freq = 1 / period;
+        const duty = (tHigh / period) * 100;
+        
+        resThigh.textContent = `${tHigh.toFixed(3)} s`;
+        resTlow.textContent = `${tLow.toFixed(3)} s`;
+        resFreq.textContent = freq >= 1000 ? `${(freq/1000).toFixed(2)} kHz` : `${freq.toFixed(2)} Hz`;
+        resDuty.textContent = `${duty.toFixed(1)}%`;
+        
+        // Draw real-time graphs inside SVG
+        // Let's create a visual cycle ratio
+        const totalW = 400;
+        const ratio = tHigh / period; // duty ratio
+        const cycleWidth = 80; // width of one full cycle on screen in pixels
+        const highW = cycleWidth * ratio;
+        const lowW = cycleWidth - highW;
+        
+        let outD = `M 0 110`;
+        let vcD = `M 0 110`;
+        
+        let cx = 0;
+        let isHigh = true;
+        
+        // draw 5 full cycles
+        for (let i = 0; cx < totalW; i++) {
+          if (isHigh) {
+            outD += ` L ${cx} 30 L ${cx + highW} 30`;
+            vcD += ` Q ${cx + highW/2} 40 ${cx + highW} 70`; // charging curve towards 2/3 Vcc
+            cx += highW;
+          } else {
+            outD += ` L ${cx} 110 L ${cx + lowW} 110`;
+            vcD += ` Q ${cx + lowW/2} 100 ${cx + lowW} 110`; // discharging curve towards 1/3 Vcc
+            cx += lowW;
+          }
+          isHigh = !isHigh;
+        }
+        
+        pathOut.setAttribute('d', outD);
+        pathVc.setAttribute('d', vcD);
+      }
+      
+      sliderR1.addEventListener('input', calculateTimer);
+      sliderR2.addEventListener('input', calculateTimer);
+      sliderC.addEventListener('input', calculateTimer);
+      
+      // Init
+      calculateTimer();
+    })();
+  </script>
+</div>

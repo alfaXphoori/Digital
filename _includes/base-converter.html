@@ -1,0 +1,282 @@
+<div class="cl-widget" id="base-converter-playground">
+  <style>
+    .bc-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      font-family: inherit;
+    }
+    .bc-control {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .bc-slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .bc-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .bc-slider {
+      width: 100%;
+      height: 6px;
+      background: #cbd5e1;
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+      accent-color: var(--indigo, #4f46e5);
+    }
+    .bc-input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bc-input-group label {
+      font-weight: 600;
+      color: #475569;
+    }
+    .bc-input {
+      width: 100px;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+    .bc-input:focus {
+      border-color: var(--indigo, #4f46e5);
+      outline: none;
+    }
+    
+    .bc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 15px;
+    }
+    .bc-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      transition: border-color 0.2s;
+    }
+    .bc-card:hover {
+      border-color: #cbd5e1;
+    }
+    .bc-card__title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .bc-card__val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--indigo, #4f46e5);
+    }
+    
+    /* Binary LED Display */
+    .bc-binary-panel {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    .bc-led-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .bc-led-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .bc-led {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #334155;
+      border: 2px solid #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #64748b;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    }
+    .bc-led.active {
+      background: #38bdf8;
+      border-color: #0ea5e9;
+      color: #0f172a;
+      box-shadow: 0 0 12px 2px rgba(56, 189, 248, 0.6);
+    }
+    .bc-led-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+  </style>
+
+  <div class="bc-container">
+    <div class="bc-control">
+      <div class="bc-slider-group">
+        <div class="bc-slider-header">
+          <span>ปรับค่าสไลเดอร์ (0 - 255)</span>
+          <span class="bc-slider-val" id="bc-slider-lbl" style="color:var(--indigo, #4f46e5); font-family:'JetBrains Mono'; font-size:1.15rem;">128</span>
+        </div>
+        <input type="range" min="0" max="255" value="128" class="bc-slider" id="bc-slider-input" />
+      </div>
+      <div class="bc-input-group">
+        <label for="bc-dec-input">ระบุค่าฐานสิบ:</label>
+        <input type="number" min="0" max="255" value="128" class="bc-input" id="bc-dec-input" />
+      </div>
+    </div>
+
+    <!-- Binary LEDs Panel -->
+    <div class="bc-binary-panel">
+      <div class="bc-card__title" style="color:#94a3b8;">Binary LED Visualization (8-Bit)</div>
+      <div class="bc-led-group">
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-7">0</div>
+          <span class="bc-led-label">2⁷</span>
+        </div>
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-6">0</div>
+          <span class="bc-led-label">2⁶</span>
+        </div>
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-5">0</div>
+          <span class="bc-led-label">2⁵</span>
+        </div>
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-4">0</div>
+          <span class="bc-led-label">2⁴</span>
+        </div>
+        <div style="width: 10px;"></div> <!-- Spacer between nibbles -->
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-3">0</div>
+          <span class="bc-led-label">2³</span>
+        </div>
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-2">0</div>
+          <span class="bc-led-label">2²</span>
+        </div>
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-1">0</div>
+          <span class="bc-led-label">2¹</span>
+        </div>
+        <div class="bc-led-wrap">
+          <div class="bc-led" id="bc-led-0">0</div>
+          <span class="bc-led-label">2⁰</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outputs Grid -->
+    <div class="bc-grid">
+      <div class="bc-card">
+        <span class="bc-card__title">ฐานสิบ (Dec)</span>
+        <span class="bc-card__val" id="bc-val-dec">128</span>
+      </div>
+      <div class="bc-card">
+        <span class="bc-card__title">ฐานสอง (Bin)</span>
+        <span class="bc-card__val" id="bc-val-bin" style="font-size:1.15rem;">10000000</span>
+      </div>
+      <div class="bc-card">
+        <span class="bc-card__title">ฐานแปด (Oct)</span>
+        <span class="bc-card__val" id="bc-val-oct">200</span>
+      </div>
+      <div class="bc-card">
+        <span class="bc-card__title">ฐานสิบหก (Hex)</span>
+        <span class="bc-card__val" id="bc-val-hex">80</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const slider = document.getElementById('bc-slider-input');
+      const decInput = document.getElementById('bc-dec-input');
+      const sliderLbl = document.getElementById('bc-slider-lbl');
+      
+      const valDec = document.getElementById('bc-val-dec');
+      const valBin = document.getElementById('bc-val-bin');
+      const valOct = document.getElementById('bc-val-oct');
+      const valHex = document.getElementById('bc-val-hex');
+      
+      const leds = [];
+      for (let i = 0; i < 8; i++) {
+        leds.push(document.getElementById(`bc-led-${i}`));
+      }
+      
+      function updateBases(val) {
+        // Clamp value
+        val = Math.max(0, Math.min(255, val));
+        
+        // Update controllers
+        slider.value = val;
+        decInput.value = val;
+        sliderLbl.textContent = val;
+        
+        // Convert to bases
+        valDec.textContent = val.toString(10);
+        valBin.textContent = val.toString(2).padStart(8, '0');
+        valOct.textContent = val.toString(8);
+        valHex.textContent = val.toString(16).toUpperCase();
+        
+        // Update LEDs
+        for (let i = 0; i < 8; i++) {
+          const bit = (val >> i) & 1;
+          if (bit === 1) {
+            leds[i].classList.add('active');
+            leds[i].textContent = '1';
+          } else {
+            leds[i].classList.remove('active');
+            leds[i].textContent = '0';
+          }
+        }
+      }
+      
+      slider.addEventListener('input', (e) => {
+        updateBases(parseInt(e.target.value) || 0);
+      });
+      
+      decInput.addEventListener('input', (e) => {
+        updateBases(parseInt(e.target.value) || 0);
+      });
+      
+      // Initialize
+      updateBases(128);
+    })();
+  </script>
+</div>
