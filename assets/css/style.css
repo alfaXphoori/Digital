@@ -1,5 +1,5 @@
 /* ============================================================
-   ลอจิกและดิจิทัล (Logic and Digital) — site styles
+   ตรรกศาสตร์ของดิจิตอลคอมพิวเตอร์ (Digital Computer Logic) — site styles
    ============================================================ */
 
 :root {
@@ -333,7 +333,7 @@ table.schedule tbody tr:hover { background: #f8fafc; }
 .prose h2 { font-size: 1.5rem; color: var(--ink); margin-top: 1.8em; padding-bottom: .3em; border-bottom: 1px solid var(--line); }
 .prose h3 { font-size: 1.2rem; color: var(--indigo-dark); }
 .prose table { width: 100%; border-collapse: collapse; margin: 1.2em 0; display: block; overflow-x: auto; }
-.prose th, .prose td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; }
+.prose th, .prose td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; white-space: nowrap; }
 .prose thead th { background: #f1f5f9; }
 .prose tbody tr:nth-child(even) { background: #f8fafc; }
 .prose code { background: #f1f5f9; padding: 2px 6px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: .9em; }
@@ -2778,6 +2778,483 @@ table.schedule tbody tr:hover { background: #f8fafc; }
   .grade-info { grid-column: 1 / -1; padding-left: 52px; white-space: normal; font-size: .88rem; }
   .grade-axis > span:last-child { display: none; }
 }
+
+/* ============================================================
+   Karnaugh Map Widget (.kmap-demo)
+   ============================================================ */
+.kmap-demo {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  margin: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kmap-header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+
+.kmap-title {
+  font-family: "IBM Plex Sans Thai", "Inter", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.kmap-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kmap-presets-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.kmap-select {
+  font-family: "IBM Plex Sans Thai", "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  outline: none;
+  cursor: pointer;
+}
+
+.kmap-btn {
+  font-family: "IBM Plex Sans Thai", "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #f8fafc;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.kmap-btn:hover {
+  background: #eef2ff;
+  border-color: var(--indigo);
+  color: var(--indigo);
+}
+
+.kmap-workspace {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  overflow-x: auto;
+}
+
+.kmap-grid-container {
+  position: relative;
+  width: 380px;
+  height: 190px;
+}
+
+.kmap-grid {
+  display: grid;
+  grid-template-columns: 80px repeat(4, 75px);
+  grid-template-rows: 40px repeat(2, 75px);
+  width: 380px;
+  height: 190px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.kmap-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text);
+  user-select: none;
+}
+
+/* Header cells */
+.kmap-cell--header {
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 0.95rem;
+  border: 1px solid var(--line);
+}
+
+.kmap-cell--corner {
+  position: relative;
+  overflow: hidden;
+}
+
+.kmap-diagonal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid var(--line);
+  transform: rotate(26.5deg);
+  transform-origin: top left;
+}
+
+.kmap-diag-lbl {
+  position: absolute;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.kmap-diag-lbl--bc {
+  top: 4px;
+  right: 12px;
+}
+
+.kmap-diag-lbl--a {
+  bottom: 4px;
+  left: 12px;
+}
+
+/* Interactive cells */
+.kmap-cell--interactive {
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.kmap-cell--interactive:hover {
+  background: #f1f5f9;
+}
+
+.kmap-minterm-idx {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.kmap-cell-val {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #94a3b8;
+  transition: transform 0.1s ease, color 0.1s ease;
+}
+
+.kmap-cell--interactive[data-value="1"] {
+  background: rgba(79, 70, 229, 0.04);
+}
+
+.kmap-cell--interactive[data-value="1"] .kmap-cell-val {
+  color: var(--indigo);
+  transform: scale(1.15);
+}
+
+.kmap-cell--interactive[data-value="X"] {
+  background: rgba(6, 182, 212, 0.03);
+}
+
+.kmap-cell--interactive[data-value="X"] .kmap-cell-val {
+  color: var(--cyan);
+  transform: scale(1.1);
+}
+
+/* SVG Overlay */
+.kmap-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 380px;
+  height: 190px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Color theme classes for SVG loops and Math terms */
+.kmap-color-0 { --kmap-color: var(--indigo); --kmap-bg: rgba(79, 70, 229, 0.12); --kmap-fill: rgba(79, 70, 229, 0.05); }
+.kmap-color-1 { --kmap-color: var(--cyan); --kmap-bg: rgba(6, 182, 212, 0.12); --kmap-fill: rgba(6, 182, 212, 0.05); }
+.kmap-color-2 { --kmap-color: var(--amber); --kmap-bg: rgba(245, 158, 11, 0.12); --kmap-fill: rgba(245, 158, 11, 0.05); }
+.kmap-color-3 { --kmap-color: #10b981; --kmap-bg: rgba(16, 185, 129, 0.12); --kmap-fill: rgba(16, 185, 129, 0.05); }
+.kmap-color-4 { --kmap-color: #f43f5e; --kmap-bg: rgba(244, 63, 94, 0.12); --kmap-fill: rgba(244, 63, 94, 0.05); }
+
+.kmap-loop {
+  fill: var(--kmap-fill);
+  stroke: var(--kmap-color);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+  transition: stroke-width 0.15s ease, fill 0.15s ease, opacity 0.15s ease;
+}
+
+.kmap-loop.highlighted {
+  fill: var(--kmap-bg);
+  stroke-width: 5;
+  opacity: 1;
+}
+
+.kmap-loop.dimmed {
+  opacity: 0.25;
+}
+
+/* Results section */
+.kmap-results {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kmap-result-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kmap-result-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--muted);
+  min-width: 110px;
+}
+
+.kmap-output-expr {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.kmap-output-minterms {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.kmap-term-wrap {
+  display: inline-flex;
+  align-items: center;
+}
+
+.kmap-term {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--kmap-color);
+  background: var(--kmap-bg);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 2px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow 0.12s ease, transform 0.1s ease;
+}
+
+.kmap-term:hover {
+  transform: translateY(-1px);
+}
+
+.kmap-term.highlighted {
+  box-shadow: 0 0 0 2px var(--kmap-color);
+}
+
+.kmap-bar {
+  text-decoration: overline;
+  display: inline-block;
+}
+
+/* Explanations section */
+.kmap-explanations-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: -12px;
+}
+
+.kmap-explanations {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.6;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-height: 80px;
+}
+
+.kmap-placeholder-desc {
+  color: var(--muted);
+  margin: 0;
+  font-style: italic;
+}
+
+.kmap-expl-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kmap-expl-item {
+  color: var(--text);
+}
+
+.kmap-expl-term {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  color: var(--kmap-color);
+  background: var(--kmap-bg);
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+@media (max-width: 600px) {
+  .kmap-grid-container, .kmap-grid, .kmap-svg {
+    width: 310px;
+    height: 155px;
+  }
+  .kmap-grid {
+    grid-template-columns: 60px repeat(4, 62.5px);
+    grid-template-rows: 30px repeat(2, 62.5px);
+  }
+  .kmap-cell {
+    font-size: 1.1rem;
+  }
+  .kmap-cell-val {
+    font-size: 1.2rem;
+  }
+  .kmap-minterm-idx {
+    font-size: 0.6rem;
+    top: 2px;
+    right: 4px;
+  }
+  .kmap-diagonal {
+    transform: rotate(26.5deg);
+  }
+}
+
+/* ---------- Chapter 4-Layer Tab System ---------- */
+.chapter-tabs-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 10px;
+  margin: 1rem 0 1.5rem 0;
+  position: sticky;
+  top: 70px; /* Just below sticky header */
+  z-index: 50;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  backdrop-filter: blur(8px);
+  background: rgba(241, 245, 249, 0.85);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.chapter-tabs-nav::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.chapter-tab-btn {
+  flex: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #475569;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.chapter-tab-btn:hover {
+  background: rgba(226, 232, 240, 0.5);
+  color: #1e293b;
+}
+
+.chapter-tab-btn.active {
+  background: #ffffff;
+  color: var(--indigo);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+}
+
+.chapter-tab-content {
+  display: none;
+  animation: fadeInTab 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.chapter-tab-content.active {
+  display: block;
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .chapter-tabs-nav {
+    top: 60px;
+    gap: 4px;
+    border-radius: 8px;
+    padding: 3px;
+  }
+  .chapter-tab-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    gap: 4px;
+  }
+}
+
+
+
 
 
 
