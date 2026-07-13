@@ -32,7 +32,7 @@ assignments:
     topic: พีชคณิตบูลีนและการลดรูปสมการลอจิก
     work: ใบงานที่ 5 — พิสูจน์และลดรูปสมการ · ต่อวงจรเปรียบเทียบก่อน/หลังลดรูป · ยืนยันผลด้วยตารางความจริง
     due: ก่อนคาบสัปดาห์ที่ 6
-    form: "#"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLSdVu4PD6e14CtCcNeHTcveONxGMtDV5kGI0o7-WwWJY2n2W9w/viewform?usp=dialog"
   - n: 6
     topic: แผนผังคาร์โนห์ (Karnaugh Map)
     work: ใบงานที่ 6 — ออกแบบวงจรจากตารางความจริง · ใช้ K-map ลดรูปแล้วต่อทดสอบ · เปรียบเทียบจำนวนเกตที่ใช้
