@@ -87,3 +87,44 @@
 ---
 
 > 🚀 **ความสำเร็จในการเรียน:** คือการเข้าใจหลักการและสามารถ "ออกแบบ" วงจรเพื่อแก้ปัญหาจริงในระดับฮาร์ดแวร์ได้ ขอให้สนุกกับการเรียน Digital Logic ครับ!
+
+---
+
+## 5. ลิงก์บทเรียน
+
+- [บทที่ 1 ระบบตัวเลขและรหัส](ch01-number-systems/)
+- [บทที่ 2 เกตตรรกะและคุณสมบัติดิจิทัลไอซี](ch02-logic-gates/)
+- [บทที่ 3 พีชคณิตบูลีน](ch03-boolean-algebra/)
+- [บทที่ 4 ผังคาร์โนห์](ch04-karnaugh-maps/)
+- [บทที่ 5 วงจรคอมบิเนชันและการประยุกต์](ch05-combinational-circuits/)
+- [บทที่ 6 สัญญาณนาฬิกาและฟลิปฟลอป](ch06-flip-flops/)
+- [บทที่ 7 วงจรนับและเรจิสเตอร์](ch07-counters-registers/)
+- [บทที่ 8 การออกแบบวงจรเชิงลำดับและ FSM](ch08-fsm/)
+- [บทที่ 9 หน่วยความจำ PLD และการแปลงสัญญาณ ADC/DAC](ch09-memory-interfacing/)
+- [บทที่ 10 แนะนำ HDL: Verilog และ EDA Playground](ch10-hdl-verilog/)
+- [บทที่ 11 สถาปัตยกรรมคอมพิวเตอร์และหน่วยประมวลผลกลางเบื้องต้น](ch11-computer-architecture/)
+
+## 6. ลิงก์ปฏิบัติการ (16 แลป)
+
+- [Lab 1 — ระบบตัวเลขและการแปลงเลขฐาน](../labs/lab01-number-systems.html)
+- [Lab 2 — รหัสดิจิทัล (BCD, Gray)](../labs/lab02-digital-codes.html)
+- [Lab 3 — เกตตรรกะ](../labs/lab03-logic-gates.html)
+- [Lab 4 — กฎเดอมอร์แกน](../labs/lab04-demorgan.html)
+- [Lab 5 — ผังคาร์โนห์](../labs/lab05-kmap.html)
+- [Lab 6 — วงจรบวก](../labs/lab06-adder.html)
+- [Lab 7 — วงจรขับ 7-segment](../labs/lab07-7segment.html)
+- [Lab 8 — SR Latch](../labs/lab08-sr-latch.html)
+- [Lab 9 — JK Flip-Flop](../labs/lab09-jk-flipflop.html)
+- [Lab 10 — วงจรนับแบบ Ripple](../labs/lab10-ripple-counter.html)
+- [Lab 11 — Shift Register](../labs/lab11-shift-register.html)
+- [Lab 12 — การออกแบบ FSM](../labs/lab12-fsm-design.html)
+- [Lab 13 — การสร้าง FSM](../labs/lab13-fsm-implementation.html)
+- [Lab 14 — ROM Logic](../labs/lab14-rom-logic.html)
+- [Lab 15 — โปรเจกต์ย่อย](../labs/lab15-mini-project.html)
+- [Lab 16 — Verilog Simulation บน EDA Playground](../labs/lab16-verilog-eda.html)
+
+## 7. เอกสารที่เกี่ยวข้อง
+
+- [ตารางตำแหน่งขาไอซี (IC Pinouts Reference)](../labs/ic-pinouts.html)
+- [แผนการจัดการเรียนรู้รายสัปดาห์ (ฉบับเต็ม)](../weekly-lesson-plan.html)
+- [กลับหน้าแรกรายวิชา](../)

@@ -4,19 +4,16 @@
 
 ---
 
+<div class="chapter-tab-content" data-tab-name="Concept" data-tab-icon="💡" id="concept" markdown="1">
+
 ## 5.1 บทนำ
 
 **วงจรเชิงผสม (Combinational Circuit)** — เอาต์พุตขึ้นอยู่กับ **อินพุตปัจจุบัน** เท่านั้น (ไม่มีหน่วยความจำ)
 
 $$\text{Output} = f(\text{Current Inputs})$$
 
-```
-                ┌──────────────────┐
- Inputs ───────→│  Combinational   │───────→ Outputs
-                │     Logic        │
-                │                  │
-                └──────────────────┘     
-```
+{% include comb-logic-demo.html %}
+
 
 ### ลักษณะสำคัญ:
 - ไม่มี feedback path จากเอาต์พุตกลับเข้าอินพุต
@@ -25,17 +22,45 @@ $$\text{Output} = f(\text{Current Inputs})$$
 
 ### กระบวนการออกแบบวงจรเชิงผสม:
 
-```
-1. กำหนดปัญหา (สร้าง Truth Table)
-          ↓
-2. เขียนสมการบูลีน (SOP / POS)
-          ↓
-3. ลดรูปสมการ (K-Map / Algebra)
-          ↓
-4. วาดวงจรด้วยเกต
-          ↓
-5. ตรวจสอบความถูกต้อง
-```
+<div class="kmap-flow">
+  <div class="kmap-flow__step">
+    <div class="kmap-flow__badge">ขั้นตอนที่ 1</div>
+    <div class="kmap-flow__title">กำหนดปัญหา (สร้าง Truth Table)</div>
+    <div class="kmap-flow__desc">วิเคราะห์โจทย์และข้อกำหนดเพื่อระบุจำนวนตัวแปรอินพุตและเอาต์พุต จากนั้นสร้างตารางความจริง (Truth Table) เพื่อแสดงความสัมพันธ์ทั้งหมด</div>
+  </div>
+  
+  <div class="kmap-flow__arrow">↓</div>
+  
+  <div class="kmap-flow__step">
+    <div class="kmap-flow__badge">ขั้นตอนที่ 2</div>
+    <div class="kmap-flow__title">เขียนสมการบูลีน (SOP / POS)</div>
+    <div class="kmap-flow__desc">เขียนสมการบูลีนเริ่มต้นจากตารางความจริง โดยเลือกเขียนในรูปแบบผลรวมของผลคูณ <b>SOP</b> (พิจารณาช่องที่เอาต์พุตเป็น 1) หรือผลคูณของผลรวม <b>POS</b> (พิจารณาช่องที่เอาต์พุตเป็น 0)</div>
+  </div>
+  
+  <div class="kmap-flow__arrow">↓</div>
+  
+  <div class="kmap-flow__step">
+    <div class="kmap-flow__badge">ขั้นตอนที่ 3</div>
+    <div class="kmap-flow__title">ลดรูปสมการ (K-Map / Algebra)</div>
+    <div class="kmap-flow__desc">ลดรูปสมการบูลีนให้มีโครงสร้างที่สั้นและง่ายที่สุด โดยใช้ตารางคาร์โนห์ (K-Map) เพื่อจับกลุ่มตัวแปร หรือใช้กฎและทฤษฎีพีชคณิตบูลีน (Boolean Algebra)</div>
+  </div>
+  
+  <div class="kmap-flow__arrow">↓</div>
+  
+  <div class="kmap-flow__step">
+    <div class="kmap-flow__badge">ขั้นตอนที่ 4</div>
+    <div class="kmap-flow__title">วาดวงจรด้วยเกต</div>
+    <div class="kmap-flow__desc">นำสมการบูลีนที่ลดรูปเสร็จสิ้นแล้วมาวาดเป็นแผนภาพวงจรลอจิก (Logic Diagram) โดยเชื่อมต่อด้วยเกตพื้นฐาน เช่น AND, OR, NOT, NAND, NOR หรือ XOR</div>
+  </div>
+  
+  <div class="kmap-flow__arrow">↓</div>
+  
+  <div class="kmap-flow__step">
+    <div class="kmap-flow__badge">ขั้นตอนที่ 5</div>
+    <div class="kmap-flow__title">ตรวจสอบความถูกต้อง</div>
+    <div class="kmap-flow__desc">ตรวจสอบว่าวงจรที่วาดทำงานได้ถูกต้องตรงตามตารางความจริงที่กำหนดไว้ในขั้นตอนแรกสุดในทุกเงื่อนไขอินพุต</div>
+  </div>
+</div>
 
 แบ่งเนื้อหาเป็น 2 ส่วน:
 - **ส่วนที่ 1:** วงจรคำนวณทางคณิตศาสตร์ (Arithmetic Circuits)
@@ -157,6 +182,10 @@ $$C_{out} = AB + AC_{in} + BC_{in} = AB + C_{in}(A \oplus B)$$
 ```
 
 **IC: 7483** (4-bit Binary Full Adder with Fast Carry)
+
+**🔬 ทดลองบวกเลขและดูการส่งตัวทด (Interactive Ripple-Carry Simulator):**
+
+{% include adder-demo.html %}
 
 > ⚠️ **ข้อเสีย Ripple Carry:** Carry ต้อง "ripple" จากหลักต่ำไปหลักสูง → delay สะสม เช่น 8-bit = delay × 8
 > 💡 **ทางแก้:** Carry Look-Ahead Adder (CLA) — คำนวณ carry ล่วงหน้าพร้อมกัน
@@ -493,7 +522,7 @@ $$D_0 = \overline{A_1}\,\overline{A_0}, \quad D_1 = \overline{A_1}\,A_0, \quad D
 
 #### ตัวอย่าง: K-Map ลดรูป segment `g`
 
-$$g = \sum m(2, 3, 4, 5, 6, 9) + \sum d(10, 11, 12, 13, 14, 15)$$
+$$g = \sum m(2, 3, 4, 5, 6, 8, 9) + \sum d(10, 11, 12, 13, 14, 15)$$
 
 ```
   ┌─────────┬──────┬──────┬──────┬──────┐
@@ -505,11 +534,11 @@ $$g = \sum m(2, 3, 4, 5, 6, 9) + \sum d(10, 11, 12, 13, 14, 15)$$
   ├─────────┼──────┼──────┼──────┼──────┤
   │   11    │  X   │  X   │  X   │  X   │
   ├─────────┼──────┼──────┼──────┼──────┤
-  │   10    │  1   │  X   │  X   │  X   │
+  │   10    │  1   │  1   │  X   │  X   │
   └─────────┴──────┴──────┴──────┴──────┘
 ```
 
-→ $g = A + BC + B\overline{D} + \overline{B}C\overline{D}$
+→ $g = A + B\overline{C} + B\overline{D} + \overline{B}C$
 
 **IC: 7447** (active LOW, common-anode) | **IC: 4511** (active HIGH, CMOS)
 
@@ -735,7 +764,63 @@ $$Y_0 = D \cdot \overline{S_1}\,\overline{S_0}, \quad Y_1 = D \cdot \overline{S_
 | **7447** | BCD→7-Seg Decoder | Active LOW, common-anode |
 | **4511** | BCD→7-Seg Decoder | Active HIGH, CMOS |
 
+</div>
+
+<div class="chapter-tab-content" data-tab-name="Interactive Sim" data-tab-icon="🎮" id="sim" markdown="1">
+
+## Interactive Simulators (ห้องทดลองวงจรเชิงผสม)
+
+เครื่องมือจำลองเหล่านี้ออกแบบมาเพื่อช่วยสร้างความเข้าใจผ่านการโต้ตอบและลงมือเล่น (Simulate-First)
+
+### 1. เครื่องมือต่อและวิเคราะห์เกตเชิงตรรกะ (Combinational Logic Playground)
+สังเกตผลลัพธ์ของสมการและการทำงานร่วมกันของเกต:
+
+{% include comb-logic-demo.html %}
+
 ---
+
+### 2. เครื่องมือบวกเลขฐานสอง (Adder Lab)
+ป้อนค่าตัวตั้ง A และ B เพื่อดูการบวกเลขฐานสองและเส้นทางสัญญาณตัวทด (Carry propagation):
+
+{% include adder-demo.html %}
+
+---
+
+### 3. ตัวจำลองการถอดรหัสและแสดงผล (7-Segment Decoder Simulator)
+ปรับสวิตช์อินพุต BCD (0-9) เพื่อจำลองการถอดรหัสของไอซี 7447 ส่งออกไปยังจอแสดงผล 7-Segment (Common Anode):
+
+{% include 7seg-decoder-sim.html %}
+
+---
+
+### 4. เครื่องมือท้าทายสร้างฟังก์ชันด้วยมัลติเพล็กเซอร์ (MUX Function Builder)
+ป้อนลอจิกอินพุต 0 หรือ 1 ที่ขาสัญญาณ $I_0 - I_7$ เพื่อสร้างฟังก์ชัน $F(A,B,C) = \sum m(1,3,5,6)$ ให้ถูกต้องและกดทดสอบคำตอบ:
+
+{% include mux-builder-sim.html %}
+
+</div>
+
+<div class="chapter-tab-content" data-tab-name="Waveform / Truth Table" data-tab-icon="📊" id="waveform" markdown="1">
+
+## Reference Tables (ตารางไอซีและมาตรฐานวงจรเชิงผสม)
+
+ตารางสรุปดิจิทัลไอซีในตระกูลวงจรเชิงผสม (Combinational ICs) ที่ต้องอ้างอิงในการเรียนและการปฏิบัติงาน:
+
+| รหัส IC | ชื่อฟังก์ชันการทำงาน | รายละเอียด / หมายเหตุ |
+|:---:|:---|:---|
+| **7483** | 4-bit Full Adder | พร้อมระบบ Fast Carry (Look-Ahead) |
+| **7485** | 4-bit Magnitude Comparator | เปรียบเทียบค่า A/B สามารถต่อขยายได้ |
+| **74138** | 3-to-8 Decoder / DEMUX 1-to-8 | เอาต์พุตลอจิกเป็น Active LOW |
+| **74139** | Dual 2-to-4 Decoder | บรรจุวงจรถอดรหัส 2 ตัวในไอซีตัวเดียว |
+| **74148** | 8-to-3 Priority Encoder | เข้ารหัสตามสิทธิ์ เอาต์พุต Active LOW |
+| **74151** | 8-to-1 Multiplexer (MUX) | เลือกสัญญาณ 8 ช่อง มีเอาต์พุตปกติและ complement |
+| **74153** | Dual 4-to-1 Multiplexer | บรรจุมัลติเพล็กเซอร์ 4 ช่อง 2 วงจร |
+| **7447** | BCD-to-7-Segment Decoder | ขับหน้าจอ Common-Anode (เอาต์พุต Active LOW) |
+| **4511** | BCD-to-7-Segment Decoder | ขับหน้าจอ Common-Cathode (เอาต์พุต Active HIGH) |
+
+</div>
+
+<div class="chapter-tab-content" data-tab-name="Challenge" data-tab-icon="🏆" id="challenge" markdown="1">
 
 ## แบบฝึกหัดท้ายบท
 
@@ -747,3 +832,5 @@ $$Y_0 = D \cdot \overline{S_1}\,\overline{S_0}, \quad Y_1 = D \cdot \overline{S_
 6. เปรียบเทียบข้อดีข้อเสียของ Normal Encoder กับ Priority Encoder
 7. ต่อวงจร 4-bit Adder + 7-Segment Display บน **Tinkercad** โดยใช้ IC 7483 + 4511
 8. ออกแบบวงจร 2's complement subtractor โดยใช้ IC 7483 + NOT gates
+
+</div>

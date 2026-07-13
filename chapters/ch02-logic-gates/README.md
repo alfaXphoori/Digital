@@ -4,6 +4,8 @@
 
 ---
 
+<div class="chapter-tab-content" data-tab-name="Concept" data-tab-icon="💡" id="concept" markdown="1">
+
 ## 2.1 บทนำ
 
 **Logic Gate** คือวงจรอิเล็กทรอนิกส์พื้นฐานที่ทำหน้าที่ประมวลผลทางตรรกศาสตร์ โดยรับสัญญาณอินพุตแบบดิจิทัล (`0` หรือ `1`) แล้วให้ผลลัพธ์เอาต์พุตตามฟังก์ชันทางตรรกะ
@@ -58,6 +60,10 @@ A:    _____|‾‾‾‾‾|_____|‾‾‾‾‾|____
 - **t2:** A เปลี่ยนกลับเป็น 0 → Falling Edge
 - **t3–t4:** วนซ้ำ
 
+**🔬 ลองเล่นกราฟสัญญาณ (Interactive Timing Diagram):**
+
+{% include timing-diagram.html preset="gate-selector" id="ch2-intro" %}
+
 > 💡 **ประโยชน์:** ดูว่าเอาต์พุตตอบสนองต่ออินพุตถูกต้องหรือไม่ ตรวจสอบ Propagation Delay และออกแบบวงจรลำดับ (Sequential Circuit)
 
 ---
@@ -79,19 +85,15 @@ $$Y = A \cdot B$$
 
 ![AND Gate](images/AND.svg)
 
+**🔬 ลองกดเล่น (Interactive):**
+
+{% include logic-gate.html type="AND" %}
+
 **IC: 7408** (Quad 2-input AND gate — มี 4 เกตในชิปเดียว)
 
 #### Timing Diagram
 
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-A:     _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____
-
-B:     __________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____|‾‾‾‾|____
-
-AND:   _______________|‾‾‾‾|_________|‾‾‾‾|____
-```
+{% include timing-diagram.html preset="custom" signals="A:01010110,B:00111010,AND:00010010" id="ch2-and" %}
 
 | ช่วง | t0 | t1 | t2 | t3 | t4 | t5 | t6 | t7 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -118,19 +120,15 @@ $$Y = A + B$$
 
 ![OR Gate](images/OR.svg)
 
+**🔬 ลองกดเล่น (Interactive):**
+
+{% include logic-gate.html type="OR" %}
+
 **IC: 7432** (Quad 2-input OR gate)
 
 #### Timing Diagram
 
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-A:     _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____
-
-B:     __________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____|‾‾‾‾|____
-
-OR:    _____|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____
-```
+{% include timing-diagram.html preset="custom" signals="A:01010110,B:00111010,OR:01111110" id="ch2-or" %}
 
 | ช่วง | t0 | t1 | t2 | t3 | t4 | t5 | t6 | t7 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -155,17 +153,15 @@ $$Y = \overline{A}$$
 
 ![NOT Gate](images/NOT.svg)
 
+**🔬 ลองกดเล่น (Interactive):**
+
+{% include logic-gate.html type="NOT" %}
+
 **IC: 7404** (Hex Inverter — มี 6 เกตในชิปเดียว)
 
 #### Timing Diagram
 
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-A:     _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____
-
-NOT:   ‾‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾|_________|‾‾‾‾
-```
+{% include timing-diagram.html preset="custom" signals="A:01010110,NOT:10101001" id="ch2-not" %}
 
 | ช่วง | t0 | t1 | t2 | t3 | t4 | t5 | t6 | t7 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -193,21 +189,17 @@ $$Y = \overline{A \cdot B}$$
 
 ![NAND Gate](images/NAND.svg)
 
+**🔬 ลองกดเล่น (Interactive):**
+
+{% include logic-gate.html type="NAND" %}
+
 **IC: 7400** (Quad 2-input NAND gate)
 
 > ⭐ **NAND เป็น Universal Gate** — สามารถสร้างเกตอื่นทุกชนิดได้จาก NAND เพียงอย่างเดียว
 
 #### Timing Diagram
 
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-A:     _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____
-
-B:     __________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____|‾‾‾‾|____
-
-NAND:  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____|‾‾‾‾
-```
+{% include timing-diagram.html preset="custom" signals="A:01010110,B:00111010,NAND:11101101" id="ch2-nand" %}
 
 | ช่วง | t0 | t1 | t2 | t3 | t4 | t5 | t6 | t7 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -234,21 +226,17 @@ $$Y = \overline{A + B}$$
 
 ![NOR Gate](images/NOR.svg)
 
+**🔬 ลองกดเล่น (Interactive):**
+
+{% include logic-gate.html type="NOR" %}
+
 **IC: 7402** (Quad 2-input NOR gate)
 
 > ⭐ **NOR เป็น Universal Gate** เช่นกัน
 
 #### Timing Diagram
 
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-A:     _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____
-
-B:     __________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____|‾‾‾‾|____
-
-NOR:   ‾‾‾‾‾|_____________________________|‾‾‾‾
-```
+{% include timing-diagram.html preset="custom" signals="A:01010110,B:00111010,NOR:10000001" id="ch2-nor" %}
 
 | ช่วง | t0 | t1 | t2 | t3 | t4 | t5 | t6 | t7 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -277,21 +265,17 @@ $$Y = A \oplus B = A\overline{B} + \overline{A}B$$
 
 ![XOR Gate](images/XOR.svg)
 
+**🔬 ลองกดเล่น (Interactive):**
+
+{% include logic-gate.html type="XOR" %}
+
 **IC: 7486** (Quad 2-input XOR gate)
 
 > 💡 **ประโยชน์:** ใช้ในวงจร Adder, Parity checker, และ Comparator
 
 #### Timing Diagram
 
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-A:     _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____
-
-B:     __________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____|‾‾‾‾|____
-
-XOR:   _____|‾‾‾‾‾‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|_________
-```
+{% include timing-diagram.html preset="custom" signals="A:01010110,B:00111010,XOR:01101100" id="ch2-xor" %}
 
 | ช่วง | t0 | t1 | t2 | t3 | t4 | t5 | t6 | t7 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -318,21 +302,17 @@ $$Y = \overline{A \oplus B} = AB + \overline{A}\,\overline{B}$$
 
 ![XNOR Gate](images/XNOR.svg)
 
+**🔬 ลองกดเล่น (Interactive):**
+
+{% include logic-gate.html type="XNOR" %}
+
 **IC: 74266** (Quad 2-input XNOR gate)
 
 > 💡 **ประโยชน์:** ใช้ในวงจร Comparator (ตรวจสอบว่าเท่ากันหรือไม่)
 
 #### Timing Diagram
 
-```
-         t0   t1   t2   t3   t4   t5   t6   t7
-
-A:     _____|‾‾‾‾|____|‾‾‾‾|____|‾‾‾‾‾‾‾‾‾|____
-
-B:     __________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾|____|‾‾‾‾|____
-
-XNOR:  ‾‾‾‾‾|_________|‾‾‾‾|_________|‾‾‾‾‾‾‾‾‾
-```
+{% include timing-diagram.html preset="custom" signals="A:01010110,B:00111010,XNOR:10010011" id="ch2-xnor" %}
 
 | ช่วง | t0 | t1 | t2 | t3 | t4 | t5 | t6 | t7 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -615,6 +595,48 @@ C ── NOT ─┘
 - **Propagation Delay ($t_{pd}$):** เวลาที่สัญญาณอินพุตใช้ในการส่งผลให้เอาต์พุตเปลี่ยนแปลง
 - **Power Dissipation:** กำลังไฟฟ้าที่ไอซีบริโภค
 
+</div>
+
+<div class="chapter-tab-content" data-tab-name="Interactive Sim" data-tab-icon="🎮" id="sim" markdown="1">
+
+## Interactive Simulators (ตัวจำลองเกตตรรกะและลอจิกไอซี)
+
+เครื่องมือจำลองเหล่านี้ออกแบบมาเพื่อช่วยสร้างความเข้าใจผ่านการโต้ตอบและลงมือเล่น (Simulate-First)
+
+### 1. ตัวจำลองลอจิกไอซี 74xx (IC 74xx Pinout Simulator)
+เลือกชนิดไอซีด้านบนเพื่อดูผังขาทั้ง 14 ขาจริง คลิกที่ขานำเข้า (Input A, B) เพื่อเปลี่ยนสถานะเป็น High (1) หรือ Low (0) เพื่อดูผลลัพธ์ของลอจิกเกตภายในตัวไอซีที่จะแสดงผลออกมาที่ขา Y แบบทันที:
+
+{% include ic-74xx-sim.html %}
+
+---
+
+### 2. ลิงก์สู่เครื่องมือจำลองภายนอก (Logic Gate Circuit Playgrounds)
+คุณสามารถออกแบบและทดสอบวงจรที่มีความซับซ้อนขึ้นด้วยเครื่องมือระดับโลกเหล่านี้โดยไม่ต้องติดตั้งโปรแกรม:
+- [CircuitVerse - Online Digital Logic Simulator](https://circuitverse.org/simulator)
+- [Tinkercad Circuits (สำหรับทดลองไอซีและบอร์ดทดลองจริง)](https://www.tinkercad.com/)
+
+</div>
+
+<div class="chapter-tab-content" data-tab-name="Waveform / Truth Table" data-tab-icon="📊" id="waveform" markdown="1">
+
+## Reference Tables (ตารางสรุปเกตตรรกะทั้ง 7 ชนิด)
+
+ใช้ตารางสรุปฟังก์ชันตรรกะนี้เพื่อเป็นแผ่นอ้างอิงด่วนสำหรับการคำนวณและประมวลผลสัญญาณ:
+
+| ชนิดเกต (Gate) | สัญลักษณ์ตรรกะ | ฟังก์ชันเอาต์พุต (Output) | ตารางความจริงย่อ |
+|:---:|:---:|:---:|---|
+| **AND** | $Y = A \cdot B$ | 1 เมื่ออินพุตทุกตัวเป็น 1 | `0·0=0`, `0·1=0`, `1·0=0`, `1·1=1` |
+| **OR** | $Y = A + B$ | 1 เมื่อมีอินพุตตัวใดตัวหนึ่งเป็น 1 | `0+0=0`, `0+1=1`, `1+0=1`, `1+1=1` |
+| **NOT** | $Y = \overline{A}$ | กลับสถานะลอจิกเป็นตรงกันข้าม | `NOT 0 = 1`, `NOT 1 = 0` |
+| **NAND** | $Y = \overline{A \cdot B}$ | 0 เมื่ออินพุตทุกตัวเป็น 1 (ตรงข้าม AND) | `NAND(1,1) = 0`, อื่นๆ เป็น 1 |
+| **NOR** | $Y = \overline{A + B}$ | 1 เมื่อไม่มีอินพุตตัวใดเป็น 1 (ตรงข้าม OR) | `NOR(0,0) = 1`, อื่นๆ เป็น 0 |
+| **XOR** | $Y = A \oplus B$ | 1 เมื่อมีอินพุตเพียงตัวเดียวที่เป็น 1 | `0⊕0=0`, `0⊕1=1`, `1⊕0=1`, `1⊕1=0` |
+| **XNOR** | $Y = A \odot B$ | 1 เมื่ออินพุตเหมือนกัน (ตรงข้าม XOR) | `0⊙0=1`, `0⊙1=0`, `1⊙0=0`, `1⊙1=1` |
+
+</div>
+
+<div class="chapter-tab-content" data-tab-name="Challenge" data-tab-icon="🏆" id="challenge" markdown="1">
+
 ## แบบฝึกหัดท้ายบท
 
 1. เขียน Truth Table ของ 3-input OR gate
@@ -623,3 +645,5 @@ C ── NOT ─┘
 4. เปรียบเทียบข้อดีข้อเสียของ TTL กับ CMOS
 5. อ่าน Data Sheet ของ IC 7432 แล้วระบุ: ขา Vcc, GND, ตำแหน่งอินพุต/เอาต์พุตของเกตที่ 1
 6. ต่อวงจร AND, OR, NOT บน **Tinkercad** โดยใช้ IC 7408, 7432, 7404
+
+</div>
