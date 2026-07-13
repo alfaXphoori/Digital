@@ -758,17 +758,5 @@ function checkAnswers() {
 9. เขียน Truth Table ของฟังก์ชัน $F = (A+B)\overline{C}$
 10. ลดรูป $F = AB + \overline{A}C + BC$ (Consensus Theorem)
 
-### เฉลยแนวคิด
-
-1. กระจายก่อน: $A(B+C)=AB+AC$ และ $B(B+C)=B$ จากนั้นใช้ Absorption จะได้ $F=B+AC$
-2. ใช้ De Morgan ชั้นนอกก่อน ได้ $\overline{A+\overline{B}}+\overline{C+\overline{D}}$ แล้วลดเป็น $\overline{A}B+\overline{C}D$
-3. ทำตาราง 4 แถวของ $A,B$ แล้วเทียบคอลัมน์ $A+\overline{A}B$ กับ $A+B$
-4. $m_1=\overline{A}\overline{B}C$, $m_3=\overline{A}BC$, $m_5=A\overline{B}C$
-5. เขียน $F=\overline{\overline{AB}\cdot\overline{C}}$ โดยสร้าง $\overline{C}$ จาก NAND ที่ผูกอินพุตเข้าด้วยกัน
-6. ใช้ De Morgan กับเทอมแรก ได้ $AB+\overline{A}B$ แล้วดึง $B$ เป็น $B(A+\overline{A})=B$
-7. $\overline{F}=\overline{AB+\overline{C}D}=(\overline{A}+\overline{B})(C+\overline{D})$
-8. เขียน $A\odot B=AB+\overline{A}\overline{B}$ แล้ว complement ทั้งสมการ จะได้ $A\overline{B}+\overline{A}B$
-9. $F=1$ เฉพาะเมื่อ $C=0$ และอย่างน้อยหนึ่งตัวใน $A,B$ เป็น `1`
-10. เทอม $BC$ เป็น consensus term จึงลดได้เป็น $F=AB+\overline{A}C$
 
 </div>
