@@ -2139,18 +2139,18 @@ document.addEventListener("DOMContentLoaded", function() {
       { cells: [0, 1, 2, 3], rows: [0, 1], cols: [0, 1], term: "1", html: "1", explanation: "ครอบคลุมเซลล์ทั้งหมดในตาราง ได้ผลลัพธ์เป็น 1 คงที่" },
 
       // Size 2 (Horizontal)
-      { cells: [0, 1], rows: [0], cols: [0, 1], term: "A̅", html: '<span class="kmap-bar">A</span>', explanation: "ครอบคลุมแถวบนทั้งหมด (A=0) ทำให้ตัวแปร B ตัดกันออกหมด เหลือเพียง A̅" },
-      { cells: [2, 3], rows: [1], cols: [0, 1], term: "A", html: 'A', explanation: "ครอบคลุมแถวล่างทั้งหมด (A=1) ทำให้ตัวแปร B ตัดกันออกหมด เหลือเพียง A" },
+      { cells: [0, 2], rows: [0], cols: [0, 1], term: "B̅", html: '<span class="kmap-bar">B</span>', explanation: "ครอบคลุมแถวบนทั้งหมด (B=0) ทำให้ตัวแปร A ตัดกันออกหมด เหลือเพียง B̅" },
+      { cells: [1, 3], rows: [1], cols: [0, 1], term: "B", html: 'B', explanation: "ครอบคลุมแถวล่างทั้งหมด (B=1) ทำให้ตัวแปร A ตัดกันออกหมด เหลือเพียง B" },
 
       // Size 2 (Vertical)
-      { cells: [0, 2], rows: [0, 1], cols: [0], term: "B̅", html: '<span class="kmap-bar">B</span>', explanation: "ครอบคลุมคอลัมน์ซ้ายทั้งหมด (B=0) ทำให้ตัวแปร A ตัดกันออกหมด เหลือเพียง B̅" },
-      { cells: [1, 3], rows: [0, 1], cols: [1], term: "B", html: 'B', explanation: "ครอบคลุมคอลัมน์ขวาทั้งหมด (B=1) ทำให้ตัวแปร A ตัดกันออกหมด เหลือเพียง B" },
+      { cells: [0, 1], rows: [0, 1], cols: [0], term: "A̅", html: '<span class="kmap-bar">A</span>', explanation: "ครอบคลุมคอลัมน์ซ้ายทั้งหมด (A=0) ทำให้ตัวแปร B ตัดกันออกหมด เหลือเพียง A̅" },
+      { cells: [2, 3], rows: [0, 1], cols: [1], term: "A", html: 'A', explanation: "ครอบคลุมคอลัมน์ขวาทั้งหมด (A=1) ทำให้ตัวแปร B ตัดกันออกหมด เหลือเพียง A" },
 
       // Size 1
-      { cells: [0], rows: [0], cols: [0], term: "A̅B̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span>', explanation: "ช่อง m0 (แถว A=0, คอลัมน์ B=0) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [1], rows: [0], cols: [1], term: "A̅B", html: '<span class="kmap-bar">A</span>B', explanation: "ช่อง m1 (แถว A=0, คอลัมน์ B=1) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [2], rows: [1], cols: [0], term: "AB̅", html: 'A<span class="kmap-bar">B</span>', explanation: "ช่อง m2 (แถว A=1, คอลัมน์ B=0) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [3], rows: [1], cols: [1], term: "AB", html: 'AB', explanation: "ช่อง m3 (แถว A=1, คอลัมน์ B=1) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" }
+      { cells: [0], rows: [0], cols: [0], term: "A̅B̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span>', explanation: "ช่อง m0 (แถว B=0, คอลัมน์ A=0) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [2], rows: [0], cols: [1], term: "AB̅", html: 'A<span class="kmap-bar">B</span>', explanation: "ช่อง m2 (แถว B=0, คอลัมน์ A=1) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [1], rows: [1], cols: [0], term: "A̅B", html: '<span class="kmap-bar">A</span>B', explanation: "ช่อง m1 (แถว B=1, คอลัมน์ A=0) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [3], rows: [1], cols: [1], term: "AB", html: 'AB', explanation: "ช่อง m3 (แถว B=1, คอลัมน์ A=1) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" }
     ];
 
     function updateGridDisplay() {
