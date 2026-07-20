@@ -2394,45 +2394,45 @@ document.addEventListener("DOMContentLoaded", function() {
       { cells: [0, 1, 2, 3, 4, 5, 6, 7], rows: [0, 1], cols: [0, 1, 2, 3], term: "1", html: "1", explanation: "ทุกช่องในตารางเป็น 1 หรือ X ทำให้ลดรูปเหลือ 1 (วงจรส่งออกเป็นจริงเสมอ)" },
 
       // Size 4
-      { cells: [0, 1, 2, 3], rows: [0], cols: [0, 1, 2, 3], term: "A̅", html: '<span class="kmap-bar">A</span>', explanation: "ครอบคลุมแถวบนทั้งหมด (A=0) ทำให้ตัวแปร B, C ตัดกันออกหมด เหลือเพียง A̅" },
-      { cells: [4, 5, 6, 7], rows: [1], cols: [0, 1, 2, 3], term: "A", html: 'A', explanation: "ครอบคลุมแถวล่างทั้งหมด (A=1) ทำให้ตัวแปร B, C ตัดกันออกหมด เหลือเพียง A" },
-      { cells: [0, 1, 4, 5], rows: [0, 1], cols: [0, 1], term: "B̅", html: '<span class="kmap-bar">B</span>', explanation: "ครอบคลุมคอลัมน์ 00 และ 01 ทั้งสองแถว (A เปลี่ยน, C เปลี่ยน) เหลือ B คงที่ที่ 0 (B̅)" },
-      { cells: [1, 3, 5, 7], rows: [0, 1], cols: [1, 2], term: "C", html: 'C', explanation: "ครอบคลุมคอลัมน์ 01 และ 11 ทั้งสองแถว (A เปลี่ยน, B เปลี่ยน) เหลือ C คงที่ที่ 1 (C)" },
-      { cells: [3, 2, 7, 6], rows: [0, 1], cols: [2, 3], term: "B", html: 'B', explanation: "ครอบคลุมคอลัมน์ 11 และ 10 ทั้งสองแถว (A เปลี่ยน, C เปลี่ยน) เหลือ B คงที่ที่ 1 (B)" },
-      { cells: [2, 0, 6, 4], rows: [0, 1], cols: [0, 3], term: "C̅", html: '<span class="kmap-bar">C</span>', explanation: "ครอบคลุมคอลัมน์ 10 และ 00 (วนขอบซ้าย-ขวา) ทั้งสองแถว (A เปลี่ยน, B เปลี่ยน) เหลือ C คงที่ที่ 0 (C̅)" },
+      { cells: [0, 2, 6, 4], rows: [0], cols: [0, 1, 2, 3], term: "C̅", html: '<span class="kmap-bar">C</span>', explanation: "ครอบคลุมแถวบนทั้งหมด (C=0) ทำให้ตัวแปร A, B ตัดกันออกหมด เหลือเพียง C̅" },
+      { cells: [1, 3, 7, 5], rows: [1], cols: [0, 1, 2, 3], term: "C", html: 'C', explanation: "ครอบคลุมแถวล่างทั้งหมด (C=1) ทำให้ตัวแปร A, B ตัดกันออกหมด เหลือเพียง C" },
+      { cells: [0, 2, 1, 3], rows: [0, 1], cols: [0, 1], term: "A̅", html: '<span class="kmap-bar">A</span>', explanation: "ครอบคลุมคอลัมน์ 00 และ 01 ทั้งสองแถว (C เปลี่ยน, B เปลี่ยน) เหลือ A คงที่ที่ 0 (A̅)" },
+      { cells: [2, 6, 3, 7], rows: [0, 1], cols: [1, 2], term: "B", html: 'B', explanation: "ครอบคลุมคอลัมน์ 01 และ 11 ทั้งสองแถว (C เปลี่ยน, A เปลี่ยน) เหลือ B คงที่ที่ 1 (B)" },
+      { cells: [6, 4, 7, 5], rows: [0, 1], cols: [2, 3], term: "A", html: 'A', explanation: "ครอบคลุมคอลัมน์ 11 และ 10 ทั้งสองแถว (C เปลี่ยน, B เปลี่ยน) เหลือ A คงที่ที่ 1 (A)" },
+      { cells: [4, 0, 5, 1], rows: [0, 1], cols: [0, 3], term: "B̅", html: '<span class="kmap-bar">B</span>', explanation: "ครอบคลุมคอลัมน์ 10 และ 00 (วนขอบซ้าย-ขวา) ทั้งสองแถว (C เปลี่ยน, A เปลี่ยน) เหลือ B คงที่ที่ 0 (B̅)" },
 
       // Size 2 (Horizontal)
-      { cells: [0, 1], rows: [0], cols: [0, 1], term: "A̅B̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span>', explanation: "จัดกลุ่ม m0, m1 ในแถว A=0 (A̅) และคอลัมน์ 00, 01 (C เปลี่ยน) เหลือ B คงที่ที่ 0 (B̅)" },
-      { cells: [1, 3], rows: [0], cols: [1, 2], term: "A̅C", html: '<span class="kmap-bar">A</span>C', explanation: "จัดกลุ่ม m1, m3 ในแถว A=0 (A̅) และคอลัมน์ 01, 11 (B เปลี่ยน) เหลือ C คงที่ที่ 1 (C)" },
-      { cells: [3, 2], rows: [0], cols: [2, 3], term: "A̅B", html: '<span class="kmap-bar">A</span>B', explanation: "จัดกลุ่ม m3, m2 ในแถว A=0 (A̅) และคอลัมน์ 11, 10 (C เปลี่ยน) เหลือ B คงที่ที่ 1 (B)" },
-      { cells: [2, 0], rows: [0], cols: [0, 3], term: "A̅C̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m2, m0 (วนขอบซ้าย-ขวา) ในแถว A=0 (A̅) และคอลัมน์ 10, 00 (B เปลี่ยน) เหลือ C คงที่ที่ 0 (C̅)" },
-      { cells: [4, 5], rows: [1], cols: [0, 1], term: "AB̅", html: 'A<span class="kmap-bar">B</span>', explanation: "จัดกลุ่ม m4, m5 ในแถว A=1 (A) และคอลัมน์ 00, 01 (C เปลี่ยน) เหลือ B คงที่ที่ 0 (B̅)" },
-      { cells: [5, 7], rows: [1], cols: [1, 2], term: "AC", html: 'AC', explanation: "จัดกลุ่ม m5, m7 ในแถว A=1 (A) และคอลัมน์ 01, 11 (B เปลี่ยน) เหลือ C คงที่ที่ 1 (C)" },
-      { cells: [7, 6], rows: [1], cols: [2, 3], term: "AB", html: 'AB', explanation: "จัดกลุ่ม m7, m6 ในแถว A=1 (A) และคอลัมน์ 11, 10 (C เปลี่ยน) เหลือ B คงที่ที่ 1 (B)" },
-      { cells: [6, 4], rows: [1], cols: [0, 3], term: "AC̅", html: 'A<span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m6, m4 (วนขอบซ้าย-ขวา) ในแถว A=1 (A) และคอลัมน์ 10, 00 (B เปลี่ยน) เหลือ C คงที่ที่ 0 (C̅)" },
+      { cells: [0, 2], rows: [0], cols: [0, 1], term: "A̅C̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m0, m2 ในแถว C=0 (C̅) และคอลัมน์ 00, 01 (B เปลี่ยน) เหลือ A คงที่ที่ 0 (A̅)" },
+      { cells: [2, 6], rows: [0], cols: [1, 2], term: "BC̅", html: 'B<span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m2, m6 ในแถว C=0 (C̅) และคอลัมน์ 01, 11 (A เปลี่ยน) เหลือ B คงที่ที่ 1 (B)" },
+      { cells: [6, 4], rows: [0], cols: [2, 3], term: "AC̅", html: 'A<span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m6, m4 ในแถว C=0 (C̅) และคอลัมน์ 11, 10 (B เปลี่ยน) เหลือ A คงที่ที่ 1 (A)" },
+      { cells: [4, 0], rows: [0], cols: [0, 3], term: "B̅C̅", html: '<span class="kmap-bar">B</span><span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m4, m0 (วนขอบซ้าย-ขวา) ในแถว C=0 (C̅) และคอลัมน์ 10, 00 (A เปลี่ยน) เหลือ B คงที่ที่ 0 (B̅)" },
+      { cells: [1, 3], rows: [1], cols: [0, 1], term: "A̅C", html: '<span class="kmap-bar">A</span>C', explanation: "จัดกลุ่ม m1, m3 ในแถว C=1 (C) และคอลัมน์ 00, 01 (B เปลี่ยน) เหลือ A คงที่ที่ 0 (A̅)" },
+      { cells: [3, 7], rows: [1], cols: [1, 2], term: "BC", html: 'BC', explanation: "จัดกลุ่ม m3, m7 ในแถว C=1 (C) และคอลัมน์ 01, 11 (A เปลี่ยน) เหลือ B คงที่ที่ 1 (B)" },
+      { cells: [7, 5], rows: [1], cols: [2, 3], term: "AC", html: 'AC', explanation: "จัดกลุ่ม m7, m5 ในแถว C=1 (C) และคอลัมน์ 11, 10 (B เปลี่ยน) เหลือ A คงที่ที่ 1 (A)" },
+      { cells: [5, 1], rows: [1], cols: [0, 3], term: "B̅C", html: '<span class="kmap-bar">B</span>C', explanation: "จัดกลุ่ม m5, m1 (วนขอบซ้าย-ขวา) ในแถว C=1 (C) และคอลัมน์ 10, 00 (A เปลี่ยน) เหลือ B คงที่ที่ 0 (B̅)" },
 
       // Size 2 (Vertical)
-      { cells: [0, 4], rows: [0, 1], cols: [0], term: "B̅C̅", html: '<span class="kmap-bar">B</span><span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m0, m4 ในคอลัมน์ BC=00 (B̅C̅) ทั้งสองแถว (A เปลี่ยนจาก 0->1 ถูกตัดออก)" },
-      { cells: [1, 5], rows: [0, 1], cols: [1], term: "B̅C", html: '<span class="kmap-bar">B</span>C', explanation: "จัดกลุ่ม m1, m5 ในคอลัมน์ BC=01 (B̅C) ทั้งสองแถว (A เปลี่ยนจาก 0->1 ถูกตัดออก)" },
-      { cells: [3, 7], rows: [0, 1], cols: [2], term: "BC", html: 'BC', explanation: "จัดกลุ่ม m3, m7 ในคอลัมน์ BC=11 (BC) ทั้งสองแถว (A เปลี่ยนจาก 0->1 ถูกตัดออก)" },
-      { cells: [2, 6], rows: [0, 1], cols: [3], term: "BC̅", html: 'B<span class="kmap-bar">C</span>', explanation: "จัดกลุ่ม m2, m6 ในคอลัมน์ BC=10 (BC̅) ทั้งสองแถว (A เปลี่ยนจาก 0->1 ถูกตัดออก)" },
+      { cells: [0, 1], rows: [0, 1], cols: [0], term: "A̅B̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span>', explanation: "จัดกลุ่ม m0, m1 ในคอลัมน์ AB=00 (A̅B̅) ทั้งสองแถว (C เปลี่ยนจาก 0->1 ถูกตัดออก)" },
+      { cells: [2, 3], rows: [0, 1], cols: [1], term: "A̅B", html: '<span class="kmap-bar">A</span>B', explanation: "จัดกลุ่ม m2, m3 ในคอลัมน์ AB=01 (A̅B) ทั้งสองแถว (C เปลี่ยนจาก 0->1 ถูกตัดออก)" },
+      { cells: [6, 7], rows: [0, 1], cols: [2], term: "AB", html: 'AB', explanation: "จัดกลุ่ม m6, m7 ในคอลัมน์ AB=11 (AB) ทั้งสองแถว (C เปลี่ยนจาก 0->1 ถูกตัดออก)" },
+      { cells: [4, 5], rows: [0, 1], cols: [3], term: "AB̅", html: 'A<span class="kmap-bar">B</span>', explanation: "จัดกลุ่ม m4, m5 ในคอลัมน์ AB=10 (AB̅) ทั้งสองแถว (C เปลี่ยนจาก 0->1 ถูกตัดออก)" },
 
       // Size 1
-      { cells: [0], rows: [0], cols: [0], term: "A̅B̅C̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span><span class="kmap-bar">C</span>', explanation: "ช่อง m0 (แถว A=0, คอลัมน์ BC=00) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [1], rows: [0], cols: [1], term: "A̅B̅C", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span>C', explanation: "ช่อง m1 (แถว A=0, คอลัมน์ BC=01) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [3], rows: [0], cols: [2], term: "A̅BC", html: '<span class="kmap-bar">A</span>BC', explanation: "ช่อง m3 (แถว A=0, คอลัมน์ BC=11) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [2], rows: [0], cols: [3], term: "A̅BC̅", html: '<span class="kmap-bar">A</span>B<span class="kmap-bar">C</span>', explanation: "ช่อง m2 (แถว A=0, คอลัมน์ BC=10) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [4], rows: [1], cols: [0], term: "AB̅C̅", html: 'A<span class="kmap-bar">B</span><span class="kmap-bar">C</span>', explanation: "ช่อง m4 (แถว A=1, คอลัมน์ BC=00) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [5], rows: [1], cols: [1], term: "AB̅C", html: 'A<span class="kmap-bar">B</span>C', explanation: "ช่อง m5 (แถว A=1, คอลัมน์ BC=01) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [7], rows: [1], cols: [2], term: "ABC", html: 'ABC', explanation: "ช่อง m7 (แถว A=1, คอลัมน์ BC=11) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
-      { cells: [6], rows: [1], cols: [3], term: "ABC̅", html: 'AB<span class="kmap-bar">C</span>', explanation: "ช่อง m6 (แถว A=1, คอลัมน์ BC=10) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" }
+      { cells: [0], rows: [0], cols: [0], term: "A̅B̅C̅", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span><span class="kmap-bar">C</span>', explanation: "ช่อง m0 (แถว C=0, คอลัมน์ AB=00) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [2], rows: [0], cols: [1], term: "A̅BC̅", html: '<span class="kmap-bar">A</span>B<span class="kmap-bar">C</span>', explanation: "ช่อง m2 (แถว C=0, คอลัมน์ AB=01) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [6], rows: [0], cols: [2], term: "ABC̅", html: 'AB<span class="kmap-bar">C</span>', explanation: "ช่อง m6 (แถว C=0, คอลัมน์ AB=11) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [4], rows: [0], cols: [3], term: "AB̅C̅", html: 'A<span class="kmap-bar">B</span><span class="kmap-bar">C</span>', explanation: "ช่อง m4 (แถว C=0, คอลัมน์ AB=10) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [1], rows: [1], cols: [0], term: "A̅B̅C", html: '<span class="kmap-bar">A</span><span class="kmap-bar">B</span>C', explanation: "ช่อง m1 (แถว C=1, คอลัมน์ AB=00) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [3], rows: [1], cols: [1], term: "A̅BC", html: '<span class="kmap-bar">A</span>BC', explanation: "ช่อง m3 (แถว C=1, คอลัมน์ AB=01) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [7], rows: [1], cols: [2], term: "ABC", html: 'ABC', explanation: "ช่อง m7 (แถว C=1, คอลัมน์ AB=11) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" },
+      { cells: [5], rows: [1], cols: [3], term: "AB̅C", html: 'A<span class="kmap-bar">B</span>C', explanation: "ช่อง m5 (แถว C=1, คอลัมน์ AB=10) ไม่สามารถจับกลุ่มร่วมกับช่องข้างเคียงใดๆ ได้" }
     ];
 
     function updateGridDisplay() {
       cells.forEach(cell => {
         const idx = parseInt(cell.dataset.index);
         // Map minterm index to cell grid positions (m0=0, m1=1, m3=2, m2=3, m4=4, m5=5, m7=6, m6=7 in cellStates order)
-        const mIdx = [0, 1, 3, 2, 4, 5, 7, 6];
+        const mIdx = [0, 2, 6, 4, 1, 3, 7, 5];
         const val = cellStates[idx];
         cell.dataset.value = val;
         cell.querySelector('.kmap-cell-val').textContent = val;
@@ -2709,10 +2709,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function coordToMinterm(r, c) {
       const rowMinterms = [
-        [0, 1, 3, 2],
-        [4, 5, 7, 6],
-        [12, 13, 15, 14],
-        [8, 9, 11, 10]
+        [0, 4, 12, 8],
+        [1, 5, 13, 9],
+        [3, 7, 15, 11],
+        [2, 6, 14, 10]
       ];
       return rowMinterms[r][c];
     }
@@ -2731,32 +2731,32 @@ document.addEventListener("DOMContentLoaded", function() {
         let htmlParts = [];
         let expParts = [];
         
-        // Rows (AB)
+        // Rows (CD)
         if (rSet.length === 1) {
           const r = rSet[0];
-          if (r === 0) { termParts.push("A̅", "B̅"); htmlParts.push('<span class="kmap-bar">A</span>', '<span class="kmap-bar">B</span>'); expParts.push("A=0 (A̅)", "B=0 (B̅)"); }
-          else if (r === 1) { termParts.push("A̅", "B"); htmlParts.push('<span class="kmap-bar">A</span>', 'B'); expParts.push("A=0 (A̅)", "B=1 (B)"); }
-          else if (r === 2) { termParts.push("A", "B"); htmlParts.push('A', 'B'); expParts.push("A=1 (A)", "B=1 (B)"); }
-          else if (r === 3) { termParts.push("A", "B̅"); htmlParts.push('A', '<span class="kmap-bar">B</span>'); expParts.push("A=1 (A)", "B=0 (B̅)"); }
+          if (r === 0) { termParts.push("C̅", "D̅"); htmlParts.push('<span class="kmap-bar">C</span>', '<span class="kmap-bar">D</span>'); expParts.push("C=0 (C̅)", "D=0 (D̅)"); }
+          else if (r === 1) { termParts.push("C̅", "D"); htmlParts.push('<span class="kmap-bar">C</span>', 'D'); expParts.push("C=0 (C̅)", "D=1 (D)"); }
+          else if (r === 2) { termParts.push("C", "D"); htmlParts.push('C', 'D'); expParts.push("C=1 (C)", "D=1 (D)"); }
+          else if (r === 3) { termParts.push("C", "D̅"); htmlParts.push('C', '<span class="kmap-bar">D</span>'); expParts.push("C=1 (C)", "D=0 (D̅)"); }
         } else if (rSet.length === 2) {
-          if (rSet.includes(0) && rSet.includes(1)) { termParts.push("A̅"); htmlParts.push('<span class="kmap-bar">A</span>'); expParts.push("A=0 (A̅)"); }
-          else if (rSet.includes(2) && rSet.includes(3)) { termParts.push("A"); htmlParts.push('A'); expParts.push("A=1 (A)"); }
-          else if (rSet.includes(0) && rSet.includes(3)) { termParts.push("B̅"); htmlParts.push('<span class="kmap-bar">B</span>'); expParts.push("B=0 (B̅)"); }
-          else if (rSet.includes(1) && rSet.includes(2)) { termParts.push("B"); htmlParts.push('B'); expParts.push("B=1 (B)"); }
+          if (rSet.includes(0) && rSet.includes(1)) { termParts.push("C̅"); htmlParts.push('<span class="kmap-bar">C</span>'); expParts.push("C=0 (C̅)"); }
+          else if (rSet.includes(2) && rSet.includes(3)) { termParts.push("C"); htmlParts.push('C'); expParts.push("C=1 (C)"); }
+          else if (rSet.includes(0) && rSet.includes(3)) { termParts.push("D̅"); htmlParts.push('<span class="kmap-bar">D</span>'); expParts.push("D=0 (D̅)"); }
+          else if (rSet.includes(1) && rSet.includes(2)) { termParts.push("D"); htmlParts.push('D'); expParts.push("D=1 (D)"); }
         }
         
-        // Columns (CD)
+        // Columns (AB)
         if (cSet.length === 1) {
           const c = cSet[0];
-          if (c === 0) { termParts.push("C̅", "D̅"); htmlParts.push('<span class="kmap-bar">C</span>', '<span class="kmap-bar">D</span>'); expParts.push("C=0 (C̅)", "D=0 (D̅)"); }
-          else if (c === 1) { termParts.push("C̅", "D"); htmlParts.push('<span class="kmap-bar">C</span>', 'D'); expParts.push("C=0 (C̅)", "D=1 (D)"); }
-          else if (c === 2) { termParts.push("C", "D"); htmlParts.push('C', 'D'); expParts.push("C=1 (C)", "D=1 (D)"); }
-          else if (c === 3) { termParts.push("C", "D̅"); htmlParts.push('C', '<span class="kmap-bar">D</span>'); expParts.push("C=1 (C)", "D=0 (D̅)"); }
+          if (c === 0) { termParts.push("A̅", "B̅"); htmlParts.push('<span class="kmap-bar">A</span>', '<span class="kmap-bar">B</span>'); expParts.push("A=0 (A̅)", "B=0 (B̅)"); }
+          else if (c === 1) { termParts.push("A̅", "B"); htmlParts.push('<span class="kmap-bar">A</span>', 'B'); expParts.push("A=0 (A̅)", "B=1 (B)"); }
+          else if (c === 2) { termParts.push("A", "B"); htmlParts.push('A', 'B'); expParts.push("A=1 (A)", "B=1 (B)"); }
+          else if (c === 3) { termParts.push("A", "B̅"); htmlParts.push('A', '<span class="kmap-bar">B</span>'); expParts.push("A=1 (A)", "B=0 (B̅)"); }
         } else if (cSet.length === 2) {
-          if (cSet.includes(0) && cSet.includes(1)) { termParts.push("C̅"); htmlParts.push('<span class="kmap-bar">C</span>'); expParts.push("C=0 (C̅)"); }
-          else if (cSet.includes(2) && cSet.includes(3)) { termParts.push("C"); htmlParts.push('C'); expParts.push("C=1 (C)"); }
-          else if (cSet.includes(0) && cSet.includes(3)) { termParts.push("D̅"); htmlParts.push('<span class="kmap-bar">D</span>'); expParts.push("D=0 (D̅)"); }
-          else if (cSet.includes(1) && cSet.includes(2)) { termParts.push("D"); htmlParts.push('D'); expParts.push("D=1 (D)"); }
+          if (cSet.includes(0) && cSet.includes(1)) { termParts.push("A̅"); htmlParts.push('<span class="kmap-bar">A</span>'); expParts.push("A=0 (A̅)"); }
+          else if (cSet.includes(2) && cSet.includes(3)) { termParts.push("A"); htmlParts.push('A'); expParts.push("A=1 (A)"); }
+          else if (cSet.includes(0) && cSet.includes(3)) { termParts.push("B̅"); htmlParts.push('<span class="kmap-bar">B</span>'); expParts.push("B=0 (B̅)"); }
+          else if (cSet.includes(1) && cSet.includes(2)) { termParts.push("B"); htmlParts.push('B'); expParts.push("B=1 (B)"); }
         }
 
         let termStr = termParts.join("");
