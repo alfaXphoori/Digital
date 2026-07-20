@@ -37,7 +37,7 @@ assignments:
     topic: แผนผังคาร์โนห์ (Karnaugh Map)
     work: ใบงานที่ 6 — ออกแบบวงจรจากตารางความจริง · ใช้ K-map ลดรูปแล้วต่อทดสอบ · เปรียบเทียบจำนวนเกตที่ใช้
     due: ก่อนคาบสัปดาห์ที่ 7
-    form: "(https://docs.google.com/forms/d/e/1FAIpQLSeq1D-bfMFaVWVSrskxKT83tmhvzNg53ryeQCrHVZibhe48qQ/viewform?usp=dialog)"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLSeq1D-bfMFaVWVSrskxKT83tmhvzNg53ryeQCrHVZibhe48qQ/viewform?usp=dialog"
   - n: 7
     topic: การออกแบบวงจรคอมบิเนชัน
     work: ใบงานที่ 7 — ออกแบบวงจรคอมบิเนชัน · ต่อวงจรด้วยเกต NAND อย่างเดียว · ทดสอบความถูกต้อง
