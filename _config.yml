@@ -8,6 +8,10 @@ url: "https://alfaxphoori.github.io"
 baseurl: "/Digital"
 repository: alfaXphoori/Digital
 
+# ปิด smart quotes เพื่อไม่ให้ ' (เครื่องหมายคอมพลีเมนต์ A') ถูกแปลงเป็น ’ ในสูตร
+kramdown:
+  smart_quotes: apos,apos,quot,quot
+
 # ใช้ layout ที่ออกแบบเอง (ไม่ใช้ธีมสำเร็จรูป)
 defaults:
   - scope:

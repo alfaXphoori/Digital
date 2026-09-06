@@ -102,6 +102,8 @@ assignments:
 <div class="seg-menu">
   <a class="seg is-active" href="{{ '/submit-work.html' | relative_url }}">📤 ส่งงาน</a>
   <a class="seg" href="{{ '/submission-check.html' | relative_url }}">📊 ตรวจการส่ง</a>
+  <a class="seg" href="{{ '/check-in.html' | relative_url }}">✅ เช็คชื่อ</a>
+  <a class="seg" href="{{ '/scores.html' | relative_url }}">📝 คะแนนและเกรด</a>
 </div>
 
 > ช่องทางส่ง **ใบงานและงานปฏิบัติ** ของรายวิชา ลอจิกและดิจิทัล — ส่งงานผ่าน **Google Form** ของแต่ละสัปดาห์ตามตารางด้านล่าง
