@@ -20,11 +20,11 @@
 | **—** | **🟧 สอบกลางภาค (Midterm Exam)** | **ครอบคลุมเนื้อหาสัปดาห์ที่ 1–8 \| สัดส่วน 20%** | - |
 | **9** | **วงจรเปรียบเทียบ เข้ารหัส ถอดรหัส และภาคแสดงผล** | Comparator, Encoder/Decoder, การขับ 7-segment display | [Combinational Circuits](chapters/ch05-combinational-circuits/) |
 | **10** | **วงจรมัลติเพล็กซ์และดีมัลติเพล็กซ์** | หลักการ MUX/DEMUX, การสร้างฟังก์ชันลอจิกด้วย MUX | [Combinational Circuits](chapters/ch05-combinational-circuits/) |
-| **11** | **วงจรกำเนิดสัญญาณนาฬิกาและมัลติไวเบรเตอร์** | สัญญาณนาฬิกาและ duty cycle, มัลติไวเบรเตอร์ astable/monostable, ไอซีไทเมอร์ 555 | [Digital Interfacing](chapters/ch10-digital-interfacing/) |
+| **11** | **วงจรกำเนิดสัญญาณนาฬิกาและมัลติไวเบรเตอร์** | สัญญาณนาฬิกาและ duty cycle, มัลติไวเบรเตอร์ astable/monostable, ไอซีไทเมอร์ 555 | [Clock & Flip-Flops](chapters/ch06-flip-flops/) |
 | **12** | **แลตช์และฟลิปฟลอป** | SR Latch, Gated Latch, ฟลิปฟลอป D/JK/T, Clock, Trigger และตารางสถานะ | [Flip-Flops](chapters/ch06-flip-flops/) |
 | **13** | **การออกแบบวงจรซีเควนเชียลและวงจรนับ** | หลักการออกแบบวงจรซีเควนเชียล, วงจรนับ asynchronous และ synchronous, ตัวนับ mod-N | [Counters & Registers](chapters/ch07-counters-registers/) |
 | **14** | **วงจรเลื่อนข้อมูล (Shift Register)** | โหมด SISO/SIPO/PISO/PIPO, Universal shift register, การประยุกต์ใช้งาน | [Counters & Registers](chapters/ch07-counters-registers/) |
-| **15** | **วงจรแปลงสัญญาณและหน่วยความจำ** | การแปลงสัญญาณ DAC/ADC, ความละเอียดและอัตราการสุ่ม, โครงสร้างและคุณสมบัติหน่วยความจำ RAM/ROM | [Memory & PLD](chapters/ch08-memory-pld/) · [Digital Interfacing](chapters/ch10-digital-interfacing/) |
+| **15** | **วงจรแปลงสัญญาณและหน่วยความจำ** | การแปลงสัญญาณ DAC/ADC, ความละเอียดและอัตราการสุ่ม, โครงสร้างและคุณสมบัติหน่วยความจำ RAM/ROM | [Memory & Interfacing](chapters/ch08-memory-interfacing/) |
 | **—** | **🟧 สอบปลายภาค (Final Exam)** | **ครอบคลุมเนื้อหาสัปดาห์ที่ 9–15 \| สัดส่วน 25%** | [summary.md](chapters/summary.md) |
 
 ---
