@@ -12,7 +12,7 @@
 | EDA Playground | https://www.edaplayground.com |
 | Simulator | Icarus Verilog หรือ Verilator |
 | Waveform Viewer | เปิด **Open EPWave after run** |
-| เอกสารประกอบ | บทที่ 5 Full Adder, บทที่ 7 Counter, บทที่ 10 Verilog HDL |
+| เอกสารประกอบ | บทที่ 5 Full Adder, บทที่ 7 Counter, บทที่ 9 Verilog HDL |
 ---
 ## ส่วนที่ 1: ทำความรู้จัก EDA Playground UI (10 นาที)
 ### ขั้นตอน
