@@ -24,7 +24,7 @@
 ### 1.4 ระบบขั้นสูง (Advanced Systems)
 - **หน่วยความจำ:** RAM (SRAM, DRAM) และ ROM (PROM, EPROM, EEPROM, NAND/NOR Flash)
 - **อุปกรณ์ลอจิกโปรแกรมได้:** PLA, PAL, CPLD และ FPGA
-- **การเชื่อมต่อ:** ADC (Analog-to-Digital) และ DAC (Digital-to-Analog) พร้อม Serial Protocols (UART, I2C, SPI)
+- **การออกแบบด้วย PLD:** โครงสร้าง AND/OR Array, การแชร์ Product Term, fuse map และ Registered PAL สำหรับวงจรเชิงลำดับ
 
 ---
 
