@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" width="920" height="520" role="img" aria-label="Registered PAL controlling a household water pump with hysteresis and dry-run protection">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="920" height="520" fill="#ffffff"/>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <defs><marker id="afb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#818cf8"/></marker></defs>
+  <rect x="78" y="128" width="494" height="196" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="24" y="122" text-anchor="start" font-size="10.5" font-weight="700" fill="#4f46e5" stroke="#ffffff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">AND ARRAY — programmable</text>
+  <rect x="594" y="128" width="78" height="196" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="633" y="122" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">OR — fixed</text>
+  <text x="100" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">H</text>
+  <path d="M100,30 L100,42" fill="none" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)"/>
+  <line x1="100" y1="38" x2="100" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="180" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">L</text>
+  <path d="M180,30 L180,42" fill="none" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)"/>
+  <line x1="180" y1="38" x2="180" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="260" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">W</text>
+  <path d="M260,30 L260,42" fill="none" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)"/>
+  <line x1="260" y1="38" x2="260" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="340" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">M</text>
+  <path d="M340,30 L340,42" fill="none" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)"/>
+  <line x1="340" y1="38" x2="340" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="420" y1="48" x2="420" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="470" y="26" text-anchor="start" font-size="10" font-weight="600" fill="#818cf8">PUMP กลับมาจากเส้น feedback</text>
+  <circle cx="100" cy="76" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="100" y1="76" x2="108" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M108,69.0 L125,76 L108,83.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="128.6" cy="76" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="131" y1="76" x2="136" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="136" y1="76" x2="136" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="104" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">H</text>
+  <text x="140" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">H'</text>
+  <circle cx="180" cy="76" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="180" y1="76" x2="188" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M188,69.0 L205,76 L188,83.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="208.6" cy="76" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="211" y1="76" x2="216" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="216" y1="76" x2="216" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="184" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">L</text>
+  <text x="220" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">L'</text>
+  <circle cx="260" cy="76" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="260" y1="76" x2="268" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M268,69.0 L285,76 L268,83.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="288.6" cy="76" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="291" y1="76" x2="296" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="296" y1="76" x2="296" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="264" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">W</text>
+  <text x="300" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">W'</text>
+  <circle cx="340" cy="76" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="340" y1="76" x2="348" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M348,69.0 L365,76 L348,83.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="368.6" cy="76" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="371" y1="76" x2="376" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="376" y1="76" x2="376" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="344" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">M</text>
+  <text x="380" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">M'</text>
+  <circle cx="420" cy="76" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="420" y1="76" x2="428" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M428,69.0 L445,76 L428,83.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="448.6" cy="76" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="451" y1="76" x2="456" y2="76" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="456" y1="76" x2="456" y2="316" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="424" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">PUMP</text>
+  <text x="460" y="104" text-anchor="start" font-size="9.5" font-weight="700" fill="#4f46e5">PUMP'</text>
+  <line x1="78" y1="150" x2="520" y2="150" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="68" y="154" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P1</text>
+  <path d="M520,139.0 L545.0,139.0 A11.0,11.0 0 0 1 545.0,161.0 L520,161.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="514" y="141" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">W · L'</text>
+  <path d="M255.4,145.4 L264.6,154.6 M255.4,154.6 L264.6,145.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M211.4,145.4 L220.6,154.6 M211.4,154.6 L220.6,145.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="78" y1="180" x2="520" y2="180" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="68" y="184" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P2</text>
+  <path d="M520,169.0 L545.0,169.0 A11.0,11.0 0 0 1 545.0,191.0 L520,191.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="514" y="171" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">W · PUMP · H'</text>
+  <path d="M255.4,175.4 L264.6,184.6 M255.4,184.6 L264.6,175.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M415.4,175.4 L424.6,184.6 M415.4,184.6 L424.6,175.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M131.4,175.4 L140.6,184.6 M131.4,184.6 L140.6,175.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="78" y1="210" x2="520" y2="210" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="68" y="214" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P3</text>
+  <path d="M520,199.0 L545.0,199.0 A11.0,11.0 0 0 1 545.0,221.0 L520,221.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="514" y="201" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">W · M</text>
+  <path d="M255.4,205.4 L264.6,214.6 M255.4,214.6 L264.6,205.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M335.4,205.4 L344.6,214.6 M335.4,214.6 L344.6,205.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="78" y1="240" x2="520" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="68" y="244" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P4</text>
+  <path d="M520,229.0 L545.0,229.0 A11.0,11.0 0 0 1 545.0,251.0 L520,251.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="514" y="231" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">W'</text>
+  <path d="M291.4,235.4 L300.6,244.6 M291.4,244.6 L300.6,235.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="78" y1="270" x2="520" y2="270" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="68" y="274" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P5</text>
+  <path d="M520,259.0 L545.0,259.0 A11.0,11.0 0 0 1 545.0,281.0 L520,281.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="514" y="261" text-anchor="end" font-size="9.5" font-weight="600" fill="#dc2626" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">0  (disabled)</text>
+  <path d="M95.4,265.4 L104.6,274.6 M95.4,274.6 L104.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M131.4,265.4 L140.6,274.6 M131.4,274.6 L140.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M175.4,265.4 L184.6,274.6 M175.4,274.6 L184.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M211.4,265.4 L220.6,274.6 M211.4,274.6 L220.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M255.4,265.4 L264.6,274.6 M255.4,274.6 L264.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M291.4,265.4 L300.6,274.6 M291.4,274.6 L300.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M335.4,265.4 L344.6,274.6 M335.4,274.6 L344.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M371.4,265.4 L380.6,274.6 M371.4,274.6 L380.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M415.4,265.4 L424.6,274.6 M415.4,274.6 L424.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M451.4,265.4 L460.6,274.6 M451.4,274.6 L460.6,265.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="78" y1="300" x2="520" y2="300" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="68" y="304" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P6</text>
+  <path d="M520,289.0 L545.0,289.0 A11.0,11.0 0 0 1 545.0,311.0 L520,311.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="514" y="291" text-anchor="end" font-size="9.5" font-weight="600" fill="#dc2626" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">0  (disabled)</text>
+  <path d="M95.4,295.4 L104.6,304.6 M95.4,304.6 L104.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M131.4,295.4 L140.6,304.6 M131.4,304.6 L140.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M175.4,295.4 L184.6,304.6 M175.4,304.6 L184.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M211.4,295.4 L220.6,304.6 M211.4,304.6 L220.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M255.4,295.4 L264.6,304.6 M255.4,304.6 L264.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M291.4,295.4 L300.6,304.6 M291.4,304.6 L300.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M335.4,295.4 L344.6,304.6 M335.4,304.6 L344.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M371.4,295.4 L380.6,304.6 M371.4,304.6 L380.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M415.4,295.4 L424.6,304.6 M415.4,304.6 L424.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M451.4,295.4 L460.6,304.6 M451.4,304.6 L460.6,295.4" stroke="#dc2626" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M610,153.0 C636.4,153.0 651.28,163.26 658,180 C651.28,196.74 636.4,207.0 610,207.0 C624.4,192.15 624.4,167.85 610,153.0 Z" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="556" y1="150" x2="580" y2="150" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="150" x2="580" y2="164" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="164" x2="610" y2="164" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="580" cy="150" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="556" y1="180" x2="580" y2="180" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="180" x2="580" y2="180" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="180" x2="610" y2="180" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="580" cy="180" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="556" y1="210" x2="580" y2="210" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="210" x2="580" y2="196" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="196" x2="610" y2="196" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="580" cy="210" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="658" y1="180" x2="692" y2="180" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <rect x="692" y="155" width="82" height="50" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="705" y="174.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">D</text>
+  <text x="761" y="174.0" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Q</text>
+  <path d="M692,186 L702,192 L692,198" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="774" y1="174" x2="838" y2="174" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="846" y="178" text-anchor="start" font-size="12.5" font-weight="700" fill="#16a34a">PUMP</text>
+  <line x1="680" y1="192" x2="692" y2="192" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="680" y1="396" x2="680" y2="192" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M616,396 L680,396" fill="none" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)"/>
+  <text x="608" y="400" text-anchor="end" font-size="10.5" font-weight="700" fill="#0f172a">CLK</text>
+  <path d="M610,243.0 C636.4,243.0 651.28,253.26 658,270 C651.28,286.74 636.4,297.0 610,297.0 C624.4,282.15 624.4,257.85 610,243.0 Z" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="556" y1="240" x2="580" y2="240" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="240" x2="580" y2="254" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="254" x2="610" y2="254" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="580" cy="240" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="556" y1="270" x2="580" y2="270" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="270" x2="580" y2="270" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="270" x2="610" y2="270" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="580" cy="270" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="556" y1="300" x2="580" y2="300" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="300" x2="580" y2="286" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="580" y1="286" x2="610" y2="286" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="580" cy="300" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="658" y1="270" x2="838" y2="270" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="846" y="274" text-anchor="start" font-size="12.5" font-weight="700" fill="#b45309">ALARM</text>
+  <text x="760" y="260" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">combinational</text>
+  <circle cx="800" cy="174" r="3.4" fill="#818cf8" stroke="none" stroke-width="1.4"/>
+  <path d="M800,174 L800,428 L52,428 L52,40 L420,40 L420,56" fill="none" stroke="#818cf8" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#afb)"/>
+  <text x="300" y="452" text-anchor="middle" font-size="11" font-weight="600" fill="#4f46e5">เส้น feedback ทำให้ปั๊ม "จำได้ว่ากำลังทำงานอยู่" — จึงสูบต่อจนน้ำเต็มถัง ไม่ตัดกลางคัน</text>
+  <line x1="24" y1="470" x2="896" y2="470" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="24" y="494" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">H = ลูกลอยระดับบน · L = ลูกลอยระดับล่าง · W = มีน้ำในท่อ · M = สวิตช์สั่งมือ</text>
+  <text x="896" y="494" text-anchor="end" font-size="10.5" font-weight="600" fill="#dc2626">ทุกเทอมมี W คูณอยู่ → น้ำไม่เข้า ปั๊มหยุดทันที (กันปั๊มไหม้)</text>
+</svg>

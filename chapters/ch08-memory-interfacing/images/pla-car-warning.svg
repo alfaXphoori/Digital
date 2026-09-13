@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 512" width="880" height="512" role="img" aria-label="PLA implementing a car safety warning system with three shared product terms">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="880" height="512" fill="#ffffff"/>
+  <rect x="86" y="110" width="466" height="118" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="24" y="104" text-anchor="start" font-size="10.5" font-weight="700" fill="#4f46e5" stroke="#ffffff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">AND ARRAY — programmable</text>
+  <rect x="568" y="256" width="210" height="160" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="776" y="250" text-anchor="end" font-size="10.5" font-weight="700" fill="#4f46e5" stroke="#ffffff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">OR ARRAY — programmable</text>
+  <text x="110" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">K</text>
+  <line x1="110" y1="34" x2="110" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="110" cy="50" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="110" y1="50" x2="122" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M122,42.5 L140,50 L122,57.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="143.6" cy="50" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="147" y1="50" x2="152" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="152" y1="50" x2="152" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="115" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">K</text>
+  <text x="157" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">K'</text>
+  <text x="204" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">D</text>
+  <line x1="204" y1="34" x2="204" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="204" cy="50" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="204" y1="50" x2="216" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M216,42.5 L234,50 L216,57.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="237.6" cy="50" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="241" y1="50" x2="246" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="246" y1="50" x2="246" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="209" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">D</text>
+  <text x="251" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">D'</text>
+  <text x="298" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">S</text>
+  <line x1="298" y1="34" x2="298" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="298" cy="50" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="298" y1="50" x2="310" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M310,42.5 L328,50 L310,57.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="331.6" cy="50" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="335" y1="50" x2="340" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="340" y1="50" x2="340" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="303" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">S</text>
+  <text x="345" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">S'</text>
+  <text x="392" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">L</text>
+  <line x1="392" y1="34" x2="392" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="392" cy="50" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="392" y1="50" x2="404" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M404,42.5 L422,50 L404,57.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="425.6" cy="50" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="429" y1="50" x2="434" y2="50" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="434" y1="50" x2="434" y2="240" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="397" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">L</text>
+  <text x="439" y="78" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">L'</text>
+  <line x1="86" y1="130" x2="496" y2="130" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="76" y="134" text-anchor="end" font-size="11.5" font-weight="700" fill="#0f172a">P1</text>
+  <path d="M496,118.0 L522.0,118.0 A12.0,12.0 0 0 1 522.0,142.0 L496,142.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="492" y="121" text-anchor="end" font-size="10" font-weight="600" fill="#b45309" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">K · D</text>
+  <path d="M105.2,125.2 L114.8,134.8 M105.2,134.8 L114.8,125.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M199.2,125.2 L208.8,134.8 M199.2,134.8 L208.8,125.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="534" y1="130" x2="592" y2="130" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="592" y1="130" x2="592" y2="408" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="592" y="428" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4f46e5">P1</text>
+  <line x1="86" y1="166" x2="496" y2="166" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="76" y="170" text-anchor="end" font-size="11.5" font-weight="700" fill="#0f172a">P2</text>
+  <path d="M496,154.0 L522.0,154.0 A12.0,12.0 0 0 1 522.0,178.0 L496,178.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="492" y="157" text-anchor="end" font-size="10" font-weight="600" fill="#b45309" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">K · S'</text>
+  <path d="M105.2,161.2 L114.8,170.8 M105.2,170.8 L114.8,161.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M335.2,161.2 L344.8,170.8 M335.2,170.8 L344.8,161.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="534" y1="166" x2="638" y2="166" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="638" y1="166" x2="638" y2="408" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="638" y="428" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4f46e5">P2</text>
+  <line x1="86" y1="202" x2="496" y2="202" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="76" y="206" text-anchor="end" font-size="11.5" font-weight="700" fill="#0f172a">P3</text>
+  <path d="M496,190.0 L522.0,190.0 A12.0,12.0 0 0 1 522.0,214.0 L496,214.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="492" y="193" text-anchor="end" font-size="10" font-weight="600" fill="#b45309" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">L · D · K'</text>
+  <path d="M387.2,197.2 L396.8,206.8 M387.2,206.8 L396.8,197.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M199.2,197.2 L208.8,206.8 M199.2,206.8 L208.8,197.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M147.2,197.2 L156.8,206.8 M147.2,206.8 L156.8,197.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="534" y1="202" x2="684" y2="202" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="684" y1="202" x2="684" y2="408" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="684" y="428" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4f46e5">P3</text>
+  <line x1="568" y1="282" x2="716" y2="282" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M716,267.0 C741.3,267.0 755.56,272.7 762,282 C755.56,291.3 741.3,297.0 716,297.0 C729.8,288.75 729.8,275.25 716,267.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M587.2,277.2 L596.8,286.8 M587.2,286.8 L596.8,277.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="762" y1="282" x2="796" y2="282" stroke="#16a34a" stroke-width="1.7" stroke-linecap="round"/>
+  <text x="804" y="286" text-anchor="start" font-size="12" font-weight="700" fill="#16a34a">DOOR</text>
+  <line x1="568" y1="320" x2="716" y2="320" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M716,305.0 C741.3,305.0 755.56,310.7 762,320 C755.56,329.3 741.3,335.0 716,335.0 C729.8,326.75 729.8,313.25 716,305.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M633.2,315.2 L642.8,324.8 M633.2,324.8 L642.8,315.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="762" y1="320" x2="796" y2="320" stroke="#16a34a" stroke-width="1.7" stroke-linecap="round"/>
+  <text x="804" y="324" text-anchor="start" font-size="12" font-weight="700" fill="#16a34a">BELT</text>
+  <line x1="568" y1="358" x2="716" y2="358" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M716,343.0 C741.3,343.0 755.56,348.7 762,358 C755.56,367.3 741.3,373.0 716,373.0 C729.8,364.75 729.8,351.25 716,343.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M679.2,353.2 L688.8,362.8 M679.2,362.8 L688.8,353.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="762" y1="358" x2="796" y2="358" stroke="#16a34a" stroke-width="1.7" stroke-linecap="round"/>
+  <text x="804" y="362" text-anchor="start" font-size="12" font-weight="700" fill="#16a34a">LIGHT</text>
+  <line x1="568" y1="396" x2="716" y2="396" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M716,381.0 C741.3,381.0 755.56,386.7 762,396 C755.56,405.3 741.3,411.0 716,411.0 C729.8,402.75 729.8,389.25 716,381.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M587.2,391.2 L596.8,400.8 M587.2,400.8 L596.8,391.2" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M633.2,391.2 L642.8,400.8 M633.2,400.8 L642.8,391.2" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M679.2,391.2 L688.8,400.8 M679.2,400.8 L688.8,391.2" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="762" y1="396" x2="796" y2="396" stroke="#16a34a" stroke-width="1.7" stroke-linecap="round"/>
+  <text x="804" y="400" text-anchor="start" font-size="12" font-weight="700" fill="#16a34a">BUZZER</text>
+  <text x="300" y="452" text-anchor="middle" font-size="11" font-weight="600" fill="#4f46e5">3 product terms ให้บริการ 4 เอาต์พุต — ถ้าไม่แชร์ต้องใช้เกต AND ถึง 6 ตัว</text>
+  <line x1="24" y1="470" x2="856" y2="470" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M39.2,485.2 L48.8,494.8 M39.2,494.8 L48.8,485.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <text x="58" y="494" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">เทอมที่ใช้กับเอาต์พุตเดียว</text>
+  <path d="M245.2,485.2 L254.8,494.8 M245.2,494.8 L254.8,485.2" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <text x="264" y="494" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">เทอมที่ถูกแชร์</text>
+  <text x="856" y="494" text-anchor="end" font-size="10.5" font-weight="400" fill="#475569">K = เครื่องติด · D = ประตูเปิด · S = คาดเข็มขัดแล้ว · L = ไฟหน้าเปิด</text>
+</svg>

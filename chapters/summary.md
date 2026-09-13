@@ -99,7 +99,7 @@
 - [บทที่ 5 วงจรคอมบิเนชันและการประยุกต์](ch05-combinational-circuits/)
 - [บทที่ 6 สัญญาณนาฬิกาและฟลิปฟลอป](ch06-flip-flops/)
 - [บทที่ 7 วงจรนับและเรจิสเตอร์](ch07-counters-registers/)
-- [บทที่ 8 หน่วยความจำ PLD และการแปลงสัญญาณ ADC/DAC](ch08-memory-interfacing/)
+- [บทที่ 8 หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้](ch08-memory-interfacing/)
 - [บทที่ 9 แนะนำ HDL: Verilog และ EDA Playground](ch09-hdl-verilog/)
 - [บทที่ 10 สถาปัตยกรรมคอมพิวเตอร์และหน่วยประมวลผลกลางเบื้องต้น](ch10-computer-architecture/)
 
