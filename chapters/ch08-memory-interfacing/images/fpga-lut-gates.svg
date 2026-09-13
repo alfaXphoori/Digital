@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 476" width="850" height="476" role="img" aria-label="A two input look-up table drawn as four configuration flip-flops, four AND gates and one OR gate">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="850" height="476" fill="#ffffff"/>
+  <defs><marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <text x="425" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">A 2-input LUT built only from flip-flops and ordinary gates</text>
+  <text x="94" y="56" text-anchor="middle" font-size="10" font-weight="600" fill="#b45309">bitstream in</text>
+  <path d="M94,62 L94,80" fill="none" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ag)"/>
+  <line x1="36" y1="384" x2="36" y2="92" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="36" y="402" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">CFG CLK</text>
+  <rect x="54" y="82.0" width="80" height="44" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="76" y="100" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309">C0</text>
+  <text x="112" y="112" text-anchor="middle" font-size="17" font-weight="700" fill="#475569">0</text>
+  <path d="M54,114 L64,119 L54,124" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="36" y1="119" x2="54" y2="119" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="36" cy="119" r="3" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="134" y1="104" x2="200" y2="104" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="104" x2="200" y2="90" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="90" x2="268" y2="90" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="148" cy="104" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <path d="M148,104 L148,148 L94,148 L94,162" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 3" marker-end="url(#ag)"/>
+  <path d="M268,82.0 L298.0,82.0 A22.0,22.0 0 0 1 298.0,126.0 L268,126.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="230" y1="104" x2="268" y2="104" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="108" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">A'</text>
+  <line x1="230" y1="118" x2="268" y2="118" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="122" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">B'</text>
+  <line x1="320" y1="104" x2="388" y2="104" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <rect x="54" y="162.0" width="80" height="44" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="76" y="180" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309">C1</text>
+  <text x="112" y="192" text-anchor="middle" font-size="17" font-weight="700" fill="#16a34a">1</text>
+  <path d="M54,194 L64,199 L54,204" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="36" y1="199" x2="54" y2="199" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="36" cy="199" r="3" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="134" y1="184" x2="200" y2="184" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="184" x2="200" y2="170" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="170" x2="268" y2="170" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="148" cy="184" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <path d="M148,184 L148,228 L94,228 L94,242" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 3" marker-end="url(#ag)"/>
+  <path d="M268,162.0 L298.0,162.0 A22.0,22.0 0 0 1 298.0,206.0 L268,206.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="230" y1="184" x2="268" y2="184" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="188" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">A'</text>
+  <line x1="230" y1="198" x2="268" y2="198" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="202" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">B</text>
+  <line x1="320" y1="184" x2="388" y2="184" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <rect x="54" y="242.0" width="80" height="44" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="76" y="260" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309">C2</text>
+  <text x="112" y="272" text-anchor="middle" font-size="17" font-weight="700" fill="#16a34a">1</text>
+  <path d="M54,274 L64,279 L54,284" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="36" y1="279" x2="54" y2="279" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="36" cy="279" r="3" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="134" y1="264" x2="200" y2="264" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="264" x2="200" y2="250" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="250" x2="268" y2="250" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="148" cy="264" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <path d="M148,264 L148,308 L94,308 L94,322" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 3" marker-end="url(#ag)"/>
+  <path d="M268,242.0 L298.0,242.0 A22.0,22.0 0 0 1 298.0,286.0 L268,286.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="230" y1="264" x2="268" y2="264" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="268" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">A</text>
+  <line x1="230" y1="278" x2="268" y2="278" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="282" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">B'</text>
+  <line x1="320" y1="264" x2="388" y2="264" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <rect x="54" y="322.0" width="80" height="44" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="76" y="340" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b45309">C3</text>
+  <text x="112" y="352" text-anchor="middle" font-size="17" font-weight="700" fill="#475569">0</text>
+  <path d="M54,354 L64,359 L54,364" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="36" y1="359" x2="54" y2="359" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="36" cy="359" r="3" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="134" y1="344" x2="200" y2="344" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="344" x2="200" y2="330" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="200" y1="330" x2="268" y2="330" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="148" cy="344" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <path d="M148,344 L148,388 L196,388" fill="none" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 3" marker-end="url(#ag)"/>
+  <text x="204" y="392" text-anchor="start" font-size="9" font-weight="400" fill="#475569">to the next cell</text>
+  <path d="M268,322.0 L298.0,322.0 A22.0,22.0 0 0 1 298.0,366.0 L268,366.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="230" y1="344" x2="268" y2="344" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="348" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">A</text>
+  <line x1="230" y1="358" x2="268" y2="358" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="224" y="362" text-anchor="end" font-size="11" font-weight="700" fill="#4f46e5">B</text>
+  <line x1="320" y1="344" x2="388" y2="344" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M388,88.0 C423.2,88.0 443.04,139.68 452,224 C443.04,308.32 423.2,360.0 388,360.0 C407.2,285.2 407.2,162.8 388,88.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="452" y1="224" x2="524" y2="224" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="534" y="229" text-anchor="start" font-size="15" font-weight="700" fill="#16a34a">F</text>
+  <text x="190" y="424" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">A</text>
+  <line x1="198" y1="420" x2="220" y2="420" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M220,413.0 L237,420 L220,427.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="240.6" cy="420" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="244" y1="420" x2="262" y2="420" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="270" y="424" text-anchor="start" font-size="11" font-weight="700" fill="#4f46e5">A'</text>
+  <text x="320" y="424" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">B</text>
+  <line x1="328" y1="420" x2="350" y2="420" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M350,413.0 L367,420 L350,427.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="370.6" cy="420" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="374" y1="420" x2="392" y2="420" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="400" y="424" text-anchor="start" font-size="11" font-weight="700" fill="#4f46e5">B'</text>
+  <text x="560" y="424" text-anchor="start" font-size="10" font-weight="400" fill="#475569">the two cell inputs and their complements</text>
+  <rect x="566" y="74" width="268" height="300" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text x="700" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">F = C₀A'B' + C₁A'B + C₂AB' + C₃AB</text>
+  <line x1="586" y1="116" x2="814" y2="116" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="620" y="140" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569">C₃C₂C₁C₀</text>
+  <text x="690" y="140" text-anchor="start" font-size="10.5" font-weight="700" fill="#475569">F becomes</text>
+  <text x="620" y="168" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">1000</text>
+  <text x="676" y="168" text-anchor="start" font-size="11" font-weight="400" fill="#0f172a">A AND B</text>
+  <text x="620" y="194" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">1110</text>
+  <text x="676" y="194" text-anchor="start" font-size="11" font-weight="400" fill="#0f172a">A OR B</text>
+  <rect x="590" y="205" width="220" height="24" rx="4" fill="#dcfce7" stroke="none" stroke-width="1.5"/>
+  <text x="620" y="220" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">0110</text>
+  <text x="676" y="220" text-anchor="start" font-size="11" font-weight="700" fill="#16a34a">A XOR B</text>
+  <text x="620" y="246" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">0111</text>
+  <text x="676" y="246" text-anchor="start" font-size="11" font-weight="400" fill="#0f172a">A NAND B</text>
+  <text x="620" y="272" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">1001</text>
+  <text x="676" y="272" text-anchor="start" font-size="11" font-weight="400" fill="#0f172a">A XNOR B</text>
+  <text x="620" y="298" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">0011</text>
+  <text x="676" y="298" text-anchor="start" font-size="11" font-weight="400" fill="#0f172a">NOT A</text>
+  <text x="700" y="344" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">loaded above: 0110 → this LUT is an XOR gate</text>
+  <text x="425" y="458" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">Four flip-flops hold the truth table; four AND gates decode the inputs; one OR gate reads out the answer.</text>
+</svg>

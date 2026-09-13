@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 690" width="880" height="690" role="img" aria-label="Large PLA implementing a BCD to seven segment decoder with fifteen shared product terms">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="880" height="690" fill="#ffffff"/>
+  <rect x="180" y="118" width="380" height="400" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="556" y="96" text-anchor="end" font-size="10.5" font-weight="700" fill="#4f46e5" stroke="#ffffff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">AND ARRAY — programmable</text>
+  <rect x="572" y="118" width="268" height="400" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="836" y="96" text-anchor="end" font-size="10.5" font-weight="700" fill="#4f46e5" stroke="#ffffff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">OR ARRAY — programmable</text>
+  <text x="190" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">A</text>
+  <line x1="190" y1="34" x2="190" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="190" cy="52" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="190" y1="52" x2="196" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M196,44.5 L214,52 L196,59.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="217.6" cy="52" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="221" y1="52" x2="226" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="226" y1="52" x2="226" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="195" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">A</text>
+  <text x="231" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">A'</text>
+  <text x="274" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">B</text>
+  <line x1="274" y1="34" x2="274" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="274" cy="52" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="274" y1="52" x2="280" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M280,44.5 L298,52 L280,59.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="301.6" cy="52" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="305" y1="52" x2="310" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="310" y1="52" x2="310" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="279" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">B</text>
+  <text x="315" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">B'</text>
+  <text x="358" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">C</text>
+  <line x1="358" y1="34" x2="358" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="358" cy="52" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="358" y1="52" x2="364" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M364,44.5 L382,52 L364,59.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="385.6" cy="52" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="389" y1="52" x2="394" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="394" y1="52" x2="394" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="363" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">C</text>
+  <text x="399" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">C'</text>
+  <text x="442" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">D</text>
+  <line x1="442" y1="34" x2="442" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="442" cy="52" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="442" y1="52" x2="448" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M448,44.5 L466,52 L448,59.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="469.6" cy="52" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="473" y1="52" x2="478" y2="52" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="478" y1="52" x2="478" y2="508" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="447" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">D</text>
+  <text x="483" y="76" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">D'</text>
+  <line x1="180" y1="130" x2="520" y2="130" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="130" x2="830" y2="130" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="134" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P1 = A</text>
+  <path d="M520,120.0 L546.0,120.0 A10.0,10.0 0 0 1 546.0,140.0 L520,140.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M185.4,125.4 L194.6,134.6 M185.4,134.6 L194.6,125.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M587.4,125.4 L596.6,134.6 M587.4,134.6 L596.6,125.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M767.4,125.4 L776.6,134.6 M767.4,134.6 L776.6,125.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M695.4,125.4 L704.6,134.6 M695.4,134.6 L704.6,125.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M803.4,125.4 L812.6,134.6 M803.4,134.6 L812.6,125.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="156" x2="520" y2="156" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="156" x2="830" y2="156" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="160" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P2 = C</text>
+  <path d="M520,146.0 L546.0,146.0 A10.0,10.0 0 0 1 546.0,166.0 L520,166.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M353.4,151.4 L362.6,160.6 M353.4,160.6 L362.6,151.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M587.4,151.4 L596.6,160.6 M587.4,160.6 L596.6,151.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="182" x2="520" y2="182" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="182" x2="830" y2="182" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="186" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P3 = B·D</text>
+  <path d="M520,172.0 L546.0,172.0 A10.0,10.0 0 0 1 546.0,192.0 L520,192.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M269.4,177.4 L278.6,186.6 M269.4,186.6 L278.6,177.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M437.4,177.4 L446.6,186.6 M437.4,186.6 L446.6,177.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M587.4,177.4 L596.6,186.6 M587.4,186.6 L596.6,177.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="208" x2="520" y2="208" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="208" x2="830" y2="208" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="212" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P4 = B'·D'</text>
+  <path d="M520,198.0 L546.0,198.0 A10.0,10.0 0 0 1 546.0,218.0 L520,218.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M305.4,203.4 L314.6,212.6 M305.4,212.6 L314.6,203.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M473.4,203.4 L482.6,212.6 M473.4,212.6 L482.6,203.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M587.4,203.4 L596.6,212.6 M587.4,212.6 L596.6,203.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M695.4,203.4 L704.6,212.6 M695.4,212.6 L704.6,203.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M731.4,203.4 L740.6,212.6 M731.4,212.6 L740.6,203.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="234" x2="520" y2="234" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="234" x2="830" y2="234" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="238" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P5 = B'</text>
+  <path d="M520,224.0 L546.0,224.0 A10.0,10.0 0 0 1 546.0,244.0 L520,244.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M305.4,229.4 L314.6,238.6 M305.4,238.6 L314.6,229.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M623.4,229.4 L632.6,238.6 M623.4,238.6 L632.6,229.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="260" x2="520" y2="260" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="260" x2="830" y2="260" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="264" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P6 = C'·D'</text>
+  <path d="M520,250.0 L546.0,250.0 A10.0,10.0 0 0 1 546.0,270.0 L520,270.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M389.4,255.4 L398.6,264.6 M389.4,264.6 L398.6,255.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M473.4,255.4 L482.6,264.6 M473.4,264.6 L482.6,255.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M623.4,255.4 L632.6,264.6 M623.4,264.6 L632.6,255.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M767.4,255.4 L776.6,264.6 M767.4,264.6 L776.6,255.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="286" x2="520" y2="286" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="286" x2="830" y2="286" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="290" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P7 = C·D</text>
+  <path d="M520,276.0 L546.0,276.0 A10.0,10.0 0 0 1 546.0,296.0 L520,296.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M353.4,281.4 L362.6,290.6 M353.4,290.6 L362.6,281.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M437.4,281.4 L446.6,290.6 M437.4,290.6 L446.6,281.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M623.4,281.4 L632.6,290.6 M623.4,290.6 L632.6,281.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="312" x2="520" y2="312" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="312" x2="830" y2="312" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="316" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P8 = B</text>
+  <path d="M520,302.0 L546.0,302.0 A10.0,10.0 0 0 1 546.0,322.0 L520,322.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M269.4,307.4 L278.6,316.6 M269.4,316.6 L278.6,307.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M659.4,307.4 L668.6,316.6 M659.4,316.6 L668.6,307.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="338" x2="520" y2="338" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="338" x2="830" y2="338" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="342" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P9 = C'</text>
+  <path d="M520,328.0 L546.0,328.0 A10.0,10.0 0 0 1 546.0,348.0 L520,348.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M389.4,333.4 L398.6,342.6 M389.4,342.6 L398.6,333.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M659.4,333.4 L668.6,342.6 M659.4,342.6 L668.6,333.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="364" x2="520" y2="364" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="364" x2="830" y2="364" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="368" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P10 = D</text>
+  <path d="M520,354.0 L546.0,354.0 A10.0,10.0 0 0 1 546.0,374.0 L520,374.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M437.4,359.4 L446.6,368.6 M437.4,368.6 L446.6,359.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M659.4,359.4 L668.6,368.6 M659.4,368.6 L668.6,359.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="390" x2="520" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="390" x2="830" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="394" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P11 = C·D'</text>
+  <path d="M520,380.0 L546.0,380.0 A10.0,10.0 0 0 1 546.0,400.0 L520,400.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M353.4,385.4 L362.6,394.6 M353.4,394.6 L362.6,385.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M473.4,385.4 L482.6,394.6 M473.4,394.6 L482.6,385.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M695.4,385.4 L704.6,394.6 M695.4,394.6 L704.6,385.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M731.4,385.4 L740.6,394.6 M731.4,394.6 L740.6,385.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M803.4,385.4 L812.6,394.6 M803.4,394.6 L812.6,385.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="416" x2="520" y2="416" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="416" x2="830" y2="416" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="420" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P12 = B·C'·D</text>
+  <path d="M520,406.0 L546.0,406.0 A10.0,10.0 0 0 1 546.0,426.0 L520,426.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M269.4,411.4 L278.6,420.6 M269.4,420.6 L278.6,411.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M389.4,411.4 L398.6,420.6 M389.4,420.6 L398.6,411.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M437.4,411.4 L446.6,420.6 M437.4,420.6 L446.6,411.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M695.4,411.4 L704.6,420.6 M695.4,420.6 L704.6,411.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="442" x2="520" y2="442" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="442" x2="830" y2="442" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="446" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P13 = B'·C</text>
+  <path d="M520,432.0 L546.0,432.0 A10.0,10.0 0 0 1 546.0,452.0 L520,452.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M305.4,437.4 L314.6,446.6 M305.4,446.6 L314.6,437.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M353.4,437.4 L362.6,446.6 M353.4,446.6 L362.6,437.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M695.4,437.4 L704.6,446.6 M695.4,446.6 L704.6,437.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M803.4,437.4 L812.6,446.6 M803.4,446.6 L812.6,437.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="468" x2="520" y2="468" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="468" x2="830" y2="468" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="472" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P14 = B·C'</text>
+  <path d="M520,458.0 L546.0,458.0 A10.0,10.0 0 0 1 546.0,478.0 L520,478.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M269.4,463.4 L278.6,472.6 M269.4,472.6 L278.6,463.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M389.4,463.4 L398.6,472.6 M389.4,472.6 L398.6,463.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M767.4,463.4 L776.6,472.6 M767.4,472.6 L776.6,463.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M803.4,463.4 L812.6,472.6 M803.4,472.6 L812.6,463.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <line x1="180" y1="494" x2="520" y2="494" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="556" y1="494" x2="830" y2="494" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="168" y="498" text-anchor="end" font-size="9.5" font-weight="600" fill="#0f172a">P15 = B·D'</text>
+  <path d="M520,484.0 L546.0,484.0 A10.0,10.0 0 0 1 546.0,504.0 L520,504.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M269.4,489.4 L278.6,498.6 M269.4,498.6 L278.6,489.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M473.4,489.4 L482.6,498.6 M473.4,498.6 L482.6,489.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <path d="M767.4,489.4 L776.6,498.6 M767.4,498.6 L776.6,489.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <text x="592" y="110" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">a</text>
+  <line x1="592" y1="118" x2="592" y2="514" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <g transform="rotate(90 592 536)">
+  <path d="M574.0,521.0 C593.8,521.0 604.96,526.7 610.0,536 C604.96,545.3 593.8,551.0 574.0,551.0 C584.8,542.75 584.8,529.25 574.0,521.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <line x1="592" y1="554" x2="592" y2="568" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="592" y="586" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">a</text>
+  <text x="628" y="110" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">b</text>
+  <line x1="628" y1="118" x2="628" y2="514" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <g transform="rotate(90 628 536)">
+  <path d="M610.0,521.0 C629.8,521.0 640.96,526.7 646.0,536 C640.96,545.3 629.8,551.0 610.0,551.0 C620.8,542.75 620.8,529.25 610.0,521.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <line x1="628" y1="554" x2="628" y2="568" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="628" y="586" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">b</text>
+  <text x="664" y="110" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">c</text>
+  <line x1="664" y1="118" x2="664" y2="514" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <g transform="rotate(90 664 536)">
+  <path d="M646.0,521.0 C665.8,521.0 676.96,526.7 682.0,536 C676.96,545.3 665.8,551.0 646.0,551.0 C656.8,542.75 656.8,529.25 646.0,521.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <line x1="664" y1="554" x2="664" y2="568" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="664" y="586" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">c</text>
+  <text x="700" y="110" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">d</text>
+  <line x1="700" y1="118" x2="700" y2="514" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <g transform="rotate(90 700 536)">
+  <path d="M682.0,521.0 C701.8,521.0 712.96,526.7 718.0,536 C712.96,545.3 701.8,551.0 682.0,551.0 C692.8,542.75 692.8,529.25 682.0,521.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <line x1="700" y1="554" x2="700" y2="568" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="700" y="586" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">d</text>
+  <text x="736" y="110" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">e</text>
+  <line x1="736" y1="118" x2="736" y2="514" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <g transform="rotate(90 736 536)">
+  <path d="M718.0,521.0 C737.8,521.0 748.96,526.7 754.0,536 C748.96,545.3 737.8,551.0 718.0,551.0 C728.8,542.75 728.8,529.25 718.0,521.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <line x1="736" y1="554" x2="736" y2="568" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="736" y="586" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">e</text>
+  <text x="772" y="110" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">f</text>
+  <line x1="772" y1="118" x2="772" y2="514" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <g transform="rotate(90 772 536)">
+  <path d="M754.0,521.0 C773.8,521.0 784.96,526.7 790.0,536 C784.96,545.3 773.8,551.0 754.0,551.0 C764.8,542.75 764.8,529.25 754.0,521.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <line x1="772" y1="554" x2="772" y2="568" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="772" y="586" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">f</text>
+  <text x="808" y="110" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">g</text>
+  <line x1="808" y1="118" x2="808" y2="514" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <g transform="rotate(90 808 536)">
+  <path d="M790.0,521.0 C809.8,521.0 820.96,526.7 826.0,536 C820.96,545.3 809.8,551.0 790.0,551.0 C800.8,542.75 800.8,529.25 790.0,521.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <line x1="808" y1="554" x2="808" y2="568" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="808" y="586" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">g</text>
+  <text x="700" y="608" text-anchor="middle" font-size="10" font-weight="400" fill="#475569">seven segment outputs</text>
+  <line x1="24" y1="630" x2="856" y2="630" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M39.4,645.4 L48.6,654.6 M39.4,654.6 L48.6,645.4" stroke="#4f46e5" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <text x="58" y="654" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">fuse for a term used by ONE output</text>
+  <path d="M325.4,645.4 L334.6,654.6 M325.4,654.6 L334.6,645.4" stroke="#16a34a" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+  <text x="344" y="654" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">fuse for a SHARED term (feeds 2–4 outputs)</text>
+  <text x="856" y="654" text-anchor="end" font-size="11" font-weight="600" fill="#4f46e5">15 product terms instead of 25 — sharing saves 40%</text>
+  <text x="440" y="680" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">BCD-to-7-segment decoder on a PLA:  4 inputs × 15 product terms × 7 outputs</text>
+</svg>

@@ -48,7 +48,7 @@
   <text x="226" y="412" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">A, B, C  (select)</text>
   <rect x="376" y="92" width="320" height="128" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.4"/>
   <text x="396" y="118" text-anchor="start" font-size="11" font-weight="700" fill="#4f46e5">Loaded pattern:</text>
-  <text x="396" y="142" text-anchor="start" font-size="11.5" font-weight="600" fill="#0f172a">F = A ⊕ B ⊕ C   (the Sum of a full adder)</text>
+  <text x="396" y="142" text-anchor="start" font-size="11.5" font-weight="600" fill="#0f172a">F = A XOR B XOR C   (a full adder's Sum)</text>
   <text x="396" y="170" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">Write different bits into the 8 SRAM cells and the</text>
   <text x="396" y="188" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">same hardware becomes ANY 3-input function —</text>
   <text x="396" y="206" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">always with exactly the same propagation delay.</text>

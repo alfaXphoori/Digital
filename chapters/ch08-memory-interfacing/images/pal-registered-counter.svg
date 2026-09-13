@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 604" width="900" height="604" role="img" aria-label="Registered PAL implementing a mod-6 counter with synchronous clear and terminal count">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="900" height="604" fill="#ffffff"/>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <defs><marker id="afb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#818cf8"/></marker></defs>
+  <rect x="96" y="142" width="412" height="264" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="24" y="134" text-anchor="start" font-size="10.5" font-weight="700" fill="#4f46e5">AND ARRAY — programmable</text>
+  <rect x="540" y="142" width="74" height="264" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="577" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">OR — fixed</text>
+  <rect x="628" y="142" width="96" height="200" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="676" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">macrocell registers</text>
+  <text x="120" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">CLR</text>
+  <path d="M120,30 L120,42" fill="none" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)"/>
+  <line x1="120" y1="38" x2="120" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="372" y1="46" x2="372" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="288" y1="58" x2="288" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="204" y1="70" x2="204" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="120" cy="94" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="120" y1="94" x2="126" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M126,86.5 L144,94 L126,101.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="147.6" cy="94" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="151" y1="94" x2="156" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="156" y1="94" x2="156" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="125" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">CLR</text>
+  <text x="161" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">CLR'</text>
+  <circle cx="204" cy="94" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="204" y1="94" x2="210" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M210,86.5 L228,94 L210,101.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="231.6" cy="94" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="235" y1="94" x2="240" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="240" y1="94" x2="240" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="209" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">Q2</text>
+  <text x="245" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">Q2'</text>
+  <circle cx="288" cy="94" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="288" y1="94" x2="294" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M294,86.5 L312,94 L294,101.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="315.6" cy="94" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="319" y1="94" x2="324" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="324" y1="94" x2="324" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="293" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">Q1</text>
+  <text x="329" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">Q1'</text>
+  <circle cx="372" cy="94" r="3.4" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <line x1="372" y1="94" x2="378" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M378,86.5 L396,94 L378,101.5 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="399.6" cy="94" r="3.6" fill="#ffffff" stroke="#334155" stroke-width="1.6"/>
+  <line x1="403" y1="94" x2="408" y2="94" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="408" y1="94" x2="408" y2="390" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="377" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">Q0</text>
+  <text x="413" y="120" text-anchor="start" font-size="10" font-weight="700" fill="#4f46e5">Q0'</text>
+  <text x="300" y="24" text-anchor="start" font-size="10" font-weight="600" fill="#818cf8">Q2, Q1, Q0 arrive from the feedback bus</text>
+  <line x1="96" y1="164" x2="456" y2="164" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="168" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P1</text>
+  <path d="M456,153.0 L481.0,153.0 A11.0,11.0 0 0 1 481.0,175.0 L456,175.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="155" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">CLR'·Q1·Q0</text>
+  <path d="M151.2,159.2 L160.8,168.8 M151.2,168.8 L160.8,159.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M283.2,159.2 L292.8,168.8 M283.2,168.8 L292.8,159.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M367.2,159.2 L376.8,168.8 M367.2,168.8 L376.8,159.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="96" y1="194" x2="456" y2="194" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="198" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P2</text>
+  <path d="M456,183.0 L481.0,183.0 A11.0,11.0 0 0 1 481.0,205.0 L456,205.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="185" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">CLR'·Q2·Q0'</text>
+  <path d="M151.2,189.2 L160.8,198.8 M151.2,198.8 L160.8,189.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M199.2,189.2 L208.8,198.8 M199.2,198.8 L208.8,189.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M403.2,189.2 L412.8,198.8 M403.2,198.8 L412.8,189.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="96" y1="224" x2="456" y2="224" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="228" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P3</text>
+  <path d="M456,213.0 L481.0,213.0 A11.0,11.0 0 0 1 481.0,235.0 L456,235.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="215" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">CLR'·Q2'·Q1'·Q0</text>
+  <path d="M151.2,219.2 L160.8,228.8 M151.2,228.8 L160.8,219.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M235.2,219.2 L244.8,228.8 M235.2,228.8 L244.8,219.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M319.2,219.2 L328.8,228.8 M319.2,228.8 L328.8,219.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M367.2,219.2 L376.8,228.8 M367.2,228.8 L376.8,219.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="96" y1="254" x2="456" y2="254" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="258" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P4</text>
+  <path d="M456,243.0 L481.0,243.0 A11.0,11.0 0 0 1 481.0,265.0 L456,265.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="245" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">CLR'·Q1·Q0'</text>
+  <path d="M151.2,249.2 L160.8,258.8 M151.2,258.8 L160.8,249.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M283.2,249.2 L292.8,258.8 M283.2,258.8 L292.8,249.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M403.2,249.2 L412.8,258.8 M403.2,258.8 L412.8,249.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="96" y1="284" x2="456" y2="284" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="288" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P5</text>
+  <path d="M456,273.0 L481.0,273.0 A11.0,11.0 0 0 1 481.0,295.0 L456,295.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="275" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">CLR'·Q0'</text>
+  <path d="M151.2,279.2 L160.8,288.8 M151.2,288.8 L160.8,279.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M403.2,279.2 L412.8,288.8 M403.2,288.8 L412.8,279.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="96" y1="314" x2="456" y2="314" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="318" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P6</text>
+  <path d="M456,303.0 L481.0,303.0 A11.0,11.0 0 0 1 481.0,325.0 L456,325.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="305" text-anchor="end" font-size="9.5" font-weight="600" fill="#dc2626" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">0  (disabled)</text>
+  <path d="M115.2,309.2 L124.8,318.8 M115.2,318.8 L124.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M151.2,309.2 L160.8,318.8 M151.2,318.8 L160.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M199.2,309.2 L208.8,318.8 M199.2,318.8 L208.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M235.2,309.2 L244.8,318.8 M235.2,318.8 L244.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M283.2,309.2 L292.8,318.8 M283.2,318.8 L292.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M319.2,309.2 L328.8,318.8 M319.2,318.8 L328.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M367.2,309.2 L376.8,318.8 M367.2,318.8 L376.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M403.2,309.2 L412.8,318.8 M403.2,318.8 L412.8,309.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="96" y1="344" x2="456" y2="344" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="348" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P7</text>
+  <path d="M456,333.0 L481.0,333.0 A11.0,11.0 0 0 1 481.0,355.0 L456,355.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="335" text-anchor="end" font-size="9.5" font-weight="600" fill="#4f46e5" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">Q2·Q0</text>
+  <path d="M199.2,339.2 L208.8,348.8 M199.2,348.8 L208.8,339.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M367.2,339.2 L376.8,348.8 M367.2,348.8 L376.8,339.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <line x1="96" y1="374" x2="456" y2="374" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="86" y="378" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">P8</text>
+  <path d="M456,363.0 L481.0,363.0 A11.0,11.0 0 0 1 481.0,385.0 L456,385.0 Z" fill="#ffffff" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="450" y="365" text-anchor="end" font-size="9.5" font-weight="600" fill="#dc2626" stroke="#ffffff" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">0  (disabled)</text>
+  <path d="M115.2,369.2 L124.8,378.8 M115.2,378.8 L124.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M151.2,369.2 L160.8,378.8 M151.2,378.8 L160.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M199.2,369.2 L208.8,378.8 M199.2,378.8 L208.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M235.2,369.2 L244.8,378.8 M235.2,378.8 L244.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M283.2,369.2 L292.8,378.8 M283.2,378.8 L292.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M319.2,369.2 L328.8,378.8 M319.2,378.8 L328.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M367.2,369.2 L376.8,378.8 M367.2,378.8 L376.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M403.2,369.2 L412.8,378.8 M403.2,378.8 L412.8,369.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M554,162.0 C578.2,162.0 591.84,168.46 598,179 C591.84,189.54 578.2,196.0 554,196.0 C567.2,186.65 567.2,171.35 554,162.0 Z" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="492" y1="164" x2="524" y2="164" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="164" x2="524" y2="170" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="170" x2="554" y2="170" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="164" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="492" y1="194" x2="524" y2="194" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="194" x2="524" y2="188" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="188" x2="554" y2="188" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="194" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="598" y1="179" x2="598" y2="173" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="598" y1="173" x2="636" y2="173" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="617" y="167" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b45309">D2</text>
+  <rect x="636" y="155" width="80" height="48" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="649" y="173.24" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">D</text>
+  <text x="703" y="173.24" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Q</text>
+  <path d="M636,185 L646,191 L636,197" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="716" y1="173" x2="786" y2="173" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="794" y="177" text-anchor="start" font-size="13" font-weight="700" fill="#16a34a">Q2</text>
+  <line x1="616" y1="191" x2="636" y2="191" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M554,222.0 C578.2,222.0 591.84,228.46 598,239 C591.84,249.54 578.2,256.0 554,256.0 C567.2,246.65 567.2,231.35 554,222.0 Z" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="492" y1="224" x2="524" y2="224" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="224" x2="524" y2="230" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="230" x2="554" y2="230" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="224" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="492" y1="254" x2="524" y2="254" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="254" x2="524" y2="248" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="248" x2="554" y2="248" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="254" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="598" y1="239" x2="598" y2="233" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="598" y1="233" x2="636" y2="233" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="617" y="227" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b45309">D1</text>
+  <rect x="636" y="215" width="80" height="48" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="649" y="233.24" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">D</text>
+  <text x="703" y="233.24" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Q</text>
+  <path d="M636,245 L646,251 L636,257" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="716" y1="233" x2="786" y2="233" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="794" y="237" text-anchor="start" font-size="13" font-weight="700" fill="#16a34a">Q1</text>
+  <line x1="616" y1="251" x2="636" y2="251" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M554,282.0 C578.2,282.0 591.84,288.46 598,299 C591.84,309.54 578.2,316.0 554,316.0 C567.2,306.65 567.2,291.35 554,282.0 Z" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="492" y1="284" x2="524" y2="284" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="284" x2="524" y2="290" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="290" x2="554" y2="290" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="284" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="492" y1="314" x2="524" y2="314" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="314" x2="524" y2="308" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="308" x2="554" y2="308" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="314" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="598" y1="299" x2="598" y2="293" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="598" y1="293" x2="636" y2="293" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="617" y="287" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b45309">D0</text>
+  <rect x="636" y="275" width="80" height="48" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="649" y="293.24" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">D</text>
+  <text x="703" y="293.24" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Q</text>
+  <path d="M636,305 L646,311 L636,317" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="716" y1="293" x2="786" y2="293" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="794" y="297" text-anchor="start" font-size="13" font-weight="700" fill="#16a34a">Q0</text>
+  <line x1="616" y1="311" x2="636" y2="311" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M554,342.0 C578.2,342.0 591.84,348.46 598,359 C591.84,369.54 578.2,376.0 554,376.0 C567.2,366.65 567.2,351.35 554,342.0 Z" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="492" y1="344" x2="524" y2="344" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="344" x2="524" y2="350" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="350" x2="554" y2="350" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="344" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="492" y1="374" x2="524" y2="374" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="374" x2="524" y2="368" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="524" y1="368" x2="554" y2="368" stroke="#b45309" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="524" cy="374" r="3.2" fill="#b45309" stroke="none" stroke-width="1.4"/>
+  <line x1="598" y1="359" x2="786" y2="359" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="794" y="363" text-anchor="start" font-size="13" font-weight="700" fill="#b45309">TC</text>
+  <text x="700" y="381" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">combinational output</text>
+  <line x1="616" y1="424" x2="616" y2="191" stroke="#334155" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="616" cy="191" r="3.2" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <circle cx="616" cy="251" r="3.2" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <circle cx="616" cy="311" r="3.2" fill="#334155" stroke="none" stroke-width="1.4"/>
+  <path d="M556,424 L616,424" fill="none" stroke="#334155" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)"/>
+  <text x="548" y="428" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">CLK</text>
+  <circle cx="726" cy="173" r="3.4" fill="#818cf8" stroke="none" stroke-width="1.4"/>
+  <path d="M726,173 L726,440 L88,440 L88,70 L204,70" fill="none" stroke="#818cf8" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#afb)"/>
+  <circle cx="738" cy="233" r="3.4" fill="#818cf8" stroke="none" stroke-width="1.4"/>
+  <path d="M738,233 L738,452 L76,452 L76,58 L288,58" fill="none" stroke="#818cf8" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#afb)"/>
+  <circle cx="750" cy="293" r="3.4" fill="#818cf8" stroke="none" stroke-width="1.4"/>
+  <path d="M750,293 L750,464 L64,464 L64,46 L372,46" fill="none" stroke="#818cf8" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#afb)"/>
+  <text x="420" y="496" text-anchor="middle" font-size="10.5" font-weight="600" fill="#4f46e5">feedback bus — the three register outputs drive the AND array again; this is what turns a PAL into a sequential circuit</text>
+  <line x1="24" y1="528" x2="876" y2="528" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M39.2,543.2 L48.8,552.8 M39.2,552.8 L48.8,543.2" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <text x="58" y="552" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">programmable fuse</text>
+  <path d="M205.2,543.2 L214.8,552.8 M205.2,552.8 L214.8,543.2" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <text x="224" y="552" text-anchor="start" font-size="10.5" font-weight="400" fill="#475569">all fuses intact → term = 0 (unused slot)</text>
+  <text x="876" y="552" text-anchor="end" font-size="11" font-weight="600" fill="#0f172a">Mod-6 counter with synchronous clear + terminal count, on one registered PAL</text>
+  <text x="450" y="582" text-anchor="middle" font-size="10.5" font-weight="600" fill="#475569" xml:space="preserve">D2 = P1+P2     D1 = P3+P4     D0 = P5     TC = P7        state sequence 000→001→010→011→100→101→000</text>
+</svg>
