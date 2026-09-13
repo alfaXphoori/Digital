@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 194" width="790" height="194" role="img" aria-label="Digital thermometer signal chain from sensor to seven segment display">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="790" height="194" fill="#ffffff"/>
+  <defs><marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <text x="395" y="26" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">End-to-end: from a physical temperature to a digit on a display</text>
+  <rect x="22" y="56" width="150" height="58" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="97.0" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">LM35 sensor</text>
+  <text x="97.0" y="100" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">10 mV / °C</text>
+  <rect x="208" y="56" width="150" height="58" rx="6" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="283.0" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">ADC (8-bit)</text>
+  <text x="283.0" y="100" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">voltage → binary</text>
+  <rect x="394" y="56" width="160" height="58" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+  <text x="474.0" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Processor / PLD</text>
+  <text x="474.0" y="100" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">binary → BCD</text>
+  <rect x="590" y="56" width="160" height="58" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="670.0" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">4511 + 7-seg</text>
+  <text x="670.0" y="100" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">BCD → digits</text>
+  <path d="M172,85 L208,85" fill="none" stroke="#475569" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#as)"/>
+  <path d="M358,85 L394,85" fill="none" stroke="#475569" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#as)"/>
+  <path d="M554,85 L590,85" fill="none" stroke="#475569" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#as)"/>
+  <text x="190" y="72" text-anchor="middle" font-size="8.5" font-weight="400" fill="#475569">analog</text>
+  <text x="376" y="72" text-anchor="middle" font-size="8.5" font-weight="400" fill="#475569">8-bit</text>
+  <text x="572" y="72" text-anchor="middle" font-size="8.5" font-weight="400" fill="#475569">BCD</text>
+  <text x="395" y="146" text-anchor="middle" font-size="11" font-weight="600" fill="#4f46e5">25 °C → 250 mV → with Vref = 1.28 V one step is 5 mV → code 50 = 00110010₂</text>
+  <text x="395" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#4f46e5">the processor halves it → 25 → BCD 0010 0101 → the display shows "25"</text>
+</svg>
