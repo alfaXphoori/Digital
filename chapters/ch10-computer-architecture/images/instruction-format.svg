@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" role="img" aria-label="SAP-1 instruction format split into a four bit opcode and a four bit address">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="880" height="446" fill="#ffffff"/>
+  <defs><marker id="af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <text x="440" y="28" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">รูปแบบคำสั่งของ SAP-1 — หนึ่งไบต์ แบ่งเป็นสองส่วน</text>
+  <text x="292" y="68" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b45309">Opcode  (4 บิต)</text>
+  <text x="580" y="68" text-anchor="middle" font-size="12.5" font-weight="700" fill="#16a34a">Operand / Address  (4 บิต)</text>
+  <rect x="150" y="82" width="68" height="52" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="184.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 7</text>
+  <rect x="222" y="82" width="68" height="52" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="256.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 6</text>
+  <rect x="294" y="82" width="68" height="52" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="328.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 5</text>
+  <rect x="366" y="82" width="68" height="52" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+  <text x="400.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 4</text>
+  <rect x="438" y="82" width="68" height="52" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="472.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 3</text>
+  <rect x="510" y="82" width="68" height="52" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="544.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 2</text>
+  <rect x="582" y="82" width="68" height="52" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="616.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 1</text>
+  <rect x="654" y="82" width="68" height="52" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="688.0" y="150" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">bit 0</text>
+  <path d="M150,170 L434,170" fill="none" stroke="#b45309" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)" marker-start="url(#af)"/>
+  <text x="292" y="190" text-anchor="middle" font-size="10" font-weight="600" fill="#b45309">เลือกได้ 2⁴ = 16 คำสั่ง</text>
+  <path d="M438,170 L722,170" fill="none" stroke="#16a34a" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)" marker-start="url(#af)"/>
+  <text x="580" y="190" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">อ้างหน่วยความจำได้ 2⁴ = 16 ตำแหน่ง</text>
+  <rect x="150" y="216" width="578" height="66" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.4"/>
+  <text x="200" y="240" text-anchor="middle" font-size="10.5" font-weight="700" fill="#94a3b8">ตัวอย่าง</text>
+  <text x="300" y="252" text-anchor="middle" font-size="20" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="700" fill="#fbbf24">0000</text>
+  <text x="420" y="252" text-anchor="middle" font-size="20" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="700" fill="#4ade80">1101</text>
+  <text x="300" y="272" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fbbf24">LDA</text>
+  <text x="420" y="272" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4ade80">ที่อยู่ 13 (Dh)</text>
+  <text x="600" y="252" text-anchor="middle" font-size="11.5" font-weight="700" fill="#e2e8f0">= โหลดข้อมูลจากช่อง 13 เข้า A</text>
+  <rect x="150" y="300" width="578" height="124" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text x="210" y="322" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">คำสั่ง</text>
+  <text x="320" y="322" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">Opcode</text>
+  <text x="500" y="322" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">ความหมาย</text>
+  <line x1="170" y1="330" x2="708" y2="330" stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round"/>
+  <text x="210" y="348" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">LDA</text>
+  <text x="320" y="348" text-anchor="middle" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="700" fill="#0f172a">0000</text>
+  <text x="500" y="348" text-anchor="middle" font-size="10" font-weight="400" fill="#475569">A ← RAM[addr]</text>
+  <text x="210" y="363" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">ADD</text>
+  <text x="320" y="363" text-anchor="middle" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="700" fill="#0f172a">0001</text>
+  <text x="500" y="363" text-anchor="middle" font-size="10" font-weight="400" fill="#475569">A ← A + RAM[addr]</text>
+  <text x="210" y="378" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">SUB</text>
+  <text x="320" y="378" text-anchor="middle" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="700" fill="#0f172a">0010</text>
+  <text x="500" y="378" text-anchor="middle" font-size="10" font-weight="400" fill="#475569">A ← A − RAM[addr]</text>
+  <text x="210" y="393" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">OUT</text>
+  <text x="320" y="393" text-anchor="middle" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="700" fill="#0f172a">1110</text>
+  <text x="500" y="393" text-anchor="middle" font-size="10" font-weight="400" fill="#475569">พอร์ตแสดงผล ← A</text>
+  <text x="210" y="408" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">HLT</text>
+  <text x="320" y="408" text-anchor="middle" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="700" fill="#0f172a">1111</text>
+  <text x="500" y="408" text-anchor="middle" font-size="10" font-weight="400" fill="#475569">หยุดการทำงาน</text>
+</svg>

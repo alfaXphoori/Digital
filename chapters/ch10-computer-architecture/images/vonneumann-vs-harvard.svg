@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img" aria-label="Von Neumann architecture compared with Harvard architecture">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="880" height="400" fill="#ffffff"/>
+  <defs><marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker></defs>
+  <text x="440" y="28" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">สองแนวคิดการวางหน่วยความจำ — ต่างกันแค่จุดเดียว แต่เปลี่ยนความเร็วทั้งระบบ</text>
+  <rect x="22" y="52" width="412" height="268" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text x="228" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#4f46e5">Von Neumann</text>
+  <text x="228" y="96" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">หน่วยความจำและบัสชุดเดียว ใช้ร่วมกัน</text>
+  <rect x="64" y="118" width="130" height="92" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.6"/>
+  <text x="129" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#4f46e5">CPU</text>
+  <text x="129" y="178" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">ALU + CU</text>
+  <rect x="266" y="118" width="130" height="92" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>
+  <text x="331" y="152" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">Memory</text>
+  <text x="331" y="172" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">คำสั่ง + ข้อมูล</text>
+  <text x="331" y="190" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">อยู่รวมกัน</text>
+  <path d="M194,164 L266,164" fill="none" stroke="#dc2626" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ar)" marker-start="url(#ar)"/>
+  <text x="230" y="152" text-anchor="middle" font-size="9.5" font-weight="700" fill="#dc2626">บัสเดียว</text>
+  <rect x="64" y="236" width="332" height="62" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="230" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Von Neumann Bottleneck</text>
+  <text x="230" y="278" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">อ่านคำสั่งกับอ่านข้อมูลต้องสลับกันทีละจังหวะ</text>
+  <rect x="446" y="52" width="412" height="268" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text x="652" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">Harvard</text>
+  <text x="652" y="96" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">แยกหน่วยความจำและบัสออกจากกัน</text>
+  <rect x="586" y="118" width="130" height="92" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.6"/>
+  <text x="651" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#4f46e5">CPU</text>
+  <text x="651" y="178" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">ALU + CU</text>
+  <rect x="478" y="112" width="92" height="46" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+  <text x="524" y="132" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">Instruction</text>
+  <text x="524" y="148" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">Memory</text>
+  <rect x="478" y="174" width="92" height="46" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="524" y="194" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">Data</text>
+  <text x="524" y="210" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">Memory</text>
+  <path d="M570,135 L586,135" fill="none" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#aa)"/>
+  <path d="M570,197 L586,197" fill="none" stroke="#16a34a" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#aa)"/>
+  <rect x="478" y="236" width="332" height="62" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.4"/>
+  <text x="644" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">ดึงคำสั่งและอ่านข้อมูลพร้อมกันได้</text>
+  <text x="644" y="278" text-anchor="middle" font-size="9.5" font-weight="400" fill="#475569">เร็วกว่า แต่ใช้ขาชิปและสายมากกว่าเป็นเท่าตัว</text>
+  <text x="440" y="350" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">คอมพิวเตอร์ทั่วไปใช้ Von Neumann · ไมโครคอนโทรลเลอร์และ DSP ส่วนใหญ่ใช้ Harvard</text>
+  <text x="440" y="374" text-anchor="middle" font-size="10" font-weight="400" fill="#475569">ซีพียูสมัยใหม่ผสมทั้งสองแบบ — ภายนอกเป็น Von Neumann แต่แคช L1 แยกคำสั่งกับข้อมูล (Modified Harvard)</text>
+</svg>
