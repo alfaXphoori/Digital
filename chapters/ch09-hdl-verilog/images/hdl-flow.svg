@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img" aria-label="One Verilog file feeds both the simulation path and the synthesis path">
+  <style>text{font-family:'Noto Sans Thai','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif}</style>
+  <rect width="880" height="400" fill="#ffffff"/>
+  <defs><marker id="af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <defs><marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker></defs>
+  <text x="440" y="28" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">โค้ด Verilog ไฟล์เดียว ไปได้สองเส้นทาง — จำลอง (ตรวจว่าถูก) กับ สังเคราะห์ (สร้างของจริง)</text>
+  <rect x="30" y="132" width="140" height="56" rx="7" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.6"/>
+  <text x="100.0" y="156.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">design.v</text>
+  <text x="100.0" y="173.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">โมดูลที่ออกแบบ</text>
+  <rect x="30" y="244" width="140" height="56" rx="7" fill="#f1f5f9" stroke="#334155" stroke-width="1.6"/>
+  <text x="100.0" y="268.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">testbench.v</text>
+  <text x="100.0" y="285.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">โค้ดทดสอบ</text>
+  <text x="212" y="66" text-anchor="start" font-size="10.5" font-weight="700" fill="#16a34a">เส้นทางสังเคราะห์ (Synthesis)</text>
+  <rect x="212" y="78" width="132" height="54" rx="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="278.0" y="101.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Synthesis</text>
+  <text x="278.0" y="118.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">แปลงเป็นวงจร</text>
+  <rect x="374" y="78" width="142" height="54" rx="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="445.0" y="101.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Netlist</text>
+  <text x="445.0" y="118.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">เกต + ฟลิปฟลอป</text>
+  <rect x="546" y="78" width="150" height="54" rx="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="621.0" y="101.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Place &amp; Route</text>
+  <text x="621.0" y="118.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">จัด LUT + เดินสาย</text>
+  <rect x="726" y="78" width="124" height="54" rx="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="788.0" y="101.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Bitstream</text>
+  <text x="788.0" y="118.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">โหลดลง FPGA</text>
+  <path d="M344,105 L372,105" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M516,105 L544,105" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M696,105 L724,105" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M100,132 L100,105 L212,105" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <text x="212" y="200" text-anchor="start" font-size="10.5" font-weight="700" fill="#4f46e5">เส้นทางจำลอง (Simulation)</text>
+  <rect x="212" y="212" width="132" height="54" rx="7" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.6"/>
+  <text x="278.0" y="235.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Simulator</text>
+  <text x="278.0" y="252.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">Icarus Verilog</text>
+  <rect x="374" y="186" width="142" height="48" rx="7" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.6"/>
+  <text x="445.0" y="206.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Console log</text>
+  <text x="445.0" y="223.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">$display / $monitor</text>
+  <rect x="374" y="244" width="142" height="48" rx="7" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.6"/>
+  <text x="445.0" y="264.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Waveform</text>
+  <text x="445.0" y="281.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">EPWave (.vcd)</text>
+  <rect x="546" y="212" width="150" height="54" rx="7" fill="#f1f5f9" stroke="#334155" stroke-width="1.6"/>
+  <text x="621.0" y="235.0" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">ตรวจผลลัพธ์</text>
+  <text x="621.0" y="252.0" text-anchor="middle" font-size="9" font-weight="400" fill="#475569">ตรงกับที่ออกแบบไหม</text>
+  <path d="M170,175 L190,175 L190,232 L212,232" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M170,272 L190,272 L190,248 L212,248" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M344,228 L358,228 L358,210 L374,210" fill="none" stroke="#4f46e5" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M344,250 L358,250 L358,268 L374,268" fill="none" stroke="#4f46e5" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M516,210 L532,210 L532,232 L546,232" fill="none" stroke="#4f46e5" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M516,268 L532,268 L532,248 L546,248" fill="none" stroke="#4f46e5" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#af)"/>
+  <path d="M621,266 L621,348 L14,348 L14,160 L30,160" fill="none" stroke="#4f46e5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4" marker-end="url(#af)"/>
+  <text x="360" y="366" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">ยังไม่ถูก → กลับไปแก้ design.v แล้วจำลองใหม่</text>
+  <path d="M170,258 L196,258 L196,132" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4"/>
+  <path d="M188,120 L204,136 M204,120 L188,136" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="214" y="152" text-anchor="start" font-size="9.5" font-weight="600" fill="#dc2626">testbench ไม่ถูกสังเคราะห์ —</text>
+  <text x="214" y="166" text-anchor="start" font-size="9.5" font-weight="400" fill="#dc2626">$display, #10, initial ใช้ได้เฉพาะตอนจำลอง</text>
+  <text x="440" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">เขียนครั้งเดียว ตรวจด้วยการจำลองจนมั่นใจ แล้วค่อยสังเคราะห์ลงชิปจริง</text>
+</svg>
