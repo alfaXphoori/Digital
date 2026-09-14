@@ -21,7 +21,7 @@
 | **9** | **สัญญาณนาฬิกาและแลตช์** | Clock, duty cycle, มัลติไวเบรเตอร์/ไอซี 555, SR/Gated Latch | [Flip-Flops](chapters/ch06-flip-flops/) |
 | **10** | **ฟลิปฟลอป** | ฟลิปฟลอป D/JK/T, Trigger, ตารางสถานะ/ตารางกระตุ้น, timing diagram | [Flip-Flops](chapters/ch06-flip-flops/) |
 | **11** | **วงจรนับและเรจิสเตอร์** | ตัวนับ asynchronous/synchronous, mod-N, โครงสร้างเรจิสเตอร์, โหมด SISO/SIPO/PISO/PIPO | [Counters & Registers](chapters/ch07-counters-registers/) |
-| **12** | **หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้** | RAM/ROM, Address Decoding, PROM/PLA/PAL/GAL, fuse map, CPLD และ FPGA (LUT) | [Memory & PLD](chapters/ch08-memory-interfacing/) |
+| **12** | **หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้** | RAM/ROM, Address Decoding, PROM/PLA/PAL/GAL, fuse map, OLMC และการใช้งาน GAL จริง | [Memory & PLD](chapters/ch08-memory-interfacing/) |
 | **13** | **แนะนำ HDL: Verilog + EDA Playground** | module/port, assign/always, testbench, การจำลองบน EDA Playground | [Verilog HDL](chapters/ch09-hdl-verilog/) |
 | **14** | **สถาปัตยกรรมคอมพิวเตอร์และหน่วยประมวลผลกลางเบื้องต้น** | โครงสร้าง CPU, Von Neumann, Instruction Cycle, 8-bit ALU/PC Verilog | [Computer Architecture](chapters/ch10-computer-architecture/) |
 | **15** | **โครงงานย่อยและการประยุกต์ใช้งาน / สรุปทบทวนรายวิชา** | นำเสนอ Mini-Project, บูรณาการระบบดิจิทัล, สรุปและเตรียมสอบปลายภาค | [Summary](chapters/summary.md) |

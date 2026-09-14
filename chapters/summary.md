@@ -23,7 +23,7 @@
 
 ### 1.4 ระบบขั้นสูง (Advanced Systems)
 - **หน่วยความจำ:** RAM (SRAM, DRAM) และ ROM (PROM, EPROM, EEPROM, NAND/NOR Flash)
-- **อุปกรณ์ลอจิกโปรแกรมได้:** PLA, PAL, CPLD และ FPGA
+- **อุปกรณ์ลอจิกโปรแกรมได้:** PROM, PLA, PAL และ GAL พร้อม OLMC
 - **การออกแบบด้วย PLD:** โครงสร้าง AND/OR Array, การแชร์ Product Term, fuse map และ Registered PAL สำหรับวงจรเชิงลำดับ
 
 ---
