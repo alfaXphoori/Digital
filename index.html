@@ -97,7 +97,7 @@ title: หน้าแรก
           <tr><td class="wk">10</td><td class="topic">ฟลิปฟลอป</td><td class="detail">ฟลิปฟลอป D/JK/T, Trigger, ตารางสถานะ/ตารางกระตุ้น, timing diagram</td><td><a href="{{ '/chapters/ch06-flip-flops/' | relative_url }}">บทที่ 6</a></td></tr>
           <tr><td class="wk">11</td><td class="topic">วงจรนับและเรจิสเตอร์</td><td class="detail">ตัวนับ asynchronous/synchronous, mod-N, โครงสร้างเรจิสเตอร์, โหมด SISO/SIPO/PISO/PIPO</td><td><a href="{{ '/chapters/ch07-counters-registers/' | relative_url }}">บทที่ 7</a></td></tr>
           <tr><td class="wk">12</td><td class="topic">หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้</td><td class="detail">RAM/ROM, Address Decoding, PROM/PLA/PAL/GAL, fuse map, OLMC และการใช้งาน GAL จริง</td><td><a href="{{ '/chapters/ch08-memory-interfacing/' | relative_url }}">บทที่ 8</a></td></tr>
-          <tr><td class="wk">13</td><td class="topic">แนะนำ HDL: Verilog + EDA Playground</td><td class="detail">module/port, assign/always, testbench, การจำลองบน EDA Playground</td><td><a href="{{ '/chapters/ch09-hdl-verilog/' | relative_url }}">บทที่ 9</a></td></tr>
+          <tr><td class="wk">13</td><td class="topic">การออกแบบด้วย VHDL และการจำลองด้วย vhdl.ai</td><td class="detail">entity/architecture, process, testbench, ฟลิปฟลอป, ตัวนับ, จำลองบน vhdl.ai</td><td><a href="{{ '/chapters/ch09-hdl-vhdl/' | relative_url }}">บทที่ 9</a></td></tr>
           <tr><td class="wk">14</td><td class="topic">สถาปัตยกรรมคอมพิวเตอร์และหน่วยประมวลผลกลางเบื้องต้น</td><td class="detail">โครงสร้าง CPU, Von Neumann, Instruction Cycle, 8-bit ALU/PC Verilog</td><td><a href="{{ '/chapters/ch10-computer-architecture/' | relative_url }}">บทที่ 10</a></td></tr>
           <tr><td class="wk">15</td><td class="topic">โครงงานย่อยและการประยุกต์ใช้งาน / ทบทวนเนื้อหารายวิชา</td><td class="detail">นำเสนอ Mini-Project, บูรณาการระบบดิจิทัล, สรุปและเตรียมสอบปลายภาค</td><td><a href="{{ '/chapters/summary.md' | relative_url }}">สรุปภาพรวม</a></td></tr>
           <tr class="exam-row"><td class="wk">🟧</td><td class="topic">สอบปลายภาค (Final Exam)</td><td>ครอบคลุมเนื้อหาสัปดาห์ที่ 9–15 <span class="badge-pct">25%</span></td><td>—</td></tr>
@@ -232,7 +232,7 @@ title: หน้าแรก
   <div class="container">
     <div class="section__head">
       <h2>บทเรียนทั้งหมด</h2>
-      <p>เอกสารประกอบการเรียน 10 บท + บทเสริม 1 บท</p>
+      <p>เอกสารประกอบการเรียน 10 บท</p>
     </div>
     <ul class="link-list">
       <li><a class="link-list__item" href="{{ '/chapters/ch01-number-systems/' | relative_url }}"><span class="link-list__icon">🔢</span><span class="link-list__text"><span class="link-list__title">บทที่ 1</span><span class="link-list__desc">ระบบจำนวนและรหัสข้อมูลดิจิทัล</span></span></a></li>
@@ -243,9 +243,8 @@ title: หน้าแรก
       <li><a class="link-list__item" href="{{ '/chapters/ch06-flip-flops/' | relative_url }}"><span class="link-list__icon">🔁</span><span class="link-list__text"><span class="link-list__title">บทที่ 6</span><span class="link-list__desc">ฟลิปฟลอปและวงจรเชิงลำดับ</span></span></a></li>
       <li><a class="link-list__item" href="{{ '/chapters/ch07-counters-registers/' | relative_url }}"><span class="link-list__icon">🔢</span><span class="link-list__text"><span class="link-list__title">บทที่ 7</span><span class="link-list__desc">ตัวนับและรีจิสเตอร์</span></span></a></li>
       <li><a class="link-list__item" href="{{ '/chapters/ch08-memory-interfacing/' | relative_url }}"><span class="link-list__icon">💾</span><span class="link-list__text"><span class="link-list__title">บทที่ 8</span><span class="link-list__desc">หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้ (PROM/PLA/PAL/GAL)</span></span></a></li>
-      <li><a class="link-list__item" href="{{ '/chapters/ch09-hdl-verilog/' | relative_url }}"><span class="link-list__icon">💻</span><span class="link-list__text"><span class="link-list__title">บทที่ 9</span><span class="link-list__desc">แนะนำ HDL: Verilog และ EDA Playground</span></span></a></li>
+      <li><a class="link-list__item" href="{{ '/chapters/ch09-hdl-vhdl/' | relative_url }}"><span class="link-list__icon">💻</span><span class="link-list__text"><span class="link-list__title">บทที่ 9</span><span class="link-list__desc">การออกแบบด้วย VHDL และการจำลองด้วย vhdl.ai</span></span></a></li>
       <li><a class="link-list__item" href="{{ '/chapters/ch10-computer-architecture/' | relative_url }}"><span class="link-list__icon">⚙️</span><span class="link-list__text"><span class="link-list__title">บทที่ 10</span><span class="link-list__desc">สถาปัตยกรรมคอมพิวเตอร์และหน่วยประมวลผลกลางเบื้องต้น</span></span></a></li>
-      <li><a class="link-list__item" href="{{ '/chapters/ch11-hdl-vhdl/' | relative_url }}"><span class="link-list__icon">🧾</span><span class="link-list__text"><span class="link-list__title">บทที่ 11</span><span class="link-list__desc">การออกแบบด้วย VHDL และการจำลองด้วย vhdl.ai (บทเสริม)</span></span></a></li>
     </ul>
   </div>
 </section>

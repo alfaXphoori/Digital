@@ -22,11 +22,10 @@
 | **10** | **ฟลิปฟลอป** | ฟลิปฟลอป D/JK/T, Trigger, ตารางสถานะ/ตารางกระตุ้น, timing diagram | [Flip-Flops](chapters/ch06-flip-flops/) |
 | **11** | **วงจรนับและเรจิสเตอร์** | ตัวนับ asynchronous/synchronous, mod-N, โครงสร้างเรจิสเตอร์, โหมด SISO/SIPO/PISO/PIPO | [Counters & Registers](chapters/ch07-counters-registers/) |
 | **12** | **หน่วยความจำและอุปกรณ์ลอจิกโปรแกรมได้** | RAM/ROM, Address Decoding, PROM/PLA/PAL/GAL, fuse map, OLMC และการใช้งาน GAL จริง | [Memory & PLD](chapters/ch08-memory-interfacing/) |
-| **13** | **แนะนำ HDL: Verilog + EDA Playground** | module/port, assign/always, testbench, การจำลองบน EDA Playground | [Verilog HDL](chapters/ch09-hdl-verilog/) |
+| **13** | **การออกแบบด้วย VHDL และการจำลองด้วย vhdl.ai** | `entity`/`architecture`, `process`, testbench, ฟลิปฟลอป, ตัวนับ และการจำลองบน vhdl.ai | [VHDL HDL](chapters/ch09-hdl-vhdl/) |
 | **14** | **สถาปัตยกรรมคอมพิวเตอร์และหน่วยประมวลผลกลางเบื้องต้น** | โครงสร้าง CPU, Von Neumann, Instruction Cycle, 8-bit ALU/PC Verilog | [Computer Architecture](chapters/ch10-computer-architecture/) |
 | **15** | **โครงงานย่อยและการประยุกต์ใช้งาน / สรุปทบทวนรายวิชา** | นำเสนอ Mini-Project, บูรณาการระบบดิจิทัล, สรุปและเตรียมสอบปลายภาค | [Summary](chapters/summary.md) |
 | **—** | **🟧 สอบปลายภาค (Final Exam)** | **ครอบคลุมเนื้อหาสัปดาห์ที่ 9–15 \| สัดส่วน 25%** | [summary.md](chapters/summary.md) |
-| **+** | **📎 บทเสริม: การออกแบบด้วย VHDL** | `entity`/`architecture`, `process`, ฟลิปฟลอป, ตัวนับ และการจำลองบน vhdl.ai (คาบพิเศษ 3 ชม. ต่อยอดจากสัปดาห์ที่ 13) | [VHDL HDL](chapters/ch11-hdl-vhdl/) |
 
 ---
 
