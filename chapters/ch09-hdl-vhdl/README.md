@@ -758,543 +758,7 @@ end architecture;
 
 > 💡 **วิธีเปิดใช้งานใน vhdl.ai:** เมื่อเปิดหน้าเว็บ [vhdl.ai/vhdlive](https://vhdl.ai/vhdlive) ให้คลิกปุ่ม **Examples** บนแถบเครื่องมือ ระบบจะแสดงเมนูตัวอย่างทั้งหมดให้เลือกเปิด ซึ่งจะโหลดไฟล์วงจรพร้อม Testbench และตั้งค่า Top Entity ให้อัตโนมัติ
 
-### ถ้าอยากรันบนเครื่องตัวเอง
-
-โค้ดทุกชุดในบทนี้รันด้วย GHDL บนเครื่องได้ทันทีด้วยสามคำสั่ง
-
-```bash
-ghdl -a --std=08 design.vhd testbench.vhd   # analyse: ตรวจไวยากรณ์
-ghdl -e --std=08 tb_dff                      # elaborate: ประกอบวงจร
-ghdl -r --std=08 tb_dff --vcd=wave.vcd       # run: จำลองและบันทึกรูปคลื่น
-```
-
-ไฟล์ `wave.vcd` ที่ได้ เปิดดูรูปคลื่นได้ด้วย **GTKWave** หรือ **Surfer**
-
----
-
-## 9.10 VHDL ↔ Verilog: ตารางเทียบไวยากรณ์
-
-หน้านี้คือโพยเทียบไวยากรณ์ระหว่างภาษา VHDL และ Verilog **แนวคิดเหมือนกันหมด เปลี่ยนแค่คำ**
-
-| สิ่งที่ต้องการ | Verilog | VHDL |
-|---|---|---|
-| ประกาศกล่องวงจร | `module m(...); ... endmodule` | `entity m is ... end entity;` + `architecture` |
-| ขาเข้า / ขาออก | `input wire a` / `output reg y` | `a : in std_logic` / `y : out std_logic` |
-| บัส 4 บิต | `wire [3:0] d` | `signal d : std_logic_vector(3 downto 0)` |
-| ค่าคงที่ | `4'b1010` / `1'b0` | `"1010"` / `'0'` |
-| ต่อสายแบบ concurrent | `assign y = a & b;` | `y <= a and b;` |
-| AND / OR / NOT / XOR | `&` `\|` `~` `^` | `and` `or` `not` `xor` |
-| NAND / NOR / XNOR | `~(a & b)` ฯลฯ | `nand` `nor` `xnor` (มีให้ตรง ๆ) |
-| ต่อบิต (concatenate) | `{a, b}` | `a & b` |
-| บล็อกคอมบิเนชัน | `always @(*)` | `process(all)` |
-| บล็อกเชิงลำดับ | `always @(posedge clk)` | `process(clk)` + `if rising_edge(clk)` |
-| การกำหนดค่าในบล็อก | `<=` (nonblocking) / `=` (blocking) | `<=` (signal) / `:=` (variable) |
-| เลือกกรณี | `case (sel) ... endcase` | `case sel is ... end case;` |
-| กรณีที่เหลือ | `default:` | `when others =>` |
-| ประกอบโมดูลย่อย | `dff u0 (.clk(clk), .d(d), .q(q));` | `u0: entity work.dff port map (clk => clk, d => d, q => q);` |
-| หน่วงเวลาใน testbench | `#10;` | `wait for 10 ns;` |
-| สร้างนาฬิกา | `always #5 clk = ~clk;` | `clk <= not clk after 5 ns;` |
-| ตรวจคำตอบ | `if (...) $display("ERROR");` | `assert ... report "..." severity error;` |
-| จบการจำลอง | `$finish;` | `std.env.stop;` |
-| บันทึกรูปคลื่น | `$dumpfile` / `$dumpvars` | ตั้งค่าที่ simulator (`--vcd=`) ไม่ต้องเขียนในโค้ด |
-| หมายเหตุ (comment) | `// ...` | `-- ...` |
-
-> 📌 **ความต่างที่สำคัญที่สุดสามข้อ**
-> 1. **VHDL ตรวจชนิดข้อมูลเข้มงวดกว่ามาก** — เอา `std_logic_vector` ไปบวกเลขตรง ๆ ไม่ได้ ต้องแปลงชนิดก่อน ในขณะที่ Verilog ปล่อยผ่านเงียบ ๆ ข้อนี้ทำให้ VHDL เขียนช้ากว่า แต่จับบั๊กได้ตั้งแต่ตอนคอมไพล์
-> 2. **VHDL แยก `entity` กับ `architecture`** จึงมีหลายสถาปัตยกรรมต่อหนึ่งหน้าตากล่องได้ (เหมือน `style_a`/`style_b` ในหัวข้อ 9.6) Verilog ทำแบบนี้ไม่ได้
-> 3. **VHDL ไม่มี `wire`/`reg` ให้สับสน** มีแต่ `signal` อย่างเดียว — ความสับสนอันดับหนึ่งของผู้เริ่มต้น Verilog จึงหายไปเลย
-
----
-
-## 9.11 ข้อผิดพลาดที่พบบ่อย (พร้อมข้อความจริงจาก simulator)
-
-ทุกข้อความ error ในตารางนี้ได้จากการรัน GHDL จริง ไม่ใช่ข้อความที่แต่งขึ้น
-
-| # | ความผิดพลาด | ข้อความ/อาการจริง | ทางแก้ |
-|:---:|---|---|---|
-| 1 | ลืมวงเล็บ `a and b or c` | `error: only one type of logical operators may be used to combine relation` | ใส่วงเล็บเสมอ `(a and b) or c` |
-| 2 | `with-select` ไม่มี `when others` | `error: missing choice(s)` | ปิดท้ายด้วย `when others` ทุกครั้ง |
-| 3 | ลืมสัญญาณใน sensitivity list | ไม่มี error แต่ผลจำลอง **ค้างค่าเดิม** ขณะที่ synthesis ได้วงจรถูก | ใช้ `process(all)` กับวงจรคอมบิเนชัน |
-| 4 | `case j & k` ขณะตั้ง Std เป็น VHDL-93 | `error: can't resolve overload for operator "&"` | ตั้ง **Std = VHDL-2008** |
-| 5 | อ่านค่าจากขา `out` ใน VHDL-93 | `error: port "q" cannot be read` | ใช้ signal ภายใน (`q_int`) แล้วค่อยต่อออกขา |
-| 6 | พิมพ์ภาษาไทยใน `report "..."` | `error: invalid character not allowed, even in a string` | ข้อความ report ใช้ ASCII เท่านั้น (comment ไทยได้) |
-| 7 | ใช้ `if clk = '1'` แทน `rising_edge(clk)` | `error: latch infered for net "q"` ตอนสังเคราะห์ | ใช้ `rising_edge(clk)` เท่านั้น |
-| 8 | ขับ signal เดียวจากสองที่ (multiple drivers) | **ไม่มี error** แต่ค่ากลายเป็น `'X'` เมื่อสองฝั่งไม่ตรงกัน | ให้ signal หนึ่งตัวมีที่เขียนที่เดียว |
-| 9 | ลืมค่าเริ่มต้นของ `clk` ใน testbench | นาฬิกาเป็น `'U'` ตลอด ไม่มีขอบเลย | `signal clk : std_logic := '0';` |
-| 10 | ใส่ `wait for` / `after` ในไฟล์วงจร | จำลองผ่าน แต่สังเคราะห์ไม่ได้ | หน่วงเวลาจริงต้องทำด้วยตัวนับกับนาฬิกา |
-| 11 | ลืม `wait;` ปิดท้าย process ของ testbench | จำลองวนซ้ำไม่รู้จบ | ปิดท้ายด้วย `wait;` หรือ `std.env.stop;` |
-| 12 | Top Entity ไม่ตรงกับชื่อ entity ของ testbench | กด Simulate แล้วไม่มีอะไรเกิดขึ้น | ตั้ง Top Entity ให้ตรงตัวอักษรทุกตัว |
-
-> ⚠️ **ข้อ 8 อันตรายที่สุดในตารางนี้** เพราะไม่มีใครฟ้อง — ผลจำลองจริงเมื่อขับ `y` ทั้ง `y <= a and b;` และ `y <= a or b;` พร้อมกันคือ
-> ```text
-> a=1 b=0 -> y = 'X'      ← สองฝั่งขัดกัน ได้ค่า Unknown
-> a=1 b=1 -> y = '1'      ← บังเอิญตรงกัน จึงดูเหมือนไม่มีปัญหา
-> ```
-> สังเกตว่าบางกรณีมันก็ "ดูปกติ" นี่คือบั๊กที่ซ่อนตัวเก่งที่สุด และในฮาร์ดแวร์จริงคือการลัดวงจรระหว่างเอาต์พุตสองตัว
-
----
-
-## 9.12 สรุปท้ายบท
-
-บทนี้พาเขียน VHDL ตั้งแต่โครง `entity`/`architecture`, ชนิด `std_logic`, วงจรคอมบิเนชันสองสไตล์, ฟลิปฟลอปสามชนิด, ไปจนถึงการประกอบฟลิปฟลอปเป็นชิฟต์รีจิสเตอร์และตัวนับ พร้อมจำลองจริงบน vhdl.ai
-
-**สามสิ่งที่ควรติดตัวไปจากบทนี้**
-
-1. **`process` ที่มี `rising_edge(clk)` คือฟลิปฟลอป** ส่วน `process` ที่ไม่มี คือวงจรคอมบิเนชัน — แค่รู้สองข้อนี้ก็อ่าน VHDL ของจริงออกแล้วครึ่งหนึ่ง (หัวข้อ 9.7)
-2. **VHDL จู้จี้เรื่องชนิดข้อมูลเพราะตั้งใจ** การที่ `std_logic_vector` บวกเลขไม่ได้ ไม่ใช่ความไม่สะดวก แต่คือการบังคับให้เราบอกให้ชัดว่ากำลังมองสายไฟมัดนี้เป็นตัวเลขแบบใด (หัวข้อ 9.3)
-3. **ภาษาเปลี่ยน แต่วงจรไม่เปลี่ยน** — วงจรที่เขียนด้วย VHDL สังเคราะห์ได้ฟลิปฟลอปและลอจิกเกตจริง สิ่งที่เรียนมาตั้งแต่บทที่ 2 ถึงบทที่ 8 จึงยังเป็นความรู้ที่ใช้ได้เสมอไม่ว่าจะบรรยายด้วยภาษาใด
-
-</div>
-
-<div class="chapter-tab-content" data-tab-name="Interactive Sim" data-tab-icon="🎮" id="sim" markdown="1">
-
-## 🎮 ชุดโค้ดพร้อมรัน (Copy → Paste → Simulate)
-
-โค้ดทุกชุดในหน้านี้ **คอมไพล์และรันผ่านจริงด้วย GHDL 6.0.0 (`--std=08`)** ซึ่งเป็น simulator ตัวเดียวกับที่ vhdl.ai นำไปคอมไพล์เป็น WebAssembly — ผลลัพธ์ที่แสดงในแท็บถัดไปคือผลที่ออกมาจริง ไม่ใช่ผลที่คาดเดา
-
-### ตั้งค่าก่อนกด Simulate ทุกครั้ง
-
-| ช่อง | ค่า |
-|---|---|
-| **Top Entity** | ชื่อ entity ของ testbench ในชุดนั้น (เช่น `tb_gates`) |
-| **Std:** | `VHDL-2008` (ค่าตั้งต้นคือ VHDL-93c ต้องเปลี่ยนเองทุกครั้ง) |
-| **Stop:** | `100` ns สำหรับชุดที่ 1–2 · `200` ns สำหรับชุดที่ 3–5 |
-
-> 💡 **ทำไมไม่มีลิงก์สำเร็จรูปให้กด?** เพราะลิงก์ share ผูกกับเบราว์เซอร์ของผู้สร้างและหายได้เมื่อล้างข้อมูล การคัดลอกโค้ดวางเองจึงแน่นอนกว่า และได้ฝึกพิมพ์ไปในตัว
-
----
-
-### ชุดที่ 1 — เกตพื้นฐานทั้งเจ็ด (Top Entity = `tb_gates`)
-
-**ไฟล์ `gates`**
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity gates is
-  port ( a, b : in  std_logic;
-         y_and, y_or, y_not, y_nand, y_nor, y_xor, y_xnor : out std_logic );
-end entity;
-
-architecture rtl of gates is
-begin
-  y_and  <= a and b;
-  y_or   <= a or b;
-  y_not  <= not a;
-  y_nand <= a nand b;
-  y_nor  <= a nor b;
-  y_xor  <= a xor b;
-  y_xnor <= a xnor b;
-end architecture;
-```
-
-**ไฟล์ `tb_gates`** — ฉบับพิมพ์ตารางความจริงออกทาง Console
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-use std.textio.all;
-
-entity tb_gates is end entity;
-
-architecture sim of tb_gates is
-  signal a, b : std_logic;
-  signal y_and, y_or, y_not, y_nand, y_nor, y_xor, y_xnor : std_logic;
-begin
-  uut: entity work.gates
-    port map (a, b, y_and, y_or, y_not, y_nand, y_nor, y_xor, y_xnor);
-
-  process
-    variable l : line;
-  begin
-    write(l, string'(" a   b  | AND   OR   NOT   NAND   NOR   XOR   XNOR"));
-    writeline(output, l);
-    write(l, string'("--------+-----------------------------------------"));
-    writeline(output, l);
-
-    for i in 0 to 3 loop
-      a <= '0' when i < 2 else '1';          -- conditional assignment ของ VHDL-2008
-      b <= '0' when (i mod 2) = 0 else '1';
-      wait for 10 ns;
-      write(l, string'(" "));
-      write(l, std_logic'image(a)(2));      write(l, string'("   "));
-      write(l, std_logic'image(b)(2));      write(l, string'("  |  "));
-      write(l, std_logic'image(y_and)(2));  write(l, string'("    "));
-      write(l, std_logic'image(y_or)(2));   write(l, string'("    "));
-      write(l, std_logic'image(y_not)(2));  write(l, string'("     "));
-      write(l, std_logic'image(y_nand)(2)); write(l, string'("     "));
-      write(l, std_logic'image(y_nor)(2));  write(l, string'("     "));
-      write(l, std_logic'image(y_xor)(2));  write(l, string'("     "));
-      write(l, std_logic'image(y_xnor)(2));
-      writeline(output, l);
-    end loop;
-    wait;
-  end process;
-end architecture;
-```
-
-> 🔎 **`std_logic'image(a)` คืนสตริง `'1'` พร้อมอัญประกาศ** จึงต้องหยิบตัวอักษรที่ตำแหน่ง `(2)` ออกมาเพียงตัวเดียว เทคนิคนี้ใช้ซ้ำได้ทุก testbench ที่อยากพิมพ์ตาราง
-
----
-
-### ชุดที่ 2 — Half Adder (Top Entity = `tb_half_adder`)
-
-**ไฟล์ `half_adder`**
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity half_adder is
-  port ( a, b  : in  std_logic;
-         sum   : out std_logic;
-         carry : out std_logic );
-end entity;
-
-architecture rtl of half_adder is
-begin
-  sum   <= a xor b;
-  carry <= a and b;
-end architecture;
-```
-
-**ไฟล์ `tb_half_adder`**
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-use std.textio.all;
-
-entity tb_half_adder is end entity;
-
-architecture sim of tb_half_adder is
-  signal a, b, sum, carry : std_logic;
-begin
-  uut: entity work.half_adder port map (a, b, sum, carry);
-
-  process
-    variable l : line;
-  begin
-    write(l, string'(" a   b  | sum  carry"));  writeline(output, l);
-    write(l, string'("--------+-----------"));  writeline(output, l);
-    for i in 0 to 3 loop
-      a <= '0' when i < 2 else '1';
-      b <= '0' when (i mod 2) = 0 else '1';
-      wait for 10 ns;
-      write(l, string'(" "));
-      write(l, std_logic'image(a)(2));     write(l, string'("   "));
-      write(l, std_logic'image(b)(2));     write(l, string'("  |  "));
-      write(l, std_logic'image(sum)(2));   write(l, string'("     "));
-      write(l, std_logic'image(carry)(2));
-      writeline(output, l);
-    end loop;
-    assert (sum = '0' and carry = '1')
-      report "1+1 should give carry" severity error;
-    wait;
-  end process;
-end architecture;
-```
-
----
-
-### ชุดที่ 3 — Mux 4:1 สองสไตล์เทียบกัน (Top Entity = `tb_mux4_print`)
-
-วางทั้งสอง architecture ไว้ไฟล์เดียวกันตามโค้ดในหัวข้อ 9.6 แล้วใช้ testbench นี้ **เรียกทั้งสองสไตล์พร้อมกัน** เพื่อพิสูจน์ว่าให้ผลเหมือนกันทุกกรณี
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-use std.textio.all;
-
-entity tb_mux4_print is end entity;
-
-architecture sim of tb_mux4_print is
-  signal d    : std_logic_vector(3 downto 0) := "1010";
-  signal sel  : std_logic_vector(1 downto 0);
-  signal y_a  : std_logic;
-  signal y_b  : std_logic;
-begin
-  ua: entity work.mux4(style_a) port map (d => d, sel => sel, y => y_a);
-  ub: entity work.mux4(style_b) port map (d => d, sel => sel, y => y_b);
-
-  process
-    variable l : line;
-  begin
-    write(l, string'("  d      sel | style_a  style_b   match"));  writeline(output, l);
-    write(l, string'("-------------+--------------------------"));  writeline(output, l);
-    for k in 0 to 7 loop
-      d   <= "1010" when k < 4 else "0101";
-      sel <= std_logic_vector(to_unsigned(k mod 4, 2));
-      wait for 10 ns;
-      write(l, string'(" "));
-      write(l, d);                           write(l, string'("   "));
-      write(l, sel);                         write(l, string'("  |    "));
-      write(l, std_logic'image(y_a)(2));     write(l, string'("        "));
-      write(l, std_logic'image(y_b)(2));     write(l, string'("       "));
-      if y_a = y_b then write(l, string'("yes")); else write(l, string'("NO")); end if;
-      writeline(output, l);
-    end loop;
-    wait;
-  end process;
-end architecture;
-```
-
-> 🧪 **การทดลองที่ต้องทำในคาบ** คัดลอก `mux4` อีกชุดหนึ่ง เปลี่ยนชื่อเป็น `mux4_bad` แล้ว **ลบ `d` ออกจาก sensitivity list** (เหลือ `process(sel)`) จากนั้นรันเทียบกับ `process(all)` — ผลจริงอยู่ในแท็บ Waveform หัวข้อที่ 6
-
----
-
-### ชุดที่ 4 — ฟลิปฟลอป D / T / JK (Top Entity = `tb_dff`, `tb_tff`, `tb_jkff`)
-
-วาง `dff`, `tff`, `jkff` จากหัวข้อ 9.7 ไว้ในไฟล์ `ff` ไฟล์เดียว แล้วสลับ Top Entity เพื่อรันทีละตัว
-
-**ไฟล์ `tb_tff`**
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity tb_tff is end entity;
-
-architecture sim of tb_tff is
-  signal clk  : std_logic := '0';
-  signal rst, t, q : std_logic;
-  signal done : boolean := false;
-begin
-  uut: entity work.tff port map (clk => clk, rst => rst, t => t, q => q);
-
-  clk <= not clk after 5 ns when not done;
-
-  process begin
-    rst <= '1'; t <= '0';
-    wait for 12 ns;
-    rst <= '0';
-
-    t <= '1';                            -- toggle ทุกขอบ: 0 → 1 → 0 → 1
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '1' report "first toggle should give 1" severity error;
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '0' report "second toggle should give 0" severity error;
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '1' report "third toggle should give 1" severity error;
-
-    t <= '0';                            -- t=0 ต้องค้าง
-    wait until rising_edge(clk); wait for 1 ns;
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '1' report "q must hold when t=0" severity error;
-
-    done <= true;
-    std.env.stop;
-    wait;
-  end process;
-end architecture;
-```
-
-**ไฟล์ `tb_jkff`**
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity tb_jkff is end entity;
-
-architecture sim of tb_jkff is
-  signal clk  : std_logic := '0';
-  signal rst, j, k, q : std_logic;
-  signal done : boolean := false;
-begin
-  uut: entity work.jkff port map (clk => clk, rst => rst, j => j, k => k, q => q);
-
-  clk <= not clk after 5 ns when not done;
-
-  process begin
-    rst <= '1'; j <= '0'; k <= '0';
-    wait for 12 ns;
-    rst <= '0';
-
-    j <= '1'; k <= '0';                  -- set
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '1' report "jk=10 should set" severity error;
-
-    j <= '0'; k <= '0';                  -- hold
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '1' report "jk=00 should hold" severity error;
-
-    j <= '0'; k <= '1';                  -- reset
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '0' report "jk=01 should reset" severity error;
-
-    j <= '1'; k <= '1';                  -- toggle สองครั้ง
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '1' report "jk=11 first toggle" severity error;
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = '0' report "jk=11 second toggle" severity error;
-
-    done <= true;
-    std.env.stop;
-    wait;
-  end process;
-end architecture;
-```
-
-`tb_dff` ฉบับ assert อยู่ในหัวข้อ 9.7 แล้ว ส่วนฉบับพิมพ์ตารางต่อลูกนาฬิกาใช้โค้ดนี้
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-use std.textio.all;
-
-entity tb_dff_print is end entity;
-
-architecture sim of tb_dff_print is
-  signal clk  : std_logic := '0';
-  signal rst, en, d, q : std_logic;
-  signal done : boolean := false;
-
-  type stim_t is record
-    r, e, dd : std_logic;
-  end record;
-  type stim_arr is array (natural range <>) of stim_t;
-  constant stim : stim_arr := (          -- (rst, en, d) ของแต่ละลูกนาฬิกา
-    ('1', '0', '0'),
-    ('0', '1', '1'),
-    ('0', '1', '0'),
-    ('0', '0', '1'),
-    ('0', '0', '0'),
-    ('0', '1', '1'),
-    ('1', '1', '1') );
-begin
-  uut: entity work.dff port map (clk => clk, rst => rst, en => en, d => d, q => q);
-  clk <= not clk after 5 ns when not done;
-
-  process
-    variable l : line;
-  begin
-    write(l, string'(" edge   rst  en   d  |  q"));   writeline(output, l);
-    write(l, string'("---------------------+----"));  writeline(output, l);
-    for i in stim'range loop
-      rst <= stim(i).r;  en <= stim(i).e;  d <= stim(i).dd;
-      wait until rising_edge(clk);
-      wait for 1 ns;
-      write(l, string'("  #"));            write(l, i + 1);
-      write(l, string'("     "));
-      write(l, std_logic'image(rst)(2));   write(l, string'("    "));
-      write(l, std_logic'image(en)(2));    write(l, string'("   "));
-      write(l, std_logic'image(d)(2));     write(l, string'("  |  "));
-      write(l, std_logic'image(q)(2));
-      writeline(output, l);
-    end loop;
-    done <= true;
-    std.env.stop;
-    wait;
-  end process;
-end architecture;
-```
-
----
-
-### ชุดที่ 5 — Shift Register + Counter (Top Entity = `tb_shift4` / `tb_counter4`)
-
-วาง `dff` (จากชุดที่ 4), `shift4` ทั้งสอง architecture และ `counter4` ไว้ในไฟล์เดียวกันได้ ตามโค้ดในหัวข้อ 9.8
-
-**ไฟล์ `tb_shift4`** — สลับ `(rtl)` เป็น `(structural)` แล้วรันซ้ำ ผลต้องเท่ากันทุกบรรทัด
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity tb_shift4 is end entity;
-
-architecture sim of tb_shift4 is
-  signal clk  : std_logic := '0';
-  signal rst, en, sin : std_logic;
-  signal q    : std_logic_vector(3 downto 0);
-  signal done : boolean := false;
-begin
-  uut: entity work.shift4(rtl) port map (clk => clk, rst => rst, en => en, sin => sin, q => q);
-
-  clk <= not clk after 5 ns when not done;
-
-  process begin
-    rst <= '1'; en <= '0'; sin <= '0';
-    wait for 12 ns;
-    assert q = "0000" report "reset should clear register" severity error;
-
-    rst <= '0'; en <= '1';
-    sin <= '1'; wait until rising_edge(clk); wait for 1 ns;   -- 0001
-    sin <= '0'; wait until rising_edge(clk); wait for 1 ns;   -- 0010
-    sin <= '1'; wait until rising_edge(clk); wait for 1 ns;   -- 0101
-    sin <= '1'; wait until rising_edge(clk); wait for 1 ns;   -- 1011
-    assert q = "1011" report "after shifting 1,0,1,1 q should be 1011" severity error;
-
-    en <= '0'; sin <= '0';
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = "1011" report "register must hold when en=0" severity error;
-
-    done <= true;
-    std.env.stop;
-    wait;
-  end process;
-end architecture;
-```
-
-**ไฟล์ `tb_counter4`**
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-entity tb_counter4 is end entity;
-
-architecture sim of tb_counter4 is
-  signal clk  : std_logic := '0';
-  signal rst, en : std_logic;
-  signal q    : std_logic_vector(3 downto 0);
-  signal done : boolean := false;
-begin
-  uut: entity work.counter4 port map (clk => clk, rst => rst, en => en, q => q);
-
-  clk <= not clk after 5 ns when not done;
-
-  process begin
-    rst <= '1'; en <= '0';
-    wait for 12 ns;
-    assert q = "0000" report "reset should clear counter" severity error;
-
-    rst <= '0'; en <= '1';
-    for i in 1 to 5 loop                 -- นับ 5 ครั้ง
-      wait until rising_edge(clk);
-    end loop;
-    wait for 1 ns;
-    assert unsigned(q) = 5 report "after 5 clocks q should be 5" severity error;
-
-    for i in 6 to 16 loop                -- นับต่อจนครบ 16 → ล้นกลับ 0
-      wait until rising_edge(clk);
-    end loop;
-    wait for 1 ns;
-    assert q = "0000" report "counter should wrap to 0 after 16 clocks" severity error;
-
-    en <= '0';
-    wait until rising_edge(clk); wait for 1 ns;
-    assert q = "0000" report "counter must hold when en=0" severity error;
-
-    done <= true;
-    std.env.stop;
-    wait;
-  end process;
-end architecture;
-```
-
-> 📌 **`unsigned(q) = 5` เทียบกับตัวเลขได้ตรง ๆ** เมื่อประกาศ `use ieee.numeric_std.all;` — สะดวกกว่าการเขียน `q = "0101"` มากเมื่อวงจรกว้างหลายบิต
-
----
-
-
----
-
-## 📚 คลังตัวอย่างวงจรฉบับสมบูรณ์จาก vhdl.ai (VHDLive Examples Catalog)
+### 9.9.4 คลังตัวอย่างวงจรฉบับสมบูรณ์จาก vhdl.ai (Complete VHDLive Examples Catalog)
 
 หัวข้อนี้รวบรวมซอร์สโค้ด VHDL และ Testbench ฉบับสมบูรณ์ของทุกตัวอย่างจากคลัง [vhdl.ai](https://vhdl.ai/vhdlive) จัดหมวดหมู่อย่างเป็นระบบ พร้อมระบุค่าคอนฟิกสำหรับการจำลอง และเชื่อมโยงไปยังทฤษฎีในบทเรียนดิจิทัลที่เกี่ยวข้อง ไฟล์ทั้งหมดถูกบันทึกไว้ในโฟลเดอร์ [`vhdl-ai-examples/`](file:///Volumes/ExDisk/Google%20Drive%20Ksu/KSU/Git/Digital/chapters/ch09-hdl-vhdl/vhdl-ai-examples) ของบทนี้
 
@@ -4788,7 +4252,547 @@ begin
 ... (ดูต่อในไฟล์เต็ม 149 บรรทัดที่โฟลเดอร์โครงการ)
 ```
 
+---
 
+### ถ้าอยากรันบนเครื่องตัวเอง
+
+โค้ดทุกชุดในบทนี้รันด้วย GHDL บนเครื่องได้ทันทีด้วยสามคำสั่ง
+
+```bash
+ghdl -a --std=08 design.vhd testbench.vhd   # analyse: ตรวจไวยากรณ์
+ghdl -e --std=08 tb_dff                      # elaborate: ประกอบวงจร
+ghdl -r --std=08 tb_dff --vcd=wave.vcd       # run: จำลองและบันทึกรูปคลื่น
+```
+
+ไฟล์ `wave.vcd` ที่ได้ เปิดดูรูปคลื่นได้ด้วย **GTKWave** หรือ **Surfer**
+
+---
+
+## 9.10 VHDL ↔ Verilog: ตารางเทียบไวยากรณ์
+
+หน้านี้คือโพยเทียบไวยากรณ์ระหว่างภาษา VHDL และ Verilog **แนวคิดเหมือนกันหมด เปลี่ยนแค่คำ**
+
+| สิ่งที่ต้องการ | Verilog | VHDL |
+|---|---|---|
+| ประกาศกล่องวงจร | `module m(...); ... endmodule` | `entity m is ... end entity;` + `architecture` |
+| ขาเข้า / ขาออก | `input wire a` / `output reg y` | `a : in std_logic` / `y : out std_logic` |
+| บัส 4 บิต | `wire [3:0] d` | `signal d : std_logic_vector(3 downto 0)` |
+| ค่าคงที่ | `4'b1010` / `1'b0` | `"1010"` / `'0'` |
+| ต่อสายแบบ concurrent | `assign y = a & b;` | `y <= a and b;` |
+| AND / OR / NOT / XOR | `&` `\|` `~` `^` | `and` `or` `not` `xor` |
+| NAND / NOR / XNOR | `~(a & b)` ฯลฯ | `nand` `nor` `xnor` (มีให้ตรง ๆ) |
+| ต่อบิต (concatenate) | `{a, b}` | `a & b` |
+| บล็อกคอมบิเนชัน | `always @(*)` | `process(all)` |
+| บล็อกเชิงลำดับ | `always @(posedge clk)` | `process(clk)` + `if rising_edge(clk)` |
+| การกำหนดค่าในบล็อก | `<=` (nonblocking) / `=` (blocking) | `<=` (signal) / `:=` (variable) |
+| เลือกกรณี | `case (sel) ... endcase` | `case sel is ... end case;` |
+| กรณีที่เหลือ | `default:` | `when others =>` |
+| ประกอบโมดูลย่อย | `dff u0 (.clk(clk), .d(d), .q(q));` | `u0: entity work.dff port map (clk => clk, d => d, q => q);` |
+| หน่วงเวลาใน testbench | `#10;` | `wait for 10 ns;` |
+| สร้างนาฬิกา | `always #5 clk = ~clk;` | `clk <= not clk after 5 ns;` |
+| ตรวจคำตอบ | `if (...) $display("ERROR");` | `assert ... report "..." severity error;` |
+| จบการจำลอง | `$finish;` | `std.env.stop;` |
+| บันทึกรูปคลื่น | `$dumpfile` / `$dumpvars` | ตั้งค่าที่ simulator (`--vcd=`) ไม่ต้องเขียนในโค้ด |
+| หมายเหตุ (comment) | `// ...` | `-- ...` |
+
+> 📌 **ความต่างที่สำคัญที่สุดสามข้อ**
+> 1. **VHDL ตรวจชนิดข้อมูลเข้มงวดกว่ามาก** — เอา `std_logic_vector` ไปบวกเลขตรง ๆ ไม่ได้ ต้องแปลงชนิดก่อน ในขณะที่ Verilog ปล่อยผ่านเงียบ ๆ ข้อนี้ทำให้ VHDL เขียนช้ากว่า แต่จับบั๊กได้ตั้งแต่ตอนคอมไพล์
+> 2. **VHDL แยก `entity` กับ `architecture`** จึงมีหลายสถาปัตยกรรมต่อหนึ่งหน้าตากล่องได้ (เหมือน `style_a`/`style_b` ในหัวข้อ 9.6) Verilog ทำแบบนี้ไม่ได้
+> 3. **VHDL ไม่มี `wire`/`reg` ให้สับสน** มีแต่ `signal` อย่างเดียว — ความสับสนอันดับหนึ่งของผู้เริ่มต้น Verilog จึงหายไปเลย
+
+---
+
+## 9.11 ข้อผิดพลาดที่พบบ่อย (พร้อมข้อความจริงจาก simulator)
+
+ทุกข้อความ error ในตารางนี้ได้จากการรัน GHDL จริง ไม่ใช่ข้อความที่แต่งขึ้น
+
+| # | ความผิดพลาด | ข้อความ/อาการจริง | ทางแก้ |
+|:---:|---|---|---|
+| 1 | ลืมวงเล็บ `a and b or c` | `error: only one type of logical operators may be used to combine relation` | ใส่วงเล็บเสมอ `(a and b) or c` |
+| 2 | `with-select` ไม่มี `when others` | `error: missing choice(s)` | ปิดท้ายด้วย `when others` ทุกครั้ง |
+| 3 | ลืมสัญญาณใน sensitivity list | ไม่มี error แต่ผลจำลอง **ค้างค่าเดิม** ขณะที่ synthesis ได้วงจรถูก | ใช้ `process(all)` กับวงจรคอมบิเนชัน |
+| 4 | `case j & k` ขณะตั้ง Std เป็น VHDL-93 | `error: can't resolve overload for operator "&"` | ตั้ง **Std = VHDL-2008** |
+| 5 | อ่านค่าจากขา `out` ใน VHDL-93 | `error: port "q" cannot be read` | ใช้ signal ภายใน (`q_int`) แล้วค่อยต่อออกขา |
+| 6 | พิมพ์ภาษาไทยใน `report "..."` | `error: invalid character not allowed, even in a string` | ข้อความ report ใช้ ASCII เท่านั้น (comment ไทยได้) |
+| 7 | ใช้ `if clk = '1'` แทน `rising_edge(clk)` | `error: latch infered for net "q"` ตอนสังเคราะห์ | ใช้ `rising_edge(clk)` เท่านั้น |
+| 8 | ขับ signal เดียวจากสองที่ (multiple drivers) | **ไม่มี error** แต่ค่ากลายเป็น `'X'` เมื่อสองฝั่งไม่ตรงกัน | ให้ signal หนึ่งตัวมีที่เขียนที่เดียว |
+| 9 | ลืมค่าเริ่มต้นของ `clk` ใน testbench | นาฬิกาเป็น `'U'` ตลอด ไม่มีขอบเลย | `signal clk : std_logic := '0';` |
+| 10 | ใส่ `wait for` / `after` ในไฟล์วงจร | จำลองผ่าน แต่สังเคราะห์ไม่ได้ | หน่วงเวลาจริงต้องทำด้วยตัวนับกับนาฬิกา |
+| 11 | ลืม `wait;` ปิดท้าย process ของ testbench | จำลองวนซ้ำไม่รู้จบ | ปิดท้ายด้วย `wait;` หรือ `std.env.stop;` |
+| 12 | Top Entity ไม่ตรงกับชื่อ entity ของ testbench | กด Simulate แล้วไม่มีอะไรเกิดขึ้น | ตั้ง Top Entity ให้ตรงตัวอักษรทุกตัว |
+
+> ⚠️ **ข้อ 8 อันตรายที่สุดในตารางนี้** เพราะไม่มีใครฟ้อง — ผลจำลองจริงเมื่อขับ `y` ทั้ง `y <= a and b;` และ `y <= a or b;` พร้อมกันคือ
+> ```text
+> a=1 b=0 -> y = 'X'      ← สองฝั่งขัดกัน ได้ค่า Unknown
+> a=1 b=1 -> y = '1'      ← บังเอิญตรงกัน จึงดูเหมือนไม่มีปัญหา
+> ```
+> สังเกตว่าบางกรณีมันก็ "ดูปกติ" นี่คือบั๊กที่ซ่อนตัวเก่งที่สุด และในฮาร์ดแวร์จริงคือการลัดวงจรระหว่างเอาต์พุตสองตัว
+
+---
+
+## 9.12 สรุปท้ายบท
+
+บทนี้พาเขียน VHDL ตั้งแต่โครง `entity`/`architecture`, ชนิด `std_logic`, วงจรคอมบิเนชันสองสไตล์, ฟลิปฟลอปสามชนิด, ไปจนถึงการประกอบฟลิปฟลอปเป็นชิฟต์รีจิสเตอร์และตัวนับ พร้อมจำลองจริงบน vhdl.ai
+
+**สามสิ่งที่ควรติดตัวไปจากบทนี้**
+
+1. **`process` ที่มี `rising_edge(clk)` คือฟลิปฟลอป** ส่วน `process` ที่ไม่มี คือวงจรคอมบิเนชัน — แค่รู้สองข้อนี้ก็อ่าน VHDL ของจริงออกแล้วครึ่งหนึ่ง (หัวข้อ 9.7)
+2. **VHDL จู้จี้เรื่องชนิดข้อมูลเพราะตั้งใจ** การที่ `std_logic_vector` บวกเลขไม่ได้ ไม่ใช่ความไม่สะดวก แต่คือการบังคับให้เราบอกให้ชัดว่ากำลังมองสายไฟมัดนี้เป็นตัวเลขแบบใด (หัวข้อ 9.3)
+3. **ภาษาเปลี่ยน แต่วงจรไม่เปลี่ยน** — วงจรที่เขียนด้วย VHDL สังเคราะห์ได้ฟลิปฟลอปและลอจิกเกตจริง สิ่งที่เรียนมาตั้งแต่บทที่ 2 ถึงบทที่ 8 จึงยังเป็นความรู้ที่ใช้ได้เสมอไม่ว่าจะบรรยายด้วยภาษาใด
+
+</div>
+
+<div class="chapter-tab-content" data-tab-name="Interactive Sim" data-tab-icon="🎮" id="sim" markdown="1">
+
+## 🎮 ชุดโค้ดพร้อมรัน (Copy → Paste → Simulate)
+
+โค้ดทุกชุดในหน้านี้ **คอมไพล์และรันผ่านจริงด้วย GHDL 6.0.0 (`--std=08`)** ซึ่งเป็น simulator ตัวเดียวกับที่ vhdl.ai นำไปคอมไพล์เป็น WebAssembly — ผลลัพธ์ที่แสดงในแท็บถัดไปคือผลที่ออกมาจริง ไม่ใช่ผลที่คาดเดา
+
+### ตั้งค่าก่อนกด Simulate ทุกครั้ง
+
+| ช่อง | ค่า |
+|---|---|
+| **Top Entity** | ชื่อ entity ของ testbench ในชุดนั้น (เช่น `tb_gates`) |
+| **Std:** | `VHDL-2008` (ค่าตั้งต้นคือ VHDL-93c ต้องเปลี่ยนเองทุกครั้ง) |
+| **Stop:** | `100` ns สำหรับชุดที่ 1–2 · `200` ns สำหรับชุดที่ 3–5 |
+
+> 💡 **ทำไมไม่มีลิงก์สำเร็จรูปให้กด?** เพราะลิงก์ share ผูกกับเบราว์เซอร์ของผู้สร้างและหายได้เมื่อล้างข้อมูล การคัดลอกโค้ดวางเองจึงแน่นอนกว่า และได้ฝึกพิมพ์ไปในตัว
+
+---
+
+### ชุดที่ 1 — เกตพื้นฐานทั้งเจ็ด (Top Entity = `tb_gates`)
+
+**ไฟล์ `gates`**
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity gates is
+  port ( a, b : in  std_logic;
+         y_and, y_or, y_not, y_nand, y_nor, y_xor, y_xnor : out std_logic );
+end entity;
+
+architecture rtl of gates is
+begin
+  y_and  <= a and b;
+  y_or   <= a or b;
+  y_not  <= not a;
+  y_nand <= a nand b;
+  y_nor  <= a nor b;
+  y_xor  <= a xor b;
+  y_xnor <= a xnor b;
+end architecture;
+```
+
+**ไฟล์ `tb_gates`** — ฉบับพิมพ์ตารางความจริงออกทาง Console
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+use std.textio.all;
+
+entity tb_gates is end entity;
+
+architecture sim of tb_gates is
+  signal a, b : std_logic;
+  signal y_and, y_or, y_not, y_nand, y_nor, y_xor, y_xnor : std_logic;
+begin
+  uut: entity work.gates
+    port map (a, b, y_and, y_or, y_not, y_nand, y_nor, y_xor, y_xnor);
+
+  process
+    variable l : line;
+  begin
+    write(l, string'(" a   b  | AND   OR   NOT   NAND   NOR   XOR   XNOR"));
+    writeline(output, l);
+    write(l, string'("--------+-----------------------------------------"));
+    writeline(output, l);
+
+    for i in 0 to 3 loop
+      a <= '0' when i < 2 else '1';          -- conditional assignment ของ VHDL-2008
+      b <= '0' when (i mod 2) = 0 else '1';
+      wait for 10 ns;
+      write(l, string'(" "));
+      write(l, std_logic'image(a)(2));      write(l, string'("   "));
+      write(l, std_logic'image(b)(2));      write(l, string'("  |  "));
+      write(l, std_logic'image(y_and)(2));  write(l, string'("    "));
+      write(l, std_logic'image(y_or)(2));   write(l, string'("    "));
+      write(l, std_logic'image(y_not)(2));  write(l, string'("     "));
+      write(l, std_logic'image(y_nand)(2)); write(l, string'("     "));
+      write(l, std_logic'image(y_nor)(2));  write(l, string'("     "));
+      write(l, std_logic'image(y_xor)(2));  write(l, string'("     "));
+      write(l, std_logic'image(y_xnor)(2));
+      writeline(output, l);
+    end loop;
+    wait;
+  end process;
+end architecture;
+```
+
+> 🔎 **`std_logic'image(a)` คืนสตริง `'1'` พร้อมอัญประกาศ** จึงต้องหยิบตัวอักษรที่ตำแหน่ง `(2)` ออกมาเพียงตัวเดียว เทคนิคนี้ใช้ซ้ำได้ทุก testbench ที่อยากพิมพ์ตาราง
+
+---
+
+### ชุดที่ 2 — Half Adder (Top Entity = `tb_half_adder`)
+
+**ไฟล์ `half_adder`**
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity half_adder is
+  port ( a, b  : in  std_logic;
+         sum   : out std_logic;
+         carry : out std_logic );
+end entity;
+
+architecture rtl of half_adder is
+begin
+  sum   <= a xor b;
+  carry <= a and b;
+end architecture;
+```
+
+**ไฟล์ `tb_half_adder`**
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+use std.textio.all;
+
+entity tb_half_adder is end entity;
+
+architecture sim of tb_half_adder is
+  signal a, b, sum, carry : std_logic;
+begin
+  uut: entity work.half_adder port map (a, b, sum, carry);
+
+  process
+    variable l : line;
+  begin
+    write(l, string'(" a   b  | sum  carry"));  writeline(output, l);
+    write(l, string'("--------+-----------"));  writeline(output, l);
+    for i in 0 to 3 loop
+      a <= '0' when i < 2 else '1';
+      b <= '0' when (i mod 2) = 0 else '1';
+      wait for 10 ns;
+      write(l, string'(" "));
+      write(l, std_logic'image(a)(2));     write(l, string'("   "));
+      write(l, std_logic'image(b)(2));     write(l, string'("  |  "));
+      write(l, std_logic'image(sum)(2));   write(l, string'("     "));
+      write(l, std_logic'image(carry)(2));
+      writeline(output, l);
+    end loop;
+    assert (sum = '0' and carry = '1')
+      report "1+1 should give carry" severity error;
+    wait;
+  end process;
+end architecture;
+```
+
+---
+
+### ชุดที่ 3 — Mux 4:1 สองสไตล์เทียบกัน (Top Entity = `tb_mux4_print`)
+
+วางทั้งสอง architecture ไว้ไฟล์เดียวกันตามโค้ดในหัวข้อ 9.6 แล้วใช้ testbench นี้ **เรียกทั้งสองสไตล์พร้อมกัน** เพื่อพิสูจน์ว่าให้ผลเหมือนกันทุกกรณี
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use std.textio.all;
+
+entity tb_mux4_print is end entity;
+
+architecture sim of tb_mux4_print is
+  signal d    : std_logic_vector(3 downto 0) := "1010";
+  signal sel  : std_logic_vector(1 downto 0);
+  signal y_a  : std_logic;
+  signal y_b  : std_logic;
+begin
+  ua: entity work.mux4(style_a) port map (d => d, sel => sel, y => y_a);
+  ub: entity work.mux4(style_b) port map (d => d, sel => sel, y => y_b);
+
+  process
+    variable l : line;
+  begin
+    write(l, string'("  d      sel | style_a  style_b   match"));  writeline(output, l);
+    write(l, string'("-------------+--------------------------"));  writeline(output, l);
+    for k in 0 to 7 loop
+      d   <= "1010" when k < 4 else "0101";
+      sel <= std_logic_vector(to_unsigned(k mod 4, 2));
+      wait for 10 ns;
+      write(l, string'(" "));
+      write(l, d);                           write(l, string'("   "));
+      write(l, sel);                         write(l, string'("  |    "));
+      write(l, std_logic'image(y_a)(2));     write(l, string'("        "));
+      write(l, std_logic'image(y_b)(2));     write(l, string'("       "));
+      if y_a = y_b then write(l, string'("yes")); else write(l, string'("NO")); end if;
+      writeline(output, l);
+    end loop;
+    wait;
+  end process;
+end architecture;
+```
+
+> 🧪 **การทดลองที่ต้องทำในคาบ** คัดลอก `mux4` อีกชุดหนึ่ง เปลี่ยนชื่อเป็น `mux4_bad` แล้ว **ลบ `d` ออกจาก sensitivity list** (เหลือ `process(sel)`) จากนั้นรันเทียบกับ `process(all)` — ผลจริงอยู่ในแท็บ Waveform หัวข้อที่ 6
+
+---
+
+### ชุดที่ 4 — ฟลิปฟลอป D / T / JK (Top Entity = `tb_dff`, `tb_tff`, `tb_jkff`)
+
+วาง `dff`, `tff`, `jkff` จากหัวข้อ 9.7 ไว้ในไฟล์ `ff` ไฟล์เดียว แล้วสลับ Top Entity เพื่อรันทีละตัว
+
+**ไฟล์ `tb_tff`**
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity tb_tff is end entity;
+
+architecture sim of tb_tff is
+  signal clk  : std_logic := '0';
+  signal rst, t, q : std_logic;
+  signal done : boolean := false;
+begin
+  uut: entity work.tff port map (clk => clk, rst => rst, t => t, q => q);
+
+  clk <= not clk after 5 ns when not done;
+
+  process begin
+    rst <= '1'; t <= '0';
+    wait for 12 ns;
+    rst <= '0';
+
+    t <= '1';                            -- toggle ทุกขอบ: 0 → 1 → 0 → 1
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '1' report "first toggle should give 1" severity error;
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '0' report "second toggle should give 0" severity error;
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '1' report "third toggle should give 1" severity error;
+
+    t <= '0';                            -- t=0 ต้องค้าง
+    wait until rising_edge(clk); wait for 1 ns;
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '1' report "q must hold when t=0" severity error;
+
+    done <= true;
+    std.env.stop;
+    wait;
+  end process;
+end architecture;
+```
+
+**ไฟล์ `tb_jkff`**
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity tb_jkff is end entity;
+
+architecture sim of tb_jkff is
+  signal clk  : std_logic := '0';
+  signal rst, j, k, q : std_logic;
+  signal done : boolean := false;
+begin
+  uut: entity work.jkff port map (clk => clk, rst => rst, j => j, k => k, q => q);
+
+  clk <= not clk after 5 ns when not done;
+
+  process begin
+    rst <= '1'; j <= '0'; k <= '0';
+    wait for 12 ns;
+    rst <= '0';
+
+    j <= '1'; k <= '0';                  -- set
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '1' report "jk=10 should set" severity error;
+
+    j <= '0'; k <= '0';                  -- hold
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '1' report "jk=00 should hold" severity error;
+
+    j <= '0'; k <= '1';                  -- reset
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '0' report "jk=01 should reset" severity error;
+
+    j <= '1'; k <= '1';                  -- toggle สองครั้ง
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '1' report "jk=11 first toggle" severity error;
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = '0' report "jk=11 second toggle" severity error;
+
+    done <= true;
+    std.env.stop;
+    wait;
+  end process;
+end architecture;
+```
+
+`tb_dff` ฉบับ assert อยู่ในหัวข้อ 9.7 แล้ว ส่วนฉบับพิมพ์ตารางต่อลูกนาฬิกาใช้โค้ดนี้
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+use std.textio.all;
+
+entity tb_dff_print is end entity;
+
+architecture sim of tb_dff_print is
+  signal clk  : std_logic := '0';
+  signal rst, en, d, q : std_logic;
+  signal done : boolean := false;
+
+  type stim_t is record
+    r, e, dd : std_logic;
+  end record;
+  type stim_arr is array (natural range <>) of stim_t;
+  constant stim : stim_arr := (          -- (rst, en, d) ของแต่ละลูกนาฬิกา
+    ('1', '0', '0'),
+    ('0', '1', '1'),
+    ('0', '1', '0'),
+    ('0', '0', '1'),
+    ('0', '0', '0'),
+    ('0', '1', '1'),
+    ('1', '1', '1') );
+begin
+  uut: entity work.dff port map (clk => clk, rst => rst, en => en, d => d, q => q);
+  clk <= not clk after 5 ns when not done;
+
+  process
+    variable l : line;
+  begin
+    write(l, string'(" edge   rst  en   d  |  q"));   writeline(output, l);
+    write(l, string'("---------------------+----"));  writeline(output, l);
+    for i in stim'range loop
+      rst <= stim(i).r;  en <= stim(i).e;  d <= stim(i).dd;
+      wait until rising_edge(clk);
+      wait for 1 ns;
+      write(l, string'("  #"));            write(l, i + 1);
+      write(l, string'("     "));
+      write(l, std_logic'image(rst)(2));   write(l, string'("    "));
+      write(l, std_logic'image(en)(2));    write(l, string'("   "));
+      write(l, std_logic'image(d)(2));     write(l, string'("  |  "));
+      write(l, std_logic'image(q)(2));
+      writeline(output, l);
+    end loop;
+    done <= true;
+    std.env.stop;
+    wait;
+  end process;
+end architecture;
+```
+
+---
+
+### ชุดที่ 5 — Shift Register + Counter (Top Entity = `tb_shift4` / `tb_counter4`)
+
+วาง `dff` (จากชุดที่ 4), `shift4` ทั้งสอง architecture และ `counter4` ไว้ในไฟล์เดียวกันได้ ตามโค้ดในหัวข้อ 9.8
+
+**ไฟล์ `tb_shift4`** — สลับ `(rtl)` เป็น `(structural)` แล้วรันซ้ำ ผลต้องเท่ากันทุกบรรทัด
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity tb_shift4 is end entity;
+
+architecture sim of tb_shift4 is
+  signal clk  : std_logic := '0';
+  signal rst, en, sin : std_logic;
+  signal q    : std_logic_vector(3 downto 0);
+  signal done : boolean := false;
+begin
+  uut: entity work.shift4(rtl) port map (clk => clk, rst => rst, en => en, sin => sin, q => q);
+
+  clk <= not clk after 5 ns when not done;
+
+  process begin
+    rst <= '1'; en <= '0'; sin <= '0';
+    wait for 12 ns;
+    assert q = "0000" report "reset should clear register" severity error;
+
+    rst <= '0'; en <= '1';
+    sin <= '1'; wait until rising_edge(clk); wait for 1 ns;   -- 0001
+    sin <= '0'; wait until rising_edge(clk); wait for 1 ns;   -- 0010
+    sin <= '1'; wait until rising_edge(clk); wait for 1 ns;   -- 0101
+    sin <= '1'; wait until rising_edge(clk); wait for 1 ns;   -- 1011
+    assert q = "1011" report "after shifting 1,0,1,1 q should be 1011" severity error;
+
+    en <= '0'; sin <= '0';
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = "1011" report "register must hold when en=0" severity error;
+
+    done <= true;
+    std.env.stop;
+    wait;
+  end process;
+end architecture;
+```
+
+**ไฟล์ `tb_counter4`**
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity tb_counter4 is end entity;
+
+architecture sim of tb_counter4 is
+  signal clk  : std_logic := '0';
+  signal rst, en : std_logic;
+  signal q    : std_logic_vector(3 downto 0);
+  signal done : boolean := false;
+begin
+  uut: entity work.counter4 port map (clk => clk, rst => rst, en => en, q => q);
+
+  clk <= not clk after 5 ns when not done;
+
+  process begin
+    rst <= '1'; en <= '0';
+    wait for 12 ns;
+    assert q = "0000" report "reset should clear counter" severity error;
+
+    rst <= '0'; en <= '1';
+    for i in 1 to 5 loop                 -- นับ 5 ครั้ง
+      wait until rising_edge(clk);
+    end loop;
+    wait for 1 ns;
+    assert unsigned(q) = 5 report "after 5 clocks q should be 5" severity error;
+
+    for i in 6 to 16 loop                -- นับต่อจนครบ 16 → ล้นกลับ 0
+      wait until rising_edge(clk);
+    end loop;
+    wait for 1 ns;
+    assert q = "0000" report "counter should wrap to 0 after 16 clocks" severity error;
+
+    en <= '0';
+    wait until rising_edge(clk); wait for 1 ns;
+    assert q = "0000" report "counter must hold when en=0" severity error;
+
+    done <= true;
+    std.env.stop;
+    wait;
+  end process;
+end architecture;
+```
+
+> 📌 **`unsigned(q) = 5` เทียบกับตัวเลขได้ตรง ๆ** เมื่อประกาศ `use ieee.numeric_std.all;` — สะดวกกว่าการเขียน `q = "0101"` มากเมื่อวงจรกว้างหลายบิต
+
+---
+
+
+---
+
+> 📚 **คลังตัวอย่างวงจรฉบับสมบูรณ์ 35 วงจรจาก vhdl.ai:** ซอร์สโค้ด VHDL และ Testbench ของทุกหมวดหมู่ (Logic Gates, MUX/deMUX, Decoders/Encoders, 7-Segment, Gray Code, Comparators, Arithmetic, Templates, VGA Demos, และ CPUs/SoCs) ถูกรวบรวมไว้อย่างสมบูรณ์ใน **[แท็บ 💡 Concept — หัวข้อ 9.9 คลังตัวอย่างวงจรใน vhdl.ai](#คลังตัวอย่างวงจรใน-vhdlai-built-in-example-library)** และบันทึกเป็นไฟล์โค้ดพร้อมรันไว้ในโฟลเดอร์ [`vhdl-ai-examples/`](file:///Volumes/ExDisk/Google%20Drive%20Ksu/KSU/Git/Digital/chapters/ch09-hdl-vhdl/vhdl-ai-examples)
+
+---
 
 ### 🧪 ภารกิจประจำคาบ
 
