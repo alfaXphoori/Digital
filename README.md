@@ -26,6 +26,7 @@
 | **14** | **สถาปัตยกรรมคอมพิวเตอร์และหน่วยประมวลผลกลางเบื้องต้น** | โครงสร้าง CPU, Von Neumann, Instruction Cycle, 8-bit ALU/PC Verilog | [Computer Architecture](chapters/ch10-computer-architecture/) |
 | **15** | **โครงงานย่อยและการประยุกต์ใช้งาน / สรุปทบทวนรายวิชา** | นำเสนอ Mini-Project, บูรณาการระบบดิจิทัล, สรุปและเตรียมสอบปลายภาค | [Summary](chapters/summary.md) |
 | **—** | **🟧 สอบปลายภาค (Final Exam)** | **ครอบคลุมเนื้อหาสัปดาห์ที่ 9–15 \| สัดส่วน 25%** | [summary.md](chapters/summary.md) |
+| **+** | **📎 บทเสริม: การออกแบบด้วย VHDL** | `entity`/`architecture`, `process`, ฟลิปฟลอป, ตัวนับ และการจำลองบน vhdl.ai (คาบพิเศษ 3 ชม. ต่อยอดจากสัปดาห์ที่ 13) | [VHDL HDL](chapters/ch11-hdl-vhdl/) |
 
 ---
 
