@@ -40,9 +40,9 @@ assignments:
     form: "https://docs.google.com/forms/d/e/1FAIpQLSeq1D-bfMFaVWVSrskxKT83tmhvzNg53ryeQCrHVZibhe48qQ/viewform?usp=dialog"
   - n: 7
     topic: การออกแบบวงจรคอมบิเนชัน
-    work: ใบงานที่ 7 — ออกแบบวงจรคอมบิเนชัน · ต่อวงจรด้วยเกต NAND อย่างเดียว · ทดสอบความถูกต้อง
+    work: ใบงานที่ 7 — VHDL
     due: ก่อนคาบสัปดาห์ที่ 8
-    form: "#"
+    form: "https://docs.google.com/forms/d/e/1FAIpQLSdIN9r9SERL5PAI4A8d3H0heezyiCksllqYz4syfCHqDgNgZA/viewform?usp=dialog"
   - n: 8
     topic: วงจรคำนวณทางคณิตศาสตร์
     work: ใบงานที่ 8 — วงจรบวก/ลบ · ต่อ Half/Full Adder · ต่อวงจรบวกขนาน 4 บิตด้วย 7483
